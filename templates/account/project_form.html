@@ -1,0 +1,192 @@
+{% load crispy_forms_tags %}
+
+{% if operation == "Add" %}
+  <div class="modal-dialog  modal-dialog-scrollable  modal-lg" role="document" id="{{model_name}}_Modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            {{operation}}  {% if model_name == "profile_project" %} Project {% else %}{{model_name}} {% endif %} 
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="ajax_form" enctype="multipart/form-data">
+
+            <table>
+                {% csrf_token %}
+                <div class="row">
+
+                  <div class="col-sm-6">
+                    <div style="color:red">{{ form.title.errors }}</div>
+                    {{ form.title.label }} *
+                    {{form.title }} 
+                 </div>
+    
+                 <div class="col-sm-6">
+                    <div style="color:red">{{ form.year.errors }}</div>
+                    {{ form.year.label }} *
+                    {{form.year }} 
+                 </div>
+    
+                 <div class="col-sm-6">
+                    <div style="color:red">{{ form.release_date.errors }}</div>
+                    {{form.release_date.label}} *
+                    {{form.release_date}} 
+                </div>
+    
+                 
+    
+                <div class="col-sm-6">
+                  <div style="color:red">{{form.genre.errors}}</div>
+                  {{form.genre.label}} *
+                  {{form.genre}} 
+                </div>
+    
+                
+                <div class="col-sm-6">
+                  <div style="color:red">{{form.language.errors}}</div>
+                  {{form.language.label}} *
+                  {{form.language}} 
+                </div>
+    
+                <div class="col-sm-6">
+                  <div style="color:red">{{form.budget.errors}}</div>
+                  {{form.budget.label}}
+                  {{form.budget}} 
+                </div>
+    
+                <div class="col-sm-6">
+                  <div style="color:red">{{form.image.errors}}</div>
+                  {{form.image.label}} *
+                  {{form.image}} 
+                </div>
+    
+                <div class="col-sm-6">
+                  <div style="color:red">{{form.status.errors}}</div>
+                  {{form.status.label}}
+                  {{form.status}} 
+                </div>
+    
+                <div class="col-sm-6">
+                  <div style="color:red">{{form.imdb_link.errors}}</div>
+                  {{form.imdb_link.label}}
+                  {{form.imdb_link}} 
+                </div>
+    
+                  {% for hidden_field in form.hidden_fields %}
+                      {{ hidden_field.errors }}
+                      {{ hidden_field }}
+                  {% endfor %}
+    
+              </div>
+            </table>
+            
+            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <span style="color:red" id="info_text"></span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+        <button type="button" id="edit_btn" data-url= "{% url 'ajax_add' model_name=model_name  %}" class="btn btn-primary ajax-add-{{model_name}}-btn">Save</button>
+      
+        </div>
+    </div>
+  </div>
+
+{% else %}
+
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            {{operation}} {{model_name}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="ajax_form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+
+              <div class="col-sm-6">
+                <div style="color:red">{{ form.title.errors }}</div>
+                {{ form.title.label }}
+                {{form.title }} 
+             </div>
+
+             <div class="col-sm-6">
+                <div style="color:red">{{ form.year.errors }}</div>
+                {{ form.year.label }}
+                {{form.year }} 
+             </div>
+
+             <div class="col-sm-6">
+                <div style="color:red">{{ form.release_date.errors }}</div>
+                {{form.release_date.label}}
+                {{form.release_date}} 
+            </div>
+
+             
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.genre.errors}}</div>
+              {{form.genre.label}}
+              {{form.genre}} 
+            </div>
+
+            
+            <div class="col-sm-6">
+              <div style="color:red">{{form.language.errors}}</div>
+              {{form.language.label}}
+              {{form.language}} 
+            </div>
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.budget.errors}}</div>
+              {{form.budget.label}}
+              {{form.budget}} 
+            </div>
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.image.errors}}</div>
+              {{form.image.label}}
+              {{form.image}} 
+            </div>
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.status.errors}}</div>
+              {{form.status.label}}
+              {{form.status}} 
+            </div>
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.imdb_link.errors}}</div>
+              {{form.imdb_link.label}}
+              {{form.imdb_link}} 
+            </div>
+
+              {% for hidden_field in form.hidden_fields %}
+                  {{ hidden_field.errors }}
+                  {{ hidden_field }}
+              {% endfor %}
+
+          </div>     
+        </form>
+      </div>
+      <div class="modal-footer">
+        <span style="color:red" id="info_text"></span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button"  data-url= "{% url 'ajax_delete' model_name=model_name pk=pk  %}" class="btn btn-secondary ajax-delete-btn">Delete</button>
+        <button type="button"  data-url= "{% url 'ajax_edit' model_name=model_name pk=pk  %}" class="btn btn-primary ajax-edit-{{model_name}}-btn">Update</button>
+     
+        </div>
+    </div>
+  </div>
+
+
+{% endif %}

@@ -1,0 +1,362 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% if operation == "Add" %}
+  <div class="modal-dialog  modal-dialog-scrollable modal-lg" role="document" id="{{model_name}}_Modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          {% if is_producer or is_writer %}
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"><b>Add Project</b></button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><b>Join Project</b></button>
+            </li>
+
+
+            {% else %}
+
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><b>Join Project</b></button>
+              </li>
+
+            {% endif %}
+          
+           
+          </ul>
+
+   
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
+        </button>
+      </div>
+
+      <div class="tab-content" id="myTabContent">
+
+        {% if is_producer or is_writer %}
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+              <div class="modal-body">
+
+
+                  <form method="post" id="ajax_form" enctype="multipart/form-data">
+          
+                      <table>
+                          {% csrf_token %}
+                          <div class="row">
+          
+                            <div class="col-sm-6">
+                              <div style="color:red">{{ form.title.errors }}</div>
+                              {{ form.title.label }} *
+                              {{form.title }} 
+                          </div>
+              
+                          <div class="col-sm-6">
+                              <div style="color:red">{{ form.year.errors }}</div>
+                              {{ form.year.label }} 
+                              {{form.year }} 
+                          </div>          
+                       
+              
+                          
+              
+                          <div class="col-sm-6">
+                            <div style="color:red">{{form.genre.errors}}</div>
+                            {{form.genre.label}} *
+                            {{form.genre}} 
+                          </div>
+              
+                          
+                          <div class="col-sm-6">
+                            <div style="color:red">{{form.language.errors}}</div>
+                            {{form.language.label}} *
+                            {{form.language}} 
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div style="color:red">{{ form.release_date.errors }}</div>
+                            {{form.release_date.label}} 
+                            {{form.release_date}} 
+                        </div>
+              
+                          <div class="col-sm-6">
+                            <div style="color:red">{{form.budget.errors}}</div>
+                            {{form.budget.label}}
+                            {{form.budget}} 
+                          </div>
+              
+                          <div class="col-sm-6">
+                            <div style="color:red">{{form.image.errors}}</div>
+                            {{form.image.label}} 
+                            {{form.image}} 
+                          </div>
+              
+                          <div class="col-sm-6">
+                            <div style="color:red">{{form.status.errors}}</div>
+                            {{form.status.label}}
+                            {{form.status}} 
+                          </div>
+              
+                          <div class="col-sm-6">
+                            <div style="color:red">{{form.imdb_link.errors}}</div>
+                            {{form.imdb_link.label}}
+                            {{form.imdb_link}} 
+                          </div>
+              
+                            {% for hidden_field in form.hidden_fields %}
+                                {{ hidden_field.errors }}
+                                {{ hidden_field }}
+                            {% endfor %}
+              
+                        </div>
+                      </table>
+                      
+                      
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <span style="color:red" id="info_text"></span>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  
+                  <button type="button" id="edit_btn" data-url= "{% url 'ajax_add' model_name=model_name  %}" class="btn btn-primary ajax-add-{{model_name}}-btn">Save</button>
+                
+                </div>
+
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+              <div class="modal-body">
+
+                  <form method="post" id="ajax_form1" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      
+                      <div class="row">
+                          <div class="col-lg-6">
+
+
+                              <div class="input-group">
+                                  <input type="text"  class="form-control find-search-box" placeholder="Search by project name" style="height:35px;"  id="project-name">
+                                  <span class="find-search-icon btn">
+                                    
+                                          <span class="fa fa-search project_search"></span>
+                                      
+                                  </span>
+
+      
+                              </div>
+                          </div>
+
+                          <div class="col-lg-6"></div>
+
+                          <div class="col-lg-12">
+                              <hr>
+                              <div id="project-list-div-1" style="overflow-y: scroll;height:250px;">
+                                    {% for project in projects %}
+                                        <div class="col-sm-12 mt-1">
+                                            <input type="radio" class="project-select" id="user-show" project_available="yes" project_name="{{project.title}}" name="project-select" value="{{project.id}}">
+                                            <label for="user-show"> 
+                                                {% if project.image %}                     
+                                                    <img class="img-fluid rounded-circle" height="50" width="50" src="{{project.image.url}}">
+                                                {% else%}
+                                                   <img src="{% static 'images/no-image.png' %}" class="img-fluid rounded-circle" height="50" width="50">
+                                                {% endif %}
+                                                {{project.title}} - {{project.created_by}} 
+                                                
+                                            </label>        
+                                        </div>                            
+                                        <br><hr class="m-2">  
+                                        
+                                    {% endfor %}
+                              </div> 
+
+
+                          </div>
+
+                      </div>
+                      
+                      
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <span style="color:red" id="info_text"></span>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  
+                  <button type="button" id="edit_btn"  class="btn btn-primary ajax-add-join-project-btn">Join</button>
+                
+                </div>
+              
+          </div>
+        {% else %}
+
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+          <div class="modal-body">
+
+              <form method="post" id="ajax_form1" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  
+                  <div class="row">
+                      <div class="col-lg-6">
+
+
+                          <div class="input-group">
+                              <input type="text"  class="form-control find-search-box" placeholder="Search by project name" style="height:35px;"  id="project-name">
+                              <span class="find-search-icon btn">
+                                
+                                      <span class="fa fa-search project_search"></span>
+                                  
+                              </span>
+
+  
+                          </div>
+                      </div>
+
+                      <div class="col-lg-6"></div>
+
+                      <div class="col-lg-12">
+                          <hr>
+                          <div id="project-list-div-1" style="overflow-y: scroll;height:250px;">
+
+                            {% for project in projects %}
+                            <div class="col-sm-12 mt-1">
+                                <input type="radio" class="project-select" id="user-show" project_available="yes" project_name="{{project.title}}" name="project-select" value="{{project.id}}">
+                                <label for="user-show"> 
+                                    {% if project.image %}                     
+                                        <img class="img-fluid rounded-circle" height="50" width="50" src="{{project.image.url}}">
+                                    {% else%}
+                                        <img class="img-fluid rounded-circle " height="50" width="50" src="{% static 'images/avatar.png' %}" alt="avatar">
+                                    {% endif %}
+                                    {{project.title}} - {{project.created_by}} 
+                                    
+                                </label>        
+                            </div>                            
+                            <br><hr class="m-2">  
+                            
+                        {% endfor %}
+
+                          </div> 
+
+
+                      </div>
+
+                  </div>
+                  
+                  
+              </form>
+            </div>
+            <div class="modal-footer">
+              <span style="color:red" id="info_text"></span>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              
+              <button type="button" id="edit_btn"  class="btn btn-primary ajax-add-join-project-btn">Join</button>
+            
+            </div>
+          
+        </div>
+
+
+        {% endif %}
+       
+      </div>
+  
+    </div>
+  </div>
+
+{% else %}
+
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            {{operation}} {{model_name}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="ajax_form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+
+              <div class="col-sm-6">
+                <div style="color:red">{{ form.title.errors }}</div>
+                {{ form.title.label }}
+                {{form.title }} 
+             </div>
+
+             <div class="col-sm-6">
+                <div style="color:red">{{ form.year.errors }}</div>
+                {{ form.year.label }}
+                {{form.year }} 
+             </div>
+
+             <div class="col-sm-6">
+                <div style="color:red">{{ form.release_date.errors }}</div>
+                {{form.release_date.label}}
+                {{form.release_date}} 
+            </div>
+
+             
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.genre.errors}}</div>
+              {{form.genre.label}}
+              {{form.genre}} 
+            </div>
+
+            
+            <div class="col-sm-6">
+              <div style="color:red">{{form.language.errors}}</div>
+              {{form.language.label}}
+              {{form.language}} 
+            </div>
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.budget.errors}}</div>
+              {{form.budget.label}}
+              {{form.budget}} 
+            </div>
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.image.errors}}</div>
+              {{form.image.label}}
+              {{form.image}} 
+            </div>
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.status.errors}}</div>
+              {{form.status.label}}
+              {{form.status}} 
+            </div>
+
+            <div class="col-sm-6">
+              <div style="color:red">{{form.imdb_link.errors}}</div>
+              {{form.imdb_link.label}}
+              {{form.imdb_link}} 
+            </div>
+
+              {% for hidden_field in form.hidden_fields %}
+                  {{ hidden_field.errors }}
+                  {{ hidden_field }}
+              {% endfor %}
+
+          </div>     
+        </form>
+      </div>
+      <div class="modal-footer">
+        <span style="color:red" id="info_text"></span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button"  data-url= "{% url 'ajax_delete' model_name=model_name pk=pk  %}" class="btn btn-secondary ajax-delete-btn">Delete</button>
+        <button type="button"  data-url= "{% url 'ajax_edit' model_name=model_name pk=pk  %}" class="btn btn-primary ajax-edit-{{model_name}}-btn">Update</button>
+     
+        </div>
+    </div>
+  </div>
+
+
+{% endif %}

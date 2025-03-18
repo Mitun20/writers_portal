@@ -1,0 +1,47 @@
+{% load static %}
+{% load follow_status_tags %}
+{% for user in users %}
+    <article class="post mb-1 border-b pb-1">
+        <div class="s-content d-flex align-items-center justify-space-between">
+            <div class="sidebar-image w-25 me-3">
+                {% if user.profile_photo %}
+                    <a href="#"><img class="rounded-circle img-fluid" src="{{user.profile_photo.url}}" alt="{{user}}"></a>
+                {% else  %}
+                    <a href="#"><img class="rounded-circle img-fluid" src="{% static 'images/avatar.png' %}" alt="{{user}}"></a>
+                {% endif %}
+            </div>
+            <div class="content-list w-75">
+                <h5 class="mb-1"><a href="{% url 'profile' user.id  %}">{{user}}</a>
+
+                  <span class="pull-right"> 
+                            <a title="Write Testimonial" href="#"><i data-url="{% url 'write-testimonial' user.id %}" class="fa fa-comment write-testimonial"></i></a> | 
+                            {% get_follow_status user.id user as status %}
+                            <a title="Follow/Un Follow" href="#">
+                            {% if status %}
+                            <i id="user_id_{{user.id}}" user_id="{{user.id}}" class="fa fa-user-minus Success follow_unfollow" data-url="{% url 'follow_unfollow' user.id %}"></i>
+                            {% else %}
+                                <i id="user_id_{{user.id}}" user_id="{{user.id}}"  class="fa fa-user-check Success follow_unfollow" data-url="{% url 'follow_unfollow' user.id %}"></i>
+                            {% endif %}
+                            </a>
+                        </span>
+                
+                </h5>
+                    
+                    
+                
+                <div class="group">
+                    {% for group in user.groups.all %}
+                        {{group}} 
+                        {% if not forloop.last %}
+                        | 
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>    
+        </div> 
+    </article>
+
+{% empty %}
+    <h5 class="p-4">No Match Found</h5>
+{% endfor %}

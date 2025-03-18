@@ -1,0 +1,1675 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load check_post_like_tags %}
+
+{% block home %}nav-active{% endblock %}
+{% block content %}
+ <!-- BreadCrumb Starts -->  
+ <section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+               <!-- sidebar starts -->
+               <div class="col-lg-3 col-md-12">
+                <div class="sidebar-sticky">
+                    <div class="list-sidebar">
+                        <div class="author-news mb-4 shadow-sm p-4 text-center">
+                            <div class="author-news-content">
+                                <div class="author-thumb mb-1">
+                                    {% if user.profile_photo %}
+                                        <img src="{{user.profile_photo.url}}" alt="author">
+                                    {% else %}
+                                        <img src="{% static 'images/avatar.png' %}">
+                                    {% endif %}
+                                </div>
+                                <div class="author-content">
+                                    <h3 class="title mb-1 text-align-left"><a href="{%url 'my_profile' %}">{{user}} :  
+                                         {% for group in user.groups.all %}
+                                               {{group}} 
+                                                 {% if not forloop.last %}
+                                                     /
+                                                 {% endif %}
+                                    {% endfor %}</a></h3>
+                                  
+                                        <p class="mb-2 text-align-left">                                            
+                                            My Activity: 
+                                            <a class="highlight float-end" href="{% url 'my_activity' %}" >{{unread_message_count}}</a>
+                                        </p>
+                                   
+                                  
+
+                                        <p class="mb-2 text-align-left">
+                                            Unread Message: 
+                                            <a class="highlight float-end" href="{% url 'inbox' %}" >{{inbox_count}}</a>
+                                        </p>
+
+                                        {% comment %}
+                                        <div class="header-social">                                    
+                                            <ul>
+                                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            </ul>                                       
+                                        </div>
+                                        {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="popular-post shadow-sm p-2 sidebar-item mb-4">
+                            <div class="sidebar-tabs">
+                                <div class="post-tabs">                                    
+                                    <div class="row ">                                   
+                                       
+                                            <a href="{% url 'view_opportunities' %}"><button class="nir-btn  m-1 w-100"> Call for Writers</button></a>                                            
+                                       
+                                           {% if is_producer or is_director %}
+                                            <a href="{% url 'view_matching_stories' %}"><button class="nir-btn  m-1 w-100"> Call from Writers</button></a>
+                                           {% endif %}                               
+                                    </div>                                 
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">               
+                  
+               
+                <div class="listing-inner posted_show">
+                    {% if available_events %}
+                    <div class="blog-full p-2 px-4   shadow-sm mb-2">
+                        <div class="row">
+                        
+                            <div class="col-lg-12 col-md-12">
+                                <div class="blog-content">
+                                    <h5 class="theme mb-2">Event Registration</h5>                                   
+                                    
+                                    {% for event in available_events %}
+                                       <p> To complete your {{event}} event registration, please continue to the link below.  </p>
+                                        
+                                        <a href="{% url 'event_registration' event.slug %}" class="nir-btn"><b>Complete Registration</b> </a>
+                                    {% endfor %}   
+                                </div>
+                            </div>
+                        </div>   
+                        
+                    </div>
+                                        
+                    {% endif %}
+
+                   {% if is_profile_completed  %} 
+                        {% if is_producer or is_director %}
+                            <div class="blog-full p-2 px-4   shadow-sm mb-2">
+                                <div class="row">
+                                
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="blog-content">
+                                            <h5 class="theme mb-2">Call Talents</h5>
+
+                                            <form id="call-form" class="call-form">
+                                                {% csrf_token %}
+                                                <div class="form-group mb-2">    
+                                                    {{call_form.call_for}}                                          
+                                                </div>
+                                                <div class="row mb-4">                                            
+                                                    <div class="col-lg-12 col-md-12">  
+                                                        <div class="collapse call_collapse" id="collapseExample">
+                                                            
+                                                            <div class="row"> 
+            
+                                                                <div class="col-sm-12">
+                                                                    {{call_form.genre.label}} *
+                                                                    {{call_form.genre}} 
+                                                                        
+                                                                    {{call_form.other_genre}}  
+                                                                    
+
+                                                                </div>
+
+                                                                <div class="col-sm-12">
+                                                                    {{call_form.language.label}} *
+                                                                    {{call_form.language}}
+
+                                                                
+                                                                    {{call_form.other_language}}
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    {{call_form.format.label}} *
+                                                                    {{call_form.format}}
+                                                                </div>
+                                                            
+
+                                                                <div class="col-sm-6">                                                                    
+                                                                    {{call_form.expiry_date.label}} *
+                                                                    {{call_form.expiry_date}}
+                                                                </div>
+
+                                                                <div class="col-sm-12">                                                                    
+                                                                    {{call_form.description.label}}
+                                                                    {{call_form.description}}
+                                                                </div>
+                                                            </div>
+                                    
+
+                                                            <div class="row">
+                                                                <div class="col-sm-9">
+                                                                    <button class="btn btn-primary float-end call_cancel_btn">Cancel</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input data-url="{% url 'projectapp_ajax_add' model_name='call' %}" type="submit" class="nir-btn-small call-create-btn width-100" value="Post Call">
+                                                                </div>
+                                                                
+                                                            </div>     
+                                                            </div>
+                                                    </div>                                       
+                                                        
+                                                    <div class="row">
+                                                        
+                                                        <div class="col-lg-12">
+                                                            <a  href="#" class="float-end choose_call_specification_btn btn nir-btn-small">Add Detail</a>
+                                                        </div>                                                     
+                                                            
+                                                                                                            
+                                                    </div>                                            
+                                                </div>
+                                            </form>                                  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if is_writer or is_director %}
+                            <div class="blog-full shadow-sm p-2 px-4 mb-2">
+                                <div class="row">
+                                
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="blog-content">
+                                            <h5 class="theme mb-2">Pitch your idea</h5>
+                                            <form id="pitch-form" method="post" class="pitch-form" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <div class="form-group mb-1">
+                                                    {{pitch_form.story_title}}
+                                                    <div class="row">                                                    
+                                                        <div class="col-sm-12">
+                                                            {{pitch_form.genre.label}} *
+                                                            {{pitch_form.genre}}                                                                
+                                                            {{pitch_form.other_genre}}                                                                
+                                                        </div>                                                            
+                                                    </div>
+                                                </div>
+                                                <div class="row">                                            
+                                                    <div class="col-lg-12 col-md-12">                                              
+                                                        <!-- Choose people Modal -->
+                                                        <div class="modal fade " id="user-choose-Modal"  aria-labelledby="user-choose-ModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="Pitch-ModalLabel">Choose People</h5>
+                                                                <button type="button" class="btn-close private-pitch-modal-close"  aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row ml-2" id="project-form">
+                                                                            <div class="radio-div"> 
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input name="pitch_people_type" class="form-check-input pitch_people_type" type="radio"  value="Producer">
+                                                                            <label name="pitch_people_type" class="form-check-label" for="inlineCheckbox1">Producer</label>
+                                                                        </div>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input name="pitch_people_type" class="form-check-input pitch_people_type" type="radio" id="recent-radio-btn" value="Director">
+                                                                            <label name="pitch_people_type" class="form-check-label" for="inlineCheckbox2">Director</label>
+                                                                        </div>
+
+                                                                        <div class="form-check form-check-inline">
+                                                                            
+                                                                                <a href="#"  class="btn link-primary pitch_people_type" type="button"  value="clear"><u value="clear">Clear</u></a>
+                                
+                                                                        </div>
+                                                                
+                                                                    </div>
+                                                                
+                                                                    <div class="input-group">                                                                   
+
+                                                                        <input class="form-control border-end-0 border" style="height:37px;" type="text" value="" id="pitch_people-search-input">
+                                                                        <span class="input-group-append">
+                                                                            <span class="find-search-icon btn">                                
+                                                                                <span style="margin-top: 0% !important;" class="fa fa-search people_search"></span>                                                                            
+                                                                            </span>                                                                         
+                                                                        </span>                             
+                                                                    </div>                                                           
+                                                    
+                                                                </div>
+
+                                                                <div id="display-searched-people" style="overflow-y: scroll;height: 300px;">
+                                                                    
+                                                                    
+                                                                    <div class="row" class="senior-list mt-2" >
+
+                                                                        {% for top_director in top_directors %}
+                                                                            <div class="col-sm-12 mt-1 " id="user_id_{{top_director.id}}">
+                                                                                <input type="checkbox" class="user-select" id="user-show" user_id="{{top_director.id}}"  name="userselect" value="{{top_director.id}}">
+                                                                                <label for="user-show"> 
+                                                                                    {% if top_director.profile_photo %}                     
+                                                                                        <img class="img-fluid rounded-circle" height="50" width="50" src="{{top_director.profile_photo.url}}">
+                                                                                    {% else%}
+                                                                                        <img class="img-fluid rounded-circle " height="50" width="50" src="{% static 'images/avatar.png' %}" alt="avatar">
+                                                                                    {% endif %}
+                                                                                    {{top_director}} 
+                                                                                    
+                                                                                </label>      
+                                                                                <br><hr class="m-2">  
+                                                                            </div>
+                                                                    
+
+                                                                    
+                                                                        {% endfor %}
+                                                                    
+                                                                    
+                                                                    </div> 
+                                                                    
+                                                                    
+
+                                                                    
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer"  tabindex="2">
+                                                                <button type="button" class="btn btn-secondary private-pitch-modal-close" >Close</button>
+                                                                <button type="button" class="btn btn-primary modal-close private-pitch-modal-close" >Save changes</button>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>  
+                                                        <!-- Choose people Modal End-->                                                 
+                                                    </div>
+
+                                                    <div class="collapse pitch_collapse" id="collapseExample">
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-sm-12 mb-1"> 
+                                                                {{pitch_form.language.label}} *
+                                                                {{pitch_form.language}}                                                                    
+                                                                {{pitch_form.other_language}}
+                                                            </div>
+                                                            
+                                                            <div class="col-sm-6 mb-1">
+                                                                {{pitch_form.format.label}} *
+                                                                {{pitch_form.format}}
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                {{pitch_form.cover_image.label}}
+                                                                {{pitch_form.cover_image}}
+                                                            </div>
+
+                                                            <div class="col-sm-12">
+                                                                 
+                                                                <label class="radio">Private
+                                                                    <input class="to-private" checked="checked" type="radio" checked="checked" name="pitch-type">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+
+                                                                <label class="radio">Public
+                                                                    <input class="to-public" id="pitch-to-all" type="radio"  name="pitch-type">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                              
+                                                              
+                                                               
+                                                            </div>
+                                                           
+                                                            <div class="col-sm-6" id="pitch-story-file-div">
+                                                                {{pitch_form.story_file.label}} *   <a class="float-end story-file-remove" href="#">Clear</a>
+                                                                {{pitch_form.story_file}}
+                                                                <p>Maximum file upload size 5MB</p>
+                                                            </div>                                                             
+                                                            
+                                                            <div class="col-sm-6" id="pitch-story-description-div">
+                                                                {{pitch_form.description.label}}
+                                                                {{pitch_form.description}}
+                                                            </div>
+
+                                                            <div class="col-sm-12" id="choose-people-div">
+                                                                <div class="row">
+                                                                    <label>
+                                                                        <a href="#" class="open-user-modal btn btn-sm">+ Choose People</a>
+                                                                    <label>
+
+                                                                    <label id="people-count">
+
+                                                                    </label>
+
+                                                                </div>
+                                                              
+
+                                                            </div>
+
+ 
+                                                            {% for hidden_field in pitch_form.hidden_fields %}
+                                                                {{ hidden_field.errors }}
+                                                                {{ hidden_field }}
+                                                            {% endfor %}
+
+
+                                                        </div>                                                  
+                                                    
+
+
+                                                        <div class="row">
+
+                                                          
+                                                            <div class="col-7">
+                                                                <button class="btn-primary btn pitch_cancel_btn float-end">Cancel</button>
+
+                                                            </div>
+                                                            <div class="col-5">
+                                                                <input data-url="{% url 'projectapp_ajax_add' model_name='pitch' %}" type="submit" class="nir-btn-small width-100 create-pitch-btn" value="Post Pitch">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                    
+                                                    
+                                                        
+                                                        <div class="col-12 mt-1">                                                    
+                                                            <a href="#" class="choose_pitch_specification_btn nir-btn-small float-end">Add detail</a>                                                     
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                        </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                      
+                        {% endif %}
+
+                   {% else %}
+                   <div class="blog-full shadow-sm p-2 px-4 mb-2">
+                        <div class="row">
+                              <div class="col-lg-12 p-2 text-center">
+                                <a style="font-size:20px" class="btn btn-primary text-white" href="{% url 'edit_profile' %}">Update Profile</a>
+                                
+                              </div>
+                        </div>
+                    </div>
+
+
+                   {% endif %}
+        
+                                    
+                    <div class="p-2 mt-2">
+                        <h5 class="theme mt-2 mb-2">Calls and pitches from Everyone</h5>
+                        <div class="radio-div">
+                            <form id="post-filter-form"> 
+                                
+                                {% csrf_token %}
+                                <div class="form-check form-check-inline">
+                                    <input name="post_filter_type" class="form-check-input post-filter" type="radio"  value="is_i_follow">
+                                    <label name="post_filter_type" class="form-check-label" for="inlineCheckbox1">People I Follow</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input name="post_filter_type" class="form-check-input post-filter" type="radio" id="recent-radio-btn" value="is_recent_all"  checked>
+                                    <label name="post_filter_type" class="form-check-label" for="inlineCheckbox2">Recent</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input name="post_filter_type" class="form-check-input post-filter" type="radio"  value="is_most_liked">
+                                    <label name="post_filter_type" class="form-check-label" for="inlineCheckbox3">Most Liked</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input name="post_filter_type" class="form-check-input post-filter" type="radio"  value="is_my_interest">
+                                    <label name="post_filter_type" class="form-check-label" for="inlineCheckbox3">Upon My Interest</label>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <!-- PostModal -->
+                        <div id="PostModal" class="modal PostModal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+                        </div>
+
+                        <div  id="post_div">
+
+                            {% for post in posts %}
+                    
+                                {% include "project/post.html" %}
+
+                            {% empty %}
+                                  <h6 class="pl-3">No data available</h6>
+                            {% endfor %}
+                            
+                        </div>
+                    
+                    </div>
+
+                    {% if load_more_post %}
+                        <div class="row load-more justify-content-md-center element-to-animate" id="element-to-animate">
+                            <button id="loadmorebtn" class="btn border" >Load More</button>
+                        </div>
+                    {% endif %}
+
+                 
+                
+    
+                </div>
+            </div>
+             <!-- Right sidebar starts -->
+             <div class="col-lg-3 col-md-12 shadow-sm ">
+                {% include "find_people.html" %}
+            </div>
+         
+        </div>
+    </div>
+</section>
+<!-- blog Ends -->  
+
+<!-- AjaxModal -->
+<div id="AjaxModal" class="modal AjaxModal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+</div>
+
+<!-- Project Modal -->
+<div class="modal" id="projectModal" data-backdrop="static">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Choose Project</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div><div class="container"></div>
+    <div class="modal-body" id="display_senior">        
+        <div class="row" class="senior-list">
+        <div class="col-sm-12">
+
+            <!-- RH: this is bootstrap 5 tabbed panel -->
+            <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="project-search-tab" data-bs-toggle="tab" href="#project-view-tab" role="tab" aria-controls="project-view" aria-selected="true">Search Project</a>
+                </li>
+                {% if is_producer %}
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="project-create" data-bs-toggle="tab" href="#project-create-tab" role="tab" aria-controls="project-create" aria-selected="false">Create Project</a>
+                    </li>
+                {% endif %}
+            
+            </ul>
+
+
+            <div class="tab-content mt-2 container" id="myTabContent">
+                <div class="tab-pane fade show active" id="project-view-tab" role="tabpanel" aria-labelledby="project-view">
+
+                    <div class="row ml-5">                
+                    <div class="input-group">
+                        <input class="form-control border-end-0 border" type="text" value="" id="project-search-input">
+                        <span class="input-group-append">
+                            <button class=" form-control bg-white border-start-0 border project_search" type="button">
+                                Search
+                            </button>
+                        </span>                             
+                    </div>                        
+                    
+                    </div>  
+                    <div id="project-list-div">
+
+                    </div>   
+                        
+    
+            
+                </div>
+                <div class="tab-pane fade" id="project-create-tab" role="tabpanel" aria-labelledby="project-create">
+
+
+                    <div class="row ml-2 project-form">
+                    <form method="post" id="ajax_form" enctype="multipart/form-data">                         
+                        <table>
+                            {% csrf_token %}
+
+                            <div class="row">
+                                {% for field in project_form.visible_fields %}
+
+                                    <div class="col-sm-6">
+                                        {{ field.errors }}
+                                        {{ field.label }} {% if field.field.required %}<span class="special_class">*</span>{% endif %}
+                                        {{ field }}
+                                    </div>
+                                
+                                {% endfor %}
+                                    {% for hidden_field in project_form.hidden_fields %}
+                                    {{ hidden_field.errors }}
+                                    {{ hidden_field }}
+                                {% endfor %}
+
+                            </div>
+                            
+                        </table>  
+                        <br> 
+                        <span style="color:red" id="project_info_text"></span>
+                        <button type="button" id="edit_btn" data-url= "{% url 'ajax_add' model_name='project'  %}" class="btn btn-primary ajax-add-project-btn">Create</button>                             
+                        
+                    </form>
+        
+                    </div>
+
+                    <div id="display-created-project">
+
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="project-list">
+
+        </div>
+
+        </div>                
+    </div>
+    <div class="modal-footer">
+        <a href="#" data-bs-dismiss="modal" class="btn">Close</a>
+        <a href="#"  class="btn btn-primary add-selected-project disabled">Add</a>
+    </div>
+    </div>
+</div>
+
+</div>
+
+
+<!-- MODAL TO CROP THE IMAGE -->
+<div class="modal fade" id="modalCrop" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Crop the photo</h4>
+        
+    </div>
+    <div class="modal-body">
+        <img src="" id="image" style="height:400px;">
+    </div>
+    <div class="modal-footer">
+        <div class="btn-group pull-left" role="group">
+    
+        </div>
+
+        <button type="button" class="btn btn-primary js-crop-and-upload">Crop</button>
+    </div>
+    </div>
+</div>
+</div>
+
+<!--name-empty-modal-->
+<div id="name-empty-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Alert</h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Enter Something in Searchbox</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
+<script src="{% static 'js/cropper.min.js' %}"></script>
+<script src="{% static 'js/post.js' %}"></script>
+<script src="{% static 'js/inbox.js' %}"></script>
+<script src="{% static 'js/testimonial.js' %}"></script>
+<script src="{% static 'js/follow_unfollow.js' %}"></script>
+<script src="{% static 'js/report.js' %}"></script>
+<script src="{% static 'js/find_people.js' %}"></script>
+<script src="{% static 'js/interest_msg.js' %}"></script>
+<script src="{% static 'js/see_response.js' %}"></script>
+<script src="{% static 'js/photo-open.js' %}"></script>
+
+
+
+<script>
+  $( document ).ready(function() {
+
+    //private pitch share modal close
+      
+    $('.private-pitch-modal-close').click(function(event) {
+      var arr = [];
+          $('.user-select:checked').each(function(i){
+            arr[i] = $(this).val();
+          });
+      $('#people-count').html('<p>'+arr.length+' People Added </p>');
+      $('#user-choose-Modal').modal('toggle');
+    
+    });
+
+    //pitch
+    $('#pitch-form').on('change','#id_story_file',function(e){
+        var fileName = e.target.files[0].name;
+        if (fileName){
+            $("#pitch-to-all").prop("checked", false);       
+        }       
+    });
+
+    
+    $('#pitch-form').on('click','.to-private',function(e){
+        $('#pitch-story-file-div').removeClass('d-none');
+        $('#pitch-story-description-div').removeClass('col-sm-12');
+        $('#pitch-story-description-div').addClass('col-sm-6');
+        $('#pitch-story-file-div').addClass('col-sm-6');
+        $('#choose-people-div').removeClass('d-none');
+    });
+
+    $('#pitch-form').on('click','.to-public',function(e){
+        
+        $('#choose-people-div').addClass('d-none');
+        $('#pitch-story-file-div').addClass('d-none');
+        $('#pitch-story-file-div').removeClass('col-sm-6');
+        $('#pitch-story-description-div').removeClass('col-sm-6');
+        $('#pitch-story-description-div').addClass('col-sm-12');
+    });
+
+
+
+
+    $('#pitch-form').on('click','.story-file-remove',function(e){
+        $("#id_story_file").val('');
+        $("#pitch-to-all").prop("checked", true);
+        $("#id_description").prop('disabled', false);
+    });
+
+
+
+    
+
+    //pitch form modal open close and pitch to all
+    
+    $('#pitch-form').on('click','.open-user-modal',function(){
+        $('#user-choose-Modal').modal('toggle');
+    });
+
+    $('#pitch-form').on('change','.pitch-to-all',function(){
+        $('.user-select').prop("checked", false);
+    });
+
+
+   //file size validation
+    $('#id_story_file').change(function(event) {
+        var fileSize = this.files[0];
+        var sizeInMb = fileSize.size/1024;
+        var sizeLimit= 1024*10;
+        if (sizeInMb > sizeLimit) {
+            alert('Error, This file exceeds the maximum size limit of 5');
+            $("#id_story_file").val("")
+        }
+    
+    });
+
+ 
+    $('#pitch-form').on('click','.genre_option',function(){
+        var labels = $(this).map(function() {
+             return $(this).closest('label').text().trim();
+         }).get();
+
+         if (labels == "Other"){
+
+            if (this.checked){
+               $('#id_other_genre').attr('type','text');
+               $('#other_genre_label').text('Enter genre name');
+            }
+            else{
+                $('#id_other_genre').attr('type','hidden');
+                $('#id_other_genre').val('');
+                $('#other_genre_label').text('');
+            }
+             
+         }
+    });
+
+
+    $('#pitch-form').on('change','.pitch-language',function(){
+
+        var labels = $(this).map(function() {
+             return $(this).closest('label').text().trim();
+         }).get();      
+
+         if (labels == "Other"){
+
+            if (this.checked){
+                $('#id_other_language').attr('type','text'); 
+                $('#other_language_label').text('Enter language name');
+                       
+            }
+            else{           
+                $('#id_other_language').attr('type','hidden'); 
+                $('#id_other_language').val('');
+                $('#other_language_label').text('');           
+            }
+             
+         }
+
+      
+        });
+
+
+
+    $('#call-form').on('click','.call_genre_option',function(){
+
+
+        var labels = $(this).map(function() {
+             return $(this).closest('label').text().trim();
+         }).get();
+
+         if (labels == "Other"){
+
+            if (this.checked){
+               $('#call-form #id_other_genre').attr('type','text');
+               $('#call-form #call_other_genre_label').text('Enter genre name');
+            }
+            else{
+                $('#call-form #id_other_genre').attr('type','hidden');
+                $('#call-form #id_other_genre').val('');
+                $('#call-form #call_other_genre_label').text('');
+            }
+             
+         }
+    });
+
+
+
+    $('#call-form').on('change','.call-language',function(){
+
+        var labels = $(this).map(function() {
+            return $(this).closest('label').text().trim();
+        }).get();      
+
+        if (labels == "Other"){
+
+            if (this.checked){
+                $('#id_other_language').attr('type','text'); 
+                $('#other_language_label').text('Enter language name');
+                    
+            }
+            else{           
+                $('#id_other_language').attr('type','hidden'); 
+                $('#id_other_language').val('');
+                $('#other_language_label').text('');           
+            }
+            
+        }
+
+
+        });
+
+
+
+
+    // message
+    $('#AjaxModal').on('click','.message_to',function(){
+        event.preventDefault();
+        url = $(this).attr('data-url');
+        formdata = new FormData($('#AjaxModal #message-form')[0]);
+        message = $('#message_txt').val();
+    
+
+        if(message){
+
+            $.ajax({
+                url:url,
+                data : formdata,
+                method: 'post',
+                processData: false,
+                contentType: false,
+
+                success:function(output)
+                {
+                    if(output.valid){
+                        $('.message_div').html(output.messages);
+                        $('#message_txt').val('');
+                        $(".message-file").val(null);
+                    }
+                    else{
+                        alert(output.response);
+                    }
+                    
+                }
+            
+            });
+
+
+
+        }
+
+        else{
+            alert("Message can't be empty");
+        }
+    });
+
+
+     //image crop  for pitch
+     $(function () {
+
+      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+      $('#pitch-form').on('change','#id_cover_image', function(){
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#image").attr("src", e.target.result);
+            $("#modalCrop").modal("show");
+          }
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+
+      /* SCRIPTS TO HANDLE THE CROPPER BOX */
+      var $image = $("#image");
+      var cropBoxData;
+      var canvasData;
+      $("#modalCrop").on("shown.bs.modal", function () {
+        $image.cropper({
+          viewMode: 1,
+          aspectRatio: 1/1,
+          minCropBoxWidth: 200,
+          minCropBoxHeight: 200,
+          ready: function () {
+            $image.cropper("setCanvasData", canvasData);
+            $image.cropper("setCropBoxData", cropBoxData);
+          }
+        });
+      }).on("hidden.bs.modal", function () {
+        cropBoxData = $image.cropper("getCropBoxData");
+        canvasData = $image.cropper("getCanvasData");
+        $image.cropper("destroy");
+      });
+
+      $(".js-zoom-in").click(function () {
+        $image.cropper("zoom", 0.1);
+      });
+
+      $(".js-zoom-out").click(function () {
+        $image.cropper("zoom", -0.1);
+      });
+
+      /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+      $(".js-crop-and-upload").click(function () {
+        var cropData = $image.cropper("getData");
+        $("#id_x").val(cropData["x"]);
+        $("#id_y").val(cropData["y"]);
+        $("#id_height").val(cropData["height"]);
+        $("#id_width").val(cropData["width"]);
+        $('#modalCrop').modal('toggle');
+      });
+
+    });
+
+
+
+
+
+
+     //image crop 
+     $(function () {
+
+      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+      $('#projectModal').on('change','#id_image', function(){
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#image").attr("src", e.target.result);
+            $("#modalCrop").modal("show");
+          }
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+
+      /* SCRIPTS TO HANDLE THE CROPPER BOX */
+      var $image = $("#image");
+      var cropBoxData;
+      var canvasData;
+      $("#modalCrop").on("shown.bs.modal", function () {
+        $image.cropper({
+          viewMode: 1,
+          aspectRatio: 1/1,
+          minCropBoxWidth: 200,
+          minCropBoxHeight: 200,
+          ready: function () {
+            $image.cropper("setCanvasData", canvasData);
+            $image.cropper("setCropBoxData", cropBoxData);
+          }
+        });
+      }).on("hidden.bs.modal", function () {
+        cropBoxData = $image.cropper("getCropBoxData");
+        canvasData = $image.cropper("getCanvasData");
+        $image.cropper("destroy");
+      });
+
+      $(".js-zoom-in").click(function () {
+        $image.cropper("zoom", 0.1);
+      });
+
+      $(".js-zoom-out").click(function () {
+        $image.cropper("zoom", -0.1);
+      });
+
+      /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+      $(".js-crop-and-upload").click(function () {
+        var cropData = $image.cropper("getData");
+        $("#id_x").val(cropData["x"]);
+        $("#id_y").val(cropData["y"]);
+        $("#id_height").val(cropData["height"]);
+        $("#id_width").val(cropData["width"]);
+        $('#modalCrop').modal('toggle');
+      });
+
+    });
+
+
+
+    // Call specification show
+    $('.choose_call_specification_btn').click(function() {
+        event.preventDefault();
+        $('.call_collapse').collapse('show');
+        $('.choose_call_specification_btn').addClass('d-none');
+
+    });
+
+    // Call specification close
+    $('.call_cancel_btn').click(function() {
+        event.preventDefault();
+        $('#call-form #id_language').val('');     
+        $('#call-form #id_format').val(''); 
+        $('#call-form #id_call_for').val('');      
+        $('#call-form #id_title').val('');   
+        $('#call-form #id_budget').val('');
+        $('#call-form #id_description').val('');
+        $("#call-form input[name='genre']:checkbox").prop('checked',false);    
+        $('.call_collapse').collapse('hide');
+        $('.choose_call_specification_btn').removeClass('d-none');
+
+    });
+
+    // Pitch specification show
+    $('.choose_pitch_specification_btn').click(function() {
+        event.preventDefault();
+        $('.pitch_collapse').collapse('show');
+        $('.choose_pitch_specification_btn').addClass('d-none');
+
+    });
+
+    function pitchformreset() { 
+        $('#pitch-form #id_format').val(''); 
+        $("#pitch-form input[name='genre']:checkbox").prop('checked',false); 
+        $("#pitch-form input[name='language']:checkbox").prop('checked',false);
+        $('#pitch-form #id_story_title').val('');   
+        $('#pitch-form #id_story_file').val('');
+        $('#id_cover_image').val('');
+     
+        $("#pitch-form input[name='userselect']:checkbox").prop('checked',false);  
+        $('#pitch-form #recent-radio-btn').prop('checked', true);
+        $('#pitch-form #id_budget').val(''); 
+        $('#pitch-form #id_description').val(''); 
+        $('.pitch_collapse').collapse('hide');
+        $('.choose_pitch_specification_btn').removeClass('d-none');
+
+        $('.user-select').prop("checked", false);
+        $('.open-user-modal').prop("checked", false);
+        $('.to-private').prop("checked", true); 
+        
+
+        $('#pitch-form #id_other_language').val(''); 
+        $('#pitch-form #id_other_language').attr('type','hidden'); 
+        $('#pitch-form #id_other_genre').attr('type','hidden'); 
+        $('#pitch-form #id_other_genre').val(''); 
+        $('#other_genre_label').text('');
+        $('#other_language_label').text('');     
+        $("#pitch-form #id_description").prop('disabled', false);
+        $('#pitch-story-file-div').removeClass('d-none');
+        $('#pitch-story-description-div').removeClass('col-sm-12');
+        $('#pitch-story-description-div').addClass('col-sm-6');
+        $('#pitch-story-file-div').addClass('col-sm-6');
+        $('#choose-people-div').removeClass('d-none');
+        $('#people-count').html('');
+    }
+
+    // Pitch specification show
+    $('.pitch_cancel_btn').click(function() {
+        event.preventDefault();
+        pitchformreset();      
+    });
+
+     
+
+     
+
+    function postFilter() {
+       
+        formdata = new FormData($('#post-filter-form')[0]);
+
+        url = "{% url 'home_post_filter' %}";
+        $.ajax({
+            url : url,
+            data : formdata,
+            method: 'post',
+            processData: false,
+            contentType: false,
+           
+            success:function(output)
+            {
+                if(output.valid)
+                {                    
+                      $('#post_div').html(output.html);           
+                }
+                else
+                {
+                  alert('Something went wrong');                    
+                }               
+                
+            },
+        });
+    
+    }
+
+    // Post Filter
+    $('.post-filter').change(function(){  
+        event.preventDefault(); 
+        postFilter();
+    });
+
+
+
+    // Call
+    $('.call-create-btn').click(function() {   
+        event.preventDefault();        
+        $('.created-message').html('');
+        var callFor = $('.call-form #id_call_for').val();
+        var format = $('#call-form #id_format').val();
+        var expiryDate  = $('#call-form #id_expiry_date').val();
+        var language = $('#call-form input[name="language"]:checked').length;
+        //var budget = $('#call-form #id_budget').val();
+        var genre = $('#call-form input[name="genre"]:checked').length;
+
+        if ( callFor && format && language && expiryDate && genre > 0 ) {
+            if(confirm("Are you sure to post the call?"))
+            {
+
+            formdata = new FormData($('#call-form')[0]);
+            url = $(this).attr('data-url');
+            $.ajax({
+                url : url,
+                data : formdata,
+                method: 'post',
+                processData: false,
+                contentType: false,
+                beforeSend:function()
+                {
+                    $('.call-create-btn').attr('value','Please wait');
+                    
+                },
+                
+                success:function(output)
+                {
+                    if(output.valid)
+                    {                          
+                        $('#call-form #id_language').val('');     
+                        $('#call-form #id_format').val(''); 
+                        $('#call-form #id_call_for').val('');      
+                        $('#call-form #id_title').val('');   
+                        $('#call-form #id_budget').val('');
+                        $('#call-form #id_description').val('');
+                        $('#call-form #id_expiry_date').val('');
+                        $("#call-form input[name='genre']:checkbox").prop('checked',false);    
+                        $('.call_collapse').collapse('hide');
+                        $('.choose_call_specification_btn').removeClass('d-none');
+                        $('#recent-radio-btn').prop('checked', true);
+                        postFilter();
+                        $('<div class="text-center mt-1"><h6>Call Posted succesfully <a href="#post_id_'+output.postid+'"><u>View</u></a></h6></div>').insertBefore(".posted_show");
+               
+                           
+                        
+                    }
+                    else
+                    {
+                        alert('Something went wrong');
+                        
+                    }
+
+                    $('.call-create-btn').attr('value','Post Call');
+                   
+                },
+            });
+        }
+        
+        }    
+        else{
+            alert('Choose all of the specifications..!');
+        }
+       
+    });
+
+
+    // Pitch
+    $('.create-pitch-btn').click(function() {   
+        event.preventDefault();   
+        $('.created-message').text('');
+        var title = $('.pitch-form #id_story_title').val();
+        
+        var format = $('#pitch-form #id_format').val();
+        var language = $('#pitch-form input[name="language"]:checked').length;
+        var genre = $('#pitch-form input[name="genre"]:checked').length;
+        //var budget = $('#pitch-form #id_budget').val();
+
+        var arr = [];
+          $('.user-select:checked').each(function(i){
+            arr[i] = $(this).val();
+          });
+
+        var users = arr; 
+
+        if ($(".to-private").prop("checked")) {
+            if ($("#id_story_file")[0].files.length === 0) {
+                alert('Choose Story File..!');
+            }
+            else{
+
+                
+                if (users.length != 0){              
+
+                    if ( title && format && language && genre > 0) {
+                        
+                        if(confirm("Are you sure to post the Story?"))
+                        {
+                        formdata = new FormData($('#pitch-form')[0]);
+                        formdata.append('pitch_to_people', users);
+                        url = $(this).attr('data-url');
+                        $.ajax({
+                            url : url,
+                            data : formdata,
+                            method: 'post',
+                            processData: false,
+                            contentType: false,
+                            beforeSend:function()
+                            {
+                                $('.create-pitch-btn').attr('value','Please wait');
+                                
+                            },
+                            
+                            success:function(output)
+                            {
+                                if(output.valid)
+                                {
+                                    
+                                    pitchformreset();
+                                    $('<div class="text-center mt-1"><h6>Pitch Posted succesfully <a href="/my_activity/"><u>View</u></a></h6></div>').insertBefore(".posted_show");
+
+
+                                    {% if is_director %}
+                                    $('#recent-radio-btn').prop('checked', true);                           
+                                    {% endif %}        
+                                    
+                                }
+                                else
+                                {
+                                    alert('Something went wrong');
+                                    
+                                }
+
+                                $('.create-pitch-btn').attr('value','Post Pitch');
+                            
+                            },
+                        });
+                        }
+                    }    
+                    else{
+                        alert('Choose all of the specifications');
+                    } 
+
+                }
+                else{
+                    alert('Choose producer or director..!')
+                }
+
+               
+
+
+
+            }
+            }
+        else{
+           
+            description =  $('#pitch-form #id_description').val().length;
+
+            if(description <= 1 ){
+
+                alert('Please provide story description..!');
+
+            }
+            else{
+
+                if ( title && format && language && genre > 0) {
+                    
+                    if(confirm("Are you sure to post the Story?"))
+                    {
+                    formdata = new FormData($('#pitch-form')[0]);
+                    formdata.append('pitch_to_people', users);
+                    url = $(this).attr('data-url');
+                    $.ajax({
+                        url : url,
+                        data : formdata,
+                        method: 'post',
+                        processData: false,
+                        contentType: false,
+                        beforeSend:function()
+                        {
+                            $('.create-pitch-btn').attr('value','Please wait');
+                            
+                        },
+                        
+                        success:function(output)
+                        {
+                            if(output.valid)
+                            {    
+                                                        
+                                pitchformreset();
+                                $('<div class="text-center mt-1"><h6>Pitch Posted succesfully <a href="/my_activity/"><u>View</u></a></h6></div>').insertBefore(".posted_show");
+
+                                {% if is_director %}
+                                     $('#recent-radio-btn').prop('checked', true);                           
+                                {% endif %}        
+                                
+                            }
+                            else
+                            {
+                                alert('Something went wrong');
+                                
+                            }
+
+                            $('.create-pitch-btn').attr('value','Post Pitch');
+                        
+                        },
+                    });
+                    }
+                }    
+                else{
+                    alert('Choose all of the specifications');
+                } 
+            }
+
+
+        }
+        
+        
+        if ($("#id_story_file")[0].files.length === 0) {
+
+      
+        }
+        else{
+
+           
+
+        }
+
+        
+       
+    });
+    
+     
+     //pitch to people search     
+        $('#user-choose-Modal').on('click','.people_search', function(){            
+        event.preventDefault();
+          name = $('#pitch_people-search-input').val();
+          var peopletype = $('input[name="pitch_people_type"]:checked').attr('value');
+
+          if(peopletype == "clear"){
+            $('#pitch_people-search-input').val('');
+            $('.pitch_people_type').prop('checked', false);
+          }
+          var arr = [];
+          $('.user-select:checked').each(function(i){
+            arr[i] = $(this).val();
+          });
+
+          var excludeuser = arr;          
+
+          //remove not checked
+          $('.user-select:not(:checked)').each(function(i){
+            userid= $(this).val();
+            $('#user_id_'+userid).remove();
+          });
+
+          $('.match-not-found').remove();
+           
+
+
+          url = "{% url 'pitch-user-search' %}"
+          $.ajax({
+              url : url,
+              data : {'name':name,'exclude_user':excludeuser,'people_type':peopletype,},
+              method: 'post',  
+              headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+              success:function(output)
+                {  
+                  $('#display-searched-people').append(output.users); 
+
+                  $("input.user-list:checkbox:not(:checked)").each(function(){
+                     $(this).parent().remove();
+                  });
+                  
+                   
+                                 
+                },
+          });
+      });
+
+
+    // radio button change to call ajax pitch to people reset
+    $('#user-choose-Modal').on('click','.pitch_people_type', function(){            
+    
+          
+          var peopletype = $(this).attr('value');
+
+          if(peopletype == "clear"){
+            $('#pitch_people-search-input').val('');
+            $('.pitch_people_type').prop('checked', false);
+            peopletype = void 0;
+            delete peopletype;
+          }
+          name = $('#pitch_people-search-input').val();
+          var arr = [];
+          $('.user-select:checked').each(function(i){
+            arr[i] = $(this).val();
+          });
+
+          var excludeuser = arr;          
+
+          //remove not checked
+          $('.user-select:not(:checked)').each(function(i){
+            userid= $(this).val();
+            $('#user_id_'+userid).remove();
+          });
+
+          $('.match-not-found').remove();
+           
+
+
+          url = "{% url 'pitch-user-search' %}"
+          $.ajax({
+              url : url,
+              data : {'name':name,'exclude_user':excludeuser,'people_type':peopletype,},
+              method: 'post',  
+              headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+              success:function(output)
+                {  
+                  $('#display-searched-people').append(output.users); 
+
+                  $("input.user-list:checkbox:not(:checked)").each(function(){
+                     $(this).parent().remove();
+                  });
+                  
+                   
+                                 
+                },
+          });
+      });
+
+
+
+
+     //post like and unlike
+     $('#post_div').on('click','.like_unlike',function(){  
+          event.preventDefault();       
+          url = $(this).attr('data-url');
+          postId =  $(this).attr('id');
+          id =  $(this).attr('post_id');      
+
+          $.ajax({
+              url : url,                        
+              success:function(output)
+                  {
+                    if (output.liked)
+                        {
+                           
+                          $('#'+postId).addClass('theme');  
+                          data ="<i class='fa fa-heart'></i>"+output.like_count;
+               
+                          $('.postid_'+id).html(data);  
+
+                        }
+                    else{
+                        $('.'+postId).removeClass('theme');
+                        data ="<i class='fa fa-heart'></i>"+output.like_count;               
+                         $('.postid_'+id).html(data); 
+                      }    
+                 },
+          });
+      });
+
+
+
+
+    //comment        
+    $('#post_div').on('click','.comment',function(){         
+        var url = $(this).attr('data-url');
+        var postId =   $(this).attr('post_id');
+        var comment  = $('#post_comment_id_'+postId).val();
+        var formData = new FormData();
+        formData.append('comment', comment);
+        
+        $.ajax({
+            url : url,
+            data : formData,
+            method: 'post',
+            dataType: 'json',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            processData: false,
+            contentType: false,                    
+            success:function(output)
+                {
+                if (output.valid)
+                    {
+
+                  
+                        $('.post_comment_section_'+postId).html(output.html);  
+                        $('.post_comment_count_'+postId).html('<i class="fa fa-comments"></i>'+output.comment_count);
+
+                    }
+                else{
+                        alert('Something went wrong...!')
+                    }    
+                },
+        });
+    });
+
+
+    //delete comment
+    $('#post_div').on('click','.delete_comment',function(){
+        
+        url = $(this).attr('data-url');
+        commentId =  $(this).attr('comment_id');
+        postId =  $(this).attr('post_id');
+        
+        if (confirm('Are you sure to delete your Comment?')) {
+
+        $.ajax({
+            url : url,                        
+            success:function(output)
+                {
+                if (output.valid)
+                    {                       
+                        $('.post_comment_section_'+output.post_id).html(output.html);  
+                        $('.post_comment_count_'+postId).html('<i class="fa fa-comments"></i>'+output.comment_count);  
+
+                    }
+                else{
+                        alert('Access Denied...!')
+                    }    
+                },
+        });
+    
+
+
+        }
+
+    });
+    
+
+
+
+
+ //post-details
+    $('.post-detail').click(function() {
+        event.preventDefault();
+        
+        url = $(this).attr('data-url');       
+ 
+        $.ajax({
+            url : url,                        
+            success:function(output)
+                {
+
+                    
+                    $('#PostModal').html(output.post);
+                    $('#PostModal').modal('show'); 
+                },
+        });
+    
+
+
+    });
+ 
+    
+    //Project Modal
+    $('#AjaxModal').on('click','.add-project', function(){ 
+        event.preventDefault();           
+        $('#projectModal').modal('show');  
+        $('.container' ).addClass('blur');
+        $('#AjaxModal' ).addClass('fade');
+        $('.add-selected-project').text('Add');
+
+        
+    });
+
+
+
+      //project search
+      $('#projectModal').on('click','.project_search', function(){            
+          event.preventDefault();
+            name = $('#project-search-input').val();            
+
+            url = "{% url 'project_search' model_name='assistant' %}"
+            $.ajax({
+                url : url,
+                data : {'name':name,},
+                method: 'post',  
+                headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+                success:function(output)
+                  {  
+                    $('#project-list-div').html(output.projects); 
+                    $('.add-selected-project').removeClass('disabled');                                           
+                  },
+            });
+        });
+
+
+     //move selected project
+     $('#projectModal').on('click','.add-selected-project', function(){           
+          projectId = $('input[name="project-select"]:checked').val();
+          projectName = $('input[name="project-select"]:checked').attr('project_name');
+
+       
+          if(projectId){
+
+              $('#get_project_link').remove();
+              $('#ajax-model-project-section').append('<div class="m-1"><h5 class="mt-2" id="get_project_link" projectid="'+projectId+'" > Project: '+projectName+'</h5></div>');
+              $("#id_project").find('option:first').remove();
+              $('#id_project').append('<option value="'+projectId+'" seleted>'+projectName+'</option>');
+              
+              $('#projectModal').modal('toggle');             
+              $('.add-selected-project').text("Edit Project");
+              $('.open-add-project-modal').text("Edit Project");
+              $('.add-project').text("Edit Project");
+              
+
+          }
+          else{
+            alert('You must select one of the options.');
+          }
+           
+      });
+
+
+      $('#projectModal').on('click','.ajax-add-project-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#projectModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#projectModal #project_info_text').text('Please Wait ');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {                 
+                    $('#project-list-div').html(output.project); 
+                    $("#project-search-tab").tab('show');
+                    $('.add-selected-project').removeClass('disabled'); 
+                     
+                  }
+                  else
+                  {                     
+                      $('.project-form').html(output.form);
+                  }
+                  $('#projectModal #project_info_text').text('');
+              },
+          });
+
+
+      });
+
+      
+
+   
+
+  });
+
+</script>
+ 
+
+{% endblock %}

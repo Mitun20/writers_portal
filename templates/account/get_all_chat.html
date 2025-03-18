@@ -1,0 +1,111 @@
+{% load static %}
+
+     <div class="container">
+        <button class="back_to_inbox btn btn-primary">Back to inbox</button>
+       
+       <h3> <a class="mt-1" href="{% url 'profile' receiver.id  %}">{{receiver}} </a> - Message  - <button data-url="{% url 'block_unblock' receiver.id %}" class="btn nir-btn-small block-unblock-btn"> {% if blocked_by_sender %} Unblock {% else %}Block{% endif %}</button></h3>
+	<div class="messaging">
+        <div class="row chat-container"> 
+        	<div class="mesgs">
+          		<div class="msg_history  message_div">            
+            			{% for chat in chats %}
+                			{% if chat.sender == user %}              			 
+            					<div class="outgoing_msg mb-2">
+	              					<div class="sent_msg">
+                						<p>
+                							{% if chat.m_file %}                
+                               					<a class="btn-link text-white" download href="{{chat.m_file.url}}">Sent File - Download</a> 
+                            				{% else %}
+                               					{{chat.message}}
+                             				{% endif %}               						
+                						</p>
+                						<span class="time_date"> {{chat.date}} </span> 
+                					</div>
+            					</div>                         
+                			{% else %}                			
+                				 <div class="incoming_msg mb-2">              						
+              						<div class="received_msg">
+                						<div class="received_withd_msg">
+                  							<p>
+                  								{% if chat.m_file %}                
+                               						<a class="btn-link" download href="{{chat.m_file.url}}">Received File - Download</a>
+                            					{% else %}
+                               						{{chat.message}}
+                            					{% endif %}              
+                  							</p>
+                  							<span class="time_date"> {{chat.date}} </span>
+							        	</div>
+              						</div>
+            					</div>            				               
+			                {% endif %}
+            			{% endfor %}
+            		</div>
+            	</div>
+        </div>
+        </div>
+
+        <div>
+
+          {% if blocked_by_receiver %}
+
+                    <h4 class="text-center">Can't message to {{receiver}} </h4>
+
+                {% elif blocked_by_sender %}
+
+                  <h4 id="blocked_info" class="text-center">You blocked {{receiver}}</h4>
+
+                 <form id="message-form"  class="d-none" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    <textarea name="message" id="message_txt" class="form-control" rows="2" cols="30"></textarea> 
+    
+                        <div class="row mt-2">
+                            <div class="col-lg-4 col-md-4 ">
+    
+                                <input id="file-upload" name="message-file" class="form-control message-file" type="file" accept="application/pdf,application">
+                            </div>
+                    
+                        <div class="col-lg-4 col-md-4">                        
+                               
+                            <button type="button" class="remove-message-file btn">Clear Attachment</button>
+                        
+                        </div>
+                            <div class="col-lg-4 col-md-4">
+                                <input data-url="{% url 'chat_to' receiver.id %}" type="submit" class="nir-btn-small width-50 chat_to" value="Send">
+                            </div>
+                        </div>  
+                    
+                    </form>
+                    
+
+                {% else %}
+                <form id="message-form"  enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    <textarea name="message" id="message_txt" class="form-control" rows="2" cols="30"></textarea> 
+    
+                        <div class="row mt-2">
+                            <div class="col-lg-4 col-md-4 ">
+    
+                                <input id="file-upload" name="message-file" class="form-control message-file" type="file" accept="application/pdf,application">
+                            </div>
+                    
+                        <div class="col-lg-4 col-md-4">                        
+                               
+                            <button type="button" class="remove-message-file btn">Clear Attachment</button>
+                        
+                        </div>
+                            <div class="col-lg-4 col-md-4">
+                                <input data-url="{% url 'chat_to' receiver.id %}" type="submit" class="nir-btn-small width-50 chat_to" value="Send">
+                            </div>
+                        </div>  
+                    
+                    </form>
+                    
+
+                {% endif %}
+            
+           
+        </div>
+
+    </div>

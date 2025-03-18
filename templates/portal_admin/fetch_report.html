@@ -1,0 +1,39 @@
+<div class="row d-flex  p-2 mb-2 report_div">
+                                           
+    <div class="col-lg-6 col-sm-12">
+        <h5>Reports</h5>
+    </div>
+
+     <div class="col-lg-6 col-sm-12">
+        <select class="w-50 float-end" name="filter_type" id="report_filter_type">
+            <option value="">Choose Action</option>
+            <option value="skip_all_records">Skip All Reports</option>
+            <option value="in_active_user">Inactive User</option>                        
+        </select>                        
+    </div>
+    <div class="col-lg-12 col-sm-12 mt-1"></div>
+
+    <h6 class="pl-3 d-none empty_report">No reports available</h6>
+
+    {% for report in reports.all %}
+
+        <div class="col-lg-6 col-sm-6 mb-4 d-flex shadow-sm p-3 mb-2 border report-box report_id_{{report.id}}">                                            
+            <div class="">                        
+                <h5 class="theme mb-1"> <a href="{% url 'profile' report.reported_by.id %}">{{report.reported_by}} </a> | <a title="Message" href="#"> <i class="fa fa-envelope get_all_message" data-url="{% url 'get_inbox_chat' report.reported_by.id %}" ></i> </a>    | <a title="Delete Report" href="#"> <i class="fa fa-trash delete_report" report-id="{{report.id}}" data-url="{% url 'delete' parent_model_name='user' pk=report.id %}" ></i> </a> </h5>                              
+                <span class="small">{{report.reported_on}} </span>
+                
+                {% if report.complaint %}
+                    <p>{{report.complaint|safe}}</p>
+                {% else %}
+                    <p>Report file <a href="{{report.report_file.url}}" download >Download</a></p>
+
+                {% endif %}
+                
+            </div>
+        </div>             
+    
+    {% empty %}
+        <h6 class="pl-3">No reports available</h6>
+    {% endfor %}                  
+    
+</div>

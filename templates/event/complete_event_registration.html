@@ -1,0 +1,295 @@
+{% extends 'event_registration_base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}      
+        <div class="container ">
+
+            {% if event %}
+
+            {% if registration.language %}
+
+            <div class="text-center m-5"><b>You have already submitted  your script for this event. <a href="{% url 'view_my_submission' registration.id %}"><u>View</u> </a> </b></div>
+
+            {% else %}
+
+                <h2 style="text-align: center;">{{event.title}} Event Registration</h2>            
+                <h4 style="text-align: center;">Please fill in this form to submit script.</h4>
+                <hr>
+                <form method="POST" action=""  enctype="multipart/form-data" id="signupform"> 
+                    {% csrf_token %} 
+
+                    <div class="row">
+                        {% if form.non_field_errors %}
+                            <div class="non-field-errors">
+                                {% for err in form.non_field_errors %}
+                                <p class="form-error">{{ err }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    
+
+                        <div class="col-lg-6">
+                            {{ form.age.errors }}
+                            {{form.age.label}}  *
+                            {{form.age}}
+                        </div>
+
+            
+
+                        <div class="col-lg-6">
+                            {{ form.profession.errors }}
+                            {{form.profession.label}}  *
+                            {{form.profession}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.marital_status.errors }}
+                            {{form.marital_status.label}}  *
+                            {{form.marital_status}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.experience_in_movie_industry.errors }}
+                            {{form.experience_in_movie_industry.label}}  *
+                            {{form.experience_in_movie_industry}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.reference_if_any.errors }}
+                            {{form.reference_if_any.label}}  
+                            {{form.reference_if_any}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.facebook.errors }}
+                            {{form.facebook.label}}  
+                            {{form.facebook}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.instagram.errors }}
+                            {{form.instagram.label}}  
+                            {{form.instagram}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.twitter.errors }}
+                            {{form.twitter.label}}  
+                            {{form.twitter}}
+                        </div>
+
+                        
+                        <div class="col-lg-6">
+                            {{ form.address.errors }}
+                            {{form.address.label}}  *
+                            {{form.address}}
+                        </div>
+
+                        
+                        <div class="col-lg-6">
+                            {{ form.city.errors }}
+                            {{form.city.label}}  *
+                            {{form.city}}
+                        </div>
+
+                        <div class="col-lg-12">
+
+                            <h4>Short Film Details</h4>
+                            <p>Each script should be 10 pages (Celtx format recommended)</p>
+                            <p>Shortfilms should not exceed 10-12 minutes </p>
+                            <p>Director aspirants with a short/Pilot film can submit the URl link </p>
+
+                            <h6 class="mt-3">SUBMIT SCRIPT OR VIDEO</h5>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.film_title.errors }}
+                            {{form.film_title.label}}  
+                            {{form.film_title}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.language.errors }}
+                            {{form.language.label}}  *
+                            {{form.language}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.priority_of_submission.errors }}
+                            {{form.priority_of_submission.label}}  *
+                            {{form.priority_of_submission}}
+                        </div>
+
+
+                        <div class="col-lg-6">
+                            {{ form.synopsis.errors }}
+                            {{form.synopsis.label}}  *
+                            {{form.synopsis}}
+                        </div>
+
+                
+                        <div class="col-lg-6 script-div">
+                            {{ form.script.errors }}
+                            {{form.script.label}}  *
+                            {{form.script}}
+                        </div>
+
+                        <div class="col-lg-6 script-div">
+                            {{ form.script_password.errors }}
+                            {{form.script_password.label}}  
+                            {{form.script_password}}
+                        </div>
+
+                        <div class="col-lg-6 video-div d-none">
+                            {{ form.video_link.errors }}
+                            {{form.video_link.label}}  *
+                            {{form.video_link}}
+                        </div>
+
+                        <div class="col-lg-6 video-div d-none">
+                            {{ form.video_password.errors }}
+                            {{form.video_password.label}}  
+                            {{form.video_password}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.subtitles.errors }}
+                            {{form.subtitles.label}}  
+                            {{form.subtitles}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.film_duration.errors }}
+                            {{form.film_duration.label}}  
+                            {{form.film_duration}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.year_of_production.errors }}
+                            {{form.year_of_production.label}}  
+                            {{form.year_of_production}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.your_role_of_production.errors }}
+                            {{ form.your_role_of_production.label}}  
+                            {{form.your_role_of_production}}
+                        </div>
+
+                        <div class="col-lg-12">  <h4>CREW NAME:</h4>  </div>
+
+                        <div class="col-lg-6">
+                            {{ form.director.errors }}
+                            {{ form.director.label}}  
+                            {{form.director}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.cinematographer.errors }}
+                            {{ form.cinematographer.label}}  
+                            {{form.cinematographer}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.editor.errors }}
+                            {{ form.editor.label}}  
+                            {{form.editor}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.music_director.errors }}
+                            {{ form.music_director.label}}  
+                            {{form.music_director}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.writer.errors }}
+                            {{ form.writer.label}}  
+                            {{form.writer}}
+                        </div>
+
+                        <div class="col-lg-6">
+                            {{ form.cast.errors }}
+                            {{ form.cast.label}}  
+                            {{form.cast}}
+                        </div>
+                        <div class="col-lg-12 mt-3"> 
+                            <b>Agreed to the RULES, TERMS AND CONDITIONS of THE LAUCHPAD *</b>
+                            <br>
+                            <input class="form-check-input" required  type="checkbox"> <b>Yes I Agree to <a  target="_blank" href="https://www.dwp.in/launchpad/terms-and-conditions.html"><u>https://www.dwp.in/launchpad/terms-and-conditions.html</u></a> </b>
+                        </div>
+
+
+                    </div>
+                                
+                
+                
+                    <hr>
+                    <input type="submit" class="p-lr btn btn-primary signup-btn mb-2"  value="Submit "  />  
+                    
+                    <a href="{% url 'home' %}" class="p-lr btn btn-primary  mb-2">Cancel</a>
+                    
+                </form>
+
+
+            {% endif %}
+
+            
+
+              
+            
+            {% else %}
+                <div class="p-5 text-center">
+                    <h4>This event submission is not active right now. </h4>      
+                </div>
+
+            {% endif %}
+                      
+        </div>    
+
+        {% if event %}
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        <script>
+    
+            $( document ).ready(function() {  
+
+                {% if is_get_method %}
+                    $("input[name=priority_of_submission][value=S]").prop('checked', true);
+                    $("#id_script").prop('required',true);
+
+                {% endif %}
+
+                $('input[type=radio][name=priority_of_submission]').on('change', function() {
+                    val = $("input[name='priority_of_submission']:checked").val();
+
+                    if(val == "S"){
+                        $('.script-div').removeClass('d-none');
+                        $('.video-div').addClass('d-none');
+                        $("#id_script").prop('required',true);
+                        $("#id_video_link").prop('required',false);
+
+                        
+                    }
+                    else{
+                        $('.script-div').addClass('d-none');
+                        $("#id_script").prop('required',false);
+                        $('.video-div').removeClass('d-none');
+                        $("#id_video_link").prop('required',true);
+                    }
+                  });
+
+
+            
+                
+        
+
+
+            });
+        </script>
+
+        {% endif %}
+ 
+
+{% endblock %}

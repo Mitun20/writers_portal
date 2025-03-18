@@ -1,0 +1,6 @@
+
+{% for user_object in users %}
+    {% include "portal_admin/people.html" %}
+{% empty %}
+    <h6 class="ml-3"> No data available..!</h6>                      
+{% endfor %}

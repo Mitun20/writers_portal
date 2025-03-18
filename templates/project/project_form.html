@@ -1,0 +1,28 @@
+{% load crispy_forms_tags %}
+
+<form method="post" id="ajax_form" enctype="multipart/form-data">                         
+    <table>
+        {% csrf_token %}
+      
+        <div class="row">
+            {% for field in project_form.visible_fields %}
+
+                <div class="col-sm-6">
+                    {{ field.errors }}
+                    {{ field.label }}
+                    {{ field }} 
+                </div>
+            
+            {% endfor %}
+            {% for hidden_field in project_form.hidden_fields %}
+                {{ hidden_field.errors }}
+                {{ hidden_field }}
+            {% endfor %}
+
+        </div>
+    </table>  
+    <br> 
+    <span style="color:red" id="project_info_text"></span>
+    <button type="button" id="edit_btn" data-url= "{% url 'ajax_add' model_name='project'  %}" class="btn btn-primary ajax-add-project-btn">Create</button>                             
+    
+</form>

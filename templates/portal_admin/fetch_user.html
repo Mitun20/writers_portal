@@ -1,0 +1,120 @@
+{% load static %}
+
+<div class="row d-flex  p-2 mb-2 people_div">
+
+    {% if type == "following" %}
+           <h5>Following</h5>
+
+            {% for following in users %}
+                <div class="col-lg-6 col-md-12 border mt-1">
+                    <article class="post mb-1 border-b pb-1 p-3">
+                        <div class="s-content d-flex align-items-center justify-space-between">
+                            <div class="sidebar-image w-25 me-3">
+                                {% if following.following_user.profile_photo %}
+                                    <a href="#"><img class="rounded" src="{{following.following_user.profile_photo.url}}" alt=""></a>
+                                {% else  %}
+                                    <a href="#"><img class="rounded" src="{% static 'images/avatar.png' %}" alt=""></a>
+                                {% endif %}
+                            </div>
+                            <div class="content-list w-75">
+                                <h5 class="mb-1"><a href="{% url 'profile' following.following_user.id %}">{{following.following_user}}</a>
+                
+                                    {% if following.following_user != user %}                                              
+                                        <span class="pull-right"> 
+                                            <a title="View Statistics" href="{% url 'statistics' following.following_user.id  %}"> <i class="fa fa-chart-line"></i>   </a> | 
+                                            <a title="View Report" href="{% url 'statistics' following.following_user.id  %}"> <i class="fa fa-flag"></i> {{following.following_user.report_count}}  </a> | 
+                                            <a title="Message" href="#"> <i class="fa fa-envelope get_all_message" data-url="{% url 'get_inbox_chat' following.following_user.id %}" ></i> </a> | 
+                                                {% if user_object.is_active %}
+                                                <a class="userid_{{following.following_user.id}}user_active_inactive_popup user_id_{{following.following_user.id}}" userid="{{following.following_user.id}}" name="{{following.following_user}}" status="active" title="Hard Inactive" href="#"> <i class="fa fa-ban user_active_inactive_popup user_id_{{following.following_user.id}}" userid="{{following.following_user.id}}" name="{{following.following_user}}" status="active"></i> </a>
+                                                {% else %}
+                                                <a class="userid_{{following.following_user.id}} user_active_inactive_popup user_id_{{following.following_user.id}}" userid="{{following.following_user.id}}" name="{{following.following_user}}" status="inactive" title="Activate User" href="#"> <i class="fa fa-ban" ></i> </a>
+                                                {% endif %}
+                                            </span>
+                                    {% endif %}
+                                </h5>
+                                    
+                                    
+                                
+                                <div class="group">
+                                    {% for group in following.following_user.groups.all %}
+                                        {{group}} 
+                                        {% if not forloop.last %}
+                                        | 
+                                        {% endif %}
+                                    {% endfor %}
+                
+                                </div>
+                            </div>    
+                        </div> 
+                    </article>
+                
+                
+                </div>  
+
+            {% empty %}
+                <h6 class="ml-3"> No data available..!</h6>                      
+            {% endfor %}
+                                 
+       
+    {% else %}
+           <h5>Followers</h5>
+
+
+            {% for follower in users %}
+                <div class="col-lg-6 col-md-12 border mt-1">
+                    <article class="post mb-1 border-b pb-1 p-3">
+                        <div class="s-content d-flex align-items-center justify-space-between">
+                            <div class="sidebar-image w-25 me-3">
+                                {% if follower.user.profile_photo %}
+                                    <a href="#"><img class="rounded" src="{{follower.user.profile_photo.url}}" alt=""></a>
+                                {% else  %}
+                                    <a href="#"><img class="rounded" src="{% static 'images/avatar.png' %}" alt=""></a>
+                                {% endif %}
+                            </div>
+                            <div class="content-list w-75">
+                                <h5 class="mb-1"><a href="{% url 'profile' follower.user.id %}">{{follower.user}}</a>
+                
+                                    {% if user_object != user %}                                              
+                                        <span class="pull-right"> 
+                                            <a title="View Statistics" href="{% url 'statistics' follower.user.id  %}"> <i class="fa fa-chart-line"></i>   </a> | 
+                                            <a title="View Report" href="{% url 'statistics' follower.user.id  %}"> <i class="fa fa-flag"></i> {{follower.user.report_count}}  </a> | 
+                                            <a title="Message" href="#"> <i class="fa fa-envelope get_all_message" data-url="{% url 'get_inbox_chat' follower.user.id %}" ></i> </a> | 
+                                                {% if user_object.is_active %}
+                                                <a class="userid_{{follower.user.id}} user_active_inactive_popup user_id_{{follower.user.id}}" userid="{{follower.user.id}}" name="{{follower.user}}" status="active" title="Hard Inactive" href="#"> <i class="fa fa-ban user_active_inactive_popup user_id_{{follower.user.id}}" userid="{{follower.user.id}}" name="{{follower.user}}" status="active"></i> </a>
+                                                {% else %}
+                                                <a class="userid_{{user_object.id}} ser_active_inactive_popup user_id_{{follower.user.id}}" userid="{{follower.user.id}}" name="{{follower.user}}" status="inactive" title="Activate User" href="#"> <i class="fa fa-ban user_active_inactive_popup user_id_{{follower.user.id}}" userid="{{follower.user.id}}" name="{{follower.user}}" status="inactive"></i> </a>
+                                                {% endif %}
+                                            </span>
+                                    {% endif %}
+                                </h5>
+                                    
+                                    
+                                
+                                <div class="group">
+                                    {% for group in follower.user.groups.all %}
+                                        {{group}} 
+                                        {% if not forloop.last %}
+                                        | 
+                                        {% endif %}
+                                    {% endfor %}
+                
+                                </div>
+                            </div>    
+                        </div> 
+                    </article>
+                
+                
+                </div>    
+    
+            {% empty %}
+                <h6 class="ml-3"> No data available..!</h6>                      
+            {% endfor %}
+                                 
+    
+        {% endif %}
+
+
+ 
+                     
+    
+</div>

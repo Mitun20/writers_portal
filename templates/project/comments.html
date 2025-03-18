@@ -1,0 +1,26 @@
+<div class="row container">
+    {% for comment in post.comment_set.all %}                                     
+        <div class="col-sm-12">
+            <div class="we-comment">
+                <a href="#" title="" class="user-name">{{comment.commented_by}}</a>
+                <p>{{comment.comment}}</p>
+                <div class="inline-itms">
+                    <span>{{comment.date}}</span> 
+
+                    {% if comment.commented_by == user %}
+                        &nbsp;<span post_id="{{post.id}}" comment_id="{{comment.id}}" data-url="{% url 'delete_comment' comment.id %}" class="delete_comment">Delete</span> 
+                    {% endif %}        
+                </div>    
+                
+            
+            </div>
+        </div>                                                                            
+    {% endfor %}
+        <div class="col-sm-9">
+            <textarea   id="post_comment_id_{{post.id}}" class="auto-resize comment-textarea textarea" placeholder="Write a comment" autocomplete="off"></textarea>
+        </div>
+
+        <div class="col-sm-3">
+            <button class="comment btn btn-primary btn" style="width:130px" data-url="{% url 'comment' post.id %}" post_id="{{post.id}}">Comment</button>
+        </div>
+</div>

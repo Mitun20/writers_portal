@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load check_post_like_tags %}
+{% load follow_status_tags %}
+
+{% block profile %}nav-active{% endblock %}
+
+
+{% block content %}
+ 
+<!-- BreadCrumb Starts -->  
+<section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a class="back_to_inbox" href="#">Inbox</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+
+
+                   <!-- sidebar starts -->
+                   <div class="col-lg-3 col-md-12">
+                    <div class="sidebar-sticky">
+                        <div class="list-sidebar">
+                            <div class="author-news mb-4 shadow-sm p-4 text-center">
+                                <div class="author-news-content">
+                                    <div class="author-thumb mb-1">
+                                        {% if user.profile_photo %}
+                                            <img src="{{user.profile_photo.url}}" alt="author">
+                                        {% else %}
+                                            <img src="{% static 'images/avatar.png' %}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="author-content">
+                                        <h3 class="title mb-1 text-align-left"><a href=" {% if is_admin %} # {% else %} {%url 'my_profile' %} {% endif %}">{{user}} :  
+                                             {% for group in user.groups.all %}
+                                                   {{group}} 
+                                                     {% if not forloop.last %}
+                                                         /
+                                                     {% endif %}
+                                        {% endfor %}</a></h3>
+
+
+                                        <p class="mb-2 text-align-left">
+                                            Read Message: 
+                                            <a class="highlight float-end" href="#" >{{readed_message_count}}</a>
+                                        </p>
+    
+                                            <p class="mb-2 text-align-left">
+                                                Unread Message: 
+                                                <a class="highlight float-end" href="#" >{{inbox_count}}</a>
+                                            </p>
+
+                                            {% comment %}
+                                                <div class="header-social">
+                                                    <ul>
+                                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">  
+                    
+                    <div class="chat_list_div">
+
+                        <h4 class="">{{registration.event.title}} Submission View</h4>   
+                        <div class="grid email">
+                        <div class="grid-body">
+
+                            <div class="row">
+
+                                <div class="col-12">
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <p><b>Submitted Type: </b> {{registration.get_priority_of_submission_display}}</p>
+                                        </div>
+                                        <div class="col-4">
+        
+                                            {% if registration.priority_of_submission == "S" %}
+        
+                                                {% if registration.script %}
+                
+                                                    <b><a href="{{registration.script.url}}" download><u> Download Script</u> </a> </b>
+                                             
+                    
+                                                {% endif %}
+             
+                                            {% else %}
+        
+                                            
+                                            <b><a href="{{registration.video_link}}" target="_blank"><u>View Video</u> </a> </b>
+                                    
+        
+        
+             
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-4">
+                                            <p><b>Submitted on </b>: {{event.submitted_on|default_if_none:""}}      
+                                        </div>
+        
+        
+                                    </div>                      
+                                                          
+                                    <hr>
+                                </div>
+                               
+                              
+                                <div class="col-6">                      
+        
+                                   
+                                    <p><b> Film title    </b> : {{registration.film_title|default_if_none:""}} </p>
+                                    <p><b> Language    </b> : {{registration.language|default_if_none:""}} </p>
+                                    <p><b> Synopsis    </b> : {{registration.synopsis|default_if_none:""}} </p>
+                                    <p><b> Subtitles   </b> : {{registration.get_subtitles_display|default_if_none:""}} </p>
+                                    <p><b> Film duration   </b> : {{registration.film_duration|default_if_none:""}} </p>
+                                    <p><b> Year of Production   </b> : {{registration.year_of_roduction|default_if_none:""}} </p>
+                                    <p><b> Your role of production  </b> : {{registration.your_role_of_production|default_if_none:""}} </p>   
+        
+                                </div>
+        
+                                <div class="col-6">                        
+                                    <p><b> Director   </b> : {{registration.director|default_if_none:""}} </p>
+                                    <p><b> Cinematographer   </b> : {{registration.cinematographer|default_if_none:""}} </p>
+                                    <p><b> Editor   </b> : {{registration.editor|default_if_none:""}} </p>
+                                    <p><b> Music Director   </b> : {{registration.music_director|default_if_none:""}} </p>
+                                    <p><b> Writer   </b> : {{registration.writer|default_if_none:""}} </p>
+                                    <p><b> Cast   </b> : {{registration.cast|default_if_none:""}} </p>
+                                    
+                                </div>
+                                <div class="col-12">  <hr>  </div>                       
+                              
+        
+                                <div class="col-6">     
+                                    <p><b> Mobile No   </b> : {{registration.mobile_no|default_if_none:""}} </p>    
+                                    <p><b> Email   </b> : {{registration.email|default_if_none:""}} </p>            
+                                    <p><b> Address   </b> : {{registration.address|default_if_none:""}} </p>
+                                    <p><b> City   </b> : {{registration.city|default_if_none:""}} </p>    
+                                    <p><b> Age   </b> : {{registration.age|default_if_none:""}} </p> 
+                                    <p><b> Sex   </b> : {{registration.get_sex_display|default_if_none:""}} </p> 
+                                    <p><b> Profession   </b> : {{registration.profession|default_if_none:""}} </p>                                                      
+                                                     
+                                </div>
+        
+        
+                                <div class="col-6">   
+                                    <p><b> Marital status   </b> : {{registration.marital_status|default_if_none:""}} </p> 
+                                    <p><b> Experience in Movie Industry   </b> : {{registration.experience_in_movie_industry|default_if_none:""}} </p> 
+                                    <p><b> Reference if  any   </b> : {{registration.reference_if_any|default_if_none:""}} </p>                    
+                                    <p><b> Instagram   </b> : {{registration.instagram|default_if_none:""}}  </p>
+                                    <p><b> Twitter   </b> : {{registration.twitter|default_if_none:""}}  </p>
+                                    <p><b> Facebook   </b> : {{registration.facebook|default_if_none:""}} </p>
+                                </div>
+        
+        
+                               <div class="col-12">  <hr>  </div>
+
+
+                            </div>
+                           
+                        </div>
+                    </div>    
+
+                    </div>
+
+                    <div>
+
+                        
+                    </div>
+                                                    
+                                   
+                </div>   
+                
+
+                <!-- Right sidebar starts -->
+                <div class="col-lg-3 col-md-12">
+
+                  <!--
+                    <div class="sidebar-sticky">
+                        <div class="list-sidebar">
+                            <div class="popular-post sidebar-item mb-4">
+                                <h4 class="">Find People</h4>
+                                <div class="col-lg-12">
+                                    <div class="input-group">
+                                        <input type="text" id="people_search_input" class="form-control" placeholder="Search" />
+                                        <span class="find-search-icon">
+                                            <button class="people_search_btn" type="button">
+                                                <span class="fa fa-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                </div>
+                               
+                             <div class="popular-post people_div sidebar-item mb-4">
+                                <h4 class="">Top Peoples</h4>
+    
+                                 {% for top_people in top_peoples %}
+    
+                                    <article class="post mb-1 border-b pb-1">
+                                        <div class="s-content d-flex align-items-center justify-space-between">
+                                            <div class="sidebar-image w-25 me-3">
+                                                {% if top_people.profile_photo %}
+                                                    <a href="#"><img class="rounded-circle" src="{{top_people.profile_photo.url}}" alt=""></a>
+                                                {% else  %}
+                                                    <a href="#"><img class="rounded-circle" src="{% static 'images/avatar.png' %}" alt=""></a>
+                                                {% endif %}
+                                            </div>
+                                            <div class="content-list w-75">
+                                                <h5 class="mb-1"><a href="#">{{top_people}}</a>
+    
+                                                    {% if top_people == user %}
+                                                         
+                                                    {% else %}
+                                                       <span class="pull-right"> 
+                                                            <i data-url="{% url 'write-testimonial' top_people.id %}" class="fa fa-edit write-testimonial"></i> | 
+                                                            {% get_follow_status top_people.id user as status %}
+                                                            {% if status %}
+                                                            <i id="user_id_{{top_people.id}}" user_id="{{top_people.id}}" class="fa fa-minus Success follow_unfollow" data-url="{% url 'follow_unfollow' top_people.id %}"></i>
+                                                            {% else %}
+                                                                <i id="user_id_{{top_people.id}}" user_id="{{top_people.id}}"  class="fa fa-plus Success follow_unfollow" data-url="{% url 'follow_unfollow' top_people.id %}"></i>
+                                                            {% endif %}
+                                                        </span>
+                                                    {% endif %}
+                                                </h5>
+                                                    
+                                                    
+                                                   
+                                                <div class="group">
+                                                    {% for group in top_people.groups.all %}
+                                                        {{group}} 
+                                                        {% if not forloop.last %}
+                                                        | 
+                                                        {% endif %}
+                                                    {% endfor %}
+        
+                                                </div>
+                                            </div>    
+                                        </div> 
+                                    </article>
+    
+                                 {% endfor %}                
+    
+                            </div>  
+                       
+                        </div>
+                    </div>
+
+                    -->
+                </div>
+         
+        </div>
+
+
+</div>
+    </div>
+</section>
+<!-- blog Ends -->  
+
+
+
+ {% endblock %}

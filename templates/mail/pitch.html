@@ -1,0 +1,9 @@
+<h2>{{pitch.story_title}}</h2>
+<p>{{created_by}} has shared a story  with you,</p>
+
+{% if pitch.description %}
+    <p><b>Description: </b>{{pitch.description|safe}}</p>
+{% endif %}
+
+
+<p>If you want to learn more, <a href="http://screenwriters.in/"><u>click here.</u></a></p>

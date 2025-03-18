@@ -1,0 +1,7 @@
+<div class=" row post_div">
+    {% for post in posts %}
+        {% include "portal_admin/post.html" %}
+    {% empty %}
+       <h6 class="ml-3"> No data available..!</h6>                      
+    {% endfor %}
+</div>

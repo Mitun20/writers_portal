@@ -1,0 +1,21 @@
+{% for qualification in user.qualification_set.all %}
+  <div class="row mb-3">                       
+      <div class="col-lg-1">
+      
+      </div>
+      <div class="col-lg-11 " style="padding-top: 20px;">
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="row mb-4" style="margin-bottom: 10px !important;">
+              <div class="col-lg-12 col-md-3">                                                             
+                {{qualification}}                                  
+              </div>
+            </div>
+          </div>       
+          <div class="col-lg-3"><a href="#" ><i class="fa fa-edit ajax_edit" data-url="{% url 'ajax_edit' model_name='qualification' pk=qualification.id %}"></i></a>
+          </div>
+        </div>
+      </div>
+  </div>
+
+{% endfor %}

@@ -1,0 +1,13 @@
+{% if blocked %}
+    <h4> Dear {{post.posted_by}},</h4>
+    <p>Your post {{post}} has blocked by portal admin</p>
+
+    <br>
+    <p>{{report}}</p>
+{% else %}
+    <h4> Dear {{post.posted_by}},</h4>
+    <p>Your post {{post}} has unblocked by portal admin.</p>
+    <br>
+
+    <p>{{report}}</p>
+{% endif %}

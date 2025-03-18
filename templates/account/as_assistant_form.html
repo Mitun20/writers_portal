@@ -1,0 +1,111 @@
+{% load crispy_forms_tags %}
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      {% if operation == "Add" %}
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">       
+              Add Highlight as Assistant          
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" id="as_assistant_form">          
+            <div class="row">
+              <div class="col-sm-4 text-center"> 
+                <button class="btn btn-outline-dark add-director">Add Director</button>
+                <div class="director_link">
+
+                </div>
+                <div id="director-div">
+
+                </div>
+                
+                
+              </div>
+              <div class="col-sm-4 text-center">
+                <button class="btn btn-outline-dark add-project">Add Project</button>
+                <div id="ajax-model-project-section">
+
+                </div>
+           
+                <div id="project-div">
+
+                </div>
+              </div> 
+              <div class="col-sm-4 text-center">
+              
+                <input placeholder="year" class="form-control"  id="assistant-year" type="number" min="1900" max="{% now 'Y' %}"  value=""  name="assistant-local">
+              </div>       
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">          
+          <span style="color:red" id="info_text"></span>
+          <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+          <button type="button"  class="btn btn-primary create_as_assistant_btn">Save</button>
+        </div>
+
+      {% else %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">           
+            Edit Highlight as Assistant              
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" id="as_assistant_form">          
+            <div class="row">
+              <div class="col-sm-4 text-center"> 
+                <button class="btn btn-outline-dark add-director">Edit Director</button>
+                <div class="director_link">
+
+                </div>
+                <div id="director-div">
+                  {% if as_assistant.senior_link %}
+                     <div class="m-3"><h5 id="get_senior_link" userid="{{as_assistant.senior_link.id}}" claas="mt-4">{{as_assistant.senior_link}} - User</h5></div>
+                  {% else %}
+                    <div class="mt-3"><h6 id="get_unknown_senior" name="{{as_assistant.senior}}" claas="mt-4">{{as_assistant.senior}} - Non User</h6></div>
+                  {% endif %}
+
+                </div>
+                
+                
+              </div>
+              <div class="col-sm-4 text-center">
+                <button class="btn btn-outline-dark add-project">Edit Project</button>
+
+                <div id="ajax-model-project-section">
+                   <div class="m-3"><h5 id="get_project_link" projectid="{{as_assistant.project.id}}" claas="mt-4">{{as_assistant.project.title}}</h5></div>
+                
+                </div>
+
+            
+                <div id="project-div">
+
+               
+                   
+                </div>
+              </div> 
+              <div class="col-sm-4 text-center">
+              
+                <input  class="form-control"  id="assistant-year" type="number" min="1900" max="{% now 'Y' %}"  value="{{as_assistant.year}}"  name="assistant-local">
+              </div>       
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          
+          <span style="color:red" id="info_text"></span>
+              <button type="button"   data-url= "{% url 'ajax_delete' model_name='assistant' pk=pk  %}" class="btn btn-secondary ajax-delete-btn">Delete</button>
+              <button type="button" class="btn btn-secondary m-out" data-dismiss="modal">Close</button>
+              <button type="button" id="btn-primary btn" data-url= "{% url 'as_assistant_edit' as_assistant.id %}" class="update-as_assistant-btn btn btn-primary">Update</button>   
+        </div>
+
+
+      {% endif %}
+  
+    </div>
+</div>

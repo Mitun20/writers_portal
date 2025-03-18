@@ -1,0 +1,160 @@
+<div class="col-lg-6 col-md-12">
+    <div class="row d-flex shadow-sm p-2 mb-2 border post-box">
+       
+        <div class="col-lg-12 col-sm-12 mb-4">
+
+            {% if  post.pitch  %}
+                <h4 class="h4-normal"><a href="{% url 'view_post' post.id %}">Read My Story Synopsis of <span class="pitch-color">{{post.pitch.story_title}}</span></a></h4>
+            {% else %}
+                <h4 class="h4-normal"><a href="{% url 'view_post' post.id %}">{{post.post_title}}</a></h4>
+            {% endif %}
+           
+            <div class="row d-flex ">
+                <div class="col-lg-12 col-sm-12 text-align-left">
+                <p><a class="orange-color" href="{% url 'profile' post.posted_by.id %}"><b>{{post.posted_by}}</b></a>
+                    <label class="postedon-font-size">
+                        ({% for group in post.posted_by.groups.all %}
+                                {{group}} 
+                            {% if not forloop.last %}
+                                /
+                            {% endif %} 
+                        {% endfor %})
+                    </label> 
+                    <label  class="postedon-font-size"> · {{post.date|date:"j M Y · g.s A"}} </label>
+    
+                    {% for pitched_to in post.pitch.pitch_to_people.all %}
+                    {% if pitched_to == user %}
+                        <label class="small d-inline rounded float-end" style="background-color:#f1f2f2;">&nbsp; Privately shared to you&nbsp;</label>
+                    {% endif %}
+                {% endfor %}
+    
+                    
+                </p>
+                </div>           
+           </div> 
+    
+            {% if post.pitch %}
+
+              <p>
+                <span class="fgl-color"> Genre: </span>
+                    {% for genre in post.pitch.genre.all %}                                                               
+                        {% if genre|stringformat:"s" != "Other"%}
+                        {{genre}},                                                                                                                       
+                        {% else %}
+                        {{post.pitch.other_genre}}  
+                        {% endif %}              
+                {% endfor %}  
+    
+             
+                | <span class="fgl-color"> Format: </span> {{post.pitch.format}}         
+              
+                | <span class="fgl-color">Language: </span>
+
+                {% for language in post.pitch.language.all %}
+
+                    {% if forloop.last %} 
+
+                        {% if language|stringformat:"s" == "Other"%}
+                            {{post.pitch.other_language}}                                                              
+                        {% else %}
+                            {{language}}                                                                       
+                        {% endif %}
+
+                    {% else %}
+                        {% if language|stringformat:"s" == "Other"%}
+                            {{post.pitch.other_language}},                                                             
+                        {% else %}
+                            {{language}},                                                                      
+                        {% endif %}
+                    
+                    {% endif %}
+
+                {% endfor %} 
+            
+                {% if post.pitch.story_file %}
+                | <a class="story_file_download" download href="{{post.pitch.story_file.url}}" ><i class="fas fa-download" data-bs-toggle="tooltip"  data-bs-placement="top" title="Download Story"></i></a>
+        
+                {% endif %}                               
+
+               </p>                               
+           
+    
+            {% elif post.call %}
+    
+                <p>
+                    <span class="fgl-color">Genre:</span>
+                    {% for genre in post.call.genre.all %}
+
+                        {% if forloop.last %}
+
+                            {% if genre|stringformat:"s" != "Other"%}
+                                {{genre}}                                                                                                                    
+                            {% else %}
+                                {{post.call.other_genre}}  
+                            {% endif %} 
+
+
+                        {% else %}
+
+                            {% if genre|stringformat:"s" != "Other"%}
+                                {{genre}},                                                                                                                       
+                            {% else %}
+                                {{post.call.other_genre}}  
+                            {% endif %} 
+
+
+                        {% endif %}
+
+                                    
+                    {% endfor %}      
+                    
+                  
+                    | <span class="fgl-color">Format: </span>   {{post.call.format}}    
+                
+                    | <span class="fgl-color">Language:</span>
+                        {% for language in post.call.language.all %}
+
+                            {% if forloop.last %} 
+                                {% if language|stringformat:"s" == "Other"%}
+                                    {{post.call.other_language}}                                                             
+                                {% else %}
+                                    {{language}}                                                                      
+                                {% endif %}
+
+                            {% else %}
+
+                                {% if language|stringformat:"s" == "Other"%}
+                                    {{post.call.other_language}},                                                             
+                                {% else %}
+                                    {{language}},                                                                      
+                                {% endif %}
+
+                            {% endif %}                        
+
+                        {% endfor %}                                      
+                 </p>                                  
+    
+            
+            {% endif %}
+              
+                <div class="entry-meta mt-1 d-flex align-items-center justify-content-between">
+                
+                    <div class="entry-metalist d-flex align-items-center">
+                        <ul>                                                  
+                            <li class="me-2"><i class="fa fa-thumbs-up"></i><span id="up_count{{post.id}}" > {{post.get_upvote_count}}</span></li>                                                
+                            <li class="me-2"><i class="fa fa-thumbs-down"></i> <span id="down_count{{post.id}}">{{post.get_downvote_count}}</span></li>
+                            &nbsp;  <li><i class="fa fa-reply"></i> {{post.get_interest_count}}</li>
+                            &nbsp;  <li><i  class="fa fa-flag" ></i> {{post.get_report_count}}</li> 
+
+                        </ul>
+    
+    
+                    </div>
+                </div>
+        </div>
+    
+  
+    </div>
+
+
+ </div>  

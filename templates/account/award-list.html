@@ -1,0 +1,23 @@
+{% load static %}
+
+{% for award in user.award_set.all %}
+<div class="row mb-3">                       
+    <div class="col-lg-2">
+      <img src="{{award.image.url}}">
+    </div>
+    <div class="col-lg-10 ">
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="row mb-4" style="margin-bottom: 10px !important;">
+            <div class="col-lg-12 col-md-3">                                                             
+              {{award}}       
+              <p>{{award.banner}}  - {{award.project}}</p>                           
+            </div>
+          </div>
+        </div>       
+        <div class="col-lg-3" style="text-align: right;"><a href="#" ><i class="fa fa-edit ajax_edit" data-url="{% url 'ajax_edit' model_name='award' pk=award.id %}"></i></a>
+        </div>
+      </div>
+    </div>
+</div>
+{% endfor %}

@@ -1,0 +1,149 @@
+
+{% load static %}
+{% load check_post_like_tags %}
+
+
+<div class="modal-dialog model-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{post.title}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row d-flex">
+                       
+            <div class="col-lg-12 col-sm-12 mb-4">
+                <h4>{{post.post_title}}</h4>
+
+                {% if post.award %}
+
+                    <p>  {{post.award.project}} | {{post.award.year}} | {{post.award.banner}}  </p>
+
+                    <img class="img-fluid" src="{{post.award.image.url}}">
+
+
+                {% elif post.project %}
+
+                   <p>{{post.project.genre}} | {{post.project.language}} | {{post.project.budget }}
+
+                    {%  if post.project.imdb_link %}
+                        |  <a target="_blank" href="{{post.project.imdb_link}}">IMDB Link</a>
+                    {% endif %}
+
+                   </p>                                 
+
+                {% elif post.assistant %}
+
+                   <p>{% if post.assistant.senior_link %}
+                        {{post.assistant.senior_link}} 
+                      {% else %}
+                         {{post.assistant.senior}}
+                      {% endif %}
+
+                   | {{post.assistant.project}} | {{post.assistant.year}}
+                    
+                    </p>
+
+
+                {% elif post.pitch %}
+
+                   <p>{% for genre in post.pitch.Genre.all %}
+                         {{genre}},
+                     {% endfor %}                                      
+                    
+                    | {{post.pitch.format}} | {{post.pitch.language}} | <a download href="{{post.pitch.story_file.url}}">Download Story File</a>
+                   </p>
+
+                {% elif post.call %}
+
+                    <p>
+                        {% for genre in post.call.Genre.all %}
+                            {{genre}},
+                        {% endfor %}                                      
+                
+                |      {{post.call.format}} | {{post.call.language}}
+                   </p>
+
+
+
+
+                {% endif %}
+                  
+                    <div class="entry-meta mt-1 d-flex align-items-center justify-content-between">
+                    
+                        <div class="entry-metalist d-flex align-items-center">
+                            <ul>                                               
+                               
+                                {% get_post_like_status post.id user as status %}
+                                {% if status %}
+
+                                  <li class="me-2"><a class="like_unlike theme postid_{{post.id}}" data-url="{% url 'like_unlike' post.id %}"  href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-heart"></i> {{post.get_like_count}}</a></li>
+                                   
+                                {% else %}
+                                    <li class="me-2"><a class="like_unlike postid_{{post.id}}" data-url="{% url 'like_unlike' post.id %}" href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-heart"></i> {{post.get_like_count}}</a></li>
+                                {% endif %}                                               
+
+                                   <li><a href="#" id="post_comment_count_{{post.id}}" class="post_comment_count_{{post.id}}"><i class="fa fa-comments"></i> {{post.get_comment_count}}</a></li>
+                                 {% if post.call %}
+                                   {% if is_writer or is_director %}
+                                   &nbsp;  <li class="float-end"><a data-url="{% url 'interest' post.id %}" class="interest-btn   btn-link" href="#"> Show Interest</a></li>
+                                   {% endif %}
+                                 {% endif %}
+
+                                {% if post.pitch %}
+                                   {% if is_producer or is_director  %}
+                                   &nbsp;  <li class="float-end"><u><a data-url="{% url 'interest' post.id %}" class="interest-btn  btn-link" href="#"> Show Interest</a></u></li>
+                                   {% endif %}
+                                {% endif %}
+                            </ul>
+
+
+                        </div>
+                    </div>
+            </div>
+
+
+            <div class="comment_wrapper main-comment-section post_comment_section_{{post.id}}" id="post_comment_section_{{post.id}}">
+                <div class="row container">
+                    {% for comment in post.comment_set.all %}                                     
+                        <div class="col-sm-12">
+                            <div class="we-comment">
+                                <a href="#" title="" class="user-name">{{comment.commented_by}}</a>
+                                <p>{{comment.comment}}</p>
+                                <div class="inline-itms">
+                                    <span>{{comment.date}}</span> 
+
+                                    {% if comment.commented_by == user %}
+                                        &nbsp;<span post_id="{{post.id}}" comment_id="{{comment.id}}" data-url="{% url 'delete_comment' comment.id %}" class="delete_comment">Delete</span> 
+                                    {% endif %}        
+                                </div>    
+                                
+                            
+                            </div>
+                        </div>                                                                            
+                    {% endfor %}
+                        <div class="col-sm-9">
+                            <textarea   id="post_comment_id_{{post.id}}" class="auto-resize comment-textarea textarea" placeholder="Write a comment" autocomplete="off"></textarea>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <button class="comment btn btn-primary btn" style="width:130px" data-url="{% url 'comment' post.id %}" post_id="{{post.id}}">Comment</button>
+                        </div>
+                </div>                                   
+            </div>
+        </div>
+       
+      </div>
+      <div class="modal-footer">
+        <span style="color:red" id="info_text"></span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+
+

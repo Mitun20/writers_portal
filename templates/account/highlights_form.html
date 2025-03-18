@@ -1,0 +1,60 @@
+{% load crispy_forms_tags %}
+<div class="modal-dialog">
+
+    {% if operation == "Add" %}
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="highModalLabel">
+                    Add Highlights
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="hiighlight-form">
+                    <button class="btn btn-outline-dark add-project">Choose Project</button>
+                    <div id="ajax-model-project-section">
+    
+                    </div>
+               
+                    <div id="project-div">
+    
+                    </div>
+                 
+                    
+                </form>
+            </div>
+            <div class="modal-footer" tabindex="2">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary add-highlight-btn">Add</button>
+            </div>
+        </div>
+    {% else %}
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="highModalLabel">
+                    Edit Highlights
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="ajax-form">
+                    <button class="btn btn-outline-dark add-project">Edit Project </button>
+                    <div id="ajax-model-project-section">
+                        <div class="m-1">
+                            <h6 id="get_project_link" projectid="{{highlight.project.id}}"> Project: {{highlight.project}}</h6></div>
+    
+                    </div>
+               
+                    <div id="project-div">
+    
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" tabindex="2">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button"  data-url= "{% url 'ajax_delete' model_name=model_name pk=pk  %}" class="btn btn-secondary ajax-delete-btn">Delete</button>
+                <button type="button" data-url="{%  url 'ajax_edit' model_name=model_name pk=pk %}" class="btn btn-primary update-highlight-btn">Save changes</button>
+            </div>
+        </div>
+    {% endif %}
+  </div>

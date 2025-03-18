@@ -1,0 +1,497 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load follow_status_tags %}}
+{% block content %}
+ <!-- BreadCrumb Starts -->  
+ <section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">View Statistics</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<div  class="text-center">
+   <h5 class="created-message theme"></h5>
+</div>
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+               <!-- sidebar starts -->
+               <div class="col-lg-3 col-md-12">
+                <div class="sidebar-sticky">
+                    <div class="">
+                        <div class="author-news mb-4 shadow-sm p-4 text-center">
+                            <div class="author-news-content">
+                                <h4 class="text-align-left"><u><a href="{% url 'profile' user_object.id %}">{{user_object}}</a></u></h4>
+                                <p class="text-align-left mt-1">
+                                    {% for group in user_object.groups.all %}
+                                        {{group}} 
+                                        {% if not forloop.last %}
+                                            /
+                                        {% endif %}
+                                   {% endfor %}
+                                </p>
+
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+                                        {% if user_object.profile_photo %}
+                                            <img class="rounded shadow"  src="{{user_object.profile_photo.url}}" alt="author">
+                                        {% else %}
+                                            <img src="{% static 'images/avatar.png' %}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-lg-12 mt-2">
+
+                                        {% if user_object.is_active %}
+                                            <a class="btn btn-primary user_active_inactive_popup" userid="{{user_object.id}}" name="{{user_object}}" title="Hard Inactive" href="#" status="active">  Hard Inactive </a>
+                                        {% else %}
+                                            <a class="btn btn-primary user_active_inactive_popup" userid="{{user_object.id}}" name="{{user_object}}" title="Activate" href="#" status="inactive">Activate </a>
+                                        {% endif %}
+
+                                      
+
+                                    <hr>
+
+                                        <p class="mb-2 mt-3 text-align-left">
+                                            Report :                            
+                                            <a class="highlight float-end text-white fetch"  data-url="{% url 'fetch' model='report' pk=user_object.id %}"  href="#">
+                                                <span class="report_count get_report_count" count="{{user_object.report_count}}">{{user_object.report_count}}</span>
+                                            </a>
+                                        </p>
+
+                                        {% if is_producer or is_director %}
+                                            <p class="mb-2 text-align-left">Call                                                 
+                                                <a class="highlight float-end text-white fetch"  data-url="{% url 'fetch' model='call' pk=user_object.id %}"  href="#">
+                                                    <span>{{user_object.get_call_count}}</span>
+                                                </a>
+                                            </p>
+                                        {% endif %}
+
+                                        {% if is_writer or is_director %}
+
+                                            <p class="mb-2 text-align-left">Story                                            
+                                                <a class="highlight float-end text-white fetch"  data-url="{% url 'fetch' model='story' pk=user_object.id %}"  href="#">
+                                                    <span>{{user_object.get_story_count}}</span>
+                                                </a>
+                                            </p>
+
+                                        {% endif %}
+
+                                        <p class="mb-2 text-align-left">Followers                                           
+                                            <a class="highlight float-end text-white fetch"  data-url="{% url 'fetch' model='follower' pk=user_object.id %}"  href="#">
+                                                <span>{{user_object.followers_count}}</span>
+                                            </a>
+                                        </p>
+
+                                        
+                                        <p class="mb-2 text-align-left">Following                                          
+                                            <a class="highlight float-end text-white fetch"  data-url="{% url 'fetch' model='following' pk=user_object.id %}"  href="#">
+                                                <span>{{user_object.following_count}}</span>
+                                            </a>
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                                <div class="author-thumb mb-1">                               
+
+                                  
+                                   
+                                </div>
+                                <div class="author-content">
+                                   
+                                                                          
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-sm-12"  id="common_div">                
+
+                <div class="row d-flex  p-2 mb-2 report_div">
+                                           
+                    <div class="col-lg-6 col-sm-12">
+                        <h5>Reports</h5>
+                    </div>
+
+                     <div class="col-lg-6 col-sm-12">
+                        {% if user_object.report_count > 0 %}
+                    
+                           <div class="col-sm-12  col-lg-6"><a url="{% url 'skip_all_reports' model='user' pk=user_object.id %}" class="float-end skip_all_reports" href="#"><u>Skip All Reports</u></a></div>
+         
+                        {% endif %}                        
+                    </div>
+                    <div class="col-lg-12 col-sm-12 mt-1"></div>
+
+                    <h6 class="pl-3 d-none empty_report">No reports available</h6>
+
+                    {% for report in user_object.reports.all %}
+
+                        <div class="col-lg-6 col-sm-6 mb-4 {% if report.is_active %} {% else %} bg-light  {% endif %} d-flex shadow-sm p-3 mb-2 border report-box report_id_{{report.id}}">                                            
+                            <div class="">                        
+                                <h5 class="theme mb-1"> <a href="{% url 'profile' report.reported_by.id %}">{{report.reported_by}} </a> | <a title="Message" href="#"> <i class="fa fa-envelope get_all_message" data-url="{% url 'get_inbox_chat' report.reported_by.id %}" ></i> </a>    | <a title="Delete Report" href="#"> <i class="fa fa-trash delete_report" report-id="{{report.id}}" data-url="{% url 'delete' parent_model_name='user' pk=report.id %}" ></i> </a> </h5>                              
+                                <span class="small">{{report.reported_on}} </span>
+                                
+                                {% if report.complaint %}
+                                    <p>{{report.complaint|safe}}</p>
+                                {% else %}
+                                    <p>Report file <a href="{{report.report_file.url}}" download >Download</a></p>
+
+                                {% endif %}
+                                
+                            </div>
+                        </div>             
+                    
+                    {% empty %}
+                        <h6 class="pl-3">No reports available</h6>
+                    {% endfor %}                  
+                    
+                </div>
+
+
+              
+            </div>
+             <!-- Right sidebar starts -->
+             <div class="col-lg-3 col-md-12 shadow-sm ">
+              
+            </div>
+         
+        </div>
+    </div>
+</section>
+<!-- blog Ends -->  
+
+<!-- AjaxModal -->
+<div id="AjaxModal" class="modal AjaxModal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+</div>
+
+
+<!--Post Report Modal-->
+<div class="modal fade" id="cannot_open_postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cannot_open_postModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <h6>Info</h6>
+
+            <form id="deletepostform">
+                {% csrf_token %}
+                <textarea id="report_text" name="problem"></textarea>
+            </form>
+          
+        </div>
+        <div class="modal-footer">        
+          <button type="button" post-id="" class="btn btn-primary cannot_open_post_btn"> </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!--User Activate and inactive--modal-->
+<div id="user-activate-inactive-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="active-inactive-modal-title"></h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Info</p>
+          <form id="user_active_inactive_form">
+            {% csrf_token %}
+            <textarea id="user_active_inactive_info" name="info"></textarea>
+          </form>
+        
+        </div>
+        <div class="modal-footer">
+            <p class="please-wait" style="color: red;"></p>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary user_active_inactive_btn" userid="">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/inbox.js' %}"></script>
+
+<script>
+  $( document ).ready(function() {
+
+
+    //Skip all reports
+    $('.skip_all_reports').click(function() {
+        event.preventDefault();
+        var url = $(this).attr('url');
+        
+        
+        $.ajax({
+            url:url,
+
+            success:function(output)
+            {                
+                $('.report_count').text('0');
+                $('.report-box').addClass('bg-light');  
+            }
+
+        });
+    });
+
+//User active Inactive
+$('.user_active_inactive_popup').click(function() {
+   
+    var status = $(this).attr('status');
+    var name = $(this).attr('name');
+    var userid = $(this).attr('userid');
+
+
+    $('#user-activate-inactive-modal').modal('show'); 
+
+    if (status == 'active')
+    {
+        $('.active-inactive-modal-title').text(name+' - Hard Inactive');
+        $('.user_active_inactive_btn').text('Hard Inactive');        
+    }
+
+    else{
+        $('.active-inactive-modal-title').text(name+' - Activate');
+        $('.user_active_inactive_btn').text('Activate');
+    }
+
+
+ 
+    $('.user_active_inactive_btn').attr("user-id",userid);
+    
+    event.preventDefault();    
+    url = $(this).attr('data-url');
+ 
+});
+
+
+
+$('#user-activate-inactive-modal').on('click','.user_active_inactive_btn',function(){
+    event.preventDefault();
+    var userid = $(this).attr('user-id');
+    formdata = new FormData($('#user-activate-inactive-modal #user_active_inactive_form')[0]);
+    info = $('#user_active_inactive_info').val();
+
+
+    if(info){
+
+        url = "/user_active_inactive/"+userid;
+
+        $.ajax({
+            url:url,
+            data : formdata,
+            method: 'post',
+            processData: false,
+            contentType: false,
+
+
+            beforeSend: function() {      
+                $('.please-wait').text('Please wait');               
+            },
+
+            success:function(output)
+            {
+                if(output.active){
+                   alert('Activated');
+                   $('.user_active_inactive_popup').attr("status","active");
+                   $('.user_active_inactive_popup').text("Hard Inactive");
+
+                }
+                else{
+                    alert('Hard Inactivated');
+                    $('.user_active_inactive_popup').attr("status","inactive");
+                    $('.user_active_inactive_popup').text("Activate");
+                  
+                }
+
+                $('.please-wait').text('');  
+
+                $("#user_active_inactive_info").val('');
+
+                $('#user-activate-inactive-modal').modal('toggle');
+
+
+                
+            }
+
+         
+        
+        });
+
+    }
+
+    else{
+        alert("Enter something in info box");
+    }
+
+
+
+
+});
+
+
+    //cannot_open modal popup
+    $('.cannot_open_post').click(function() {
+        event.preventDefault();
+        postId = $(this).attr('post-id');
+        postTitle = $(this).attr('post-title');
+        var status = $(this).attr('status');
+        
+        $('#cannot_open_postModal').modal('show'); 
+ 
+        if(status == "open"){            
+            $('#cannot_open_postModalLabel').text(postTitle+ " -  Close" );
+            $('.cannot_open_post_btn').attr("post-id",postId);
+            $('.cannot_open_post_btn').text("Close");           
+
+        }
+        else{
+
+            $('#cannot_open_postModalLabel').text(postTitle+ " -  Open" );
+            $('.cannot_open_post_btn').attr("post-id",postId);
+            $('.cannot_open_post_btn').text("Open");
+
+        }
+
+        $('#report_text').val('');
+
+
+    });
+    
+
+
+   //Report Delete
+   
+   $('#common_div').on('click','.delete_report', function(){
+        event.preventDefault();
+        url = $(this).attr('data-url');
+        reportid = $(this).attr('report-id');
+
+        if(confirm('Are you sure want to delete this report')){
+
+            $.ajax({
+            url:url,
+
+            success:function(output)
+            {
+                if(output.deleted){
+                   alert('Report was successfully deleted');
+                   var oldcount = $('.get_report_count').attr('count');
+                   var newcount = oldcount - 1;
+                   $('.report_count').text(newcount);
+                   $('.report_id_'+reportid).remove();
+                   var numItems = $('.report-box').length;
+                   if (numItems == 0){
+
+                    $('.empty_report').removeClass('d-none');
+
+                   }
+
+                }
+                else{
+                    alert('Something went wrong..!');
+                }
+
+             
+                
+            }
+
+        });
+
+        }
+
+   });
+    
+
+   $('.report_div').on('change','#report_filter_type', function(){     
+        var filter_type =$(this).val();
+        alert(filter_type);
+        url = "{% url 'portal_admin_home_filter' %}"
+        $.ajax({
+            url : url,
+            data : {'filter_type':filter_type,'model':'user'},
+            method: 'post',  
+            headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+            success:function(output)
+            {  
+              $('.people_div').html(output.html);                                             
+            },
+        });
+        
+       
+    });
+
+ 
+   //Report Delete
+   $('.fetch').click(function() {
+        event.preventDefault();
+
+        url = $(this).attr('data-url');
+    
+            $.ajax({
+            url:url,
+
+            success:function(output)
+            {
+                 
+                if(output.type == "call"){
+                   $('#common_div').html(output.html);            
+                }
+                else if (output.type == "pitch"){
+                    $('#common_div').html(output.html);                    
+                }
+                else if (output.type == "report"){
+                    $('#common_div').html(output.html);
+                }
+
+                else if (output.type == "following"){
+                    $('#common_div').html(output.html);
+                }
+
+                else if (output.type == "follower"){
+                    $('#common_div').html(output.html);
+                }
+
+             
+                
+            }
+
+        });
+
+   
+
+   });
+    
+
+  });
+
+</script>
+ 
+
+{% endblock %}

@@ -1,0 +1,3192 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.030 --> 00:00:02.720 align:start position:0%
+ 
+in<00:00:00.630><c> my</c><00:00:00.750><c> last</c><00:00:00.930><c> video</c><00:00:01.199><c> I</c><00:00:01.469><c> developed</c><00:00:02.190><c> a</c><00:00:02.280><c> Q&amp;A</c>
+
+00:00:02.720 --> 00:00:02.730 align:start position:0%
+in my last video I developed a Q&amp;A
+ 
+
+00:00:02.730 --> 00:00:06.530 align:start position:0%
+in my last video I developed a Q&amp;A
+website<00:00:03.000><c> for</c><00:00:03.480><c> coders</c><00:00:03.840><c> using</c><00:00:04.650><c> Django</c><00:00:04.980><c> and</c><00:00:05.460><c> as</c><00:00:06.390><c> I</c>
+
+00:00:06.530 --> 00:00:06.540 align:start position:0%
+website for coders using Django and as I
+ 
+
+00:00:06.540 --> 00:00:08.390 align:start position:0%
+website for coders using Django and as I
+mentioned<00:00:06.839><c> in</c><00:00:06.960><c> that</c><00:00:07.080><c> video</c><00:00:07.230><c> I</c><00:00:07.710><c> didn't</c><00:00:08.309><c> use</c>
+
+00:00:08.390 --> 00:00:08.400 align:start position:0%
+mentioned in that video I didn't use
+ 
+
+00:00:08.400 --> 00:00:10.430 align:start position:0%
+mentioned in that video I didn't use
+view<00:00:08.760><c> or</c><00:00:09.000><c> react</c><00:00:09.450><c> or</c><00:00:09.719><c> anything</c><00:00:10.019><c> like</c><00:00:10.230><c> that</c><00:00:10.290><c> just</c>
+
+00:00:10.430 --> 00:00:10.440 align:start position:0%
+view or react or anything like that just
+ 
+
+00:00:10.440 --> 00:00:12.950 align:start position:0%
+view or react or anything like that just
+to<00:00:10.740><c> keep</c><00:00:10.769><c> it</c><00:00:11.070><c> simple</c><00:00:11.269><c> later</c><00:00:12.269><c> though</c><00:00:12.480><c> I</c><00:00:12.599><c> decided</c>
+
+00:00:12.950 --> 00:00:12.960 align:start position:0%
+to keep it simple later though I decided
+ 
+
+00:00:12.960 --> 00:00:16.400 align:start position:0%
+to keep it simple later though I decided
+to<00:00:13.230><c> add</c><00:00:14.190><c> view</c><00:00:14.759><c> j/s</c><00:00:15.120><c> on</c><00:00:15.360><c> top</c><00:00:15.660><c> of</c><00:00:15.780><c> it</c><00:00:15.900><c> instead</c><00:00:16.260><c> of</c>
+
+00:00:16.400 --> 00:00:16.410 align:start position:0%
+to add view j/s on top of it instead of
+ 
+
+00:00:16.410 --> 00:00:18.800 align:start position:0%
+to add view j/s on top of it instead of
+react<00:00:16.740><c> so</c><00:00:17.730><c> in</c><00:00:17.880><c> this</c><00:00:17.970><c> video</c><00:00:18.210><c> I'm</c><00:00:18.420><c> gonna</c><00:00:18.600><c> show</c>
+
+00:00:18.800 --> 00:00:18.810 align:start position:0%
+react so in this video I'm gonna show
+ 
+
+00:00:18.810 --> 00:00:20.480 align:start position:0%
+react so in this video I'm gonna show
+you<00:00:18.869><c> why</c><00:00:19.199><c> I</c><00:00:19.230><c> decided</c><00:00:19.650><c> to</c><00:00:19.770><c> make</c><00:00:20.460><c> that</c>
+
+00:00:20.480 --> 00:00:20.490 align:start position:0%
+you why I decided to make that
+ 
+
+00:00:20.490 --> 00:00:23.480 align:start position:0%
+you why I decided to make that
+particular<00:00:20.850><c> choice</c><00:00:21.240><c> how</c><00:00:22.109><c> I</c><00:00:22.140><c> did</c><00:00:22.410><c> it</c><00:00:22.529><c> and</c><00:00:22.650><c> what</c>
+
+00:00:23.480 --> 00:00:23.490 align:start position:0%
+particular choice how I did it and what
+ 
+
+00:00:23.490 --> 00:00:26.450 align:start position:0%
+particular choice how I did it and what
+I<00:00:23.550><c> was</c><00:00:23.760><c> able</c><00:00:23.880><c> to</c><00:00:24.060><c> accomplish</c><00:00:24.420><c> using</c><00:00:25.260><c> it</c><00:00:25.460><c> first</c>
+
+00:00:26.450 --> 00:00:26.460 align:start position:0%
+I was able to accomplish using it first
+ 
+
+00:00:26.460 --> 00:00:27.800 align:start position:0%
+I was able to accomplish using it first
+of<00:00:26.550><c> all</c><00:00:26.609><c> let</c><00:00:26.789><c> me</c><00:00:26.820><c> show</c><00:00:26.910><c> you</c><00:00:27.060><c> what</c><00:00:27.300><c> my</c><00:00:27.449><c> use</c><00:00:27.689><c> case</c>
+
+00:00:27.800 --> 00:00:27.810 align:start position:0%
+of all let me show you what my use case
+ 
+
+00:00:27.810 --> 00:00:31.990 align:start position:0%
+of all let me show you what my use case
+was<00:00:28.429><c> basically</c><00:00:29.429><c> it's</c><00:00:30.119><c> for</c><00:00:30.599><c> the</c><00:00:30.869><c> question</c><00:00:31.500><c> page</c>
+
+00:00:31.990 --> 00:00:32.000 align:start position:0%
+was basically it's for the question page
+ 
+
+00:00:32.000 --> 00:00:35.299 align:start position:0%
+was basically it's for the question page
+that<00:00:33.000><c> shows</c><00:00:33.270><c> the</c><00:00:33.570><c> details</c><00:00:33.989><c> of</c><00:00:34.320><c> a</c><00:00:34.710><c> question</c><00:00:35.130><c> and</c>
+
+00:00:35.299 --> 00:00:35.309 align:start position:0%
+that shows the details of a question and
+ 
+
+00:00:35.309 --> 00:00:39.049 align:start position:0%
+that shows the details of a question and
+the<00:00:35.940><c> answers</c><00:00:36.300><c> to</c><00:00:36.600><c> that</c><00:00:37.170><c> question</c><00:00:37.230><c> and</c><00:00:38.059><c> I</c>
+
+00:00:39.049 --> 00:00:39.059 align:start position:0%
+the answers to that question and I
+ 
+
+00:00:39.059 --> 00:00:42.440 align:start position:0%
+the answers to that question and I
+wanted<00:00:39.329><c> to</c><00:00:39.450><c> use</c><00:00:39.719><c> view</c><00:00:40.110><c> to</c><00:00:40.770><c> add</c><00:00:41.550><c> this</c><00:00:41.879><c> output</c>
+
+00:00:42.440 --> 00:00:42.450 align:start position:0%
+wanted to use view to add this output
+ 
+
+00:00:42.450 --> 00:00:46.100 align:start position:0%
+wanted to use view to add this output
+and<00:00:42.719><c> download</c><00:00:43.530><c> buttons</c><00:00:44.040><c> for</c><00:00:44.940><c> the</c><00:00:45.600><c> question</c><00:00:45.930><c> as</c>
+
+00:00:46.100 --> 00:00:46.110 align:start position:0%
+and download buttons for the question as
+ 
+
+00:00:46.110 --> 00:00:49.069 align:start position:0%
+and download buttons for the question as
+well<00:00:46.410><c> as</c><00:00:46.440><c> each</c><00:00:46.950><c> answer</c><00:00:47.539><c> what</c><00:00:48.539><c> I</c><00:00:48.570><c> used</c><00:00:48.780><c> to</c><00:00:48.899><c> have</c>
+
+00:00:49.069 --> 00:00:49.079 align:start position:0%
+well as each answer what I used to have
+ 
+
+00:00:49.079 --> 00:00:51.470 align:start position:0%
+well as each answer what I used to have
+before<00:00:49.320><c> is</c><00:00:49.920><c> I</c><00:00:50.280><c> used</c><00:00:50.520><c> to</c><00:00:50.579><c> have</c><00:00:50.760><c> these</c><00:00:50.940><c> upward</c>
+
+00:00:51.470 --> 00:00:51.480 align:start position:0%
+before is I used to have these upward
+ 
+
+00:00:51.480 --> 00:00:53.450 align:start position:0%
+before is I used to have these upward
+and<00:00:51.600><c> downward</c><00:00:51.690><c> buttons</c><00:00:52.649><c> for</c><00:00:52.920><c> the</c><00:00:53.129><c> question</c>
+
+00:00:53.450 --> 00:00:53.460 align:start position:0%
+and downward buttons for the question
+ 
+
+00:00:53.460 --> 00:00:55.760 align:start position:0%
+and downward buttons for the question
+but<00:00:54.239><c> then</c><00:00:54.420><c> every</c><00:00:54.719><c> time</c><00:00:54.840><c> someone</c><00:00:55.260><c> would</c><00:00:55.440><c> click</c>
+
+00:00:55.760 --> 00:00:55.770 align:start position:0%
+but then every time someone would click
+ 
+
+00:00:55.770 --> 00:00:58.490 align:start position:0%
+but then every time someone would click
+it<00:00:55.949><c> it</c><00:00:56.160><c> will</c><00:00:56.370><c> refresh</c><00:00:56.699><c> the</c><00:00:56.789><c> whole</c><00:00:57.120><c> page</c><00:00:57.360><c> and</c><00:00:57.600><c> I</c>
+
+00:00:58.490 --> 00:00:58.500 align:start position:0%
+it it will refresh the whole page and I
+ 
+
+00:00:58.500 --> 00:00:59.840 align:start position:0%
+it it will refresh the whole page and I
+think<00:00:58.739><c> that</c><00:00:58.829><c> was</c><00:00:58.949><c> ok</c><00:00:59.190><c> for</c><00:00:59.219><c> the</c><00:00:59.460><c> question</c>
+
+00:00:59.840 --> 00:00:59.850 align:start position:0%
+think that was ok for the question
+ 
+
+00:00:59.850 --> 00:01:01.790 align:start position:0%
+think that was ok for the question
+because<00:01:00.120><c> there's</c><00:01:00.359><c> only</c><00:01:00.750><c> one</c><00:01:01.140><c> question</c><00:01:01.320><c> per</c>
+
+00:01:01.790 --> 00:01:01.800 align:start position:0%
+because there's only one question per
+ 
+
+00:01:01.800 --> 00:01:04.130 align:start position:0%
+because there's only one question per
+page<00:01:02.039><c> but</c><00:01:03.030><c> I</c><00:01:03.390><c> think</c><00:01:03.660><c> it'll</c><00:01:03.899><c> be</c><00:01:03.960><c> pretty</c>
+
+00:01:04.130 --> 00:01:04.140 align:start position:0%
+page but I think it'll be pretty
+ 
+
+00:01:04.140 --> 00:01:06.530 align:start position:0%
+page but I think it'll be pretty
+annoying<00:01:04.470><c> for</c><00:01:04.860><c> the</c><00:01:04.890><c> answers</c><00:01:05.400><c> because</c><00:01:06.119><c> if</c><00:01:06.420><c> I</c>
+
+00:01:06.530 --> 00:01:06.540 align:start position:0%
+annoying for the answers because if I
+ 
+
+00:01:06.540 --> 00:01:08.600 align:start position:0%
+annoying for the answers because if I
+wanted<00:01:06.750><c> to</c><00:01:06.869><c> say</c><00:01:07.049><c> you</c><00:01:07.650><c> know</c><00:01:07.770><c> upload</c><00:01:08.310><c> all</c><00:01:08.549><c> of</c>
+
+00:01:08.600 --> 00:01:08.610 align:start position:0%
+wanted to say you know upload all of
+ 
+
+00:01:08.610 --> 00:01:11.120 align:start position:0%
+wanted to say you know upload all of
+these<00:01:09.030><c> answers</c><00:01:09.270><c> it</c><00:01:10.140><c> would</c><00:01:10.350><c> refresh</c><00:01:10.710><c> you</c><00:01:11.010><c> know</c>
+
+00:01:11.120 --> 00:01:11.130 align:start position:0%
+these answers it would refresh you know
+ 
+
+00:01:11.130 --> 00:01:13.039 align:start position:0%
+these answers it would refresh you know
+the<00:01:11.280><c> whole</c><00:01:11.670><c> page</c><00:01:11.880><c> every</c><00:01:12.299><c> time</c><00:01:12.510><c> for</c><00:01:12.840><c> each</c>
+
+00:01:13.039 --> 00:01:13.049 align:start position:0%
+the whole page every time for each
+ 
+
+00:01:13.049 --> 00:01:17.120 align:start position:0%
+the whole page every time for each
+answer<00:01:14.420><c> it's</c><00:01:15.420><c> not</c><00:01:15.720><c> a</c><00:01:15.750><c> very</c><00:01:15.990><c> smooth</c><00:01:16.560><c> experience</c>
+
+00:01:17.120 --> 00:01:17.130 align:start position:0%
+answer it's not a very smooth experience
+ 
+
+00:01:17.130 --> 00:01:19.310 align:start position:0%
+answer it's not a very smooth experience
+right<00:01:17.280><c> and</c><00:01:17.549><c> the</c><00:01:18.509><c> way</c><00:01:18.630><c> I</c><00:01:18.659><c> solve</c><00:01:19.200><c> this</c>
+
+00:01:19.310 --> 00:01:19.320 align:start position:0%
+right and the way I solve this
+ 
+
+00:01:19.320 --> 00:01:20.179 align:start position:0%
+right and the way I solve this
+particular<00:01:19.500><c> problem</c>
+
+00:01:20.179 --> 00:01:20.189 align:start position:0%
+particular problem
+ 
+
+00:01:20.189 --> 00:01:24.050 align:start position:0%
+particular problem
+using<00:01:20.820><c> view</c><00:01:21.030><c> is</c><00:01:21.210><c> I</c><00:01:21.869><c> first</c><00:01:22.229><c> replaced</c><00:01:23.220><c> this</c>
+
+00:01:24.050 --> 00:01:24.060 align:start position:0%
+using view is I first replaced this
+ 
+
+00:01:24.060 --> 00:01:26.480 align:start position:0%
+using view is I first replaced this
+upload<00:01:24.570><c> and</c><00:01:24.720><c> download</c><00:01:24.840><c> buttons</c><00:01:25.500><c> for</c><00:01:26.220><c> that</c>
+
+00:01:26.480 --> 00:01:26.490 align:start position:0%
+upload and download buttons for that
+ 
+
+00:01:26.490 --> 00:01:28.850 align:start position:0%
+upload and download buttons for that
+question<00:01:26.700><c> so</c><00:01:27.299><c> it</c><00:01:27.990><c> doesn't</c><00:01:28.350><c> refresh</c><00:01:28.680><c> the</c><00:01:28.829><c> whole</c>
+
+00:01:28.850 --> 00:01:28.860 align:start position:0%
+question so it doesn't refresh the whole
+ 
+
+00:01:28.860 --> 00:01:31.789 align:start position:0%
+question so it doesn't refresh the whole
+page<00:01:29.250><c> and</c><00:01:29.520><c> then</c><00:01:30.270><c> I</c><00:01:30.540><c> replicated</c><00:01:31.290><c> the</c><00:01:31.770><c> same</c>
+
+00:01:31.789 --> 00:01:31.799 align:start position:0%
+page and then I replicated the same
+ 
+
+00:01:31.799 --> 00:01:36.289 align:start position:0%
+page and then I replicated the same
+functionality<00:01:32.869><c> to</c><00:01:33.869><c> each</c><00:01:34.290><c> answer</c><00:01:34.890><c> and</c><00:01:35.310><c> that's</c>
+
+00:01:36.289 --> 00:01:36.299 align:start position:0%
+functionality to each answer and that's
+ 
+
+00:01:36.299 --> 00:01:38.510 align:start position:0%
+functionality to each answer and that's
+when<00:01:36.630><c> I</c><00:01:36.930><c> needed</c><00:01:37.200><c> to</c><00:01:37.320><c> decide</c><00:01:37.740><c> whether</c><00:01:38.040><c> I</c><00:01:38.159><c> wanted</c>
+
+00:01:38.510 --> 00:01:38.520 align:start position:0%
+when I needed to decide whether I wanted
+ 
+
+00:01:38.520 --> 00:01:41.660 align:start position:0%
+when I needed to decide whether I wanted
+to<00:01:38.670><c> use</c><00:01:38.880><c> react</c><00:01:39.750><c> view</c><00:01:40.259><c> or</c><00:01:40.560><c> something</c><00:01:41.280><c> else</c><00:01:41.430><c> and</c>
+
+00:01:41.660 --> 00:01:41.670 align:start position:0%
+to use react view or something else and
+ 
+
+00:01:41.670 --> 00:01:44.120 align:start position:0%
+to use react view or something else and
+so<00:01:42.570><c> let</c><00:01:42.810><c> me</c><00:01:42.869><c> explain</c><00:01:43.110><c> why</c><00:01:43.350><c> I</c><00:01:43.409><c> decided</c><00:01:43.799><c> to</c><00:01:43.979><c> go</c>
+
+00:01:44.120 --> 00:01:44.130 align:start position:0%
+so let me explain why I decided to go
+ 
+
+00:01:44.130 --> 00:01:46.760 align:start position:0%
+so let me explain why I decided to go
+with<00:01:44.159><c> view</c><00:01:44.970><c> right</c><00:01:45.149><c> here</c><00:01:45.350><c> actually</c><00:01:46.350><c> for</c><00:01:46.649><c> my</c>
+
+00:01:46.760 --> 00:01:46.770 align:start position:0%
+with view right here actually for my
+ 
+
+00:01:46.770 --> 00:01:49.850 align:start position:0%
+with view right here actually for my
+previous<00:01:47.100><c> project</c><00:01:47.729><c> I</c><00:01:48.000><c> used</c><00:01:48.360><c> react</c><00:01:49.140><c> and</c><00:01:49.470><c> Django</c>
+
+00:01:49.850 --> 00:01:49.860 align:start position:0%
+previous project I used react and Django
+ 
+
+00:01:49.860 --> 00:01:52.700 align:start position:0%
+previous project I used react and Django
+together<00:01:50.159><c> and</c><00:01:50.430><c> that</c><00:01:51.119><c> kind</c><00:01:51.149><c> of</c><00:01:51.390><c> worked</c><00:01:51.600><c> but</c><00:01:52.140><c> it</c>
+
+00:01:52.700 --> 00:01:52.710 align:start position:0%
+together and that kind of worked but it
+ 
+
+00:01:52.710 --> 00:01:55.789 align:start position:0%
+together and that kind of worked but it
+was<00:01:52.860><c> a</c><00:01:52.890><c> huge</c><00:01:53.159><c> pain</c><00:01:53.460><c> to</c><00:01:53.729><c> set</c><00:01:54.090><c> everything</c><00:01:54.240><c> up</c><00:01:54.799><c> so</c>
+
+00:01:55.789 --> 00:01:55.799 align:start position:0%
+was a huge pain to set everything up so
+ 
+
+00:01:55.799 --> 00:01:57.889 align:start position:0%
+was a huge pain to set everything up so
+the<00:01:55.920><c> approach</c><00:01:56.250><c> I</c><00:01:56.430><c> was</c><00:01:56.549><c> using</c><00:01:56.729><c> with</c><00:01:57.329><c> react</c><00:01:57.689><c> and</c>
+
+00:01:57.889 --> 00:01:57.899 align:start position:0%
+the approach I was using with react and
+ 
+
+00:01:57.899 --> 00:02:01.520 align:start position:0%
+the approach I was using with react and
+Django<00:01:58.229><c> is</c><00:01:59.070><c> called</c><00:01:59.399><c> page</c><00:01:59.759><c> as</c><00:01:59.969><c> a</c><00:02:00.000><c> component</c><00:02:00.530><c> the</c>
+
+00:02:01.520 --> 00:02:01.530 align:start position:0%
+Django is called page as a component the
+ 
+
+00:02:01.530 --> 00:02:05.270 align:start position:0%
+Django is called page as a component the
+idea<00:02:01.770><c> of</c><00:02:01.890><c> this</c><00:02:02.100><c> approach</c><00:02:02.549><c> is</c><00:02:02.850><c> to</c><00:02:03.210><c> replace</c><00:02:04.280><c> only</c>
+
+00:02:05.270 --> 00:02:05.280 align:start position:0%
+idea of this approach is to replace only
+ 
+
+00:02:05.280 --> 00:02:08.089 align:start position:0%
+idea of this approach is to replace only
+a<00:02:05.430><c> portion</c><00:02:05.820><c> of</c><00:02:06.119><c> the</c><00:02:06.270><c> website</c><00:02:06.450><c> for</c><00:02:07.229><c> example</c><00:02:07.590><c> one</c>
+
+00:02:08.089 --> 00:02:08.099 align:start position:0%
+a portion of the website for example one
+ 
+
+00:02:08.099 --> 00:02:11.360 align:start position:0%
+a portion of the website for example one
+page<00:02:08.399><c> one</c><00:02:09.300><c> particular</c><00:02:09.629><c> kind</c><00:02:10.020><c> of</c><00:02:10.080><c> page</c><00:02:10.319><c> of</c><00:02:11.160><c> your</c>
+
+00:02:11.360 --> 00:02:11.370 align:start position:0%
+page one particular kind of page of your
+ 
+
+00:02:11.370 --> 00:02:13.280 align:start position:0%
+page one particular kind of page of your
+website<00:02:11.610><c> with</c><00:02:12.300><c> a</c><00:02:12.330><c> react</c><00:02:12.660><c> component</c>
+
+00:02:13.280 --> 00:02:13.290 align:start position:0%
+website with a react component
+ 
+
+00:02:13.290 --> 00:02:16.699 align:start position:0%
+website with a react component
+so<00:02:14.129><c> in</c><00:02:14.489><c> this</c><00:02:14.760><c> case</c><00:02:15.000><c> I</c><00:02:15.269><c> would</c><00:02:15.360><c> replace</c><00:02:15.930><c> just</c><00:02:16.650><c> the</c>
+
+00:02:16.699 --> 00:02:16.709 align:start position:0%
+so in this case I would replace just the
+ 
+
+00:02:16.709 --> 00:02:19.039 align:start position:0%
+so in this case I would replace just the
+question<00:02:17.129><c> page</c><00:02:17.310><c> with</c><00:02:18.090><c> a</c><00:02:18.120><c> reactor</c><00:02:18.569><c> component</c>
+
+00:02:19.039 --> 00:02:19.049 align:start position:0%
+question page with a reactor component
+ 
+
+00:02:19.049 --> 00:02:22.670 align:start position:0%
+question page with a reactor component
+but<00:02:19.829><c> nothing</c><00:02:20.099><c> else</c><00:02:20.629><c> a</c><00:02:21.629><c> different</c><00:02:22.170><c> approach</c>
+
+00:02:22.670 --> 00:02:22.680 align:start position:0%
+but nothing else a different approach
+ 
+
+00:02:22.680 --> 00:02:25.550 align:start position:0%
+but nothing else a different approach
+would<00:02:23.549><c> be</c><00:02:23.579><c> to</c><00:02:23.790><c> replace</c><00:02:24.390><c> this</c><00:02:24.629><c> whole</c><00:02:24.989><c> website</c>
+
+00:02:25.550 --> 00:02:25.560 align:start position:0%
+would be to replace this whole website
+ 
+
+00:02:25.560 --> 00:02:27.979 align:start position:0%
+would be to replace this whole website
+with<00:02:26.489><c> a</c><00:02:26.519><c> single</c><00:02:26.939><c> reactor</c><00:02:27.209><c> component</c><00:02:27.810><c> and</c><00:02:27.959><c> that</c>
+
+00:02:27.979 --> 00:02:27.989 align:start position:0%
+with a single reactor component and that
+ 
+
+00:02:27.989 --> 00:02:32.720 align:start position:0%
+with a single reactor component and that
+approach<00:02:28.980><c> is</c><00:02:29.219><c> called</c><00:02:29.459><c> a</c><00:02:29.700><c> single</c><00:02:30.659><c> page</c><00:02:31.140><c> app</c><00:02:31.730><c> but</c>
+
+00:02:32.720 --> 00:02:32.730 align:start position:0%
+approach is called a single page app but
+ 
+
+00:02:32.730 --> 00:02:34.759 align:start position:0%
+approach is called a single page app but
+I<00:02:32.760><c> didn't</c><00:02:33.090><c> go</c><00:02:33.180><c> with</c><00:02:33.209><c> that</c><00:02:33.480><c> because</c><00:02:33.680><c> pages</c><00:02:34.680><c> of</c>
+
+00:02:34.759 --> 00:02:34.769 align:start position:0%
+I didn't go with that because pages of
+ 
+
+00:02:34.769 --> 00:02:35.479 align:start position:0%
+I didn't go with that because pages of
+components
+
+00:02:35.479 --> 00:02:35.489 align:start position:0%
+components
+ 
+
+00:02:35.489 --> 00:02:38.539 align:start position:0%
+components
+you<00:02:35.640><c> know</c><00:02:36.019><c> replacing</c><00:02:37.019><c> only</c><00:02:37.230><c> one</c><00:02:37.530><c> page</c><00:02:37.769><c> with</c><00:02:38.519><c> a</c>
+
+00:02:38.539 --> 00:02:38.549 align:start position:0%
+you know replacing only one page with a
+ 
+
+00:02:38.549 --> 00:02:41.449 align:start position:0%
+you know replacing only one page with a
+reactor<00:02:39.000><c> component</c><00:02:39.450><c> is</c><00:02:39.599><c> slightly</c><00:02:40.049><c> simpler</c><00:02:40.470><c> so</c>
+
+00:02:41.449 --> 00:02:41.459 align:start position:0%
+reactor component is slightly simpler so
+ 
+
+00:02:41.459 --> 00:02:43.160 align:start position:0%
+reactor component is slightly simpler so
+that<00:02:41.700><c> was</c><00:02:41.819><c> the</c><00:02:41.939><c> approach</c><00:02:42.000><c> I</c><00:02:42.329><c> was</c><00:02:42.450><c> using</c><00:02:42.599><c> but</c>
+
+00:02:43.160 --> 00:02:43.170 align:start position:0%
+that was the approach I was using but
+ 
+
+00:02:43.170 --> 00:02:45.530 align:start position:0%
+that was the approach I was using but
+even<00:02:43.560><c> with</c><00:02:43.739><c> that</c><00:02:43.769><c> approach</c><00:02:44.340><c> it</c><00:02:44.939><c> was</c><00:02:45.209><c> way</c><00:02:45.510><c> too</c>
+
+00:02:45.530 --> 00:02:45.540 align:start position:0%
+even with that approach it was way too
+ 
+
+00:02:45.540 --> 00:02:47.360 align:start position:0%
+even with that approach it was way too
+complicated<00:02:46.260><c> definitely</c><00:02:47.010><c> a</c><00:02:47.129><c> lot</c><00:02:47.340><c> more</c>
+
+00:02:47.360 --> 00:02:47.370 align:start position:0%
+complicated definitely a lot more
+ 
+
+00:02:47.370 --> 00:02:50.839 align:start position:0%
+complicated definitely a lot more
+complex<00:02:47.939><c> than</c><00:02:48.290><c> using</c><00:02:49.290><c> view</c><00:02:49.560><c> and</c><00:02:49.739><c> the</c><00:02:50.489><c> reason</c>
+
+00:02:50.839 --> 00:02:50.849 align:start position:0%
+complex than using view and the reason
+ 
+
+00:02:50.849 --> 00:02:53.420 align:start position:0%
+complex than using view and the reason
+why<00:02:50.970><c> react</c><00:02:51.780><c> is</c><00:02:51.959><c> more</c><00:02:52.260><c> complicated</c><00:02:52.620><c> is</c><00:02:52.980><c> because</c>
+
+00:02:53.420 --> 00:02:53.430 align:start position:0%
+why react is more complicated is because
+ 
+
+00:02:53.430 --> 00:02:56.360 align:start position:0%
+why react is more complicated is because
+with<00:02:54.209><c> react</c><00:02:54.629><c> you</c><00:02:55.049><c> will</c><00:02:55.169><c> need</c><00:02:55.290><c> to</c><00:02:55.409><c> use</c><00:02:55.769><c> a</c><00:02:56.069><c> lot</c><00:02:56.340><c> of</c>
+
+00:02:56.360 --> 00:02:56.370 align:start position:0%
+with react you will need to use a lot of
+ 
+
+00:02:56.370 --> 00:02:58.220 align:start position:0%
+with react you will need to use a lot of
+other<00:02:56.579><c> things</c><00:02:56.819><c> for</c><00:02:57.569><c> example</c><00:02:57.599><c> you</c><00:02:57.959><c> would</c><00:02:58.109><c> need</c>
+
+00:02:58.220 --> 00:02:58.230 align:start position:0%
+other things for example you would need
+ 
+
+00:02:58.230 --> 00:03:00.500 align:start position:0%
+other things for example you would need
+to<00:02:58.319><c> set</c><00:02:58.500><c> up</c><00:02:58.620><c> a</c><00:02:59.099><c> node.js</c><00:02:59.639><c> server</c><00:03:00.150><c> that's</c>
+
+00:03:00.500 --> 00:03:00.510 align:start position:0%
+to set up a node.js server that's
+ 
+
+00:03:00.510 --> 00:03:02.210 align:start position:0%
+to set up a node.js server that's
+separate<00:03:00.870><c> from</c><00:03:01.169><c> your</c><00:03:01.349><c> Django</c><00:03:01.769><c> server</c><00:03:01.980><c> and</c>
+
+00:03:02.210 --> 00:03:02.220 align:start position:0%
+separate from your Django server and
+ 
+
+00:03:02.220 --> 00:03:04.339 align:start position:0%
+separate from your Django server and
+then<00:03:02.730><c> you</c><00:03:02.819><c> will</c><00:03:02.970><c> need</c><00:03:03.060><c> to</c><00:03:03.209><c> use</c><00:03:03.540><c> libraries</c><00:03:04.139><c> like</c>
+
+00:03:04.339 --> 00:03:04.349 align:start position:0%
+then you will need to use libraries like
+ 
+
+00:03:04.349 --> 00:03:06.979 align:start position:0%
+then you will need to use libraries like
+babel<00:03:04.980><c> and</c><00:03:05.250><c> webpack</c><00:03:05.790><c> so</c><00:03:06.359><c> there</c><00:03:06.510><c> are</c><00:03:06.599><c> a</c><00:03:06.629><c> lot</c><00:03:06.689><c> of</c>
+
+00:03:06.979 --> 00:03:06.989 align:start position:0%
+babel and webpack so there are a lot of
+ 
+
+00:03:06.989 --> 00:03:08.539 align:start position:0%
+babel and webpack so there are a lot of
+other<00:03:07.620><c> things</c><00:03:07.919><c> that</c><00:03:08.159><c> you</c><00:03:08.250><c> would</c><00:03:08.340><c> need</c><00:03:08.430><c> to</c>
+
+00:03:08.539 --> 00:03:08.549 align:start position:0%
+other things that you would need to
+ 
+
+00:03:08.549 --> 00:03:12.110 align:start position:0%
+other things that you would need to
+learn<00:03:09.269><c> to</c><00:03:09.329><c> use</c><00:03:09.510><c> other</c><00:03:09.959><c> than</c><00:03:10.230><c> react</c><00:03:10.879><c> but</c><00:03:11.879><c> with</c>
+
+00:03:12.110 --> 00:03:12.120 align:start position:0%
+learn to use other than react but with
+ 
+
+00:03:12.120 --> 00:03:14.839 align:start position:0%
+learn to use other than react but with
+view<00:03:12.419><c> it's</c><00:03:12.959><c> much</c><00:03:13.230><c> simpler</c><00:03:13.530><c> to</c><00:03:13.829><c> set</c><00:03:14.129><c> it</c><00:03:14.220><c> up</c><00:03:14.310><c> as</c>
+
+00:03:14.839 --> 00:03:14.849 align:start position:0%
+view it's much simpler to set it up as
+ 
+
+00:03:14.849 --> 00:03:16.970 align:start position:0%
+view it's much simpler to set it up as
+you<00:03:15.030><c> see</c><00:03:15.209><c> in</c><00:03:15.329><c> a</c><00:03:15.389><c> second</c><00:03:15.689><c> so</c><00:03:16.409><c> let</c><00:03:16.680><c> me</c><00:03:16.739><c> show</c><00:03:16.919><c> you</c>
+
+00:03:16.970 --> 00:03:16.980 align:start position:0%
+you see in a second so let me show you
+ 
+
+00:03:16.980 --> 00:03:19.490 align:start position:0%
+you see in a second so let me show you
+how<00:03:17.790><c> to</c><00:03:17.819><c> go</c><00:03:18.209><c> about</c><00:03:18.299><c> setting</c><00:03:18.659><c> it</c><00:03:18.840><c> up</c><00:03:18.989><c> with</c>
+
+00:03:19.490 --> 00:03:19.500 align:start position:0%
+how to go about setting it up with
+ 
+
+00:03:19.500 --> 00:03:24.589 align:start position:0%
+how to go about setting it up with
+Django<00:03:20.449><c> here</c><00:03:21.449><c> just</c><00:03:22.229><c> for</c><00:03:22.500><c> a</c><00:03:22.530><c> demo</c><00:03:22.949><c> I</c><00:03:23.639><c> created</c><00:03:24.329><c> a</c>
+
+00:03:24.589 --> 00:03:24.599 align:start position:0%
+Django here just for a demo I created a
+ 
+
+00:03:24.599 --> 00:03:29.240 align:start position:0%
+Django here just for a demo I created a
+new<00:03:24.659><c> page</c><00:03:25.049><c> called</c><00:03:25.739><c> tests</c><00:03:26.659><c> it's</c><00:03:27.659><c> at</c><00:03:27.989><c> the</c><00:03:28.919><c> local</c>
+
+00:03:29.240 --> 00:03:29.250 align:start position:0%
+new page called tests it's at the local
+ 
+
+00:03:29.250 --> 00:03:33.740 align:start position:0%
+new page called tests it's at the local
+servers<00:03:29.609><c> URL</c><00:03:30.269><c> slash</c><00:03:31.099><c> tests</c><00:03:32.099><c> this</c><00:03:32.849><c> is</c><00:03:33.000><c> my</c><00:03:33.180><c> local</c>
+
+00:03:33.740 --> 00:03:33.750 align:start position:0%
+servers URL slash tests this is my local
+ 
+
+00:03:33.750 --> 00:03:37.460 align:start position:0%
+servers URL slash tests this is my local
+Dremel<00:03:34.169><c> server</c><00:03:34.319><c> and</c><00:03:35.209><c> it</c><00:03:36.209><c> just</c><00:03:36.419><c> says</c><00:03:36.599><c> hello</c>
+
+00:03:37.460 --> 00:03:37.470 align:start position:0%
+Dremel server and it just says hello
+ 
+
+00:03:37.470 --> 00:03:40.069 align:start position:0%
+Dremel server and it just says hello
+it's<00:03:37.769><c> a</c><00:03:37.829><c> simple</c><00:03:38.129><c> page</c><00:03:38.280><c> and</c><00:03:38.699><c> it's</c><00:03:39.690><c> actually</c>
+
+00:03:40.069 --> 00:03:40.079 align:start position:0%
+it's a simple page and it's actually
+ 
+
+00:03:40.079 --> 00:03:42.409 align:start position:0%
+it's a simple page and it's actually
+already<00:03:40.319><c> running</c><00:03:40.709><c> a</c><00:03:40.979><c> view</c><00:03:41.250><c> app</c><00:03:41.400><c> on</c><00:03:41.760><c> top</c><00:03:42.090><c> of</c>
+
+00:03:42.409 --> 00:03:42.419 align:start position:0%
+already running a view app on top of
+ 
+
+00:03:42.419 --> 00:03:44.689 align:start position:0%
+already running a view app on top of
+Django<00:03:42.900><c> so</c><00:03:43.470><c> let</c><00:03:43.799><c> me</c><00:03:43.859><c> show</c><00:03:44.010><c> you</c><00:03:44.069><c> how</c><00:03:44.310><c> I</c><00:03:44.340><c> set</c><00:03:44.459><c> it</c>
+
+00:03:44.689 --> 00:03:44.699 align:start position:0%
+Django so let me show you how I set it
+ 
+
+00:03:44.699 --> 00:03:48.099 align:start position:0%
+Django so let me show you how I set it
+up<00:03:44.840><c> the</c><00:03:45.840><c> first</c><00:03:46.049><c> thing</c><00:03:46.169><c> I</c><00:03:46.260><c> did</c><00:03:46.319><c> is</c><00:03:46.620><c> I</c><00:03:46.979><c> created</c>
+
+00:03:48.099 --> 00:03:48.109 align:start position:0%
+up the first thing I did is I created
+ 
+
+00:03:48.109 --> 00:03:51.530 align:start position:0%
+up the first thing I did is I created
+this<00:03:49.109><c> new</c><00:03:49.409><c> view</c><00:03:49.590><c> called</c><00:03:49.859><c> test</c><00:03:50.099><c> view</c><00:03:50.280><c> in</c><00:03:51.120><c> Django</c>
+
+00:03:51.530 --> 00:03:51.540 align:start position:0%
+this new view called test view in Django
+ 
+
+00:03:51.540 --> 00:03:54.979 align:start position:0%
+this new view called test view in Django
+and<00:03:52.040><c> this</c><00:03:53.040><c> is</c><00:03:53.190><c> invoked</c><00:03:53.519><c> when</c><00:03:53.849><c> that</c><00:03:54.030><c> URL</c><00:03:54.359><c> is</c>
+
+00:03:54.979 --> 00:03:54.989 align:start position:0%
+and this is invoked when that URL is
+ 
+
+00:03:54.989 --> 00:03:58.339 align:start position:0%
+and this is invoked when that URL is
+called<00:03:55.290><c> by</c><00:03:55.500><c> a</c><00:03:55.530><c> user</c><00:03:55.889><c> and</c><00:03:56.599><c> this</c><00:03:57.599><c> test</c><00:03:57.810><c> view</c><00:03:57.989><c> is</c>
+
+00:03:58.339 --> 00:03:58.349 align:start position:0%
+called by a user and this test view is
+ 
+
+00:03:58.349 --> 00:04:00.170 align:start position:0%
+called by a user and this test view is
+going<00:03:58.650><c> to</c><00:03:58.739><c> retrieve</c><00:03:59.069><c> the</c><00:03:59.310><c> current</c><00:03:59.609><c> user</c><00:03:59.909><c> and</c>
+
+00:04:00.170 --> 00:04:00.180 align:start position:0%
+going to retrieve the current user and
+ 
+
+00:04:00.180 --> 00:04:03.439 align:start position:0%
+going to retrieve the current user and
+then<00:04:00.750><c> it's</c><00:04:01.349><c> going</c><00:04:01.650><c> to</c><00:04:01.709><c> render</c><00:04:01.939><c> my</c><00:04:02.939><c> new</c>
+
+00:04:03.439 --> 00:04:03.449 align:start position:0%
+then it's going to render my new
+ 
+
+00:04:03.449 --> 00:04:07.069 align:start position:0%
+then it's going to render my new
+template<00:04:03.930><c> called</c><00:04:04.139><c> testa</c><00:04:04.650><c> HTML</c><00:04:05.510><c> using</c><00:04:06.510><c> this</c>
+
+00:04:07.069 --> 00:04:07.079 align:start position:0%
+template called testa HTML using this
+ 
+
+00:04:07.079 --> 00:04:09.920 align:start position:0%
+template called testa HTML using this
+context<00:04:07.769><c> this</c><00:04:08.310><c> context</c><00:04:08.909><c> contains</c><00:04:09.689><c> the</c>
+
+00:04:09.920 --> 00:04:09.930 align:start position:0%
+context this context contains the
+ 
+
+00:04:09.930 --> 00:04:12.649 align:start position:0%
+context this context contains the
+username<00:04:10.409><c> of</c><00:04:10.620><c> the</c><00:04:10.829><c> current</c><00:04:11.069><c> user</c><00:04:11.220><c> as</c><00:04:11.489><c> well</c><00:04:12.329><c> as</c>
+
+00:04:12.649 --> 00:04:12.659 align:start position:0%
+username of the current user as well as
+ 
+
+00:04:12.659 --> 00:04:16.009 align:start position:0%
+username of the current user as well as
+the<00:04:12.870><c> current</c><00:04:13.169><c> user</c><00:04:13.489><c> object</c><00:04:14.489><c> itself</c><00:04:14.909><c> so</c><00:04:15.840><c> that</c>
+
+00:04:16.009 --> 00:04:16.019 align:start position:0%
+the current user object itself so that
+ 
+
+00:04:16.019 --> 00:04:19.039 align:start position:0%
+the current user object itself so that
+this<00:04:16.349><c> template</c><00:04:16.680><c> testa</c><00:04:17.070><c> HTML</c><00:04:17.549><c> has</c><00:04:18.060><c> access</c><00:04:18.690><c> to</c>
+
+00:04:19.039 --> 00:04:19.049 align:start position:0%
+this template testa HTML has access to
+ 
+
+00:04:19.049 --> 00:04:21.920 align:start position:0%
+this template testa HTML has access to
+those<00:04:19.409><c> two</c><00:04:19.680><c> variables</c><00:04:20.299><c> so</c><00:04:21.299><c> now</c><00:04:21.419><c> let's</c><00:04:21.719><c> take</c><00:04:21.870><c> a</c>
+
+00:04:21.920 --> 00:04:21.930 align:start position:0%
+those two variables so now let's take a
+ 
+
+00:04:21.930 --> 00:04:23.959 align:start position:0%
+those two variables so now let's take a
+look<00:04:22.109><c> at</c><00:04:22.279><c> the</c><00:04:23.279><c> template</c><00:04:23.610><c> that</c><00:04:23.639><c> I</c><00:04:23.760><c> just</c>
+
+00:04:23.959 --> 00:04:23.969 align:start position:0%
+look at the template that I just
+ 
+
+00:04:23.969 --> 00:04:24.650 align:start position:0%
+look at the template that I just
+mentioned
+
+00:04:24.650 --> 00:04:24.660 align:start position:0%
+mentioned
+ 
+
+00:04:24.660 --> 00:04:28.850 align:start position:0%
+mentioned
+testa<00:04:24.990><c> HTML</c><00:04:25.850><c> it</c><00:04:26.850><c> has</c><00:04:27.120><c> two</c><00:04:27.750><c> simple</c><00:04:28.320><c> components</c>
+
+00:04:28.850 --> 00:04:28.860 align:start position:0%
+testa HTML it has two simple components
+ 
+
+00:04:28.860 --> 00:04:30.860 align:start position:0%
+testa HTML it has two simple components
+three<00:04:29.610><c> if</c><00:04:29.910><c> you</c><00:04:30.030><c> want</c><00:04:30.150><c> to</c><00:04:30.270><c> kind</c><00:04:30.390><c> of</c><00:04:30.450><c> counter</c>
+
+00:04:30.860 --> 00:04:30.870 align:start position:0%
+three if you want to kind of counter
+ 
+
+00:04:30.870 --> 00:04:32.930 align:start position:0%
+three if you want to kind of counter
+everything<00:04:31.260><c> so</c><00:04:31.530><c> let</c><00:04:31.680><c> me</c><00:04:31.770><c> explain</c><00:04:31.980><c> those</c><00:04:32.250><c> the</c>
+
+00:04:32.930 --> 00:04:32.940 align:start position:0%
+everything so let me explain those the
+ 
+
+00:04:32.940 --> 00:04:36.410 align:start position:0%
+everything so let me explain those the
+first<00:04:33.150><c> one</c><00:04:33.420><c> is</c><00:04:33.690><c> we</c><00:04:34.260><c> need</c><00:04:34.410><c> to</c><00:04:34.590><c> import</c><00:04:35.180><c> the</c><00:04:36.180><c> view</c>
+
+00:04:36.410 --> 00:04:36.420 align:start position:0%
+first one is we need to import the view
+ 
+
+00:04:36.420 --> 00:04:38.840 align:start position:0%
+first one is we need to import the view
+library<00:04:36.900><c> which</c><00:04:37.650><c> is</c><00:04:37.800><c> done</c><00:04:37.980><c> in</c><00:04:38.190><c> the</c><00:04:38.280><c> simple</c>
+
+00:04:38.840 --> 00:04:38.850 align:start position:0%
+library which is done in the simple
+ 
+
+00:04:38.850 --> 00:04:41.840 align:start position:0%
+library which is done in the simple
+statements<00:04:39.620><c> but</c><00:04:40.620><c> it's</c><00:04:41.040><c> actually</c><00:04:41.400><c> done</c><00:04:41.550><c> in</c><00:04:41.790><c> the</c>
+
+00:04:41.840 --> 00:04:41.850 align:start position:0%
+statements but it's actually done in the
+ 
+
+00:04:41.850 --> 00:04:44.930 align:start position:0%
+statements but it's actually done in the
+head<00:04:42.450><c> part</c><00:04:42.750><c> of</c><00:04:42.990><c> the</c><00:04:43.230><c> HTML</c><00:04:43.620><c> so</c><00:04:44.400><c> we</c><00:04:44.580><c> can</c><00:04:44.790><c> just</c>
+
+00:04:44.930 --> 00:04:44.940 align:start position:0%
+head part of the HTML so we can just
+ 
+
+00:04:44.940 --> 00:04:47.030 align:start position:0%
+head part of the HTML so we can just
+comment<00:04:45.840><c> this</c><00:04:45.990><c> out</c><00:04:46.200><c> because</c><00:04:46.410><c> we</c><00:04:46.620><c> don't</c><00:04:46.860><c> have</c>
+
+00:04:47.030 --> 00:04:47.040 align:start position:0%
+comment this out because we don't have
+ 
+
+00:04:47.040 --> 00:04:49.760 align:start position:0%
+comment this out because we don't have
+to<00:04:47.160><c> import</c><00:04:47.250><c> it</c><00:04:47.490><c> twice</c><00:04:47.730><c> and</c><00:04:48.170><c> the</c><00:04:49.170><c> second</c><00:04:49.530><c> part</c>
+
+00:04:49.760 --> 00:04:49.770 align:start position:0%
+to import it twice and the second part
+ 
+
+00:04:49.770 --> 00:04:53.300 align:start position:0%
+to import it twice and the second part
+is<00:04:49.950><c> the</c><00:04:50.670><c> main</c><00:04:51.510><c> div</c><00:04:52.050><c> that</c><00:04:53.010><c> we're</c><00:04:53.130><c> gonna</c><00:04:53.220><c> use</c>
+
+00:04:53.300 --> 00:04:53.310 align:start position:0%
+is the main div that we're gonna use
+ 
+
+00:04:53.310 --> 00:04:56.330 align:start position:0%
+is the main div that we're gonna use
+that's<00:04:53.910><c> associated</c><00:04:54.240><c> with</c><00:04:54.540><c> our</c><00:04:54.990><c> view</c><00:04:55.890><c> instance</c>
+
+00:04:56.330 --> 00:04:56.340 align:start position:0%
+that's associated with our view instance
+ 
+
+00:04:56.340 --> 00:04:59.510 align:start position:0%
+that's associated with our view instance
+and<00:04:56.610><c> the</c><00:04:57.240><c> third</c><00:04:57.450><c> part</c><00:04:57.720><c> is</c><00:04:57.960><c> the</c><00:04:58.020><c> script</c><00:04:58.590><c> where</c>
+
+00:04:59.510 --> 00:04:59.520 align:start position:0%
+and the third part is the script where
+ 
+
+00:04:59.520 --> 00:05:03.140 align:start position:0%
+and the third part is the script where
+the<00:05:00.390><c> view</c><00:05:00.660><c> instance</c><00:05:01.230><c> is</c><00:05:01.500><c> defined</c><00:05:01.980><c> so</c><00:05:02.790><c> let</c><00:05:03.060><c> me</c>
+
+00:05:03.140 --> 00:05:03.150 align:start position:0%
+the view instance is defined so let me
+ 
+
+00:05:03.150 --> 00:05:06.230 align:start position:0%
+the view instance is defined so let me
+explain<00:05:03.390><c> the</c><00:05:03.600><c> script</c><00:05:03.870><c> part</c><00:05:04.170><c> first</c>
+
+00:05:06.230 --> 00:05:06.240 align:start position:0%
+explain the script part first
+ 
+
+00:05:06.240 --> 00:05:11.600 align:start position:0%
+explain the script part first
+in<00:05:06.630><c> this</c><00:05:07.220><c> script</c><00:05:08.420><c> section</c><00:05:09.440><c> and</c><00:05:10.440><c> as</c><00:05:10.950><c> I</c><00:05:11.160><c> said</c><00:05:11.220><c> a</c>
+
+00:05:11.600 --> 00:05:11.610 align:start position:0%
+in this script section and as I said a
+ 
+
+00:05:11.610 --> 00:05:15.020 align:start position:0%
+in this script section and as I said a
+new<00:05:11.940><c> view</c><00:05:12.210><c> instance</c><00:05:12.780><c> is</c><00:05:12.990><c> defined</c><00:05:13.980><c> and</c><00:05:14.280><c> it's</c>
+
+00:05:15.020 --> 00:05:15.030 align:start position:0%
+new view instance is defined and it's
+ 
+
+00:05:15.030 --> 00:05:19.100 align:start position:0%
+new view instance is defined and it's
+assigned<00:05:15.330><c> to</c><00:05:15.680><c> a</c><00:05:16.680><c> variable</c><00:05:17.070><c> called</c><00:05:17.160><c> app</c><00:05:17.580><c> and</c><00:05:18.110><c> in</c>
+
+00:05:19.100 --> 00:05:19.110 align:start position:0%
+assigned to a variable called app and in
+ 
+
+00:05:19.110 --> 00:05:22.880 align:start position:0%
+assigned to a variable called app and in
+this<00:05:20.360><c> part</c><00:05:21.360><c> of</c><00:05:21.480><c> the</c><00:05:21.600><c> code</c><00:05:21.810><c> there</c><00:05:22.590><c> are</c><00:05:22.710><c> a</c><00:05:22.740><c> couple</c>
+
+00:05:22.880 --> 00:05:22.890 align:start position:0%
+this part of the code there are a couple
+ 
+
+00:05:22.890 --> 00:05:24.980 align:start position:0%
+this part of the code there are a couple
+things<00:05:23.130><c> that</c><00:05:23.310><c> are</c><00:05:23.520><c> defined</c><00:05:23.850><c> now</c><00:05:24.660><c> the</c><00:05:24.780><c> first</c>
+
+00:05:24.980 --> 00:05:24.990 align:start position:0%
+things that are defined now the first
+ 
+
+00:05:24.990 --> 00:05:28.490 align:start position:0%
+things that are defined now the first
+one<00:05:25.140><c> is</c><00:05:25.410><c> the</c><00:05:26.220><c> limiters</c><00:05:26.750><c> so</c><00:05:27.750><c> usually</c><00:05:28.290><c> we</c><00:05:28.410><c> don't</c>
+
+00:05:28.490 --> 00:05:28.500 align:start position:0%
+one is the limiters so usually we don't
+ 
+
+00:05:28.500 --> 00:05:31.360 align:start position:0%
+one is the limiters so usually we don't
+need<00:05:28.680><c> to</c><00:05:28.880><c> define</c><00:05:29.880><c> the</c><00:05:30.120><c> limiters</c><00:05:30.510><c> explicitly</c>
+
+00:05:31.360 --> 00:05:31.370 align:start position:0%
+need to define the limiters explicitly
+ 
+
+00:05:31.370 --> 00:05:35.360 align:start position:0%
+need to define the limiters explicitly
+but<00:05:32.370><c> here</c><00:05:32.640><c> we</c><00:05:32.850><c> need</c><00:05:33.000><c> to</c><00:05:33.060><c> because</c><00:05:33.540><c> the</c><00:05:34.370><c> default</c>
+
+00:05:35.360 --> 00:05:35.370 align:start position:0%
+but here we need to because the default
+ 
+
+00:05:35.370 --> 00:05:39.500 align:start position:0%
+but here we need to because the default
+delimiters<00:05:36.150><c> of</c><00:05:36.390><c> you</c><00:05:36.780><c> are</c><00:05:37.200><c> the</c><00:05:37.950><c> same</c><00:05:38.190><c> as</c><00:05:38.510><c> the</c>
+
+00:05:39.500 --> 00:05:39.510 align:start position:0%
+delimiters of you are the same as the
+ 
+
+00:05:39.510 --> 00:05:42.100 align:start position:0%
+delimiters of you are the same as the
+default<00:05:39.900><c> delimiter</c><00:05:40.050><c> is</c><00:05:40.380><c> Django</c><00:05:41.370><c> which</c><00:05:41.850><c> are</c>
+
+00:05:42.100 --> 00:05:42.110 align:start position:0%
+default delimiter is Django which are
+ 
+
+00:05:42.110 --> 00:05:44.450 align:start position:0%
+default delimiter is Django which are
+double<00:05:43.110><c> square</c><00:05:43.500><c> brackets</c><00:05:43.590><c> I</c><00:05:44.040><c> would</c><00:05:44.190><c> double</c>
+
+00:05:44.450 --> 00:05:44.460 align:start position:0%
+double square brackets I would double
+ 
+
+00:05:44.460 --> 00:05:46.220 align:start position:0%
+double square brackets I would double
+curly<00:05:44.730><c> brackets</c><00:05:45.090><c> so</c><00:05:45.750><c> we</c><00:05:45.870><c> need</c><00:05:46.020><c> to</c><00:05:46.110><c> use</c>
+
+00:05:46.220 --> 00:05:46.230 align:start position:0%
+curly brackets so we need to use
+ 
+
+00:05:46.230 --> 00:05:48.440 align:start position:0%
+curly brackets so we need to use
+something<00:05:46.440><c> else</c><00:05:46.650><c> for</c><00:05:46.950><c> view</c><00:05:47.160><c> and</c><00:05:47.400><c> that's</c><00:05:48.240><c> why</c>
+
+00:05:48.440 --> 00:05:48.450 align:start position:0%
+something else for view and that's why
+ 
+
+00:05:48.450 --> 00:05:50.840 align:start position:0%
+something else for view and that's why
+we're<00:05:48.690><c> using</c><00:05:49.010><c> double</c><00:05:50.010><c> square</c><00:05:50.250><c> brackets</c><00:05:50.580><c> here</c>
+
+00:05:50.840 --> 00:05:50.850 align:start position:0%
+we're using double square brackets here
+ 
+
+00:05:50.850 --> 00:05:53.890 align:start position:0%
+we're using double square brackets here
+instead<00:05:51.570><c> of</c><00:05:51.690><c> double</c><00:05:51.990><c> curly</c><00:05:52.350><c> brackets</c><00:05:52.710><c> and</c>
+
+00:05:53.890 --> 00:05:53.900 align:start position:0%
+instead of double curly brackets and
+ 
+
+00:05:53.900 --> 00:05:59.030 align:start position:0%
+instead of double curly brackets and
+this<00:05:54.900><c> is</c><00:05:55.200><c> what</c><00:05:56.070><c> tells</c><00:05:56.280><c> view</c><00:05:57.230><c> which</c><00:05:58.230><c> things</c><00:05:58.710><c> our</c>
+
+00:05:59.030 --> 00:05:59.040 align:start position:0%
+this is what tells view which things our
+ 
+
+00:05:59.040 --> 00:06:03.620 align:start position:0%
+this is what tells view which things our
+view<00:05:59.760><c> variables</c><00:06:00.500><c> so</c><00:06:01.500><c> for</c><00:06:01.530><c> example</c><00:06:02.010><c> here</c><00:06:02.400><c> I</c><00:06:02.630><c> my</c>
+
+00:06:03.620 --> 00:06:03.630 align:start position:0%
+view variables so for example here I my
+ 
+
+00:06:03.630 --> 00:06:06.350 align:start position:0%
+view variables so for example here I my
+HTML<00:06:04.140><c> we're</c><00:06:04.650><c> saying</c><00:06:04.890><c> this</c><00:06:05.370><c> thing</c><00:06:05.670><c> message</c><00:06:06.060><c> is</c>
+
+00:06:06.350 --> 00:06:06.360 align:start position:0%
+HTML we're saying this thing message is
+ 
+
+00:06:06.360 --> 00:06:09.710 align:start position:0%
+HTML we're saying this thing message is
+a<00:06:07.170><c> view</c><00:06:07.680><c> variable</c><00:06:08.250><c> it's</c><00:06:08.460><c> not</c><00:06:08.670><c> a</c><00:06:08.850><c> regular</c><00:06:09.240><c> HTML</c>
+
+00:06:09.710 --> 00:06:09.720 align:start position:0%
+a view variable it's not a regular HTML
+ 
+
+00:06:09.720 --> 00:06:14.270 align:start position:0%
+a view variable it's not a regular HTML
+thing<00:06:11.150><c> when</c><00:06:12.150><c> view</c><00:06:12.480><c> sees</c><00:06:12.750><c> this</c><00:06:12.990><c> it</c><00:06:13.380><c> looks</c><00:06:13.890><c> for</c>
+
+00:06:14.270 --> 00:06:14.280 align:start position:0%
+thing when view sees this it looks for
+ 
+
+00:06:14.280 --> 00:06:19.400 align:start position:0%
+thing when view sees this it looks for
+this<00:06:15.000><c> variable</c><00:06:15.740><c> in</c><00:06:16.740><c> the</c><00:06:17.370><c> data</c><00:06:18.180><c> attribute</c><00:06:19.170><c> of</c>
+
+00:06:19.400 --> 00:06:19.410 align:start position:0%
+this variable in the data attribute of
+ 
+
+00:06:19.410 --> 00:06:23.320 align:start position:0%
+this variable in the data attribute of
+this<00:06:20.370><c> view</c><00:06:20.910><c> instance</c><00:06:21.380><c> so</c><00:06:22.380><c> here</c><00:06:22.770><c> I'm</c><00:06:22.980><c> saying</c>
+
+00:06:23.320 --> 00:06:23.330 align:start position:0%
+this view instance so here I'm saying
+ 
+
+00:06:23.330 --> 00:06:26.990 align:start position:0%
+this view instance so here I'm saying
+the<00:06:24.330><c> data</c><00:06:24.570><c> of</c><00:06:24.870><c> this</c><00:06:25.260><c> view</c><00:06:25.500><c> instance</c><00:06:25.920><c> is</c><00:06:26.100><c> just</c>
+
+00:06:26.990 --> 00:06:27.000 align:start position:0%
+the data of this view instance is just
+ 
+
+00:06:27.000 --> 00:06:30.240 align:start position:0%
+the data of this view instance is just
+one<00:06:27.830><c> called</c><00:06:28.830><c> message</c>
+
+00:06:30.240 --> 00:06:30.250 align:start position:0%
+one called message
+ 
+
+00:06:30.250 --> 00:06:34.620 align:start position:0%
+one called message
+it's<00:06:30.420><c> its</c><00:06:31.420><c> value</c><00:06:31.810><c> is</c><00:06:32.020><c> hello</c><00:06:33.420><c> another</c><00:06:34.420><c> thing</c>
+
+00:06:34.620 --> 00:06:34.630 align:start position:0%
+it's its value is hello another thing
+ 
+
+00:06:34.630 --> 00:06:38.280 align:start position:0%
+it's its value is hello another thing
+that<00:06:34.780><c> we</c><00:06:34.870><c> need</c><00:06:34.900><c> to</c><00:06:35.020><c> define</c><00:06:35.380><c> here</c><00:06:35.710><c> is</c><00:06:36.930><c> this</c><00:06:37.930><c> L</c>
+
+00:06:38.280 --> 00:06:38.290 align:start position:0%
+that we need to define here is this L
+ 
+
+00:06:38.290 --> 00:06:41.820 align:start position:0%
+that we need to define here is this L
+which<00:06:39.100><c> I</c><00:06:39.370><c> think</c><00:06:39.910><c> stands</c><00:06:40.270><c> for</c><00:06:40.510><c> element</c><00:06:40.870><c> this</c><00:06:41.770><c> is</c>
+
+00:06:41.820 --> 00:06:41.830 align:start position:0%
+which I think stands for element this is
+ 
+
+00:06:41.830 --> 00:06:44.520 align:start position:0%
+which I think stands for element this is
+the<00:06:41.980><c> element</c><00:06:42.510><c> that</c><00:06:43.510><c> corresponds</c><00:06:44.050><c> to</c><00:06:44.170><c> this</c>
+
+00:06:44.520 --> 00:06:44.530 align:start position:0%
+the element that corresponds to this
+ 
+
+00:06:44.530 --> 00:06:50.480 align:start position:0%
+the element that corresponds to this
+view<00:06:44.800><c> instance</c><00:06:45.280><c> and</c><00:06:46.080><c> this</c><00:06:47.080><c> is</c><00:06:47.380><c> the</c><00:06:48.040><c> ID</c><00:06:48.940><c> app</c><00:06:49.390><c> and</c>
+
+00:06:50.480 --> 00:06:50.490 align:start position:0%
+view instance and this is the ID app and
+ 
+
+00:06:50.490 --> 00:06:54.630 align:start position:0%
+view instance and this is the ID app and
+that<00:06:51.490><c> refers</c><00:06:51.970><c> to</c><00:06:52.000><c> this</c><00:06:52.630><c> div</c><00:06:53.470><c> element</c><00:06:54.010><c> right</c>
+
+00:06:54.630 --> 00:06:54.640 align:start position:0%
+that refers to this div element right
+ 
+
+00:06:54.640 --> 00:06:55.730 align:start position:0%
+that refers to this div element right
+here
+
+00:06:55.730 --> 00:06:55.740 align:start position:0%
+here
+ 
+
+00:06:55.740 --> 00:07:00.420 align:start position:0%
+here
+so<00:06:56.740><c> just</c><00:06:57.160><c> to</c><00:06:57.250><c> recap</c><00:06:57.400><c> we</c><00:06:58.330><c> have</c><00:06:58.360><c> a</c><00:06:59.050><c> new</c><00:06:59.430><c> div</c>
+
+00:07:00.420 --> 00:07:00.430 align:start position:0%
+so just to recap we have a new div
+ 
+
+00:07:00.430 --> 00:07:04.110 align:start position:0%
+so just to recap we have a new div
+element<00:07:00.880><c> here</c><00:07:01.120><c> with</c><00:07:01.780><c> the</c><00:07:01.930><c> ID</c><00:07:02.170><c> app</c><00:07:02.530><c> and</c><00:07:03.120><c> that's</c>
+
+00:07:04.110 --> 00:07:04.120 align:start position:0%
+element here with the ID app and that's
+ 
+
+00:07:04.120 --> 00:07:08.130 align:start position:0%
+element here with the ID app and that's
+associated<00:07:04.510><c> with</c><00:07:04.870><c> this</c><00:07:06.390><c> new</c><00:07:07.390><c> view</c><00:07:07.690><c> instance</c>
+
+00:07:08.130 --> 00:07:08.140 align:start position:0%
+associated with this new view instance
+ 
+
+00:07:08.140 --> 00:07:10.820 align:start position:0%
+associated with this new view instance
+that<00:07:08.380><c> we</c><00:07:08.530><c> just</c><00:07:08.710><c> defined</c><00:07:09.150><c> with</c><00:07:10.150><c> the</c><00:07:10.300><c> delimiters</c>
+
+00:07:10.820 --> 00:07:10.830 align:start position:0%
+that we just defined with the delimiters
+ 
+
+00:07:10.830 --> 00:07:14.150 align:start position:0%
+that we just defined with the delimiters
+double<00:07:11.830><c> square</c><00:07:12.010><c> brackets</c><00:07:12.070><c> and</c><00:07:12.580><c> when</c><00:07:13.480><c> view</c>
+
+00:07:14.150 --> 00:07:14.160 align:start position:0%
+double square brackets and when view
+ 
+
+00:07:14.160 --> 00:07:17.220 align:start position:0%
+double square brackets and when view
+sees<00:07:15.180><c> this</c><00:07:16.180><c> thing</c><00:07:16.450><c> or</c><00:07:16.630><c> when</c><00:07:16.930><c> your</c><00:07:17.050><c> browser</c>
+
+00:07:17.220 --> 00:07:17.230 align:start position:0%
+sees this thing or when your browser
+ 
+
+00:07:17.230 --> 00:07:22.110 align:start position:0%
+sees this thing or when your browser
+sees<00:07:18.070><c> this</c><00:07:18.370><c> part</c><00:07:18.640><c> with</c><00:07:19.240><c> view</c><00:07:20.520><c> it</c><00:07:21.520><c> says</c><00:07:21.790><c> okay</c>
+
+00:07:22.110 --> 00:07:22.120 align:start position:0%
+sees this part with view it says okay
+ 
+
+00:07:22.120 --> 00:07:24.480 align:start position:0%
+sees this part with view it says okay
+you<00:07:22.570><c> know</c><00:07:22.690><c> what</c><00:07:22.990><c> should</c><00:07:23.230><c> this</c><00:07:23.919><c> variable</c><00:07:24.340><c> be</c>
+
+00:07:24.480 --> 00:07:24.490 align:start position:0%
+you know what should this variable be
+ 
+
+00:07:24.490 --> 00:07:27.750 align:start position:0%
+you know what should this variable be
+and<00:07:24.960><c> it</c><00:07:25.960><c> looks</c><00:07:26.260><c> for</c><00:07:26.470><c> it</c><00:07:26.620><c> in</c><00:07:26.800><c> this</c><00:07:27.160><c> data</c><00:07:27.430><c> section</c>
+
+00:07:27.750 --> 00:07:27.760 align:start position:0%
+and it looks for it in this data section
+ 
+
+00:07:27.760 --> 00:07:30.870 align:start position:0%
+and it looks for it in this data section
+here<00:07:28.350><c> and</c><00:07:29.350><c> it</c><00:07:29.440><c> says</c><00:07:29.590><c> okay</c><00:07:29.860><c> that's</c><00:07:30.010><c> hello</c><00:07:30.340><c> so</c>
+
+00:07:30.870 --> 00:07:30.880 align:start position:0%
+here and it says okay that's hello so
+ 
+
+00:07:30.880 --> 00:07:34.800 align:start position:0%
+here and it says okay that's hello so
+this<00:07:31.780><c> part</c><00:07:32.140><c> message</c><00:07:33.100><c> it's</c><00:07:33.970><c> gonna</c><00:07:34.240><c> be</c><00:07:34.360><c> replaced</c>
+
+00:07:34.800 --> 00:07:34.810 align:start position:0%
+this part message it's gonna be replaced
+ 
+
+00:07:34.810 --> 00:07:38.840 align:start position:0%
+this part message it's gonna be replaced
+with<00:07:35.350><c> hello</c><00:07:35.890><c> and</c><00:07:36.210><c> that's</c><00:07:37.210><c> why</c><00:07:37.390><c> when</c><00:07:38.050><c> we</c><00:07:38.080><c> go</c><00:07:38.410><c> to</c>
+
+00:07:38.840 --> 00:07:38.850 align:start position:0%
+with hello and that's why when we go to
+ 
+
+00:07:38.850 --> 00:07:41.970 align:start position:0%
+with hello and that's why when we go to
+slash<00:07:39.850><c> tests</c><00:07:40.140><c> that's</c><00:07:41.140><c> exactly</c><00:07:41.620><c> what</c><00:07:41.740><c> we</c><00:07:41.830><c> see</c>
+
+00:07:41.970 --> 00:07:41.980 align:start position:0%
+slash tests that's exactly what we see
+ 
+
+00:07:41.980 --> 00:07:46.080 align:start position:0%
+slash tests that's exactly what we see
+hello<00:07:43.380><c> now</c><00:07:44.380><c> I</c><00:07:44.410><c> explain</c><00:07:45.130><c> a</c><00:07:45.160><c> lot</c><00:07:45.400><c> of</c><00:07:45.430><c> things</c><00:07:45.550><c> here</c>
+
+00:07:46.080 --> 00:07:46.090 align:start position:0%
+hello now I explain a lot of things here
+ 
+
+00:07:46.090 --> 00:07:47.520 align:start position:0%
+hello now I explain a lot of things here
+but<00:07:46.270><c> I</c><00:07:46.330><c> think</c><00:07:46.540><c> the</c><00:07:46.630><c> key</c><00:07:46.780><c> point</c><00:07:46.990><c> here</c><00:07:47.110><c> is</c><00:07:47.470><c> that</c>
+
+00:07:47.520 --> 00:07:47.530 align:start position:0%
+but I think the key point here is that
+ 
+
+00:07:47.530 --> 00:07:51.690 align:start position:0%
+but I think the key point here is that
+it's<00:07:48.340><c> much</c><00:07:48.640><c> simpler</c><00:07:49.030><c> to</c><00:07:49.150><c> setup</c><00:07:49.600><c> a</c><00:07:49.900><c> view</c><00:07:50.700><c> waste</c>
+
+00:07:51.690 --> 00:07:51.700 align:start position:0%
+it's much simpler to setup a view waste
+ 
+
+00:07:51.700 --> 00:07:54.960 align:start position:0%
+it's much simpler to setup a view waste
+jungle<00:07:52.210><c> than</c><00:07:53.080><c> to</c><00:07:53.440><c> set</c><00:07:53.590><c> up</c><00:07:53.710><c> reactivates</c><00:07:54.610><c> jungle</c>
+
+00:07:54.960 --> 00:07:54.970 align:start position:0%
+jungle than to set up reactivates jungle
+ 
+
+00:07:54.970 --> 00:07:56.880 align:start position:0%
+jungle than to set up reactivates jungle
+you<00:07:55.690><c> know</c><00:07:55.720><c> here</c><00:07:56.050><c> all</c><00:07:56.350><c> I</c><00:07:56.380><c> needed</c>
+
+00:07:56.880 --> 00:07:56.890 align:start position:0%
+you know here all I needed
+ 
+
+00:07:56.890 --> 00:07:59.880 align:start position:0%
+you know here all I needed
+all<00:07:57.130><c> I</c><00:07:57.220><c> needed</c><00:07:57.520><c> to</c><00:07:57.640><c> do</c><00:07:57.850><c> is</c><00:07:58.090><c> I</c><00:07:58.540><c> needed</c><00:07:59.290><c> to</c><00:07:59.500><c> import</c>
+
+00:07:59.880 --> 00:07:59.890 align:start position:0%
+all I needed to do is I needed to import
+ 
+
+00:07:59.890 --> 00:08:03.060 align:start position:0%
+all I needed to do is I needed to import
+view<00:08:00.400><c> with</c><00:08:00.669><c> a</c><00:08:00.940><c> single</c><00:08:01.210><c> line</c><00:08:01.390><c> and</c><00:08:01.600><c> then</c><00:08:02.260><c> set</c><00:08:03.040><c> up</c>
+
+00:08:03.060 --> 00:08:03.070 align:start position:0%
+view with a single line and then set up
+ 
+
+00:08:03.070 --> 00:08:05.969 align:start position:0%
+view with a single line and then set up
+a<00:08:03.220><c> new</c><00:08:03.370><c> view</c><00:08:03.669><c> instance</c><00:08:04.060><c> and</c><00:08:04.390><c> set</c><00:08:05.020><c> up</c><00:08:05.140><c> a</c><00:08:05.470><c> single</c>
+
+00:08:05.969 --> 00:08:05.979 align:start position:0%
+a new view instance and set up a single
+ 
+
+00:08:05.979 --> 00:08:08.790 align:start position:0%
+a new view instance and set up a single
+div<00:08:06.220><c> element</c><00:08:07.120><c> with</c><00:08:07.450><c> a</c><00:08:07.479><c> particular</c><00:08:07.810><c> ID</c><00:08:08.140><c> now</c>
+
+00:08:08.790 --> 00:08:08.800 align:start position:0%
+div element with a particular ID now
+ 
+
+00:08:08.800 --> 00:08:11.880 align:start position:0%
+div element with a particular ID now
+that's<00:08:09.040><c> it</c><00:08:09.190><c> and</c><00:08:09.370><c> I</c><00:08:09.820><c> have</c><00:08:10.000><c> a</c><00:08:10.030><c> view</c><00:08:10.240><c> up</c><00:08:10.479><c> here</c><00:08:10.890><c> you</c>
+
+00:08:11.880 --> 00:08:11.890 align:start position:0%
+that's it and I have a view up here you
+ 
+
+00:08:11.890 --> 00:08:12.990 align:start position:0%
+that's it and I have a view up here you
+know<00:08:11.979><c> I</c><00:08:12.010><c> don't</c><00:08:12.250><c> need</c><00:08:12.340><c> to</c><00:08:12.490><c> use</c><00:08:12.640><c> any</c><00:08:12.940><c> other</c>
+
+00:08:12.990 --> 00:08:13.000 align:start position:0%
+know I don't need to use any other
+ 
+
+00:08:13.000 --> 00:08:16.620 align:start position:0%
+know I don't need to use any other
+libraries<00:08:13.570><c> like</c><00:08:13.840><c> a</c><00:08:14.080><c> node.js</c><00:08:14.500><c> server</c><00:08:14.979><c> or</c><00:08:15.630><c> Babel</c>
+
+00:08:16.620 --> 00:08:16.630 align:start position:0%
+libraries like a node.js server or Babel
+ 
+
+00:08:16.630 --> 00:08:19.500 align:start position:0%
+libraries like a node.js server or Babel
+web<00:08:16.840><c> pack</c><00:08:17.080><c> so</c><00:08:17.710><c> it's</c><00:08:17.950><c> definitely</c><00:08:18.370><c> simpler</c><00:08:19.270><c> than</c>
+
+00:08:19.500 --> 00:08:19.510 align:start position:0%
+web pack so it's definitely simpler than
+ 
+
+00:08:19.510 --> 00:08:21.719 align:start position:0%
+web pack so it's definitely simpler than
+react<00:08:19.840><c> I</c><00:08:20.020><c> would</c><00:08:20.169><c> say</c><00:08:20.490><c> anyway</c>
+
+00:08:21.719 --> 00:08:21.729 align:start position:0%
+react I would say anyway
+ 
+
+00:08:21.729 --> 00:08:23.760 align:start position:0%
+react I would say anyway
+if<00:08:21.880><c> you</c><00:08:22.030><c> want</c><00:08:22.210><c> to</c><00:08:22.270><c> use</c><00:08:22.450><c> a</c><00:08:22.660><c> jungle</c><00:08:23.260><c> variable</c>
+
+00:08:23.760 --> 00:08:23.770 align:start position:0%
+if you want to use a jungle variable
+ 
+
+00:08:23.770 --> 00:08:26.280 align:start position:0%
+if you want to use a jungle variable
+within<00:08:24.610><c> this</c><00:08:24.760><c> view</c><00:08:25.090><c> app</c><00:08:25.300><c> that's</c><00:08:26.050><c> pretty</c>
+
+00:08:26.280 --> 00:08:26.290 align:start position:0%
+within this view app that's pretty
+ 
+
+00:08:26.290 --> 00:08:29.909 align:start position:0%
+within this view app that's pretty
+simple<00:08:26.500><c> -</c><00:08:26.770><c> the</c><00:08:27.729><c> simplest</c><00:08:28.240><c> way</c><00:08:28.570><c> to</c><00:08:28.960><c> do</c><00:08:29.590><c> it</c><00:08:29.740><c> it</c>
+
+00:08:29.909 --> 00:08:29.919 align:start position:0%
+simple - the simplest way to do it it
+ 
+
+00:08:29.919 --> 00:08:31.320 align:start position:0%
+simple - the simplest way to do it it
+might<00:08:30.100><c> not</c><00:08:30.220><c> be</c><00:08:30.340><c> the</c><00:08:30.460><c> correct</c><00:08:30.640><c> way</c><00:08:31.000><c> to</c><00:08:31.030><c> do</c><00:08:31.210><c> it</c>
+
+00:08:31.320 --> 00:08:31.330 align:start position:0%
+might not be the correct way to do it
+ 
+
+00:08:31.330 --> 00:08:33.460 align:start position:0%
+might not be the correct way to do it
+would<00:08:32.050><c> be</c><00:08:32.110><c> to</c>
+
+00:08:33.460 --> 00:08:33.470 align:start position:0%
+would be to
+ 
+
+00:08:33.470 --> 00:08:36.760 align:start position:0%
+would be to
+in<00:08:33.530><c> this</c><00:08:33.830><c> message</c><00:08:34.760><c> for</c><00:08:35.180><c> example</c><00:08:35.510><c> I</c><00:08:35.720><c> can</c><00:08:36.560><c> just</c>
+
+00:08:36.760 --> 00:08:36.770 align:start position:0%
+in this message for example I can just
+ 
+
+00:08:36.770 --> 00:08:44.560 align:start position:0%
+in this message for example I can just
+write<00:08:38.890><c> double</c><00:08:39.890><c> curly</c><00:08:40.220><c> brackets</c><00:08:41.140><c> username</c><00:08:43.570><c> so</c>
+
+00:08:44.560 --> 00:08:44.570 align:start position:0%
+write double curly brackets username so
+ 
+
+00:08:44.570 --> 00:08:47.170 align:start position:0%
+write double curly brackets username so
+what<00:08:44.960><c> happens</c><00:08:45.350><c> with</c><00:08:45.590><c> this</c><00:08:45.800><c> script</c><00:08:46.190><c> is</c><00:08:46.430><c> when</c>
+
+00:08:47.170 --> 00:08:47.180 align:start position:0%
+what happens with this script is when
+ 
+
+00:08:47.180 --> 00:08:49.780 align:start position:0%
+what happens with this script is when
+Django<00:08:47.720><c> see</c><00:08:47.930><c> this</c><00:08:48.140><c> when</c><00:08:48.950><c> Django</c><00:08:49.370><c> sees</c><00:08:49.610><c> the</c>
+
+00:08:49.780 --> 00:08:49.790 align:start position:0%
+Django see this when Django sees the
+ 
+
+00:08:49.790 --> 00:08:53.320 align:start position:0%
+Django see this when Django sees the
+same<00:08:49.970><c> plate</c><00:08:50.230><c> it's</c><00:08:51.230><c> gonna</c><00:08:51.440><c> replace</c><00:08:52.010><c> this</c><00:08:52.790><c> part</c>
+
+00:08:53.320 --> 00:08:53.330 align:start position:0%
+same plate it's gonna replace this part
+ 
+
+00:08:53.330 --> 00:08:55.750 align:start position:0%
+same plate it's gonna replace this part
+username<00:08:53.900><c> with</c><00:08:54.530><c> the</c><00:08:54.680><c> actual</c><00:08:55.130><c> current</c>
+
+00:08:55.750 --> 00:08:55.760 align:start position:0%
+username with the actual current
+ 
+
+00:08:55.760 --> 00:09:00.520 align:start position:0%
+username with the actual current
+username<00:08:56.150><c> and</c><00:08:57.250><c> then</c><00:08:58.780><c> when</c><00:08:59.780><c> this</c><00:09:00.020><c> is</c><00:09:00.080><c> sent</c><00:09:00.410><c> to</c>
+
+00:09:00.520 --> 00:09:00.530 align:start position:0%
+username and then when this is sent to
+ 
+
+00:09:00.530 --> 00:09:01.900 align:start position:0%
+username and then when this is sent to
+the<00:09:00.620><c> browser</c>
+
+00:09:01.900 --> 00:09:01.910 align:start position:0%
+the browser
+ 
+
+00:09:01.910 --> 00:09:05.380 align:start position:0%
+the browser
+this<00:09:02.810><c> is</c><00:09:03.200><c> gonna</c><00:09:04.040><c> be</c><00:09:04.220><c> hello</c>
+
+00:09:05.380 --> 00:09:05.390 align:start position:0%
+this is gonna be hello
+ 
+
+00:09:05.390 --> 00:09:07.530 align:start position:0%
+this is gonna be hello
+username<00:09:06.020><c> whatever</c><00:09:06.440><c> the</c><00:09:06.590><c> user</c><00:09:06.740><c> name</c><00:09:06.980><c> is</c><00:09:07.010><c> and</c>
+
+00:09:07.530 --> 00:09:07.540 align:start position:0%
+username whatever the user name is and
+ 
+
+00:09:07.540 --> 00:09:11.200 align:start position:0%
+username whatever the user name is and
+then<00:09:08.540><c> this</c><00:09:09.440><c> part</c><00:09:09.770><c> message</c><00:09:10.100><c> is</c><00:09:10.760><c> gonna</c><00:09:11.090><c> be</c>
+
+00:09:11.200 --> 00:09:11.210 align:start position:0%
+then this part message is gonna be
+ 
+
+00:09:11.210 --> 00:09:15.520 align:start position:0%
+then this part message is gonna be
+replaced<00:09:11.680><c> with</c><00:09:12.680><c> that</c><00:09:12.920><c> particular</c><00:09:13.220><c> string</c><00:09:14.530><c> so</c>
+
+00:09:15.520 --> 00:09:15.530 align:start position:0%
+replaced with that particular string so
+ 
+
+00:09:15.530 --> 00:09:18.360 align:start position:0%
+replaced with that particular string so
+if<00:09:15.800><c> my</c><00:09:16.010><c> username</c><00:09:16.490><c> is</c><00:09:16.670><c> let's</c><00:09:17.090><c> say</c><00:09:17.270><c> YK</c><00:09:17.540><c> dojo</c><00:09:17.990><c> I</c>
+
+00:09:18.360 --> 00:09:18.370 align:start position:0%
+if my username is let's say YK dojo I
+ 
+
+00:09:18.370 --> 00:09:23.020 align:start position:0%
+if my username is let's say YK dojo I
+should<00:09:19.370><c> see</c><00:09:20.110><c> hello</c><00:09:21.140><c> YK</c><00:09:22.100><c> dojo</c><00:09:22.580><c> here</c>
+
+00:09:23.020 --> 00:09:23.030 align:start position:0%
+should see hello YK dojo here
+ 
+
+00:09:23.030 --> 00:09:26.410 align:start position:0%
+should see hello YK dojo here
+so<00:09:23.450><c> again</c><00:09:23.920><c> jungle</c><00:09:24.920><c> replace</c><00:09:25.270><c> jungle</c><00:09:26.270><c> will</c>
+
+00:09:26.410 --> 00:09:26.420 align:start position:0%
+so again jungle replace jungle will
+ 
+
+00:09:26.420 --> 00:09:29.830 align:start position:0%
+so again jungle replace jungle will
+replace<00:09:26.890><c> this</c><00:09:27.890><c> username</c><00:09:28.190><c> with</c><00:09:28.970><c> YK</c><00:09:29.210><c> dojo</c><00:09:29.600><c> and</c>
+
+00:09:29.830 --> 00:09:29.840 align:start position:0%
+replace this username with YK dojo and
+ 
+
+00:09:29.840 --> 00:09:32.590 align:start position:0%
+replace this username with YK dojo and
+then<00:09:30.770><c> this</c><00:09:31.070><c> string</c><00:09:31.340><c> becomes</c><00:09:31.700><c> how</c><00:09:32.210><c> I</c><00:09:32.240><c> work</c><00:09:32.480><c> it</c>
+
+00:09:32.590 --> 00:09:32.600 align:start position:0%
+then this string becomes how I work it
+ 
+
+00:09:32.600 --> 00:09:37.300 align:start position:0%
+then this string becomes how I work it
+dojo<00:09:32.930><c> and</c><00:09:34.060><c> that</c><00:09:35.060><c> is</c><00:09:35.360><c> gonna</c><00:09:36.110><c> be</c><00:09:36.260><c> right</c><00:09:37.010><c> here</c>
+
+00:09:37.300 --> 00:09:37.310 align:start position:0%
+dojo and that is gonna be right here
+ 
+
+00:09:37.310 --> 00:09:42.160 align:start position:0%
+dojo and that is gonna be right here
+hello<00:09:38.150><c> YK</c><00:09:38.450><c> dojo</c><00:09:38.720><c> and</c><00:09:40.300><c> if</c><00:09:41.300><c> I</c><00:09:41.480><c> save</c><00:09:41.750><c> this</c><00:09:41.900><c> file</c>
+
+00:09:42.160 --> 00:09:42.170 align:start position:0%
+hello YK dojo and if I save this file
+ 
+
+00:09:42.170 --> 00:09:45.640 align:start position:0%
+hello YK dojo and if I save this file
+and<00:09:42.670><c> go</c><00:09:43.670><c> to</c><00:09:43.730><c> that</c><00:09:44.030><c> URL</c><00:09:44.390><c> that's</c><00:09:44.900><c> what</c><00:09:45.410><c> I</c><00:09:45.440><c> should</c>
+
+00:09:45.640 --> 00:09:45.650 align:start position:0%
+and go to that URL that's what I should
+ 
+
+00:09:45.650 --> 00:09:48.130 align:start position:0%
+and go to that URL that's what I should
+see<00:09:45.800><c> right</c><00:09:46.010><c> here</c><00:09:46.220><c> and</c><00:09:46.570><c> that's</c><00:09:47.570><c> exactly</c><00:09:47.930><c> what</c><00:09:48.110><c> I</c>
+
+00:09:48.130 --> 00:09:48.140 align:start position:0%
+see right here and that's exactly what I
+ 
+
+00:09:48.140 --> 00:09:50.920 align:start position:0%
+see right here and that's exactly what I
+see<00:09:48.380><c> right</c><00:09:48.740><c> now</c><00:09:49.160><c> I'm</c><00:09:49.490><c> logged</c><00:09:49.730><c> in</c><00:09:49.940><c> as</c><00:09:50.120><c> YK</c><00:09:50.510><c> dojo</c><00:09:50.750><c> -</c>
+
+00:09:50.920 --> 00:09:50.930 align:start position:0%
+see right now I'm logged in as YK dojo -
+ 
+
+00:09:50.930 --> 00:09:54.190 align:start position:0%
+see right now I'm logged in as YK dojo -
+as<00:09:51.170><c> you</c><00:09:51.770><c> can</c><00:09:51.920><c> see</c><00:09:52.070><c> right</c><00:09:52.220><c> here</c><00:09:52.360><c> so</c><00:09:53.360><c> I</c><00:09:53.390><c> see</c><00:09:53.810><c> hello</c>
+
+00:09:54.190 --> 00:09:54.200 align:start position:0%
+as you can see right here so I see hello
+ 
+
+00:09:54.200 --> 00:09:58.390 align:start position:0%
+as you can see right here so I see hello
+YK<00:09:54.530><c> dojo</c><00:09:54.770><c> -</c><00:09:55.480><c> now</c><00:09:56.480><c> this</c><00:09:57.020><c> approach</c><00:09:57.410><c> technically</c>
+
+00:09:58.390 --> 00:09:58.400 align:start position:0%
+YK dojo - now this approach technically
+ 
+
+00:09:58.400 --> 00:10:00.700 align:start position:0%
+YK dojo - now this approach technically
+works<00:09:58.700><c> but</c><00:09:59.600><c> I</c><00:09:59.780><c> would</c><00:09:59.900><c> say</c><00:10:00.050><c> it's</c><00:10:00.290><c> a</c><00:10:00.410><c> little</c><00:10:00.590><c> bit</c>
+
+00:10:00.700 --> 00:10:00.710 align:start position:0%
+works but I would say it's a little bit
+ 
+
+00:10:00.710 --> 00:10:04.630 align:start position:0%
+works but I would say it's a little bit
+hacky<00:10:01.540><c> because</c><00:10:02.540><c> I'm</c><00:10:02.870><c> mixing</c><00:10:03.640><c> jungles</c>
+
+00:10:04.630 --> 00:10:04.640 align:start position:0%
+hacky because I'm mixing jungles
+ 
+
+00:10:04.640 --> 00:10:09.610 align:start position:0%
+hacky because I'm mixing jungles
+template<00:10:05.150><c> language</c><00:10:05.330><c> with</c><00:10:06.340><c> JavaScript</c><00:10:08.080><c> so</c><00:10:09.080><c> a</c>
+
+00:10:09.610 --> 00:10:09.620 align:start position:0%
+template language with JavaScript so a
+ 
+
+00:10:09.620 --> 00:10:11.710 align:start position:0%
+template language with JavaScript so a
+more<00:10:10.100><c> you</c><00:10:10.490><c> know</c><00:10:10.520><c> clean</c><00:10:10.910><c> way</c><00:10:11.120><c> of</c><00:10:11.150><c> doing</c><00:10:11.570><c> it</c>
+
+00:10:11.710 --> 00:10:11.720 align:start position:0%
+more you know clean way of doing it
+ 
+
+00:10:11.720 --> 00:10:15.450 align:start position:0%
+more you know clean way of doing it
+would<00:10:12.050><c> be</c><00:10:12.110><c> something</c><00:10:13.040><c> like</c><00:10:13.250><c> this</c><00:10:13.810><c> I'm</c><00:10:14.810><c> gonna</c>
+
+00:10:15.450 --> 00:10:15.460 align:start position:0%
+would be something like this I'm gonna
+ 
+
+00:10:15.460 --> 00:10:21.790 align:start position:0%
+would be something like this I'm gonna
+use<00:10:16.810><c> this</c><00:10:17.890><c> jungle</c><00:10:18.890><c> statements</c><00:10:20.410><c> this</c><00:10:21.410><c> says</c>
+
+00:10:21.790 --> 00:10:21.800 align:start position:0%
+use this jungle statements this says
+ 
+
+00:10:21.800 --> 00:10:24.280 align:start position:0%
+use this jungle statements this says
+take<00:10:22.640><c> the</c><00:10:22.910><c> jungle</c><00:10:23.210><c> variable</c><00:10:23.660><c> username</c><00:10:23.930><c> and</c>
+
+00:10:24.280 --> 00:10:24.290 align:start position:0%
+take the jungle variable username and
+ 
+
+00:10:24.290 --> 00:10:27.670 align:start position:0%
+take the jungle variable username and
+then<00:10:25.250><c> make</c><00:10:25.490><c> it</c><00:10:25.520><c> available</c><00:10:25.730><c> to</c><00:10:26.360><c> the</c><00:10:26.690><c> HTML</c><00:10:27.500><c> and</c>
+
+00:10:27.670 --> 00:10:27.680 align:start position:0%
+then make it available to the HTML and
+ 
+
+00:10:27.680 --> 00:10:30.730 align:start position:0%
+then make it available to the HTML and
+to<00:10:27.950><c> JavaScript</c><00:10:28.670><c> by</c><00:10:29.180><c> putting</c><00:10:29.630><c> it</c><00:10:29.750><c> in</c><00:10:30.560><c> an</c>
+
+00:10:30.730 --> 00:10:30.740 align:start position:0%
+to JavaScript by putting it in an
+ 
+
+00:10:30.740 --> 00:10:35.140 align:start position:0%
+to JavaScript by putting it in an
+element<00:10:31.100><c> called</c><00:10:32.230><c> username</c><00:10:33.490><c> so</c><00:10:34.490><c> this</c><00:10:34.730><c> way</c><00:10:34.910><c> we</c>
+
+00:10:35.140 --> 00:10:35.150 align:start position:0%
+element called username so this way we
+ 
+
+00:10:35.150 --> 00:10:38.320 align:start position:0%
+element called username so this way we
+can<00:10:35.180><c> make</c><00:10:35.720><c> this</c><00:10:36.410><c> jungle</c><00:10:37.010><c> variable</c><00:10:37.400><c> available</c>
+
+00:10:38.320 --> 00:10:38.330 align:start position:0%
+can make this jungle variable available
+ 
+
+00:10:38.330 --> 00:10:41.710 align:start position:0%
+can make this jungle variable available
+to<00:10:38.540><c> JavaScript</c><00:10:39.200><c> and</c><00:10:39.620><c> we</c><00:10:40.400><c> can</c><00:10:40.580><c> retrieve</c><00:10:41.030><c> it</c><00:10:41.180><c> in</c>
+
+00:10:41.710 --> 00:10:41.720 align:start position:0%
+to JavaScript and we can retrieve it in
+ 
+
+00:10:41.720 --> 00:10:44.480 align:start position:0%
+to JavaScript and we can retrieve it in
+JavaScript<00:10:42.670><c> with</c>
+
+00:10:44.480 --> 00:10:44.490 align:start position:0%
+JavaScript with
+ 
+
+00:10:44.490 --> 00:10:48.050 align:start position:0%
+JavaScript with
+this<00:10:45.390><c> little</c><00:10:45.960><c> thing</c><00:10:46.200><c> right</c><00:10:46.380><c> here</c><00:10:46.940><c> let</c><00:10:47.940><c> me</c>
+
+00:10:48.050 --> 00:10:48.060 align:start position:0%
+this little thing right here let me
+ 
+
+00:10:48.060 --> 00:10:51.170 align:start position:0%
+this little thing right here let me
+paste<00:10:48.450><c> it</c><00:10:48.600><c> here</c><00:10:48.630><c> and</c><00:10:48.990><c> let</c><00:10:49.260><c> me</c><00:10:49.290><c> explain</c><00:10:49.589><c> here</c><00:10:50.180><c> so</c>
+
+00:10:51.170 --> 00:10:51.180 align:start position:0%
+paste it here and let me explain here so
+ 
+
+00:10:51.180 --> 00:10:56.690 align:start position:0%
+paste it here and let me explain here so
+this<00:10:51.600><c> JavaScript</c><00:10:52.589><c> statement</c><00:10:53.279><c> says</c><00:10:54.920><c> get</c><00:10:55.920><c> this</c>
+
+00:10:56.690 --> 00:10:56.700 align:start position:0%
+this JavaScript statement says get this
+ 
+
+00:10:56.700 --> 00:10:59.660 align:start position:0%
+this JavaScript statement says get this
+element<00:10:57.180><c> that's</c><00:10:57.899><c> that</c><00:10:58.350><c> contains</c><00:10:58.740><c> this</c>
+
+00:10:59.660 --> 00:10:59.670 align:start position:0%
+element that's that contains this
+ 
+
+00:10:59.670 --> 00:11:02.990 align:start position:0%
+element that's that contains this
+variable<00:11:00.029><c> username</c><00:11:00.890><c> with</c><00:11:01.890><c> document</c><00:11:02.580><c> dot</c><00:11:02.730><c> get</c>
+
+00:11:02.990 --> 00:11:03.000 align:start position:0%
+variable username with document dot get
+ 
+
+00:11:03.000 --> 00:11:05.660 align:start position:0%
+variable username with document dot get
+element<00:11:03.060><c> by</c><00:11:03.450><c> ID</c><00:11:03.810><c> and</c><00:11:04.260><c> then</c><00:11:04.860><c> get</c><00:11:05.070><c> what's</c><00:11:05.310><c> inside</c>
+
+00:11:05.660 --> 00:11:05.670 align:start position:0%
+element by ID and then get what's inside
+ 
+
+00:11:05.670 --> 00:11:08.590 align:start position:0%
+element by ID and then get what's inside
+it<00:11:05.850><c> and</c><00:11:05.970><c> parse</c><00:11:06.839><c> it</c><00:11:07.080><c> so</c><00:11:07.830><c> that</c><00:11:07.980><c> it's</c><00:11:08.130><c> available</c>
+
+00:11:08.590 --> 00:11:08.600 align:start position:0%
+it and parse it so that it's available
+ 
+
+00:11:08.600 --> 00:11:12.280 align:start position:0%
+it and parse it so that it's available
+in<00:11:09.600><c> this</c><00:11:10.110><c> new</c><00:11:10.470><c> JavaScript</c><00:11:11.279><c> variable</c><00:11:11.940><c> username</c>
+
+00:11:12.280 --> 00:11:12.290 align:start position:0%
+in this new JavaScript variable username
+ 
+
+00:11:12.290 --> 00:11:14.600 align:start position:0%
+in this new JavaScript variable username
+so<00:11:13.290><c> this</c><00:11:13.529><c> way</c><00:11:13.680><c> you</c><00:11:13.740><c> know</c><00:11:14.100><c> it's</c><00:11:14.250><c> a</c><00:11:14.339><c> little</c><00:11:14.430><c> bit</c>
+
+00:11:14.600 --> 00:11:14.610 align:start position:0%
+so this way you know it's a little bit
+ 
+
+00:11:14.610 --> 00:11:17.600 align:start position:0%
+so this way you know it's a little bit
+cleaner<00:11:14.820><c> because</c><00:11:15.089><c> we're</c><00:11:15.450><c> separating</c><00:11:16.610><c> jungle</c>
+
+00:11:17.600 --> 00:11:17.610 align:start position:0%
+cleaner because we're separating jungle
+ 
+
+00:11:17.610 --> 00:11:21.880 align:start position:0%
+cleaner because we're separating jungle
+templating<00:11:18.089><c> with</c><00:11:18.680><c> JavaScript</c><00:11:19.680><c> and</c><00:11:20.600><c> now</c>
+
+00:11:21.880 --> 00:11:21.890 align:start position:0%
+templating with JavaScript and now
+ 
+
+00:11:21.890 --> 00:11:25.190 align:start position:0%
+templating with JavaScript and now
+instead<00:11:22.890><c> of</c><00:11:22.980><c> using</c><00:11:23.250><c> a</c><00:11:23.790><c> jungle</c><00:11:24.630><c> variable</c><00:11:24.959><c> here</c>
+
+00:11:25.190 --> 00:11:25.200 align:start position:0%
+instead of using a jungle variable here
+ 
+
+00:11:25.200 --> 00:11:28.460 align:start position:0%
+instead of using a jungle variable here
+directly<00:11:25.860><c> we</c><00:11:26.160><c> can</c><00:11:27.089><c> use</c><00:11:27.240><c> the</c><00:11:27.600><c> JavaScript</c>
+
+00:11:28.460 --> 00:11:28.470 align:start position:0%
+directly we can use the JavaScript
+ 
+
+00:11:28.470 --> 00:11:31.370 align:start position:0%
+directly we can use the JavaScript
+variable<00:11:29.370><c> instead</c><00:11:29.870><c> which</c><00:11:30.870><c> I</c><00:11:31.050><c> think</c><00:11:31.260><c> it's</c>
+
+00:11:31.370 --> 00:11:31.380 align:start position:0%
+variable instead which I think it's
+ 
+
+00:11:31.380 --> 00:11:35.810 align:start position:0%
+variable instead which I think it's
+cleaner<00:11:32.240><c> like</c><00:11:33.240><c> that</c><00:11:33.480><c> hello</c><00:11:34.200><c> plus</c><00:11:34.740><c> user</c><00:11:35.520><c> name</c>
+
+00:11:35.810 --> 00:11:35.820 align:start position:0%
+cleaner like that hello plus user name
+ 
+
+00:11:35.820 --> 00:11:40.280 align:start position:0%
+cleaner like that hello plus user name
+plus<00:11:36.480><c> let's</c><00:11:37.110><c> say</c><00:11:37.440><c> an</c><00:11:38.100><c> exclamation</c><00:11:38.399><c> mark</c><00:11:39.290><c> so</c>
+
+00:11:40.280 --> 00:11:40.290 align:start position:0%
+plus let's say an exclamation mark so
+ 
+
+00:11:40.290 --> 00:11:42.230 align:start position:0%
+plus let's say an exclamation mark so
+this<00:11:40.680><c> way</c><00:11:40.890><c> we</c><00:11:41.130><c> should</c><00:11:41.190><c> see</c><00:11:41.550><c> the</c><00:11:41.760><c> same</c><00:11:41.940><c> thing</c>
+
+00:11:42.230 --> 00:11:42.240 align:start position:0%
+this way we should see the same thing
+ 
+
+00:11:42.240 --> 00:11:46.480 align:start position:0%
+this way we should see the same thing
+because<00:11:43.130><c> we're</c><00:11:44.270><c> supplying</c><00:11:45.270><c> the</c><00:11:45.779><c> jungle</c>
+
+00:11:46.480 --> 00:11:46.490 align:start position:0%
+because we're supplying the jungle
+ 
+
+00:11:46.490 --> 00:11:49.430 align:start position:0%
+because we're supplying the jungle
+username<00:11:47.490><c> variable</c><00:11:47.600><c> to</c><00:11:48.600><c> JavaScript</c><00:11:49.170><c> and</c>
+
+00:11:49.430 --> 00:11:49.440 align:start position:0%
+username variable to JavaScript and
+ 
+
+00:11:49.440 --> 00:11:51.730 align:start position:0%
+username variable to JavaScript and
+we're<00:11:50.100><c> retrieving</c><00:11:50.490><c> it</c><00:11:50.850><c> into</c><00:11:51.270><c> a</c><00:11:51.300><c> JavaScript</c>
+
+00:11:51.730 --> 00:11:51.740 align:start position:0%
+we're retrieving it into a JavaScript
+ 
+
+00:11:51.740 --> 00:11:54.800 align:start position:0%
+we're retrieving it into a JavaScript
+variable<00:11:52.740><c> and</c><00:11:53.070><c> then</c><00:11:53.640><c> we're</c><00:11:53.880><c> putting</c><00:11:54.180><c> it</c><00:11:54.330><c> here</c>
+
+00:11:54.800 --> 00:11:54.810 align:start position:0%
+variable and then we're putting it here
+ 
+
+00:11:54.810 --> 00:11:58.900 align:start position:0%
+variable and then we're putting it here
+into<00:11:55.339><c> the</c><00:11:56.339><c> message</c><00:11:56.670><c> which</c><00:11:57.600><c> is</c><00:11:57.810><c> part</c><00:11:58.110><c> of</c><00:11:58.200><c> the</c>
+
+00:11:58.900 --> 00:11:58.910 align:start position:0%
+into the message which is part of the
+ 
+
+00:11:58.910 --> 00:12:04.490 align:start position:0%
+into the message which is part of the
+view<00:11:59.910><c> app</c><00:12:00.150><c> here</c><00:12:00.510><c> and</c><00:12:01.279><c> so</c><00:12:02.330><c> when</c><00:12:03.330><c> this</c><00:12:04.140><c> gets</c>
+
+00:12:04.490 --> 00:12:04.500 align:start position:0%
+view app here and so when this gets
+ 
+
+00:12:04.500 --> 00:12:07.430 align:start position:0%
+view app here and so when this gets
+loaded<00:12:05.000><c> that's</c><00:12:06.000><c> what</c><00:12:06.180><c> we</c><00:12:06.270><c> should</c><00:12:06.450><c> see</c><00:12:06.630><c> hello</c>
+
+00:12:07.430 --> 00:12:07.440 align:start position:0%
+loaded that's what we should see hello
+ 
+
+00:12:07.440 --> 00:12:10.490 align:start position:0%
+loaded that's what we should see hello
+user<00:12:08.010><c> name</c><00:12:08.250><c> exclamation</c><00:12:09.029><c> mark</c><00:12:09.209><c> so</c><00:12:10.050><c> let's</c><00:12:10.290><c> make</c>
+
+00:12:10.490 --> 00:12:10.500 align:start position:0%
+user name exclamation mark so let's make
+ 
+
+00:12:10.500 --> 00:12:13.940 align:start position:0%
+user name exclamation mark so let's make
+sure<00:12:10.529><c> that</c><00:12:10.740><c> works</c><00:12:11.959><c> by</c><00:12:12.959><c> going</c><00:12:13.260><c> to</c><00:12:13.470><c> the</c><00:12:13.560><c> same</c><00:12:13.770><c> URL</c>
+
+00:12:13.940 --> 00:12:13.950 align:start position:0%
+sure that works by going to the same URL
+ 
+
+00:12:13.950 --> 00:12:16.730 align:start position:0%
+sure that works by going to the same URL
+and<00:12:14.490><c> refreshing</c><00:12:14.910><c> it</c><00:12:15.260><c> yeah</c><00:12:16.260><c> that's</c><00:12:16.529><c> what</c><00:12:16.650><c> we</c>
+
+00:12:16.730 --> 00:12:16.740 align:start position:0%
+and refreshing it yeah that's what we
+ 
+
+00:12:16.740 --> 00:12:20.329 align:start position:0%
+and refreshing it yeah that's what we
+see<00:12:16.890><c> hello</c><00:12:17.490><c> user</c><00:12:18.000><c> name</c><00:12:18.240><c> now</c><00:12:19.140><c> this</c><00:12:19.650><c> is</c><00:12:19.890><c> the</c>
+
+00:12:20.329 --> 00:12:20.339 align:start position:0%
+see hello user name now this is the
+ 
+
+00:12:20.339 --> 00:12:23.240 align:start position:0%
+see hello user name now this is the
+first<00:12:20.640><c> basic</c><00:12:21.209><c> step</c><00:12:21.240><c> for</c><00:12:21.900><c> setting</c><00:12:22.230><c> up</c><00:12:22.350><c> a</c><00:12:22.560><c> Django</c>
+
+00:12:23.240 --> 00:12:23.250 align:start position:0%
+first basic step for setting up a Django
+ 
+
+00:12:23.250 --> 00:12:25.190 align:start position:0%
+first basic step for setting up a Django
+and<00:12:23.430><c> view</c><00:12:23.640><c> together</c><00:12:24.000><c> but</c><00:12:24.720><c> if</c><00:12:24.839><c> you</c><00:12:24.959><c> want</c><00:12:25.110><c> to</c>
+
+00:12:25.190 --> 00:12:25.200 align:start position:0%
+and view together but if you want to
+ 
+
+00:12:25.200 --> 00:12:29.030 align:start position:0%
+and view together but if you want to
+create<00:12:25.589><c> your</c><00:12:25.800><c> own</c><00:12:26.810><c> full</c><00:12:27.810><c> stack</c><00:12:28.079><c> app</c><00:12:28.290><c> using</c>
+
+00:12:29.030 --> 00:12:29.040 align:start position:0%
+create your own full stack app using
+ 
+
+00:12:29.040 --> 00:12:31.640 align:start position:0%
+create your own full stack app using
+this<00:12:29.190><c> text</c><00:12:29.520><c> stack</c><00:12:29.959><c> this</c><00:12:30.959><c> is</c><00:12:31.140><c> not</c><00:12:31.350><c> quite</c><00:12:31.589><c> enough</c>
+
+00:12:31.640 --> 00:12:31.650 align:start position:0%
+this text stack this is not quite enough
+ 
+
+00:12:31.650 --> 00:12:33.940 align:start position:0%
+this text stack this is not quite enough
+so<00:12:32.370><c> let</c><00:12:32.760><c> me</c><00:12:32.850><c> try</c><00:12:33.000><c> to</c><00:12:33.089><c> explain</c><00:12:33.180><c> those</c><00:12:33.600><c> quickly</c>
+
+00:12:33.940 --> 00:12:33.950 align:start position:0%
+so let me try to explain those quickly
+ 
+
+00:12:33.950 --> 00:12:37.310 align:start position:0%
+so let me try to explain those quickly
+the<00:12:34.950><c> first</c><00:12:35.250><c> thing</c><00:12:35.459><c> is</c><00:12:35.760><c> this</c><00:12:36.750><c> statement</c><00:12:37.079><c> that</c>
+
+00:12:37.310 --> 00:12:37.320 align:start position:0%
+the first thing is this statement that
+ 
+
+00:12:37.320 --> 00:12:39.610 align:start position:0%
+the first thing is this statement that
+we<00:12:37.589><c> saw</c><00:12:37.829><c> earlier</c><00:12:38.279><c> doesn't</c><00:12:39.180><c> always</c>
+
+00:12:39.610 --> 00:12:39.620 align:start position:0%
+we saw earlier doesn't always
+ 
+
+00:12:39.620 --> 00:12:42.319 align:start position:0%
+we saw earlier doesn't always
+automatically<00:12:40.620><c> work</c><00:12:41.160><c> so</c><00:12:41.790><c> it</c><00:12:42.000><c> worked</c>
+
+00:12:42.319 --> 00:12:42.329 align:start position:0%
+automatically work so it worked
+ 
+
+00:12:42.329 --> 00:12:45.079 align:start position:0%
+automatically work so it worked
+he<00:12:42.660><c> works</c><00:12:42.839><c> for</c><00:12:42.959><c> simple</c><00:12:43.829><c> variables</c><00:12:44.220><c> like</c><00:12:44.880><c> this</c>
+
+00:12:45.079 --> 00:12:45.089 align:start position:0%
+he works for simple variables like this
+ 
+
+00:12:45.089 --> 00:12:47.690 align:start position:0%
+he works for simple variables like this
+username<00:12:45.450><c> which</c><00:12:45.779><c> is</c><00:12:45.810><c> a</c><00:12:45.930><c> string</c><00:12:46.260><c> but</c><00:12:46.980><c> if</c><00:12:47.250><c> we</c><00:12:47.490><c> had</c>
+
+00:12:47.690 --> 00:12:47.700 align:start position:0%
+username which is a string but if we had
+ 
+
+00:12:47.700 --> 00:12:50.750 align:start position:0%
+username which is a string but if we had
+a<00:12:47.730><c> more</c><00:12:48.000><c> complex</c><00:12:48.390><c> object</c><00:12:49.190><c> for</c><00:12:50.190><c> example</c><00:12:50.279><c> the</c>
+
+00:12:50.750 --> 00:12:50.760 align:start position:0%
+a more complex object for example the
+ 
+
+00:12:50.760 --> 00:12:55.010 align:start position:0%
+a more complex object for example the
+current<00:12:51.770><c> user</c><00:12:52.910><c> that</c><00:12:53.910><c> we</c><00:12:54.089><c> were</c><00:12:54.240><c> passing</c><00:12:54.720><c> from</c>
+
+00:12:55.010 --> 00:12:55.020 align:start position:0%
+current user that we were passing from
+ 
+
+00:12:55.020 --> 00:12:57.049 align:start position:0%
+current user that we were passing from
+our<00:12:55.650><c> Django</c><00:12:56.100><c> view</c>
+
+00:12:57.049 --> 00:12:57.059 align:start position:0%
+our Django view
+ 
+
+00:12:57.059 --> 00:13:01.369 align:start position:0%
+our Django view
+it<00:12:57.839><c> doesn't</c><00:12:58.319><c> always</c><00:12:58.439><c> work</c><00:12:58.589><c> so</c><00:12:59.719><c> I</c><00:13:00.719><c> got</c><00:13:01.139><c> this</c>
+
+00:13:01.369 --> 00:13:01.379 align:start position:0%
+it doesn't always work so I got this
+ 
+
+00:13:01.379 --> 00:13:04.219 align:start position:0%
+it doesn't always work so I got this
+error<00:13:01.679><c> object</c><00:13:02.279><c> of</c><00:13:02.699><c> type</c><00:13:02.849><c> user</c><00:13:03.149><c> is</c><00:13:03.419><c> not</c><00:13:03.599><c> JSON</c><00:13:04.139><c> is</c>
+
+00:13:04.219 --> 00:13:04.229 align:start position:0%
+error object of type user is not JSON is
+ 
+
+00:13:04.229 --> 00:13:07.209 align:start position:0%
+error object of type user is not JSON is
+serializable<00:13:04.909><c> what</c><00:13:05.909><c> that</c><00:13:06.119><c> means</c><00:13:06.389><c> is</c><00:13:06.779><c> that</c>
+
+00:13:07.209 --> 00:13:07.219 align:start position:0%
+serializable what that means is that
+ 
+
+00:13:07.219 --> 00:13:11.899 align:start position:0%
+serializable what that means is that
+jungle<00:13:08.219><c> provides</c><00:13:08.729><c> us</c><00:13:08.999><c> with</c><00:13:10.009><c> with</c><00:13:11.009><c> a</c><00:13:11.039><c> default</c>
+
+00:13:11.899 --> 00:13:11.909 align:start position:0%
+jungle provides us with with a default
+ 
+
+00:13:11.909 --> 00:13:15.499 align:start position:0%
+jungle provides us with with a default
+serializer<00:13:12.649><c> the</c><00:13:13.649><c> serializes</c><00:13:14.459><c> this</c><00:13:15.209><c> object</c>
+
+00:13:15.499 --> 00:13:15.509 align:start position:0%
+serializer the serializes this object
+ 
+
+00:13:15.509 --> 00:13:19.389 align:start position:0%
+serializer the serializes this object
+this<00:13:16.469><c> given</c><00:13:17.189><c> object</c><00:13:17.369><c> into</c><00:13:18.359><c> a</c><00:13:18.389><c> JSON</c><00:13:18.899><c> object</c>
+
+00:13:19.389 --> 00:13:19.399 align:start position:0%
+this given object into a JSON object
+ 
+
+00:13:19.399 --> 00:13:23.449 align:start position:0%
+this given object into a JSON object
+that<00:13:20.399><c> can</c><00:13:20.609><c> be</c><00:13:20.699><c> used</c><00:13:21.019><c> within</c><00:13:22.019><c> JavaScript</c><00:13:22.679><c> but</c>
+
+00:13:23.449 --> 00:13:23.459 align:start position:0%
+that can be used within JavaScript but
+ 
+
+00:13:23.459 --> 00:13:25.729 align:start position:0%
+that can be used within JavaScript but
+this<00:13:23.729><c> default</c><00:13:24.479><c> serializer</c><00:13:25.049><c> doesn't</c><00:13:25.559><c> always</c>
+
+00:13:25.729 --> 00:13:25.739 align:start position:0%
+this default serializer doesn't always
+ 
+
+00:13:25.739 --> 00:13:28.459 align:start position:0%
+this default serializer doesn't always
+work<00:13:26.359><c> so</c><00:13:27.359><c> what</c><00:13:27.599><c> you'll</c><00:13:27.749><c> need</c><00:13:27.869><c> to</c><00:13:27.929><c> do</c><00:13:28.109><c> instead</c>
+
+00:13:28.459 --> 00:13:28.469 align:start position:0%
+work so what you'll need to do instead
+ 
+
+00:13:28.469 --> 00:13:31.429 align:start position:0%
+work so what you'll need to do instead
+is<00:13:28.709><c> you</c><00:13:29.039><c> need</c><00:13:29.249><c> to</c><00:13:29.399><c> set</c><00:13:29.759><c> up</c><00:13:29.789><c> your</c><00:13:29.879><c> own</c><00:13:30.439><c> custom</c>
+
+00:13:31.429 --> 00:13:31.439 align:start position:0%
+is you need to set up your own custom
+ 
+
+00:13:31.439 --> 00:13:35.139 align:start position:0%
+is you need to set up your own custom
+serializer<00:13:32.539><c> using</c><00:13:33.539><c> jungle</c><00:13:34.289><c> rest</c><00:13:34.499><c> frameworks</c>
+
+00:13:35.139 --> 00:13:35.149 align:start position:0%
+serializer using jungle rest frameworks
+ 
+
+00:13:35.149 --> 00:13:39.169 align:start position:0%
+serializer using jungle rest frameworks
+serializer<00:13:36.149><c> a</c><00:13:36.509><c> library</c><00:13:37.109><c> and</c><00:13:37.879><c> I</c><00:13:38.879><c> don't</c><00:13:39.059><c> have</c>
+
+00:13:39.169 --> 00:13:39.179 align:start position:0%
+serializer a library and I don't have
+ 
+
+00:13:39.179 --> 00:13:41.329 align:start position:0%
+serializer a library and I don't have
+time<00:13:39.389><c> to</c><00:13:39.599><c> explain</c><00:13:39.719><c> that</c><00:13:40.109><c> right</c><00:13:40.289><c> now</c><00:13:40.409><c> so</c><00:13:41.129><c> I'm</c>
+
+00:13:41.329 --> 00:13:41.339 align:start position:0%
+time to explain that right now so I'm
+ 
+
+00:13:41.339 --> 00:13:42.499 align:start position:0%
+time to explain that right now so I'm
+gonna<00:13:41.459><c> put</c><00:13:41.729><c> you</c><00:13:41.879><c> know</c><00:13:41.969><c> all</c><00:13:42.149><c> the</c><00:13:42.269><c> relevant</c>
+
+00:13:42.499 --> 00:13:42.509 align:start position:0%
+gonna put you know all the relevant
+ 
+
+00:13:42.509 --> 00:13:44.959 align:start position:0%
+gonna put you know all the relevant
+links<00:13:43.049><c> in</c><00:13:43.229><c> the</c><00:13:43.349><c> description</c><00:13:43.829><c> so</c><00:13:44.459><c> that</c><00:13:44.489><c> you</c>
+
+00:13:44.959 --> 00:13:44.969 align:start position:0%
+links in the description so that you
+ 
+
+00:13:44.969 --> 00:13:47.239 align:start position:0%
+links in the description so that you
+know<00:13:45.059><c> you'll</c><00:13:45.239><c> be</c><00:13:45.269><c> able</c><00:13:45.359><c> to</c><00:13:45.689><c> look</c><00:13:46.619><c> into</c><00:13:46.829><c> how</c><00:13:47.189><c> to</c>
+
+00:13:47.239 --> 00:13:47.249 align:start position:0%
+know you'll be able to look into how to
+ 
+
+00:13:47.249 --> 00:13:51.259 align:start position:0%
+know you'll be able to look into how to
+do<00:13:47.459><c> that</c><00:13:47.609><c> and</c><00:13:48.239><c> you</c><00:13:48.689><c> can</c><00:13:48.899><c> look</c><00:13:49.049><c> at</c><00:13:49.399><c> my</c><00:13:50.399><c> code</c><00:13:51.029><c> as</c>
+
+00:13:51.259 --> 00:13:51.269 align:start position:0%
+do that and you can look at my code as
+ 
+
+00:13:51.269 --> 00:13:54.079 align:start position:0%
+do that and you can look at my code as
+an<00:13:51.479><c> example</c><00:13:51.859><c> about</c><00:13:52.859><c> how</c><00:13:53.069><c> to</c><00:13:53.249><c> do</c><00:13:53.489><c> that</c><00:13:53.609><c> too</c><00:13:53.819><c> and</c>
+
+00:13:54.079 --> 00:13:54.089 align:start position:0%
+an example about how to do that too and
+ 
+
+00:13:54.089 --> 00:13:57.529 align:start position:0%
+an example about how to do that too and
+that's<00:13:54.629><c> what</c><00:13:54.779><c> I</c><00:13:54.809><c> used</c><00:13:55.079><c> to</c><00:13:55.939><c> serialize</c><00:13:56.939><c> you</c><00:13:57.449><c> know</c>
+
+00:13:57.529 --> 00:13:57.539 align:start position:0%
+that's what I used to serialize you know
+ 
+
+00:13:57.539 --> 00:14:01.249 align:start position:0%
+that's what I used to serialize you know
+each<00:13:57.809><c> answer</c><00:13:58.229><c> object</c><00:13:59.359><c> that's</c><00:14:00.359><c> sent</c><00:14:00.749><c> to</c><00:14:00.929><c> my</c>
+
+00:14:01.249 --> 00:14:01.259 align:start position:0%
+each answer object that's sent to my
+ 
+
+00:14:01.259 --> 00:14:04.969 align:start position:0%
+each answer object that's sent to my
+view<00:14:02.099><c> app</c><00:14:02.279><c> too</c><00:14:02.579><c> so</c><00:14:02.969><c> that</c><00:14:03.229><c> my</c><00:14:04.229><c> view</c><00:14:04.469><c> app</c><00:14:04.649><c> will</c><00:14:04.949><c> be</c>
+
+00:14:04.969 --> 00:14:04.979 align:start position:0%
+view app too so that my view app will be
+ 
+
+00:14:04.979 --> 00:14:07.819 align:start position:0%
+view app too so that my view app will be
+able<00:14:05.309><c> to</c><00:14:05.459><c> you</c><00:14:05.999><c> know</c><00:14:06.029><c> eat</c><00:14:06.329><c> use</c><00:14:06.599><c> each</c><00:14:07.469><c> answer</c>
+
+00:14:07.819 --> 00:14:07.829 align:start position:0%
+able to you know eat use each answer
+ 
+
+00:14:07.829 --> 00:14:10.989 align:start position:0%
+able to you know eat use each answer
+object<00:14:08.339><c> as</c><00:14:08.519><c> if</c><00:14:08.879><c> that's</c><00:14:09.119><c> an</c><00:14:09.329><c> JavaScript</c><00:14:10.319><c> object</c>
+
+00:14:10.989 --> 00:14:10.999 align:start position:0%
+object as if that's an JavaScript object
+ 
+
+00:14:10.999 --> 00:14:13.669 align:start position:0%
+object as if that's an JavaScript object
+now<00:14:11.999><c> the</c><00:14:12.059><c> second</c><00:14:12.509><c> thing</c><00:14:12.539><c> is</c><00:14:12.839><c> what</c><00:14:13.439><c> if</c><00:14:13.559><c> you</c>
+
+00:14:13.669 --> 00:14:13.679 align:start position:0%
+now the second thing is what if you
+ 
+
+00:14:13.679 --> 00:14:17.179 align:start position:0%
+now the second thing is what if you
+wanted<00:14:13.949><c> to</c><00:14:14.069><c> send</c><00:14:14.339><c> some</c><00:14:14.549><c> data</c><00:14:14.699><c> from</c><00:14:15.599><c> view</c><00:14:16.589><c> to</c>
+
+00:14:17.179 --> 00:14:17.189 align:start position:0%
+wanted to send some data from view to
+ 
+
+00:14:17.189 --> 00:14:20.689 align:start position:0%
+wanted to send some data from view to
+jungle<00:14:17.459><c> not</c><00:14:18.149><c> just</c><00:14:18.389><c> from</c><00:14:18.569><c> the</c><00:14:19.529><c> from</c><00:14:20.009><c> Django</c><00:14:20.339><c> to</c>
+
+00:14:20.689 --> 00:14:20.699 align:start position:0%
+jungle not just from the from Django to
+ 
+
+00:14:20.699 --> 00:14:24.259 align:start position:0%
+jungle not just from the from Django to
+view<00:14:21.259><c> well</c><00:14:22.259><c> the</c><00:14:22.349><c> first</c><00:14:22.559><c> thing</c><00:14:22.679><c> you</c><00:14:23.009><c> want</c><00:14:23.999><c> to</c><00:14:24.059><c> do</c>
+
+00:14:24.259 --> 00:14:24.269 align:start position:0%
+view well the first thing you want to do
+ 
+
+00:14:24.269 --> 00:14:27.499 align:start position:0%
+view well the first thing you want to do
+is<00:14:24.509><c> you</c><00:14:25.019><c> want</c><00:14:25.229><c> to</c><00:14:25.319><c> define</c><00:14:25.889><c> a</c><00:14:26.189><c> method</c><00:14:26.639><c> in</c><00:14:27.059><c> your</c>
+
+00:14:27.499 --> 00:14:27.509 align:start position:0%
+is you want to define a method in your
+ 
+
+00:14:27.509 --> 00:14:30.619 align:start position:0%
+is you want to define a method in your
+view<00:14:28.139><c> instance</c><00:14:28.559><c> kind</c><00:14:29.399><c> of</c><00:14:29.459><c> like</c><00:14:29.609><c> this</c><00:14:29.729><c> methods</c>
+
+00:14:30.619 --> 00:14:30.629 align:start position:0%
+view instance kind of like this methods
+ 
+
+00:14:30.629 --> 00:14:33.409 align:start position:0%
+view instance kind of like this methods
+and<00:14:30.959><c> then</c><00:14:31.589><c> you</c><00:14:31.709><c> can</c><00:14:31.859><c> define</c><00:14:32.129><c> the</c><00:14:32.399><c> name</c><00:14:32.639><c> and</c><00:14:32.999><c> the</c>
+
+00:14:33.409 --> 00:14:33.419 align:start position:0%
+and then you can define the name and the
+ 
+
+00:14:33.419 --> 00:14:37.249 align:start position:0%
+and then you can define the name and the
+function<00:14:33.689><c> so</c><00:14:34.679><c> let's</c><00:14:35.069><c> call</c><00:14:35.279><c> it</c><00:14:35.459><c> votes</c><00:14:36.299><c> so</c><00:14:36.929><c> let's</c>
+
+00:14:37.249 --> 00:14:37.259 align:start position:0%
+function so let's call it votes so let's
+ 
+
+00:14:37.259 --> 00:14:38.839 align:start position:0%
+function so let's call it votes so let's
+let's<00:14:37.679><c> just</c><00:14:37.829><c> say</c><00:14:37.949><c> this</c><00:14:38.159><c> is</c><00:14:38.279><c> gonna</c><00:14:38.429><c> be</c><00:14:38.609><c> a</c>
+
+00:14:38.839 --> 00:14:38.849 align:start position:0%
+let's just say this is gonna be a
+ 
+
+00:14:38.849 --> 00:14:41.749 align:start position:0%
+let's just say this is gonna be a
+function<00:14:39.719><c> that's</c><00:14:40.409><c> gonna</c><00:14:40.589><c> be</c><00:14:40.709><c> called</c><00:14:40.949><c> when</c><00:14:41.219><c> you</c>
+
+00:14:41.749 --> 00:14:41.759 align:start position:0%
+function that's gonna be called when you
+ 
+
+00:14:41.759 --> 00:14:44.409 align:start position:0%
+function that's gonna be called when you
+know<00:14:41.849><c> one</c><00:14:41.999><c> of</c><00:14:42.029><c> the</c><00:14:42.209><c> vote</c><00:14:42.599><c> buttons</c><00:14:43.199><c> is</c><00:14:43.469><c> clicked</c>
+
+00:14:44.409 --> 00:14:44.419 align:start position:0%
+know one of the vote buttons is clicked
+ 
+
+00:14:44.419 --> 00:14:48.289 align:start position:0%
+know one of the vote buttons is clicked
+for<00:14:45.419><c> now</c><00:14:45.569><c> I'm</c><00:14:46.019><c> just</c><00:14:46.529><c> gonna</c><00:14:46.679><c> create</c><00:14:47.129><c> a</c><00:14:47.399><c> simple</c>
+
+00:14:48.289 --> 00:14:48.299 align:start position:0%
+for now I'm just gonna create a simple
+ 
+
+00:14:48.299 --> 00:14:54.349 align:start position:0%
+for now I'm just gonna create a simple
+function<00:14:49.669><c> that's</c><00:14:50.669><c> gonna</c><00:14:50.909><c> say</c><00:14:51.469><c> alert</c><00:14:53.359><c> the</c>
+
+00:14:54.349 --> 00:14:54.359 align:start position:0%
+function that's gonna say alert the
+ 
+
+00:14:54.359 --> 00:15:00.079 align:start position:0%
+function that's gonna say alert the
+votes<00:14:54.949><c> function</c><00:14:55.949><c> is</c><00:14:57.199><c> invoked</c>
+
+00:15:00.079 --> 00:15:00.089 align:start position:0%
+votes function is invoked
+ 
+
+00:15:00.089 --> 00:15:06.360 align:start position:0%
+votes function is invoked
+and<00:15:01.089><c> then</c><00:15:02.080><c> what</c><00:15:03.040><c> you</c><00:15:03.220><c> want</c><00:15:03.670><c> to</c><00:15:03.760><c> do</c><00:15:03.970><c> is</c><00:15:05.160><c> you</c><00:15:06.160><c> want</c>
+
+00:15:06.360 --> 00:15:06.370 align:start position:0%
+and then what you want to do is you want
+ 
+
+00:15:06.370 --> 00:15:10.490 align:start position:0%
+and then what you want to do is you want
+to<00:15:06.580><c> use</c><00:15:06.760><c> this</c><00:15:07.120><c> special</c><00:15:08.110><c> attributes</c><00:15:09.089><c> v</c><00:15:10.089><c> on</c>
+
+00:15:10.490 --> 00:15:10.500 align:start position:0%
+to use this special attributes v on
+ 
+
+00:15:10.500 --> 00:15:14.310 align:start position:0%
+to use this special attributes v on
+quick<00:15:11.500><c> I</c><00:15:12.339><c> think</c><00:15:13.240><c> this</c><00:15:13.510><c> is</c><00:15:13.750><c> the</c><00:15:13.899><c> right</c><00:15:14.020><c> syntax</c>
+
+00:15:14.310 --> 00:15:14.320 align:start position:0%
+quick I think this is the right syntax
+ 
+
+00:15:14.320 --> 00:15:18.870 align:start position:0%
+quick I think this is the right syntax
+and<00:15:14.830><c> then</c><00:15:16.500><c> just</c><00:15:17.500><c> say</c><00:15:17.680><c> booked</c>
+
+00:15:18.870 --> 00:15:18.880 align:start position:0%
+and then just say booked
+ 
+
+00:15:18.880 --> 00:15:21.389 align:start position:0%
+and then just say booked
+so<00:15:19.570><c> this</c><00:15:19.750><c> says</c><00:15:20.020><c> when</c><00:15:20.440><c> this</c><00:15:20.740><c> element</c><00:15:21.220><c> is</c>
+
+00:15:21.389 --> 00:15:21.399 align:start position:0%
+so this says when this element is
+ 
+
+00:15:21.399 --> 00:15:25.579 align:start position:0%
+so this says when this element is
+clicked<00:15:22.560><c> this</c><00:15:23.560><c> method</c><00:15:24.190><c> should</c><00:15:24.399><c> be</c><00:15:24.670><c> invoked</c>
+
+00:15:25.579 --> 00:15:25.589 align:start position:0%
+clicked this method should be invoked
+ 
+
+00:15:25.589 --> 00:15:30.240 align:start position:0%
+clicked this method should be invoked
+let's<00:15:26.589><c> make</c><00:15:26.800><c> sure</c><00:15:27.060><c> it</c><00:15:28.060><c> works</c><00:15:28.560><c> so</c><00:15:29.560><c> far</c><00:15:29.770><c> by</c>
+
+00:15:30.240 --> 00:15:30.250 align:start position:0%
+let's make sure it works so far by
+ 
+
+00:15:30.250 --> 00:15:33.570 align:start position:0%
+let's make sure it works so far by
+clicking<00:15:30.610><c> it</c><00:15:30.779><c> and</c><00:15:31.779><c> it</c><00:15:32.050><c> works</c><00:15:32.200><c> when</c><00:15:33.070><c> whenever</c>
+
+00:15:33.570 --> 00:15:33.580 align:start position:0%
+clicking it and it works when whenever
+ 
+
+00:15:33.580 --> 00:15:37.860 align:start position:0%
+clicking it and it works when whenever
+this<00:15:34.570><c> element</c><00:15:35.110><c> is</c><00:15:35.230><c> clicked</c><00:15:36.240><c> that</c><00:15:37.240><c> function</c><00:15:37.630><c> is</c>
+
+00:15:37.860 --> 00:15:37.870 align:start position:0%
+this element is clicked that function is
+ 
+
+00:15:37.870 --> 00:15:42.420 align:start position:0%
+this element is clicked that function is
+invoked<00:15:38.260><c> and</c><00:15:39.240><c> to</c><00:15:40.240><c> send</c><00:15:40.570><c> data</c><00:15:41.230><c> or</c><00:15:41.560><c> to</c><00:15:42.190><c> send</c><00:15:42.399><c> a</c>
+
+00:15:42.420 --> 00:15:42.430 align:start position:0%
+invoked and to send data or to send a
+ 
+
+00:15:42.430 --> 00:15:46.290 align:start position:0%
+invoked and to send data or to send a
+request<00:15:42.700><c> from</c><00:15:43.480><c> view</c><00:15:44.320><c> to</c><00:15:44.589><c> jungle</c><00:15:45.190><c> what</c><00:15:46.180><c> you</c>
+
+00:15:46.290 --> 00:15:46.300 align:start position:0%
+request from view to jungle what you
+ 
+
+00:15:46.300 --> 00:15:48.420 align:start position:0%
+request from view to jungle what you
+want<00:15:46.540><c> to</c><00:15:46.660><c> do</c><00:15:46.810><c> is</c><00:15:47.110><c> you</c><00:15:47.589><c> want</c><00:15:47.800><c> to</c><00:15:47.860><c> use</c><00:15:47.980><c> this</c>
+
+00:15:48.420 --> 00:15:48.430 align:start position:0%
+want to do is you want to use this
+ 
+
+00:15:48.430 --> 00:15:51.240 align:start position:0%
+want to do is you want to use this
+library<00:15:48.670><c> called</c><00:15:49.410><c> Axios</c><00:15:50.410><c> which</c><00:15:51.100><c> is</c>
+
+00:15:51.240 --> 00:15:51.250 align:start position:0%
+library called Axios which is
+ 
+
+00:15:51.250 --> 00:15:54.990 align:start position:0%
+library called Axios which is
+recommended<00:15:51.580><c> by</c><00:15:52.140><c> view</c><00:15:53.140><c> itself</c><00:15:53.470><c> and</c><00:15:54.000><c> this</c>
+
+00:15:54.990 --> 00:15:55.000 align:start position:0%
+recommended by view itself and this
+ 
+
+00:15:55.000 --> 00:15:57.870 align:start position:0%
+recommended by view itself and this
+library<00:15:55.240><c> you</c><00:15:56.050><c> can</c><00:15:56.230><c> use</c><00:15:56.380><c> it</c><00:15:56.560><c> to</c><00:15:56.920><c> send</c><00:15:57.160><c> an</c><00:15:57.310><c> AJAX</c>
+
+00:15:57.870 --> 00:15:57.880 align:start position:0%
+library you can use it to send an AJAX
+ 
+
+00:15:57.880 --> 00:16:01.530 align:start position:0%
+library you can use it to send an AJAX
+request<00:15:58.440><c> to</c><00:15:59.440><c> the</c><00:15:59.860><c> jungle</c><00:16:00.250><c> server</c><00:16:00.459><c> with</c><00:16:01.330><c> some</c>
+
+00:16:01.530 --> 00:16:01.540 align:start position:0%
+request to the jungle server with some
+ 
+
+00:16:01.540 --> 00:16:05.280 align:start position:0%
+request to the jungle server with some
+data<00:16:01.720><c> from</c><00:16:02.050><c> the</c><00:16:02.170><c> view</c><00:16:02.740><c> app</c><00:16:03.240><c> so</c><00:16:04.240><c> for</c><00:16:04.750><c> example</c><00:16:05.080><c> in</c>
+
+00:16:05.280 --> 00:16:05.290 align:start position:0%
+data from the view app so for example in
+ 
+
+00:16:05.290 --> 00:16:09.540 align:start position:0%
+data from the view app so for example in
+this<00:16:05.650><c> function</c><00:16:07.589><c> you</c><00:16:08.589><c> can</c><00:16:08.740><c> just</c><00:16:08.890><c> say</c><00:16:09.070><c> you</c><00:16:09.370><c> know</c>
+
+00:16:09.540 --> 00:16:09.550 align:start position:0%
+this function you can just say you know
+ 
+
+00:16:09.550 --> 00:16:15.600 align:start position:0%
+this function you can just say you know
+use<00:16:10.180><c> the</c><00:16:10.860><c> Axios</c><00:16:11.910><c> library</c><00:16:13.140><c> to</c><00:16:14.140><c> send</c><00:16:14.680><c> a</c><00:16:14.920><c> post</c>
+
+00:16:15.600 --> 00:16:15.610 align:start position:0%
+use the Axios library to send a post
+ 
+
+00:16:15.610 --> 00:16:19.590 align:start position:0%
+use the Axios library to send a post
+request<00:16:16.360><c> using</c><00:16:17.140><c> an</c><00:16:17.380><c> AJAX</c><00:16:17.830><c> request</c><00:16:18.070><c> to</c><00:16:19.060><c> django</c>
+
+00:16:19.590 --> 00:16:19.600 align:start position:0%
+request using an AJAX request to django
+ 
+
+00:16:19.600 --> 00:16:23.400 align:start position:0%
+request using an AJAX request to django
+server<00:16:19.810><c> to</c><00:16:20.680><c> either</c><00:16:20.890><c> upload</c><00:16:21.400><c> or</c><00:16:22.029><c> download</c><00:16:22.839><c> or</c>
+
+00:16:23.400 --> 00:16:23.410 align:start position:0%
+server to either upload or download or
+ 
+
+00:16:23.410 --> 00:16:29.400 align:start position:0%
+server to either upload or download or
+cancel<00:16:24.279><c> that</c><00:16:24.760><c> boat</c><00:16:25.000><c> and</c><00:16:26.850><c> when</c><00:16:28.290><c> when</c><00:16:29.290><c> the</c>
+
+00:16:29.400 --> 00:16:29.410 align:start position:0%
+cancel that boat and when when the
+ 
+
+00:16:29.410 --> 00:16:31.320 align:start position:0%
+cancel that boat and when when the
+jungle<00:16:29.709><c> server</c><00:16:29.920><c> handles</c><00:16:30.430><c> that</c><00:16:30.610><c> request</c><00:16:31.000><c> and</c>
+
+00:16:31.320 --> 00:16:31.330 align:start position:0%
+jungle server handles that request and
+ 
+
+00:16:31.330 --> 00:16:34.380 align:start position:0%
+jungle server handles that request and
+says<00:16:32.290><c> okay</c><00:16:32.650><c> you</c><00:16:33.190><c> know</c><00:16:33.310><c> that</c><00:16:33.970><c> vote</c><00:16:34.180><c> was</c>
+
+00:16:34.380 --> 00:16:34.390 align:start position:0%
+says okay you know that vote was
+ 
+
+00:16:34.390 --> 00:16:38.400 align:start position:0%
+says okay you know that vote was
+accepted<00:16:35.160><c> some</c><00:16:36.160><c> kind</c><00:16:36.339><c> of</c><00:16:36.430><c> response</c><00:16:37.410><c> is</c>
+
+00:16:38.400 --> 00:16:38.410 align:start position:0%
+accepted some kind of response is
+ 
+
+00:16:38.410 --> 00:16:41.370 align:start position:0%
+accepted some kind of response is
+returned<00:16:38.920><c> to</c><00:16:39.250><c> the</c><00:16:39.550><c> view</c><00:16:40.150><c> app</c><00:16:40.330><c> and</c><00:16:40.779><c> within</c><00:16:41.290><c> the</c>
+
+00:16:41.370 --> 00:16:41.380 align:start position:0%
+returned to the view app and within the
+ 
+
+00:16:41.380 --> 00:16:43.380 align:start position:0%
+returned to the view app and within the
+view<00:16:41.560><c> app</c><00:16:41.709><c> within</c><00:16:42.190><c> this</c><00:16:42.310><c> function</c><00:16:42.459><c> you</c><00:16:43.240><c> can</c>
+
+00:16:43.380 --> 00:16:43.390 align:start position:0%
+view app within this function you can
+ 
+
+00:16:43.390 --> 00:16:47.460 align:start position:0%
+view app within this function you can
+handle<00:16:43.690><c> that</c><00:16:44.440><c> request</c><00:16:45.570><c> so</c><00:16:46.570><c> with</c><00:16:47.140><c> my</c>
+
+00:16:47.460 --> 00:16:47.470 align:start position:0%
+handle that request so with my
+ 
+
+00:16:47.470 --> 00:16:50.370 align:start position:0%
+handle that request so with my
+particular<00:16:48.279><c> app</c><00:16:48.820><c> let</c><00:16:49.660><c> me</c><00:16:49.750><c> show</c><00:16:49.900><c> you</c><00:16:49.959><c> how</c><00:16:50.320><c> that</c>
+
+00:16:50.370 --> 00:16:50.380 align:start position:0%
+particular app let me show you how that
+ 
+
+00:16:50.380 --> 00:16:55.110 align:start position:0%
+particular app let me show you how that
+works<00:16:50.740><c> quickly</c><00:16:52.140><c> when</c><00:16:53.140><c> I</c><00:16:53.170><c> upload</c><00:16:53.850><c> let's</c><00:16:54.850><c> say</c>
+
+00:16:55.110 --> 00:16:55.120 align:start position:0%
+works quickly when I upload let's say
+ 
+
+00:16:55.120 --> 00:16:59.160 align:start position:0%
+works quickly when I upload let's say
+this<00:16:55.660><c> answer</c><00:16:56.140><c> right</c><00:16:56.260><c> here</c><00:16:57.600><c> that</c><00:16:58.600><c> request</c><00:16:58.990><c> is</c>
+
+00:16:59.160 --> 00:16:59.170 align:start position:0%
+this answer right here that request is
+ 
+
+00:16:59.170 --> 00:17:02.550 align:start position:0%
+this answer right here that request is
+sent<00:16:59.589><c> to</c><00:16:59.740><c> other</c><00:17:00.339><c> jungle</c><00:17:00.730><c> server</c><00:17:01.140><c> when</c><00:17:02.140><c> that</c><00:17:02.320><c> is</c>
+
+00:17:02.550 --> 00:17:02.560 align:start position:0%
+sent to other jungle server when that is
+ 
+
+00:17:02.560 --> 00:17:05.549 align:start position:0%
+sent to other jungle server when that is
+successful<00:17:03.010><c> I</c><00:17:03.430><c> can</c><00:17:04.209><c> you</c><00:17:04.870><c> know</c><00:17:04.990><c> change</c><00:17:05.290><c> the</c>
+
+00:17:05.549 --> 00:17:05.559 align:start position:0%
+successful I can you know change the
+ 
+
+00:17:05.559 --> 00:17:09.620 align:start position:0%
+successful I can you know change the
+color<00:17:05.770><c> of</c><00:17:06.040><c> this</c><00:17:06.970><c> upload</c><00:17:07.540><c> button</c><00:17:07.809><c> within</c><00:17:08.650><c> view</c>
+
+00:17:09.620 --> 00:17:09.630 align:start position:0%
+color of this upload button within view
+ 
+
+00:17:09.630 --> 00:17:13.170 align:start position:0%
+color of this upload button within view
+okay<00:17:10.630><c> so</c><00:17:10.689><c> all</c><00:17:11.050><c> of</c><00:17:11.260><c> this</c><00:17:11.380><c> is</c><00:17:11.620><c> pretty</c><00:17:11.829><c> technical</c>
+
+00:17:13.170 --> 00:17:13.180 align:start position:0%
+okay so all of this is pretty technical
+ 
+
+00:17:13.180 --> 00:17:15.570 align:start position:0%
+okay so all of this is pretty technical
+you<00:17:13.480><c> might</c><00:17:13.630><c> say</c><00:17:13.810><c> is</c><00:17:14.260><c> it</c><00:17:14.800><c> really</c><00:17:15.070><c> worth</c><00:17:15.550><c> the</c>
+
+00:17:15.570 --> 00:17:15.580 align:start position:0%
+you might say is it really worth the
+ 
+
+00:17:15.580 --> 00:17:18.360 align:start position:0%
+you might say is it really worth the
+effort<00:17:15.990><c> and</c><00:17:16.990><c> I</c><00:17:17.380><c> would</c><00:17:17.560><c> say</c><00:17:17.770><c> in</c><00:17:18.130><c> this</c>
+
+00:17:18.360 --> 00:17:18.370 align:start position:0%
+effort and I would say in this
+ 
+
+00:17:18.370 --> 00:17:21.000 align:start position:0%
+effort and I would say in this
+particular<00:17:18.550><c> case</c><00:17:19.090><c> it</c><00:17:19.420><c> definitely</c><00:17:19.960><c> was</c><00:17:20.110><c> so</c><00:17:20.680><c> let</c>
+
+00:17:21.000 --> 00:17:21.010 align:start position:0%
+particular case it definitely was so let
+ 
+
+00:17:21.010 --> 00:17:25.080 align:start position:0%
+particular case it definitely was so let
+me<00:17:21.070><c> explain</c><00:17:21.310><c> why</c><00:17:22.710><c> there</c><00:17:23.710><c> is</c><00:17:23.860><c> one</c><00:17:24.160><c> more</c><00:17:24.400><c> sort</c><00:17:25.000><c> of</c>
+
+00:17:25.080 --> 00:17:25.090 align:start position:0%
+me explain why there is one more sort of
+ 
+
+00:17:25.090 --> 00:17:26.670 align:start position:0%
+me explain why there is one more sort of
+feature<00:17:25.270><c> that</c><00:17:25.570><c> I</c><00:17:25.630><c> implement</c><00:17:26.230><c> it</c><00:17:26.350><c> you</c><00:17:26.590><c> know</c>
+
+00:17:26.670 --> 00:17:26.680 align:start position:0%
+feature that I implement it you know
+ 
+
+00:17:26.680 --> 00:17:29.400 align:start position:0%
+feature that I implement it you know
+related<00:17:27.070><c> to</c><00:17:27.250><c> these</c><00:17:27.460><c> voting</c><00:17:28.300><c> function</c><00:17:29.230><c> and</c>
+
+00:17:29.400 --> 00:17:29.410 align:start position:0%
+related to these voting function and
+ 
+
+00:17:29.410 --> 00:17:33.390 align:start position:0%
+related to these voting function and
+that<00:17:30.370><c> is</c><00:17:30.430><c> the</c><00:17:30.790><c> point</c><00:17:31.480><c> system</c><00:17:31.830><c> so</c><00:17:32.830><c> how</c><00:17:33.370><c> that</c>
+
+00:17:33.390 --> 00:17:33.400 align:start position:0%
+that is the point system so how that
+ 
+
+00:17:33.400 --> 00:17:35.520 align:start position:0%
+that is the point system so how that
+works<00:17:33.610><c> is</c><00:17:34.060><c> whenever</c><00:17:34.450><c> you</c><00:17:34.690><c> answer</c><00:17:35.050><c> someone's</c>
+
+00:17:35.520 --> 00:17:35.530 align:start position:0%
+works is whenever you answer someone's
+ 
+
+00:17:35.530 --> 00:17:38.130 align:start position:0%
+works is whenever you answer someone's
+question<00:17:35.620><c> and</c><00:17:36.190><c> someone</c><00:17:36.820><c> else</c><00:17:37.030><c> uploads</c><00:17:37.660><c> your</c>
+
+00:17:38.130 --> 00:17:38.140 align:start position:0%
+question and someone else uploads your
+ 
+
+00:17:38.140 --> 00:17:40.200 align:start position:0%
+question and someone else uploads your
+answer<00:17:38.500><c> you</c><00:17:38.980><c> get</c><00:17:39.100><c> one</c><00:17:39.310><c> point</c><00:17:39.490><c> you</c><00:17:39.910><c> know</c><00:17:40.000><c> every</c>
+
+00:17:40.200 --> 00:17:40.210 align:start position:0%
+answer you get one point you know every
+ 
+
+00:17:40.210 --> 00:17:41.820 align:start position:0%
+answer you get one point you know every
+time<00:17:40.390><c> someone</c><00:17:40.750><c> uploads</c><00:17:41.230><c> your</c><00:17:41.350><c> answer</c><00:17:41.650><c> and</c>
+
+00:17:41.820 --> 00:17:41.830 align:start position:0%
+time someone uploads your answer and
+ 
+
+00:17:41.830 --> 00:17:45.240 align:start position:0%
+time someone uploads your answer and
+that<00:17:42.510><c> point</c><00:17:43.510><c> is</c><00:17:43.780><c> shown</c><00:17:44.410><c> right</c><00:17:44.440><c> here</c><00:17:44.650><c> with</c><00:17:45.100><c> your</c>
+
+00:17:45.240 --> 00:17:45.250 align:start position:0%
+that point is shown right here with your
+ 
+
+00:17:45.250 --> 00:17:48.360 align:start position:0%
+that point is shown right here with your
+user<00:17:45.460><c> name</c><00:17:45.550><c> and</c><00:17:45.910><c> your</c><00:17:46.110><c> this</c><00:17:47.110><c> is</c><00:17:47.290><c> my</c><00:17:47.440><c> point</c><00:17:48.100><c> and</c>
+
+00:17:48.360 --> 00:17:48.370 align:start position:0%
+user name and your this is my point and
+ 
+
+00:17:48.370 --> 00:17:52.470 align:start position:0%
+user name and your this is my point and
+this<00:17:49.270><c> is</c><00:17:49.620><c> shown</c><00:17:50.620><c> in</c><00:17:51.010><c> the</c><00:17:51.250><c> leaderboard</c><00:17:51.730><c> -</c><00:17:51.910><c> so</c>
+
+00:17:52.470 --> 00:17:52.480 align:start position:0%
+this is shown in the leaderboard - so
+ 
+
+00:17:52.480 --> 00:17:57.000 align:start position:0%
+this is shown in the leaderboard - so
+whoever<00:17:52.930><c> you</c><00:17:53.680><c> know</c><00:17:53.770><c> answers</c><00:17:54.720><c> most</c><00:17:55.720><c> about</c><00:17:56.260><c> most</c>
+
+00:17:57.000 --> 00:17:57.010 align:start position:0%
+whoever you know answers most about most
+ 
+
+00:17:57.010 --> 00:17:59.220 align:start position:0%
+whoever you know answers most about most
+amount<00:17:57.280><c> of</c><00:17:57.370><c> questions</c><00:17:57.520><c> and</c><00:17:58.120><c> gets</c><00:17:58.390><c> most</c><00:17:58.990><c> amount</c>
+
+00:17:59.220 --> 00:17:59.230 align:start position:0%
+amount of questions and gets most amount
+ 
+
+00:17:59.230 --> 00:18:04.260 align:start position:0%
+amount of questions and gets most amount
+of<00:17:59.410><c> points</c><00:17:59.940><c> is</c><00:18:00.940><c> shown</c><00:18:01.330><c> here</c><00:18:01.600><c> and</c><00:18:02.670><c> I</c><00:18:03.670><c> found</c><00:18:04.090><c> that</c>
+
+00:18:04.260 --> 00:18:04.270 align:start position:0%
+of points is shown here and I found that
+ 
+
+00:18:04.270 --> 00:18:07.530 align:start position:0%
+of points is shown here and I found that
+it's<00:18:04.480><c> actually</c><00:18:04.630><c> pretty</c><00:18:05.110><c> motivating</c><00:18:05.860><c> I</c><00:18:06.540><c> say</c>
+
+00:18:07.530 --> 00:18:07.540 align:start position:0%
+it's actually pretty motivating I say
+ 
+
+00:18:07.540 --> 00:18:09.540 align:start position:0%
+it's actually pretty motivating I say
+this<00:18:07.690><c> because</c><00:18:07.870><c> as</c><00:18:08.260><c> soon</c><00:18:08.620><c> as</c><00:18:08.710><c> I</c><00:18:08.920><c> implemented</c>
+
+00:18:09.540 --> 00:18:09.550 align:start position:0%
+this because as soon as I implemented
+ 
+
+00:18:09.550 --> 00:18:12.720 align:start position:0%
+this because as soon as I implemented
+this<00:18:09.970><c> leaderboard</c><00:18:10.540><c> and</c><00:18:10.750><c> point</c><00:18:11.380><c> functions</c><00:18:11.890><c> I</c>
+
+00:18:12.720 --> 00:18:12.730 align:start position:0%
+this leaderboard and point functions I
+ 
+
+00:18:12.730 --> 00:18:14.310 align:start position:0%
+this leaderboard and point functions I
+noticed<00:18:13.510><c> that</c><00:18:13.630><c> people</c><00:18:13.660><c> started</c><00:18:14.200><c> answering</c>
+
+00:18:14.310 --> 00:18:14.320 align:start position:0%
+noticed that people started answering
+ 
+
+00:18:14.320 --> 00:18:17.400 align:start position:0%
+noticed that people started answering
+questions<00:18:14.890><c> more</c><00:18:15.130><c> so</c><00:18:15.880><c> for</c><00:18:16.060><c> example</c><00:18:16.450><c> right</c><00:18:17.200><c> now</c>
+
+00:18:17.400 --> 00:18:17.410 align:start position:0%
+questions more so for example right now
+ 
+
+00:18:17.410 --> 00:18:19.920 align:start position:0%
+questions more so for example right now
+you<00:18:18.400><c> know</c><00:18:18.520><c> most</c><00:18:18.790><c> of</c><00:18:18.970><c> these</c><00:18:19.120><c> questions</c><00:18:19.570><c> at</c><00:18:19.810><c> the</c>
+
+00:18:19.920 --> 00:18:19.930 align:start position:0%
+you know most of these questions at the
+ 
+
+00:18:19.930 --> 00:18:22.290 align:start position:0%
+you know most of these questions at the
+top<00:18:20.110><c> page</c><00:18:20.320><c> have</c><00:18:20.980><c> already</c><00:18:21.520><c> been</c><00:18:21.670><c> answered</c><00:18:21.880><c> at</c>
+
+00:18:22.290 --> 00:18:22.300 align:start position:0%
+top page have already been answered at
+ 
+
+00:18:22.300 --> 00:18:24.450 align:start position:0%
+top page have already been answered at
+least<00:18:22.510><c> once</c><00:18:22.750><c> and</c><00:18:23.380><c> it</c><00:18:23.680><c> seems</c><00:18:23.890><c> like</c><00:18:24.100><c> you</c><00:18:24.340><c> know</c>
+
+00:18:24.450 --> 00:18:24.460 align:start position:0%
+least once and it seems like you know
+ 
+
+00:18:24.460 --> 00:18:26.370 align:start position:0%
+least once and it seems like you know
+this<00:18:24.670><c> leaderboard</c><00:18:25.150><c> and</c><00:18:25.480><c> the</c><00:18:25.600><c> point</c><00:18:25.810><c> system</c><00:18:25.990><c> is</c>
+
+00:18:26.370 --> 00:18:26.380 align:start position:0%
+this leaderboard and the point system is
+ 
+
+00:18:26.380 --> 00:18:28.560 align:start position:0%
+this leaderboard and the point system is
+a<00:18:26.740><c> big</c><00:18:27.010><c> part</c><00:18:27.250><c> of</c><00:18:27.280><c> it</c><00:18:27.400><c> it</c><00:18:27.730><c> might</c><00:18:27.970><c> you</c><00:18:28.240><c> know</c><00:18:28.360><c> seem</c>
+
+00:18:28.560 --> 00:18:28.570 align:start position:0%
+a big part of it it might you know seem
+ 
+
+00:18:28.570 --> 00:18:30.300 align:start position:0%
+a big part of it it might you know seem
+a<00:18:28.660><c> little</c><00:18:28.750><c> bit</c><00:18:28.960><c> silly</c><00:18:29.140><c> but</c><00:18:29.890><c> it's</c><00:18:30.070><c> pretty</c>
+
+00:18:30.300 --> 00:18:30.310 align:start position:0%
+a little bit silly but it's pretty
+ 
+
+00:18:30.310 --> 00:18:33.120 align:start position:0%
+a little bit silly but it's pretty
+motivating<00:18:30.910><c> I</c><00:18:31.000><c> find</c><00:18:31.270><c> for</c><00:18:32.230><c> other</c><00:18:32.410><c> users</c><00:18:32.650><c> and</c>
+
+00:18:33.120 --> 00:18:33.130 align:start position:0%
+motivating I find for other users and
+ 
+
+00:18:33.130 --> 00:18:35.730 align:start position:0%
+motivating I find for other users and
+for<00:18:34.030><c> myself</c><00:18:34.180><c> too</c><00:18:34.570><c> and</c><00:18:34.810><c> people</c><00:18:35.260><c> sometimes</c><00:18:35.380><c> even</c>
+
+00:18:35.730 --> 00:18:35.740 align:start position:0%
+for myself too and people sometimes even
+ 
+
+00:18:35.740 --> 00:18:37.800 align:start position:0%
+for myself too and people sometimes even
+you<00:18:36.040><c> know</c><00:18:36.130><c> talk</c><00:18:36.280><c> about</c><00:18:36.310><c> it</c><00:18:36.550><c> and</c><00:18:36.850><c> say</c><00:18:37.480><c> stuff</c>
+
+00:18:37.800 --> 00:18:37.810 align:start position:0%
+you know talk about it and say stuff
+ 
+
+00:18:37.810 --> 00:18:40.860 align:start position:0%
+you know talk about it and say stuff
+like<00:18:38.020><c> you</c><00:18:38.380><c> know</c><00:18:38.410><c> how</c><00:18:38.710><c> can</c><00:18:38.770><c> I</c><00:18:38.950><c> get</c><00:18:39.220><c> a</c><00:18:39.280><c> point</c><00:18:39.870><c> and</c>
+
+00:18:40.860 --> 00:18:40.870 align:start position:0%
+like you know how can I get a point and
+ 
+
+00:18:40.870 --> 00:18:42.600 align:start position:0%
+like you know how can I get a point and
+by<00:18:41.080><c> the</c><00:18:41.140><c> way</c><00:18:41.290><c> the</c><00:18:41.890><c> answer</c><00:18:42.190><c> to</c><00:18:42.340><c> that</c><00:18:42.370><c> question</c>
+
+00:18:42.600 --> 00:18:42.610 align:start position:0%
+by the way the answer to that question
+ 
+
+00:18:42.610 --> 00:18:44.850 align:start position:0%
+by the way the answer to that question
+is<00:18:42.970><c> you</c><00:18:43.600><c> just</c><00:18:43.780><c> need</c><00:18:43.960><c> to</c><00:18:44.050><c> answer</c><00:18:44.260><c> somebody</c>
+
+00:18:44.850 --> 00:18:44.860 align:start position:0%
+is you just need to answer somebody
+ 
+
+00:18:44.860 --> 00:18:46.560 align:start position:0%
+is you just need to answer somebody
+else's<00:18:45.130><c> question</c><00:18:45.280><c> and</c><00:18:45.700><c> then</c><00:18:46.150><c> somebody</c><00:18:46.510><c> else</c>
+
+00:18:46.560 --> 00:18:46.570 align:start position:0%
+else's question and then somebody else
+ 
+
+00:18:46.570 --> 00:18:49.680 align:start position:0%
+else's question and then somebody else
+will<00:18:47.020><c> need</c><00:18:47.200><c> to</c><00:18:47.350><c> put</c><00:18:48.220><c> your</c><00:18:48.820><c> question</c><00:18:49.150><c> I</c><00:18:49.330><c> mean</c>
+
+00:18:49.680 --> 00:18:49.690 align:start position:0%
+will need to put your question I mean
+ 
+
+00:18:49.690 --> 00:18:52.380 align:start position:0%
+will need to put your question I mean
+your<00:18:49.870><c> answer</c><00:18:50.430><c> so</c><00:18:51.430><c> those</c><00:18:51.880><c> are</c><00:18:52.030><c> the</c><00:18:52.180><c> main</c>
+
+00:18:52.380 --> 00:18:52.390 align:start position:0%
+your answer so those are the main
+ 
+
+00:18:52.390 --> 00:18:54.870 align:start position:0%
+your answer so those are the main
+features<00:18:52.660><c> that</c><00:18:52.900><c> I</c><00:18:53.230><c> worked</c><00:18:53.500><c> on</c><00:18:53.620><c> these</c><00:18:54.310><c> past</c><00:18:54.640><c> few</c>
+
+00:18:54.870 --> 00:18:54.880 align:start position:0%
+features that I worked on these past few
+ 
+
+00:18:54.880 --> 00:18:55.470 align:start position:0%
+features that I worked on these past few
+weeks
+
+00:18:55.470 --> 00:18:55.480 align:start position:0%
+weeks
+ 
+
+00:18:55.480 --> 00:18:57.150 align:start position:0%
+weeks
+but<00:18:55.900><c> there</c><00:18:56.050><c> are</c><00:18:56.170><c> a</c><00:18:56.200><c> few</c><00:18:56.350><c> other</c><00:18:56.620><c> things</c><00:18:56.830><c> that</c><00:18:57.010><c> I</c>
+
+00:18:57.150 --> 00:18:57.160 align:start position:0%
+but there are a few other things that I
+ 
+
+00:18:57.160 --> 00:19:00.510 align:start position:0%
+but there are a few other things that I
+added<00:18:57.450><c> the</c><00:18:58.450><c> one</c><00:18:59.080><c> big</c><00:18:59.290><c> one</c><00:18:59.500><c> is</c><00:18:59.770><c> the</c><00:19:00.130><c> search</c>
+
+00:19:00.510 --> 00:19:00.520 align:start position:0%
+added the one big one is the search
+ 
+
+00:19:00.520 --> 00:19:03.450 align:start position:0%
+added the one big one is the search
+function<00:19:01.710><c> you</c><00:19:02.710><c> know</c><00:19:02.800><c> to</c><00:19:02.860><c> search</c><00:19:03.190><c> for</c>
+
+00:19:03.450 --> 00:19:03.460 align:start position:0%
+function you know to search for
+ 
+
+00:19:03.460 --> 00:19:05.850 align:start position:0%
+function you know to search for
+questions<00:19:04.090><c> I</c><00:19:04.500><c> thought</c><00:19:05.500><c> about</c><00:19:05.650><c> different</c>
+
+00:19:05.850 --> 00:19:05.860 align:start position:0%
+questions I thought about different
+ 
+
+00:19:05.860 --> 00:19:08.070 align:start position:0%
+questions I thought about different
+alternatives<00:19:06.790><c> for</c><00:19:07.000><c> implementing</c><00:19:07.660><c> this</c><00:19:07.900><c> one</c>
+
+00:19:08.070 --> 00:19:08.080 align:start position:0%
+alternatives for implementing this one
+ 
+
+00:19:08.080 --> 00:19:10.080 align:start position:0%
+alternatives for implementing this one
+you<00:19:08.350><c> know</c><00:19:08.440><c> should</c><00:19:08.650><c> I</c><00:19:08.710><c> use</c><00:19:08.950><c> a</c><00:19:09.220><c> jungle</c><00:19:09.790><c> search</c>
+
+00:19:10.080 --> 00:19:10.090 align:start position:0%
+you know should I use a jungle search
+ 
+
+00:19:10.090 --> 00:19:12.840 align:start position:0%
+you know should I use a jungle search
+function<00:19:10.630><c> or</c><00:19:10.960><c> maybe</c><00:19:11.440><c> a</c><00:19:11.530><c> third</c><00:19:11.830><c> third</c><00:19:12.520><c> party</c>
+
+00:19:12.840 --> 00:19:12.850 align:start position:0%
+function or maybe a third third party
+ 
+
+00:19:12.850 --> 00:19:16.140 align:start position:0%
+function or maybe a third third party
+such<00:19:13.450><c> library</c><00:19:14.340><c> but</c><00:19:15.340><c> I</c><00:19:15.370><c> decided</c><00:19:15.790><c> to</c><00:19:15.940><c> go</c><00:19:16.120><c> with</c>
+
+00:19:16.140 --> 00:19:16.150 align:start position:0%
+such library but I decided to go with
+ 
+
+00:19:16.150 --> 00:19:20.550 align:start position:0%
+such library but I decided to go with
+Google's<00:19:16.990><c> custom</c><00:19:17.860><c> search</c><00:19:19.230><c> function</c><00:19:20.230><c> I</c><00:19:20.350><c> guess</c>
+
+00:19:20.550 --> 00:19:20.560 align:start position:0%
+Google's custom search function I guess
+ 
+
+00:19:20.560 --> 00:19:22.740 align:start position:0%
+Google's custom search function I guess
+because<00:19:21.490><c> it's</c><00:19:21.910><c> the</c><00:19:22.120><c> simplest</c><00:19:22.540><c> way</c><00:19:22.720><c> to</c>
+
+00:19:22.740 --> 00:19:22.750 align:start position:0%
+because it's the simplest way to
+ 
+
+00:19:22.750 --> 00:19:25.290 align:start position:0%
+because it's the simplest way to
+implement<00:19:23.170><c> it</c><00:19:23.410><c> and</c><00:19:23.620><c> it's</c><00:19:23.890><c> free</c><00:19:24.070><c> for</c><00:19:24.370><c> me</c><00:19:24.520><c> it's</c>
+
+00:19:25.290 --> 00:19:25.300 align:start position:0%
+implement it and it's free for me it's
+ 
+
+00:19:25.300 --> 00:19:26.409 align:start position:0%
+implement it and it's free for me it's
+not<00:19:25.450><c> perfect</c>
+
+00:19:26.409 --> 00:19:26.419 align:start position:0%
+not perfect
+ 
+
+00:19:26.419 --> 00:19:29.019 align:start position:0%
+not perfect
+I<00:19:26.509><c> think</c><00:19:27.049><c> it's</c><00:19:27.200><c> good</c><00:19:27.590><c> enough</c><00:19:27.619><c> for</c><00:19:27.830><c> now</c><00:19:28.100><c> so</c><00:19:28.639><c> if</c>
+
+00:19:29.019 --> 00:19:29.029 align:start position:0%
+I think it's good enough for now so if
+ 
+
+00:19:29.029 --> 00:19:31.239 align:start position:0%
+I think it's good enough for now so if
+you<00:19:29.149><c> search</c><00:19:29.330><c> for</c><00:19:29.389><c> for</c><00:19:29.899><c> example</c><00:19:29.960><c> Django</c>
+
+00:19:31.239 --> 00:19:31.249 align:start position:0%
+you search for for example Django
+ 
+
+00:19:31.249 --> 00:19:34.119 align:start position:0%
+you search for for example Django
+it's<00:19:31.879><c> gonna</c><00:19:32.119><c> show</c><00:19:32.239><c> all</c><00:19:32.899><c> the</c><00:19:32.960><c> questions</c><00:19:33.889><c> that</c>
+
+00:19:34.119 --> 00:19:34.129 align:start position:0%
+it's gonna show all the questions that
+ 
+
+00:19:34.129 --> 00:19:36.460 align:start position:0%
+it's gonna show all the questions that
+are<00:19:34.249><c> related</c><00:19:34.369><c> to</c><00:19:34.609><c> jungle</c><00:19:34.970><c> again</c><00:19:35.929><c> it's</c><00:19:36.289><c> not</c>
+
+00:19:36.460 --> 00:19:36.470 align:start position:0%
+are related to jungle again it's not
+ 
+
+00:19:36.470 --> 00:19:38.499 align:start position:0%
+are related to jungle again it's not
+perfect<00:19:36.919><c> you</c><00:19:37.249><c> know</c><00:19:37.340><c> it</c><00:19:37.519><c> shows</c><00:19:37.669><c> like</c><00:19:37.940><c> an</c><00:19:38.149><c> ad</c>
+
+00:19:38.499 --> 00:19:38.509 align:start position:0%
+perfect you know it shows like an ad
+ 
+
+00:19:38.509 --> 00:19:41.680 align:start position:0%
+perfect you know it shows like an ad
+from<00:19:38.989><c> Google</c><00:19:39.320><c> and</c><00:19:39.559><c> that's</c><00:19:40.399><c> not</c><00:19:40.639><c> ideal</c><00:19:40.820><c> but</c><00:19:41.389><c> I</c>
+
+00:19:41.680 --> 00:19:41.690 align:start position:0%
+from Google and that's not ideal but I
+ 
+
+00:19:41.690 --> 00:19:43.899 align:start position:0%
+from Google and that's not ideal but I
+think<00:19:42.109><c> it's</c><00:19:42.799><c> good</c><00:19:43.159><c> enough</c><00:19:43.190><c> for</c><00:19:43.369><c> now</c><00:19:43.519><c> and</c><00:19:43.879><c> I</c>
+
+00:19:43.899 --> 00:19:43.909 align:start position:0%
+think it's good enough for now and I
+ 
+
+00:19:43.909 --> 00:19:46.269 align:start position:0%
+think it's good enough for now and I
+wanted<00:19:44.330><c> to</c><00:19:44.450><c> have</c><00:19:44.659><c> a</c><00:19:44.690><c> search</c><00:19:45.080><c> function</c><00:19:45.350><c> as</c><00:19:46.039><c> soon</c>
+
+00:19:46.269 --> 00:19:46.279 align:start position:0%
+wanted to have a search function as soon
+ 
+
+00:19:46.279 --> 00:19:48.789 align:start position:0%
+wanted to have a search function as soon
+as<00:19:46.429><c> possible</c><00:19:46.850><c> and</c><00:19:47.139><c> that's</c><00:19:48.139><c> why</c><00:19:48.289><c> I</c><00:19:48.350><c> decided</c><00:19:48.710><c> to</c>
+
+00:19:48.789 --> 00:19:48.799 align:start position:0%
+as possible and that's why I decided to
+ 
+
+00:19:48.799 --> 00:19:52.359 align:start position:0%
+as possible and that's why I decided to
+go<00:19:49.190><c> with</c><00:19:49.369><c> this</c><00:19:49.519><c> approach</c><00:19:49.879><c> and</c><00:19:50.919><c> you</c><00:19:51.919><c> know</c><00:19:52.039><c> if</c>
+
+00:19:52.359 --> 00:19:52.369 align:start position:0%
+go with this approach and you know if
+ 
+
+00:19:52.369 --> 00:19:55.629 align:start position:0%
+go with this approach and you know if
+you<00:19:52.960><c> try</c><00:19:53.960><c> using</c><00:19:54.289><c> this</c><00:19:54.499><c> website</c><00:19:54.739><c> and</c><00:19:55.369><c> if</c><00:19:55.609><c> you</c>
+
+00:19:55.629 --> 00:19:55.639 align:start position:0%
+you try using this website and if you
+ 
+
+00:19:55.639 --> 00:19:59.139 align:start position:0%
+you try using this website and if you
+have<00:19:56.200><c> bug</c><00:19:57.200><c> reports</c><00:19:57.889><c> or</c><00:19:58.129><c> feature</c><00:19:58.580><c> requests</c><00:19:59.090><c> or</c>
+
+00:19:59.139 --> 00:19:59.149 align:start position:0%
+have bug reports or feature requests or
+ 
+
+00:19:59.149 --> 00:20:01.090 align:start position:0%
+have bug reports or feature requests or
+anything<00:19:59.330><c> like</c><00:19:59.509><c> that</c><00:19:59.570><c> you</c><00:20:00.529><c> can</c><00:20:00.710><c> just</c><00:20:00.889><c> go</c><00:20:01.039><c> to</c>
+
+00:20:01.090 --> 00:20:01.100 align:start position:0%
+anything like that you can just go to
+ 
+
+00:20:01.100 --> 00:20:03.399 align:start position:0%
+anything like that you can just go to
+the<00:20:01.369><c> source</c><00:20:01.580><c> code</c><00:20:01.789><c> of</c><00:20:01.909><c> this</c><00:20:02.029><c> page</c><00:20:02.239><c> and</c><00:20:03.049><c> you</c><00:20:03.230><c> can</c>
+
+00:20:03.399 --> 00:20:03.409 align:start position:0%
+the source code of this page and you can
+ 
+
+00:20:03.409 --> 00:20:06.820 align:start position:0%
+the source code of this page and you can
+submit<00:20:03.679><c> a</c><00:20:04.100><c> new</c><00:20:04.789><c> issue</c><00:20:04.989><c> right</c><00:20:05.989><c> here</c><00:20:06.019><c> on</c><00:20:06.440><c> github</c>
+
+00:20:06.820 --> 00:20:06.830 align:start position:0%
+submit a new issue right here on github
+ 
+
+00:20:06.830 --> 00:20:09.269 align:start position:0%
+submit a new issue right here on github
+and<00:20:07.059><c> I'll</c><00:20:08.059><c> see</c><00:20:08.269><c> what</c><00:20:08.480><c> I</c><00:20:08.509><c> can</c><00:20:08.570><c> do</c><00:20:08.749><c> about</c><00:20:08.929><c> that</c>
+
+00:20:09.269 --> 00:20:09.279 align:start position:0%
+and I'll see what I can do about that
+ 
+
+00:20:09.279 --> 00:20:11.830 align:start position:0%
+and I'll see what I can do about that
+okay<00:20:10.279><c> that's</c><00:20:10.789><c> pretty</c><00:20:10.909><c> much</c><00:20:11.090><c> all</c><00:20:11.330><c> I</c><00:20:11.389><c> wanted</c><00:20:11.480><c> to</c>
+
+00:20:11.830 --> 00:20:11.840 align:start position:0%
+okay that's pretty much all I wanted to
+ 
+
+00:20:11.840 --> 00:20:15.249 align:start position:0%
+okay that's pretty much all I wanted to
+talk<00:20:12.169><c> about</c><00:20:12.200><c> today</c><00:20:13.299><c> you</c><00:20:14.299><c> know</c><00:20:14.419><c> sorry</c><00:20:14.659><c> for</c><00:20:15.139><c> the</c>
+
+00:20:15.249 --> 00:20:15.259 align:start position:0%
+talk about today you know sorry for the
+ 
+
+00:20:15.259 --> 00:20:17.919 align:start position:0%
+talk about today you know sorry for the
+delay<00:20:15.499><c> from</c><00:20:15.859><c> the</c><00:20:16.009><c> last</c><00:20:16.190><c> video</c><00:20:16.489><c> but</c><00:20:16.730><c> I'm</c><00:20:17.539><c> hoping</c>
+
+00:20:17.919 --> 00:20:17.929 align:start position:0%
+delay from the last video but I'm hoping
+ 
+
+00:20:17.929 --> 00:20:21.669 align:start position:0%
+delay from the last video but I'm hoping
+to<00:20:18.139><c> you</c><00:20:18.919><c> know</c><00:20:18.980><c> make</c><00:20:19.759><c> more</c><00:20:19.940><c> progress</c><00:20:20.259><c> either</c><00:20:21.259><c> on</c>
+
+00:20:21.669 --> 00:20:21.679 align:start position:0%
+to you know make more progress either on
+ 
+
+00:20:21.679 --> 00:20:24.549 align:start position:0%
+to you know make more progress either on
+this<00:20:21.919><c> project</c><00:20:22.190><c> or</c><00:20:22.609><c> maybe</c><00:20:23.389><c> start</c><00:20:23.929><c> a</c><00:20:24.019><c> new</c>
+
+00:20:24.549 --> 00:20:24.559 align:start position:0%
+this project or maybe start a new
+ 
+
+00:20:24.559 --> 00:20:26.440 align:start position:0%
+this project or maybe start a new
+project<00:20:24.769><c> entirely</c><00:20:25.249><c> and</c><00:20:25.609><c> you</c><00:20:25.909><c> know</c><00:20:26.239><c> talk</c><00:20:26.419><c> about</c>
+
+00:20:26.440 --> 00:20:26.450 align:start position:0%
+project entirely and you know talk about
+ 
+
+00:20:26.450 --> 00:20:29.379 align:start position:0%
+project entirely and you know talk about
+it<00:20:26.749><c> on</c><00:20:26.869><c> this</c><00:20:27.019><c> channel</c><00:20:27.429><c> anyway</c><00:20:28.429><c> thank</c><00:20:29.119><c> you</c><00:20:29.239><c> as</c>
+
+00:20:29.379 --> 00:20:29.389 align:start position:0%
+it on this channel anyway thank you as
+ 
+
+00:20:29.389 --> 00:20:31.450 align:start position:0%
+it on this channel anyway thank you as
+always<00:20:29.419><c> for</c><00:20:29.779><c> watching</c><00:20:30.440><c> my</c><00:20:30.499><c> videos</c><00:20:30.799><c> and</c><00:20:31.070><c> I'll</c>
+
+00:20:31.450 --> 00:20:31.460 align:start position:0%
+always for watching my videos and I'll
+ 
+
+00:20:31.460 --> 00:20:34.210 align:start position:0%
+always for watching my videos and I'll
+see<00:20:31.489><c> you</c><00:20:31.700><c> guys</c><00:20:31.789><c> in</c><00:20:31.940><c> the</c><00:20:31.999><c> next</c><00:20:32.090><c> one</c>
+

@@ -1,0 +1,35 @@
+{% load static %}
+
+{% for chat in chats %}
+	{% if chat.sender == user %}		
+		<div class="outgoing_msg mb-2">
+			<div class="sent_msg">
+				<p>
+					{% if chat.m_file %}                
+						<a class="btn-link text-white" download href="{{chat.m_file.url}}">Sent File - Download</a> 
+					{% else %}
+						{{chat.message}}
+					{% endif %}
+				</p>
+				<span class="time_date"> {{chat.date}} </span> 
+			</div>
+		</div>                         
+	{% else %}
+	
+		<div class="incoming_msg mb-2">			
+			<div class="received_msg">
+				<div class="received_withd_msg">
+					<p>
+						{% if chat.m_file %}                
+							<a class="btn-link" download href="{{chat.m_file.url}}">Received File - Download</a>
+						{% else %}
+							{{chat.message}}
+						{% endif %}             
+					</p>
+					<span class="time_date"> {{chat.date}} </span>
+		       </div>
+			</div>
+		</div>
+	                
+	{% endif %}
+{% endfor %}

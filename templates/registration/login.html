@@ -1,0 +1,76 @@
+{% extends 'registration-and-login-base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+      
+        <div class="container ">
+            <h2 style="text-align: center;">Sign In</h2>
+            <hr>
+
+            {% if form.not_active.errors %}
+                <p class=" font-weight-bold text-danger" >User account not yet verified by admin.</p>
+            {% else %}
+                {% if form.errors %}  
+                     <p class=" font-weight-bold text-danger" >Incorrect username or password </p>         
+                {% endif %}
+            {% endif %}
+            
+            <form method="POST" action="" id="signupform"> 
+                {% csrf_token %}
+              
+
+                {{form.username.label}} 
+                {{form.username}}
+               
+                {{form.password.label}} 
+                
+
+                <div class="input-group mb-3">
+                    {{form.password}}                   
+                    <span class="input-group-text password-visibility" id="basic-addon2"><i class="fa change-icon fa-eye-slash" aria-hidden="true"></i></span>
+                </div>
+
+                <hr>
+                <a href="{% url 'reset_password' %}">Forgot Password ?</a>    
+                
+                <hr>
+
+                <div class="trend-btn  pb-3">
+                    <input type="submit" class="p-lr btn btn-primary" value="Submit">
+                </div>
+                 
+            </form>
+          
+         
+            <div class="container signin ">
+                <h6>Not a member yet ?<a href="{% url 'signup' %}">  Sign up .</a></h6>
+            </div>
+                      
+        </div>    
+        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>       
+<script>
+    
+    $( document ).ready(function() {    
+        //password visibility change    
+        $(".password-visibility").on('click', function() {
+
+            var inputType  = $('#id_password').attr('type');
+            if(inputType == "password"){
+                $('#id_password').attr('type','text');
+                $('.change-icon').removeClass( "fa-eye-slash" );
+                $('.change-icon').addClass( "fa-eye" );              
+            }
+            else{
+                $('#id_password').attr('type','password');
+                $('.change-icon').removeClass( "fa-eye" );
+                $('.change-icon').addClass( "fa-eye-slash" );                
+
+            }
+
+        });
+    });
+</script>
+ 
+
+{% endblock %}

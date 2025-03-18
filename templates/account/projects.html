@@ -1,0 +1,167 @@
+{% load static %}
+
+{% for project in user.project_set.all %}
+<div class="row mb-4">
+  <div class="col-lg-2">
+      {% if project.image %}
+        <img src="{{project.image.url}}">
+      {%  else %}
+        <img src="{% static 'images/no-image.png' %}">
+      {% endif %}
+  </div>
+
+  <div class="col-lg-10">
+      <div class="row">
+        <div class="col-lg-10">
+              <h4>                
+                  <a href="#">{{project}} - {{project.year}}</a>                    
+              </h4>
+        </div>
+        <div class="col-lg-2" style="text-align: right;">
+            <a class="ajax_edit" data-url="{% url 'ajax_edit' model_name='project' pk=project.id %}">
+              <i class="fa fa-edit"></i>
+            </a>
+        </div>
+      </div>
+
+      <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+          <div class="col-lg-6 ">                      
+            {{project.genre.all|join:", " }}    |  {{project.language.all|join:", " }}    
+          </div>
+          <div class="col-lg-6 ">                                                   
+            {% if project.budget %} {{project.budget}} Cr  {% endif %}  {% if project.imdb_link  %} |  <a target="_blank" href="{{project.imdb_link}}">Imdb Link</a>  {% endif %}                       
+          </div>
+      </div>
+  </div>
+
+  <div class="col-lg-12"> 
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{project.id}}" aria-expanded="false" aria-controls="collapseExample">
+      View Highlight
+    </button>
+  </div>
+
+  <div class="collapse" id="collapseExample-{{project.id}}">
+   
+      <div class="col-lg-12">
+        <a href="#" data-url="{% url 'ajax_project_highlight' project.id %}" class="add_project_highlight float-end"><i class="fa fa-plus Success"></i> Add Highlight</a>
+      </div>
+      <br>
+
+      <div class="col-lg-12" id="project-highlight-div-{{project.id}}">
+
+  
+        {% for highlight in project.highlights.all %}
+
+            <div class="row">
+
+                <div class="col-10">
+                  <h4>{{highlight}}</h4>
+                    {{highlight.content}}
+                </div>
+                <div class="col-2">
+                    <a class="ajax_edit" data-url="{% url 'ajax_edit' model_name='highlight' pk=highlight.id %}">
+                      <i class="fa fa-edit"></i>
+                    </a>
+                </div>
+
+            </div>
+
+          
+
+        {% empty %}
+
+            <p>No data available..!</p>
+
+        {% endfor %}
+
+      </div>
+  </div>
+
+
+
+</div>
+{% empty %}
+
+  {% if not  user.join_project_set.all %}
+    <div class="row mb-3 container">
+      No data available..!
+    </div>
+  {% endif %}
+{% endfor %}
+
+{% for project in user.join_project_set.all %}
+<div class="row mb-4">
+  <div class="col-lg-2">
+      {% if project.project.image %}
+        <img src="{{project.project.image.url}}">
+      {%  else %}
+        <img src="{% static 'images/no-image.png' %}">
+      {% endif %}    
+  </div>
+
+  <div class="col-lg-10">
+      <div class="row">
+        <div class="col-lg-10">
+              <h4>                
+                  <a href="#">{{project.project}} - {{project.project.year}} (Joined)</a>                    
+              </h4>
+        </div>
+        <div class="col-lg-2" style="text-align: right;">
+            <a class="ajax_project_leave btn" data-url="{% url 'ajax_delete' model_name='join_project' pk=project.id %}">
+              Leave
+            </a>
+        </div>
+      </div>
+
+      <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+          <div class="col-lg-4 col-md-4 ">
+            
+            {{project.project.genre.all|join:", " }}    |  {{project.project.language.all|join:", " }}     
+            
+          </div>
+          <div class="col-lg-4 col-md-4">                                                   
+            {% if project.project.budget %} {{project.project.budget}} Cr  {% endif %}   {% if project.project.imdb_link  %} |s  <a target="_blank" href="{{project.project.imdb_link}}">Imdb Link</a>  {% endif %}                       
+          </div>
+      </div>
+  </div>
+
+  <div class="col-lg-12"> 
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{project.project.id}}" aria-expanded="false" aria-controls="collapseExample">
+      View Highlight
+    </button>
+  </div>
+
+  <div class="collapse" id="collapseExample-{{project.project.id}}">
+   
+      <div class="col-lg-12" id="project-highlight-div-{{project.project.id}}">
+
+  
+        {% for highlight in project.project.highlights.all %}
+
+            <div class="row">
+
+                <div class="col-12">
+                  <h4>{{highlight}}</h4>
+                    {{highlight.content}}
+                </div>
+              
+
+            </div>
+
+          
+
+        {% empty %}
+
+            <p>No data available..!</p>
+
+        {% endfor %}
+
+      </div>
+  </div>
+
+
+
+</div>
+
+
+{% endfor %}

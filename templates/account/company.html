@@ -1,0 +1,44 @@
+
+                                                                         
+    {% if not company %}                                    
+       <h6>Company :  <a href="#" class="ajax_add" data-url="{% url 'ajax_add' model_name='company' %}">+ Add Company </a></h6>
+    {% else %}                                          
+      <div class="row mb-4" >
+        <h4>Company:</h4>
+        <div class="col-lg-4">
+          
+            <img src="{{company.logo.url}}">
+          
+        </div>
+      
+        <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-9">
+                    <h4>                
+                      <a href="#">{{company}}</a>                    
+                    </h4>
+              </div>
+              <div class="col-lg-2">
+                  <a class="ajax_edit" data-url="{% url 'ajax_edit' model_name='company' pk=company.id %}">
+                    <i class="fa fa-edit"></i>
+                  </a>
+              </div>
+            </div>
+      
+            <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                <div class="col-lg-12 col-md-12 ">
+                
+                  <h6>{{company.location}}</h6>
+                  <h6> {{company.address}}</h6>
+                  <p>{{company.mobile_no}}</p>  
+                  <p>{{company.started_date}}</p>
+
+                  
+                </div>
+
+            </div>
+        </div>
+      </div>
+
+
+    {% endif %}

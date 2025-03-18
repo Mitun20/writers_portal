@@ -1,0 +1,564 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load check_post_like_tags %}
+{% load follow_status_tags %}
+{% block people %}nav-active{% endblock %}
+
+
+{% block content %}
+ 
+<!-- BreadCrumb Starts -->  
+<section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Following</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+               <!-- sidebar starts -->
+               <div class="col-lg-3 col-md-12">
+                    <div class="sidebar-sticky">
+                        <div class="list-sidebar">
+                            <div class="popular-post sidebar-item mb-4 box-shadow p-4">
+
+                                <h4 class="">{{user}}</h4>
+                                <div class="col-lg-12">
+                                    <h5><u><a href="{% url 'all_peoples' %}">All People</a></u></h5>
+                                    <h5><u><a class="nav-active"  href="{% url 'following' %}" id="following" count="{{user.following_count}}">Following - {{user.following_count}}</a></u></h5>
+                                    <h5><u><a href="{% url 'followers' %}" id="followers" count="{{user.followers_count}}">Followers - {{user.followers_count}}</a></u></h5>
+                          
+                                </div>
+                        
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+         
+
+                <div class="col-lg-9">
+
+                    <div class="row">                        
+                         <div class="col-sm-6"><h5>Following People</h5></div>
+                         <div class="col-sm-6"><a class="float-end page_refresh btn nir-btn-small" href="">Clear Search </a></div>
+                                         
+
+                         <div class="col-lg-6">
+                             <div class="input-group">
+                             
+                                 <input type="text" id="people_search_input" class="form-control find-search-box" placeholder="Search" style="height:35px;margin-bottom:10px;" />
+                                 
+                                 <span class="find-search-icon" style="margin-top:2% !important; padding-left:6px !important;">
+                             
+                       
+                                     <span class="fa fa-search people_search_btn"></span>
+                         
+                             </span>
+                                
+                             </div>
+                         </div>
+                         <div class="col-lg-6">                
+                           
+                         </div>
+                         <div class="col-sm-12">
+
+                            <div class="radio-div"> 
+                                <div class="form-check form-check-inline">
+                                    <input name="people_type" class="form-check-input people_type" type="radio"  value="producer">
+                                    <label name="people_type" class="form-check-label" for="inlineCheckbox1">Producer</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input name="people_type" class="form-check-input people_type" type="radio" id="recent-radio-btn" value="director">
+                                    <label name="people_type" class="form-check-label" for="inlineCheckbox2">Director</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input name="people_type" class="form-check-input people_type" type="radio"  value="writer">
+                                    <label name="people_type" class="form-check-label" for="inlineCheckbox3">Writer</label>
+                                </div>
+                            </div>
+
+                        </div>
+      
+
+
+
+                        <div class="listing-inner mt-2">
+
+                            <div class="blog-full mb-4 border-b pb-4">
+                                <div class="row people_div">  
+                                  
+                                  {% for following in followings %}
+                                
+                                  <div class="col-lg-6 col-md-6">
+
+                                                                      
+                                    <article class="post mb-1 border-b pb-1">
+                                      <div class="s-content d-flex align-items-center justify-space-between">
+                                          <div class="sidebar-image w-25 me-3">
+                                              {% if following.following_user.profile_photo %}
+                                                  <a href="#"><img class="rounded img-fluid" src="{{following.following_user.profile_photo.url}}" alt="{{following.following_user.user}}"></a>
+                                              {% else  %}
+
+                                                    {% if following.following_user.get_gender_display|stringformat:"s" == "Male"  %}                               
+                                                        <a href="#"><img class="rounded-circle" src="{% static 'images/male.png' %}" alt=""></a>
+                                                    {% elif following.following_user.get_gender_display|stringformat:"s" == "Female" %}                               
+                                                        <a href="#"><img class="rounded-circle" src="{% static 'images/female.png' %}" alt=""></a>
+                                                    {% elif following.following_user.get_gender_display|stringformat:"s" == "Choose Gender"  %} 
+                                                        <a href="#"><img class="rounded-circle" src="{% static 'images/avatar.png' %}" alt=""></a>
+                                                    {% endif %}
+
+
+                                                 
+                                              {% endif %}
+                                          </div>
+                                          <div class="content-list w-75">
+                                              <h5 class="mb-1"><a href="{% url 'profile' following.following_user.id  %}">{{following.following_user}}</a>
+                        
+                                                    <span class="pull-right">                                                            
+                                                        
+                                                            <a title="Message" href="#">
+                                                                <i class="fa fa-envelope get_all_message" data-url="{% url 'get_inbox_chat' following.following_user.id %}" ></i> 
+                                                            </a>| 
+
+                                                          {% get_follow_status following.following_user.id user as status %}
+                                                           <a title="Follow/Un Follow" href="#">
+                                                          {% if status %}
+                                                          <i id="user_id_{{following.following_user.id}}" user_id="{{following.following_user.id}}" class="fa fa-user-minus Success follow_unfollow" data-url="{% url 'follow_unfollow' following.following_user.id %}"></i>
+                                                          {% else %}
+                                                              <i id="user_id_{{following.following_user.id}}" user_id="{{following.following_user.id}}"  class="fa fa-user-check Success follow_unfollow" data-url="{% url 'follow_unfollow' following.following_user.id %}"></i>
+                                                          {% endif %}
+                                                          </a>
+                            
+                                                          |<a title="Report User" href="#"> <i data-url="{% url 'report_people' following.following_user.id %}" class="fa fa-flag report_people"></i> </a>
+                                                   </span>
+                                              
+                                              </h5>                                                     
+                                                  
+                                                
+                                              <div class="group">
+                                                  {% for group in following.following_user.groups.all %}
+                                                      {{group}} 
+                                                      {% if not forloop.last %}
+                                                      | 
+                                                      {% endif %}
+                                                  {% endfor %}
+
+                                              </div>
+                                          </div>    
+                                      </div> 
+                                  </article>                                        
+                                  </div>
+
+                                  {% endfor %}
+                                </div>
+                            </div>
+
+
+                        
+
+                            
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Right sidebar starts -->
+                <div class="col-lg-3 col-md-12">
+
+                  <!--
+                    <div class="sidebar-sticky">
+                        <div class="list-sidebar">
+                            <div class="popular-post sidebar-item mb-4">
+                                <h4 class="">Find People</h4>
+                                <div class="col-lg-12">
+                                    <div class="input-group">
+                                        <input type="text" id="people_search_input" class="form-control" placeholder="Search" />
+                                        <span class="find-search-icon">
+                                            <button class="people_search_btn" type="button">
+                                                <span class="fa fa-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                </div>
+                               
+                             <div class="popular-post people_div sidebar-item mb-4">
+                                <h4 class="">Top Peoples</h4>
+    
+                                 {% for top_people in top_peoples %}
+    
+                                    <article class="post mb-1 border-b pb-1">
+                                        <div class="s-content d-flex align-items-center justify-space-between">
+                                            <div class="sidebar-image w-25 me-3">
+                                                {% if top_people.profile_photo %}
+                                                    <a href="#"><img class="rounded-circle" src="{{top_people.profile_photo.url}}" alt=""></a>
+                                                {% else  %}
+                                                    <a href="#"><img class="rounded-circle" src="{% static 'images/avatar.png' %}" alt=""></a>
+                                                {% endif %}
+                                            </div>
+                                            <div class="content-list w-75">
+                                                <h5 class="mb-1"><a href="#">{{top_people}}</a>
+    
+                                                    {% if top_people == user %}
+                                                         
+                                                    {% else %}
+                                                       <span class="pull-right"> 
+                                                            <i data-url="{% url 'write-testimonial' top_people.id %}" class="fa fa-comments write-testimonial"></i> | 
+                                                            {% get_follow_status top_people.id user as status %}
+                                                            {% if status %}
+                                                            <i id="user_id_{{top_people.id}}" user_id="{{top_people.id}}" class="fa fa-user-minus Success follow_unfollow" data-url="{% url 'follow_unfollow' top_people.id %}"></i>
+                                                            {% else %}
+                                                                <i id="user_id_{{top_people.id}}" user_id="{{top_people.id}}"  class="fa fa-user-check Success follow_unfollow" data-url="{% url 'follow_unfollow' top_people.id %}"></i>
+                                                            {% endif %}
+                                                        </span>
+                                                    {% endif %}
+                                                </h5>
+                                                    
+                                                    
+                                                   
+                                                <div class="group">
+                                                    {% for group in top_people.groups.all %}
+                                                        {{group}} 
+                                                        {% if not forloop.last %}
+                                                        | 
+                                                        {% endif %}
+                                                    {% endfor %}
+        
+                                                </div>
+                                            </div>    
+                                        </div> 
+                                    </article>
+    
+                                 {% endfor %}                
+    
+                            </div>  
+                       
+                        </div>
+                    </div>
+
+                    -->
+                </div>
+         
+        </div>
+    </div>
+</section>
+<!-- blog Ends -->  
+
+
+<!-- AjaxModal -->
+<div id="AjaxModal" class="modal AjaxModal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+</div>
+
+
+      <!-- Project Modal -->
+      <div class="modal" id="projectModal" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Choose Project</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div><div class="container"></div>
+            <div class="modal-body" id="display_senior">        
+              <div class="row" class="senior-list">
+                <div class="col-sm-12">
+
+                    <!-- RH: this is bootstrap 5 tabbed panel -->
+                    <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                          <a class="nav-link active" id="project-search-tab" data-bs-toggle="tab" href="#project-view-tab" role="tab" aria-controls="project-view" aria-selected="true">Search Project</a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                          <a class="nav-link" id="project-create" data-bs-toggle="tab" href="#project-create-tab" role="tab" aria-controls="project-create" aria-selected="false">Create Project</a>
+                      </li>
+                 
+                  </ul>
+
+
+                  <div class="tab-content mt-2 container" id="myTabContent">
+                      <div class="tab-pane fade show active" id="project-view-tab" role="tabpanel" aria-labelledby="project-view">
+
+                          <div class="row ml-5">                
+                            <div class="input-group">
+                              <input class="form-control border-end-0 border" type="text" value="" id="project-search-input">
+                              <span class="input-group-append">
+                                  <button class=" form-control bg-white border-start-0 border project_search" type="button">
+                                      Search
+                                  </button>
+                              </span>                             
+                            </div>                        
+                          
+                          </div>  
+                          <div id="project-list-div">
+
+                          </div>   
+                               
+          
+                   
+                      </div>
+                      <div class="tab-pane fade" id="project-create-tab" role="tabpanel" aria-labelledby="project-create">
+
+
+                          <div class="row ml-2 project-form">
+                            <form method="post" id="ajax_form" enctype="multipart/form-data">                         
+                                <table>
+                                    {% csrf_token %}
+                                    {{project_form|crispy}}
+                                </table>  
+                                <br> 
+                                <span style="color:red" id="project_info_text"></span>
+                                <button type="button" id="edit_btn" data-url= "{% url 'ajax_add' model_name='project'  %}" class="btn btn-primary ajax-add-project-btn">Create</button>                             
+                                
+                            </form>
+              
+                          </div>
+
+                          <div id="display-created-project">
+
+                          </div>
+
+                      </div>
+                  </div>
+                  
+                </div>
+
+                <div id="project-list">
+
+                </div>
+
+              </div>                
+            </div>
+            <div class="modal-footer">
+              <a href="#" data-bs-dismiss="modal" class="btn">Close</a>
+              <a href="#"  class="btn btn-primary add-selected-project disabled">Add</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+<!--name-empty-modal-->
+<div id="name-empty-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Alert</h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Enter Something in Searchbox</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script src="{% static 'js/inbox.js' %}"></script>
+<script src="{% static 'js/testimonial.js' %}"></script>
+<script src="{% static 'js/follow_unfollow.js' %}"></script>
+<script src="{% static 'js/report_people.js' %}"></script>
+<script>
+    $( document ).ready(function() {
+    
+        //User Group Filter
+        $('.radio-div').on('click','.people_type', function(){ 
+         var peopletype  = $(this).val();
+        
+    
+    
+         if(peopletype == "clear"){
+             $('#people_search_input').val('');
+             $('.people_type').prop('checked', false);
+         }
+         var name = $('#people_search_input').val();
+         var url = "{% url 'search_people' %}"; 
+         var page = "people";
+    
+         $.ajax({
+                url : url,
+                data : {'name':name,'people_type':peopletype,'page':page},
+                dataType: 'json',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                                                    
+                success:function(output)
+                    {
+                        if (output.valid)
+                            {
+                                $('.people_div').html(output.users);  
+                                
+                            }
+                        else{
+                            alert('Something went wrong...!')
+                            }    
+                    },
+            });                                                      
+    
+        });
+    
+    
+    
+    
+    //Search People
+    $('.people_search_btn').click(function() {
+        event.preventDefault();
+        name = $('#people_search_input').val();
+        people_type = $("input:radio.people_type:checked").val();
+
+        if (name){
+
+            var url = "{% url 'search_people' %}";
+            page  = "people"; 
+
+            $.ajax({
+                url : url,
+                data : {'name':name,'page':page,'people_type':people_type,},
+                dataType: 'json',
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                                                    
+                success:function(output)
+                    {
+                        if (output.valid)
+                            {
+                                $('.people_div').html(output.users);  
+                                
+                            }
+                        else{
+                            alert('Something went wrong...!')
+                            }    
+                    },
+            });                                                      
+
+        }
+        else{
+        $('#name-empty-modal').modal('show'); 
+        }
+
+    });
+    
+                
+    //Project Modal
+    $('#AjaxModal').on('click','.add-project', function(){ 
+        event.preventDefault();           
+        $('#projectModal').modal('show');  
+        $('.container' ).addClass('blur');
+        $('#AjaxModal' ).addClass('fade');
+    });
+          
+          
+
+    //project search
+    $('#projectModal').on('click','.project_search', function(){            
+        event.preventDefault();
+            name = $('#project-search-input').val();            
+
+            url = "{% url 'project_search' model_name='assistant' %}"
+            $.ajax({
+                url : url,
+                data : {'name':name,},
+                method: 'post',  
+                headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+                success:function(output)
+                {  
+                    $('#project-list-div').html(output.projects); 
+                    $('.add-selected-project').removeClass('disabled');                                           
+                },
+            });
+        });
+
+
+    //move selected project
+    $('#projectModal').on('click','.add-selected-project', function(){           
+        projectId = $('input[name="project-select"]:checked').val();
+        projectName = $('input[name="project-select"]:checked').attr('project_name');
+
+        
+        if(projectId){
+
+            $('#get_project_link').remove();
+            $('#ajax-model-project-section').append('<div class="m-1"><h5 class="mt-2" id="get_project_link" projectid="'+projectId+'" > Project: '+projectName+'</h5></div>');
+            $("#id_project").find('option:first').remove();
+            $('#id_project').append('<option value="'+projectId+'" seleted>'+projectName+'</option>');
+            
+            $('#projectModal').modal('toggle');             
+            $('.add-selected-project').text("Edit Project");
+            $('.open-add-project-modal').text("Edit Project");
+            $('.add-project').text("Edit Project");
+            
+
+        }
+        else{
+            alert('You must select one of the options.');
+        }
+            
+    });
+
+
+    $('#projectModal').on('click','.ajax-add-project-btn', function(){
+
+        event.preventDefault();
+        formdata = new FormData($('#projectModal #ajax_form')[0]);
+        url = $(this).attr('data-url');
+        $.ajax({
+            url : url,
+            data : formdata,
+            method: 'post',
+            processData: false,
+            contentType: false,
+            beforeSend:function()
+            {
+                $('#projectModal #project_info_text').text('Please Wait ');
+                
+            },
+            
+            success:function(output)
+            {
+                if(output.valid)
+                {                 
+                    $('#project-list-div').html(output.project); 
+                    $("#project-search-tab").tab('show');
+                    $('.add-selected-project').removeClass('disabled'); 
+                    
+                }
+                else
+                {                     
+                    $('.project-form').html(output.form);
+                }
+                $('#projectModal #project_info_text').text('');
+            },
+        });
+
+
+    });
+
+
+    $(".page_refresh").click( function()
+            {
+                location.reload();
+            }
+    );
+        
+});
+
+</script>
+
+{% endblock %}

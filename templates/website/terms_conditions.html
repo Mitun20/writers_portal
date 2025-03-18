@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<style>
+    ol {
+      counter-reset: item;
+    }
+    li {
+      display: block;
+      color: #666666;
+    }
+    li:before {
+      content: counters(item, ".") " ";
+      counter-increment: item;
+    }
+  </style>
+{% block content %}
+
+  <!-- BreadCrumb Starts -->  
+  <section class="breadcrumb-main pb-0 pt-3" style="background-image: url({% static 'images/bg/bg2.jpg' %});">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>                        
+                        <li class="breadcrumb-item active" aria-current="page">Terms & Conditions</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+
+        <div class=WordSection1>
+
+            <p class=MsoNormal align=center style='margin-top:15.0pt;margin-right:0cm;
+            margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:center;
+            line-height:normal;background:white'><b style='mso-bidi-font-weight:normal'><u><span
+            lang=EN-US style='font-size:12.0pt;font-family:"Bookman Old Style","serif";
+            mso-fareast-font-family:"Bookman Old Style";mso-bidi-font-family:"Bookman Old Style"'>Terms
+            &amp; Conditions<o:p></o:p></span></u></b></p>
+            
+              <p>Please read the following terms and conditions very carefully as your use of service is subject to your acceptance of and compliance with the following terms and conditions ("Terms") and our Privacy Policy. </p>
+              <br>
+              <p>By registering to or using any of our services in the Platform, you agree that you have read, understood and are bound by the Terms, regardless of how you register or use the services. If you do not want to be bound by the Terms and Conditions, you must not register or use any of our services.</p>
+              <br>
+              <p>These Terms and Conditions constitute a legally binding contract between the User ("You") and Dream Warrior Pictures ("Us") in relation to our Platform and the Service (as described below).</p>
+              <p>The above mentioned terms and conditions constitute the entire agreement between the User(s) and Dream Warrior Pictures with respect to access to and use of the Platform the Services offered by Dream Warrior Pictures, superseding any prior written or oral agreements in relation to the same subject matter herein in the event of any dispute between the parties.</p>
+              <br>              
+
+              <b>1. DEFINITIONS & INTERPRETATION</b>
+              <ol>
+                <li style="list-style-type: none;">1.1. “Agreement” means this Agreement that forms the entire Agreement between you and Dream Warrior Pictures regarding the use of the online Platform and related software (herein known as ‘Platform’ as defined below).</li>
+
+                <li style="list-style-type: none;">1.2. “Platform” means <a href="https://screenwriters.in/"><u>www.screenwriters.in</u></a>, including any Mobile Application in thereof or any variation of other sub-pages, domain name / website, intimated by us to you. </li>
+
+                <li style="list-style-type: none;">1.3. “Content” refers to content such as text, images, or other information that can be posted, uploaded, linked to or otherwise made available by you, regardless of the form of that content. </li>
+                <li style="list-style-type: none;">1.4. “Dream Warrior Pictures” (referred to as either “We”, “Us” or “Our” in this Agreement) refers to Dream Warrior Pictures having office at B9, 50/103 Poes Pride apartment, Main Road, Poes Road, Teynampet, Chennai, Tamil Nadu 600018.  </li>
+
+                <li style="list-style-type: none;"> 1.5. “Intellectual Property” means and includes but is not limited to patents, copyright, trademarks, service marks, designs, utility models, tools, devices, models, methods, procedures, processes, systems, algorithms, works of authorship, electronic codes, proprietary techniques and other confidential and proprietary information of the Licensor.  </li>
+
+                <li style="list-style-type: none;">1.6. “Members” means registered users of Services under this Agreement.</li>
+
+                <li style="list-style-type: none;"> 1.7.  “You” (referred to as either “You” or “Your”) means the Member / Visitor accessing or using the Platform, as applicable.</li>
+
+                <li style="list-style-type: none;">1.8. “Visitors” means unregistered users of Services under this Agreement.  </li>
+
+
+              </ol>
+
+              <br>
+              <b>2. CONDITIONS OF USE</b>
+               <p>You must be 18 years of age or older to register, use the Services, or visit or use the Platform in any manner. By registering, visiting and using the Platform or accepting this Agreement, you represent and warrant to us that you are 18 years of age or older, and that you have the right, authority and capacity to use the Platform and agree to and abide by this Agreement.</p>
+
+               <br>
+               <b>3. ACCOUNT REGISTRATION OR USE OF THE PLATFORM:</b>
+               <ol>
+                   <li style="list-style-type: none;">3.1. You shall be entitled to use the Platform after creating an Account either as a User or Entity and getting yourself registered on the Platform. You shall be solely responsible for all the activity that occurs under your Account. You hereby agree to maintain the security and secrecy of your Account username and password at all times.   </li>
+
+                   <li style="list-style-type: none;">3.2. You shall be solely responsible for the accuracy and correctness of all such Account Information given during registration. If such information that is provided by you is found to be false or misleading, then we reserve the right to deactivate or suspend that Account. Nothing in this Section will affect your right to amend or change the information given to reflect change in information already provided.  </li>
+
+                   <li style="list-style-type: none;"> 3.3. We expressly disclaim any liability arising out of the Account Information provided by you, and you hereby agree to indemnify us for all losses incurred by us that arise out of false, misleading, or incorrect information that is provided by you.   </li>
+
+                </ol>
+
+                <br>
+                <b>4. SERVICES </b>
+
+                <ol>
+                    <li style="list-style-type: none;">4.1. This Agreement applies to the Platform, and other related sites, mobile apps, communications and other services that state that they are offered under this Agreement (“Services”).   </li>
+
+                    <li style="list-style-type: none;">4.2. The Platform is operated and managed by us inter alia through the website and an internet based mobile application that act as a networking gateway for various artists, directors, producers, actors, musicians, lyricists, etc., to enable themselves to network with one another, share or display their work on such terms and conditions as determined and contained in the Agreement herein.   </li>
+
+                    <li style="list-style-type: none;">4.3. You acknowledge that the Platform is provided by us on a non-exclusive basis and we are free to enter into any arrangement, such as the one envisaged under this Agreement, with any other directors, producers, actors, musicians, lyricists, etc., without any prior consent, notice or intimation to you.    </li>
+
+                    <li style="list-style-type: none;"> 4.4. We are hereby granting you a revocable, non-exclusive, non-transferable, limited license to use the Platform strictly in accordance with the terms of this Agreement and only in the executable format. By accepting the terms and conditions, the title of the Company in all the intellectual property rights in the Platform stands irrevocably confirmed.   </li>
+
+                    <li style="list-style-type: none;"> 4.5. We are granting the license to you solely for your personal, purposes strictly in accordance with the terms of this Agreement.   </li>
+
+                    <li style="list-style-type: none;">4.6. Sub-licensing of the Platform is strictly prohibited and the breach of the same shall result in immediate termination of the license without any liability.  </li>
+
+                    
+                </ol>
+
+                <br>
+
+                <b>5. CONTENT & RESTRICTIONS</b>
+
+                <ol>
+                    <li style="list-style-type: none;">5.1. We are not responsible for the entries, information or content of Members and Visitors. You expressly understand and agree that you are solely responsible for the Content and for all activity that occurs under Your account, whether done so by You or any third person using Your account.</li>
+
+                    <li style="list-style-type: none;">5.2. You may not transmit any Content that is unlawful, offensive, upsetting, intended to disgust, threatening, libelous, defamatory, obscene or otherwise objectionable. Examples of such objectionable Content include, but are not limited to, the following:   </li>
+
+                    <ol style="list-style-type: lower-alpha;">
+                        <li>Unlawful or promoting unlawful activity.</li>
+                        <li>Defamatory, discriminatory, or mean-spirited content, including references or commentary about religion, race, sexual orientation, gender, national/ethnic origin, animal cruelty or other targeted groups.  </li>
+                        <li>Spam, machine or randomly generated, constituting unauthorized or unsolicited advertising, chain letters, any other form of unauthorized solicitation, or any form of lottery or gambling.</li>
+
+                        <li>Containing or installing any viruses, worms, malware, trojan horses, or other content that is designed or intended to disrupt, damage, or limit the functioning of any software, hardware or telecommunications equipment or to damage or obtain unauthorized access to any data or other information of a third person.
+                        </li>
+
+
+                        <li>Infringing on any proprietary rights of any party, including patent, trademark, trade secret, copyright, right of publicity or other rights.</li>
+                        <li>Impersonating any person or entity including us and our employees or representatives.</li>
+                        <li>Violating the privacy of any third person.</li>
+                        <li>False information and features. </li>
+                    </ol>
+
+                    <li style="list-style-type: none;">5.3. We reserve the right, but not the obligation, to, in its sole discretion, determine whether or not any Content is appropriate and complies with this Agreement, refuse or remove any Content. We can also limit or revoke your use of the Platform if you post such objectionable Content. Any decisions to remove/refuse content shall be restored only upon providing a judicial order to such effect.</li>
+
+                    <li style="list-style-type: none;">5.4. As we cannot control all content posted by Members / Visitors on the Platform, you agree to use the Platform at your own risk. You understand that by using the Platform, you may be exposed to content that you may find offensive, indecent, incorrect or objectionable, and you agree that under no circumstances can Dream Warrior Pictures be held liable in any way for any content, including any errors or omissions in any content, or any loss or damage of any kind incurred as a result of your use of any content.</li>
+
+                    <li style="list-style-type: none;">5.5. We are an “intermediary” for the purposes of Section 79 of the Information Technology Act 2000 and we shall not be liable, in any manner whatsoever, for any dispute or issue arising between you and any other Member / Visitor or third parties in relation to the services rendered on our Platform. Every representation made by any third party is to be individually verified by you, and any warranty or guarantee of any manner has been given by us, and all decisions made on the basis of such warranty/guarantee/representation shall be at your sole risk and responsibility. </li>
+
+                    <li style="list-style-type: none;">5.6. We shall not be liable for any failure of or delay in the performance of this Agreement for the period that such failure or delay is due to causes beyond our reasonable control, including but not limited to acts of God, pandemic, war, strikes or labor disputes, embargoes, government orders or any other force majeure event.  </li>                    
+
+
+                </ol>
+
+                <br>
+                <b>6. INTERNET CONNECTIVITY AND PRIVACY POLICY</b>
+
+                <ol>
+                    <li style="list-style-type: none;">6.1. We understand the importance of protecting your privacy and is committed to using reasonable safeguards for the privacy of the data that it collects, possesses, uses, processes, records, stores, transfers, discloses, deals with, handle and receives, by and on behalf of the Entities and Users while using the Platform.</li>
+
+                    <li style="list-style-type: none;">6.2. A few of the methods that may be used to collect usage information include, without limitation, the following (and subsequent technology and methods hereafter developed): (i) Cookies (ii) Web (iii) Embedded Scripts.</li>
+
+                    <li>6.3. By accepting this Agreement, you acknowledge that you hereby agree and consent to the terms and conditions of the Privacy Policy.</li>
+
+                </ol>
+
+                <br>
+                <b>7. MODIFICATIONS TO THE PLATFORM</b>
+                <ol>
+                    <li style="list-style-type: none;">7.1. We reserve the right to modify, suspend or discontinue, temporarily or permanently, the Platform or any service to which it connects, with or without notice and without liability to you.</li>
+                    <li style="list-style-type: none;">7.2. By continuing to access or use the Platform after any revisions to the terms of this Agreement becomes effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to use the Platform.</li>
+
+                </ol>
+
+                <br>
+                <b>8. UPDATES TO THE PLATFORM</b>
+
+                <ol>
+                    <li style="list-style-type: none;">8.1. The Company may from time to time provide enhancements or improvements to the features / functionality of the Platform, which may include patches, bug fixes, updates, upgrades and other modifications.</li>
+
+                    <li style="list-style-type: none;">8.2. Updates may add, modify or delete certain features and / or functionalities of the Platform. You agree that the Company has no obligation to (i) provide any Updates, or (ii) continue to provide or enable any particular features and/or functionalities of the Platform to You.</li>
+                      
+                    <li style="list-style-type: none;">8.3. You further agree that all updates or any other modifications will be (i) deemed to constitute an integral part of the Platform, and (ii) subject to the terms and conditions of this Agreement.</li>
+                 
+
+                </ol>
+
+                <br>
+                <b>9. MAINTENANCE AND SUPPORT   </b>
+
+                <p>We do not provide any maintenance or support for the use of the Platform. To the extent that any maintenance or support is required by applicable law, we shall be obligated to furnish any such maintenance or support.</p>
+
+                <br>
+                <b>10. THIRD-PARTY SERVICES</b>
+
+                <ol>
+                    <li style="list-style-type: none;">10.1 The Platform may display, include or make available third-party content (including data, information, Platforms and other products services) or provide links to third-party websites or services.</li>
+
+                    <li style="list-style-type: none;">10.2. You acknowledge and agree that we shall not be responsible for any Third-party Services, including their accuracy, completeness, timeliness, validity, copyright compliance, legality, decency, quality or any other aspect thereof. We do not assume and shall not have any liability or responsibility to you or any other Member / Visitor for any Third-party Services.</li>
+
+                    <li style="list-style-type: none;">10.3. You must comply with applicable Third parties’ terms of agreement when using the Platform. Third-party Services and links thereto are provided solely as a convenience to you and you access and use them entirely at Your own risk and subject to such third parties’ terms and conditions.</li>
+                    
+
+                </ol>
+
+                <br>
+                <b>11. TERM AND TERMINATION</b>
+
+                <ol>
+                    <li style="list-style-type: none;">11.1. The User shall be provided access to the Platform only during its term.</li>
+                    <li style="list-style-type: none;">11.2. This Agreement shall continue unless you choose to terminate this Agreement. You may terminate this Agreement by sending a request to deactivate / delete your registration of the Platform. We then have the right to suspend you from availing the services on the Platform upon termination.</li>
+
+                    <li style="list-style-type: none;">11.3. We may, at any time and for any or no reason, suspend or terminate this Agreement with or without prior notice to you. This Agreement shall be terminated immediately by Dream Warrior Pictures if you commit a material breach of any of the terms of this Agreement or its obligations hereunder.</li>
+
+                    
+                    <li style="list-style-type: none;">11.4. Termination of this Agreement will not limit any of our rights or remedies at law or in equity in case of breach by you (during the term of this Agreement) of any of your obligations under the present Agreement.</li>
+
+                </ol>
+
+                <br>
+                <b>12.  INTELLECTUAL PROPERTY RIGHTS</b>
+
+                <ol>
+                    <li style="list-style-type: none;">12.1. The Platform, including without limitation all copyrights, patents, trademarks, trade secrets, confidential information and other intellectual property rights are, and shall remain, our sole and exclusive property. This shall include any updates, changes, bug fixes and other modifications to the Platform or related software therein. This shall also include any feedback, comments, ideas, improvements or suggestions given by you to the development / utilisation of the Platform, regardless of whether such feedback, comments, ideas, improvements or suggestions are utilised by us in the Platform.</li>
+
+                    <li style="list-style-type: none;">12.2. You shall not be permitted to use any of the Intellectual Property of the Platform except to the extent that is permitted by this Agreement. We shall not be obligated to indemnify or defend you with respect to any third party claim arising out of or relating to the Platform. To the extend we are required to provide indemnification by applicable law, we shall be solely responsible for the investigation, defence, settlement and discharge of any claim that the Platform or your use of it infringes any third party Intellectual Property Rights.</li>
+
+                    
+                    <li style="list-style-type: none;">12.3. In the event, you have infringed our Intellectual Property in any manner, directly or indirectly, we shall be entitled to initiate legal proceedings against you for such infringement to obtain injunctive relief as necessary along with claim for damages (or such or claim) that it may incur on account of such infringement.</li>
+
+                </ol>
+                <br>
+                <b>13. INDEMNIFICATION </b>
+                <p>You agree to indemnify and hold Dream Warrior Pictures and its parents, subsidiaries, affiliates, officers, employees, agents, partners and licensors (if any) harmless from any claim or demand, including reasonable attorneys’ fees, due to or arising out of your: (a) use of the Platform; (b) violation of this Agreement or any law or regulation; or (c) violation of any right of a third-party.</p>
+
+                <br>
+                <b>14. NO WARRANTIES</b>
+
+                <ol>
+                    <li style="list-style-type: none;">14.1. The Platform is provided to you “AS IS” and “AS AVAILABLE” and with all faults and defects without warranty of any kind. Without limiting the foregoing, neither Dream Warrior Pictures nor any of our providers make any representation or warranty of any kind, express or implied:  </li>
+
+                    
+                    <ol style="list-style-type: lower-alpha;">
+                        <li>as to the operation or availability of the Platform, or the information, content, and materials or products included thereon;</li>
+                        <li>that the Platform will be uninterrupted or error-free;</li>
+                        <li>as to the accuracy, reliability, or currency of any information or content provided through the Platform; or </li>
+                        <li>that the Platform, its servers, the content, ore-mails sent from or on behalf of us are free of viruses, scripts, Trojan horses, worms, malware, time bombs or other harmful components.</li>
+                       
+                    </ol>
+
+                </ol>
+
+                <br>
+                <b>15. GOVERNING LAW AND DISPUTE RESOLUTION</b>
+                <p>These Terms and Conditions are governed by the laws of India. Any action, suit, or other legal proceeding, which is commenced to resolve any matter arising under or relating to this Platform, shall be subject to the jurisdiction of the courts at Chennai, India. All disputes shall be resolved by arbitration through sole arbitrator appointed mutually by both parties. The seat and venue of arbitration shall be at Chennai.</p>
+
+                <br>
+                <b>16. SEVERABILITY</b>
+                <p>This Agreement is severable, that is if any provision is determined to be illegal or unenforceable by any court of competent jurisdiction such provision shall be deemed to have been deleted without affecting the remaining provisions of this Agreement.</p>
+
+                <br>
+                <b>17. SURVIVAL</b>
+                <p>Any and all obligations under this Agreement which, by their very nature should reasonably survive the termination or expiration of this Agreement, will so survive.</p>
+
+                <br>
+                <b>18. CONFIRMATION AND ACCEPTANCE</b>
+                <p>You hereby state that they have read and understood the aforesaid Terms of this Agreement and hereby declare, confirm, accept and undertake to abide by the Terms and Conditions of the Agreement at all times. You acknowledge that the Terms and Conditions of the Agreement are legally binding and enforceable.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+            </div>
+
+    </div>    
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{% endblock %}

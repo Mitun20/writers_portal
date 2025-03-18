@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load check_post_like_tags %}
+{% load follow_status_tags %}
+
+
+
+{% block content %}
+ 
+<!-- BreadCrumb Starts -->  
+<section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'portal_admin' %}">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+               <!-- sidebar starts -->
+               <div class="col-lg-3 col-md-12">
+                    <div class="sidebar-sticky">
+                        <div class="list-sidebar">
+                            <div class="author-news mb-4 shadow-sm p-4 text-center">
+                                <div class="author-news-content">
+                                    <div class="author-thumb mb-1">
+                                        {% if user.profile_photo %}
+                                            <img src="{{user.profile_photo.url}}" alt="author">
+                                        {% else %}
+                                            <img src="{% static 'images/avatar.png' %}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="author-content">
+                                        <h3 class="title mb-1 text-align-left">{{user}} :  
+                                             {% for group in user.groups.all %}
+                                                   {{group}} 
+                                                     {% if not forloop.last %}
+                                                         /
+                                                     {% endif %}
+                                        {% endfor %}</h3>
+                               
+
+                                        <p class="mb-2 text-align-left">
+                                            Unread Message: 
+                                            <a class="highlight float-end" href="{% url 'inbox' %}" >{{inbox_count}}</a> 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="popular-post sidebar-item mb-4 box-shadow p-4">                        
+                                <div class="col-lg-12">
+                                    <h5><u><a class="" href="{% url 'portal_admin' %}">People</a></u></h5>
+                                    <h5><u><a class="nav-active" href="{% url 'event' %}" id="followers" >Event</a></u></h5>
+                                    <h5><u><a href="{% url 'view_posts' %}">Posts</a></u></h5>
+                                    <h5><u><a href="{% url 'report' %}" id="followers" >Report</a></u></h5>
+                                </div>                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-12"><h5 class="mt-1">{{event.title}}</h5></div>
+                    </div>                
+                    <div class="row event_div">  
+                        <div class="col-12">
+                            <b>Open Date : {{event.open_date}} ,  Close Date: {{event.close_date}}  </b>  
+                        </div>   
+                        <div class="col-12">
+                           <p> <b>Description :</b> {{event.description}}    </p>
+                        </div>    
+
+                        <div class="col-12">
+                            <p> <b>Script :</b> <span class="highlight"> {{event.script_count}} </span>     </p>
+
+                            <table class="table">
+                                <tr>
+                                  <th>User</th>
+                                  <th>Film Title</th>
+                                  <th>Language</th>
+                                  <th>City</th>
+                                  <th>View</th>
+                                </tr>
+                              
+                                 {% for registration in event.get_script %}
+                                    
+                                    <tr>
+                                    <td>{{registration.user}}</td>
+                                    <td>{{registration.film_title|default_if_none:""}}</td>
+                                    <td>{{registration.language}}</td>
+                                    <td>{{registration.city}}</td>
+
+                                    <td><a href="{% url 'view_submission' type="script" pk=registration.id %}">View</a></td>
+                                    </tr>
+                                {% empty %}
+
+                                    <tr>
+                                        <td colspan="3">No Scripts uploaded</td>
+                                    </tr>
+
+                                {% endfor%}
+                          
+                              </table>
+
+
+                         </div>  
+
+                         <div class="col-12">
+                            <p> <b>Video :</b> <span class="highlight"> {{event.video_count}} </span>     </p>
+
+                            <table class="table">
+                                <tr>
+                                  <th>User</th>
+                                  <th>Film Title</th>
+                                  <th>Language</th>
+                                  <th>City</th>
+                                  <th>View</th>
+                                </tr>
+                              
+                                 {% for registration in event.get_video %}
+                                    
+                                    <tr>
+                                    <td>{{registration.user}}</td>
+                                    <td>{{registration.film_title|default_if_none:""}}</td>
+                                    <td>{{registration.language}}</td>
+                                    <td>{{registration.city}}</td>
+
+                                    <td><a href="{% url 'view_submission' type="video" pk=registration.id %}">View</a></td>
+                                    </tr>
+                                {% empty %}
+
+                                    <tr>
+                                        <td colspan="3">No videos uploaded</td>
+                                    </tr>
+
+                                {% endfor%}
+                          
+                              </table>
+
+
+                         </div>
+                               
+                                             
+                    </div>
+                </div>
+                <!-- Right sidebar starts -->
+                <div class="col-lg-3 col-md-12">
+                
+                </div>
+         
+        </div>
+    </div>
+</section>
+<!-- blog Ends -->  
+
+
+<!-- AjaxModal -->
+<div id="AjaxModal" class="modal AjaxModal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+</div>
+<!--name-empty-modal-->
+<div id="name-empty-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Alert</h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Enter Something in Searchbox</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--User Activate and inactive--modal-->
+<div id="user-activate-inactive-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="active-inactive-modal-title"></h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Info</p>
+          <form id="user_active_inactive_form">
+            {% csrf_token %}
+            <textarea id="user_active_inactive_info" name="info"></textarea>
+          </form>
+        
+        </div>
+        <div class="modal-footer">
+            <p class="please-wait" style="color: red;"></p>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary user_active_inactive_btn" userid="">Close</button>
+      </div>
+    </div>
+</div>
+
+</div>
+
+<script src="{% static 'js/photo-open.js' %}"></script>
+
+<script>
+  $( document ).ready(function() {
+
+    //copy link button
+    $('.copy-event-link').click(function() {
+        event.preventDefault();
+        link = $(this).attr('href');
+        alert(link);
+   
+
+    });
+
+
+
+    //filter type
+    $('#filter_type').change(function() {  
+        clearinputdate();
+        
+        var filter_type =$(this).val();
+        url = "{% url 'portal_admin_home_filter' %}"
+        $.ajax({
+            url : url,
+            data : {'filter_type':filter_type,'model':'user'},
+            method: 'post',  
+            headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+            success:function(output)
+            {  
+                $('.people_div').html(output.html);                                             
+            },
+        }); 
+
+    });
+
+  });
+
+</script>
+ 
+
+{% endblock %}

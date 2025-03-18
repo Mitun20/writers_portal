@@ -1,0 +1,50 @@
+<div class="row" >
+  <div class="col-lg-6"> 
+    <h3>Social Link</h3>
+  </div>
+<div class="col-lg-6">
+    {% if user.youtube or user.website or user.twitter or user.facebook or user.instagram %}
+      <a href="#" class="ajax_edit float-end" data-url="{% url 'ajax_edit' model_name='social_link' pk=user.id %}"><i class="fa fa-edit"></i> Edit Social Link</a>                
+    {% else %}
+      <a href="#" class="add_social_link float-end" data-url="{% url 'ajax_add' model_name='social_link' %}"><i class="fa fa-plus Success"></i> Add Social Link</a>
+    {% endif %}
+</div>
+</div>     
+
+<div class="row mb-4">
+  {% if user.youtube or user.website or user.twitter or user.facebook or user.instagram %}
+  
+      <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-11">
+                      {% if user.instagram %}
+                        <a  target="_blank" href="{{user.instagram}}" class="p-2"><i class="fab fa-instagram"></i> </a>  | 
+                      {% endif %}
+
+                      {% if user.youtube %}
+                          <a  target="_blank" href="{{user.youtube}}" class="p-2"><i class="fab fa-youtube"></i> </a>  |
+                      {% endif %}
+
+                      {% if user.facebook %}
+                         <a target="_blank" href="{{user.facebook}}" class="p-2"><i class="fab fa-facebook"></i> </a> |
+                      {% endif %}
+
+                      {% if user.twitter %}
+                        <a target="_blank" href="{{user.twitter}}" class="p-2"><i class="fab fa-twitter"></i> </a>   |
+                      {% endif %}
+                      
+                      {% if user.website %}
+                        <a target="_blank" href="{{user.website}}" class="p-2"><i class="fas fa-globe"></i> </a>  
+                      {% endif %}
+                      
+                </div>                      
+            </div>
+      </div>      
+
+  {% else %}     
+      <div class="col-lg-12 m-2">
+        No data available..!
+      </div>
+  {% endif %}
+
+</div>

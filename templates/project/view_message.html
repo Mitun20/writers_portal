@@ -1,0 +1,71 @@
+<div style="overflow-y: scroll;height:250px;" class="message_div_scroll">
+    <div class="row">    
+        {% for message in interest.message_set.all %}
+           
+                {% if message.message_by == user %}                
+                
+                    <div class="outgoing_msg mb-2">
+                        <div class="sent_msg">
+                        <p>
+                            {% if message.m_file %}                
+                                            <a class="btn-link" download href="{{message.m_file.url}}">{{message.message}} - Download</a> 
+                                    {% else %}
+                                            {{message.message}}
+                                
+                                {% endif %}                        
+                        
+                        </p>
+                        <span class="time_date"> {{message.date}} </span> 
+                    </div>
+                </div>
+
+
+            {% else %}
+             
+                
+                <div class="incoming_msg mb-2">
+              						
+                    <div class="received_msg">
+                      <div class="received_withd_msg">
+                            <p>
+                                {% if message.m_file %}                
+                                    <a class="btn-link" download href="{{message.m_file.url}}">{{message.message}} - Download</a>
+                                {% else %}
+                                    {{message.message}}
+                                {% endif %}             
+                            
+                            </p>
+                            <span class="time_date"> {{message.date}} </span>
+              </div>
+                    </div>
+              </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+</div>
+
+
+<div class="col-sm-12">
+
+    <form  id="intrest-message-form"  enctype="multipart/form-data">
+        {% csrf_token %}
+     <textarea id="intrest_message_txt" name="intrest_message_txt" class="form-control interest_message_txt" rows="2" cols="30"></textarea> 
+
+     <div class="row mt-2">
+        <div class="col-lg-4 col-md-4 ">
+
+            <input id="file-upload" name="message-file" class="form-control interest-message-file" type="file" accept="application/pdf,application">
+        </div>
+
+        <div class="col-lg-4 col-md-4">                       
+            <button type="button" class="interest-remove-message-file  btn">Clear Attachment</button>        
+        </div>
+
+        <div class="col-lg-4 col-md-4"> 
+            <button data-url="{% url 'reply-to-a-message' interest.id %}" class="btn nir-btn-small mt-1 float-end btn-primary reply-to-a-message">Send</button>
+        </div>
+
+    </form>
+     
+</div>

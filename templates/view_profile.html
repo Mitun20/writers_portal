@@ -1,0 +1,1245 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load follow_status_tags %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <!-- BreadCrumb Starts -->  
+  <section class="breadcrumb-main pb-0 pt-3" style="background-image: url({% static 'images/bg/bg2.jpg' %});">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        {% if not is_admin %}
+                         <li class="breadcrumb-item"><a href="{% url 'my_profile' %}">My Profile</a></li>
+                        {% endif %}
+                        <li class="breadcrumb-item active" aria-current="page">{{user_object}} Profile</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<!-- blog starts -->
+<section class="blog blog-left people_div">
+    <div class="container">
+        <div class="row">
+
+          {% if is_admin  %}
+
+            {% if not user_object.admin_approval %}
+              <div class="col-lg-12 mb-1 " style="background-color:#d7d6d4;">
+                <div class="row mt-2">
+
+                  <div class="col-12 text-center">
+                    <h4>Waiting for your approval:
+
+                    <button class="btn approve" data-url="{% url 'admin-approve' pk=user_object.id action='approve' %}">Approve</button>
+                    <button class="btn approve" id="disapproved" data-url="{% url 'admin-approve' pk=user_object.id action='disapprove' %}">Disapprove</button>
+
+                    <p class="mt-1" id="info_msg"></p>
+                  </h4>
+                  </div>
+                  <div class="col-8">
+
+                
+                  </div>
+    
+
+                </div>
+            
+              </div>
+            {% endif %}
+          {% endif %}
+            <!-- sidebar starts -->
+            <div class="col-lg-3">
+              <a data-bs-toggle="modal" data-bs-target="#genderModal">
+                {% if user_object.profile_photo %}
+                  <img src="{{user_object.profile_photo.url}}" class="img-fluid shadow" style="width:250px;height:250px;border-radius:50%">
+                {% else %}
+
+                    {% if user_object.get_gender_display|stringformat:"s" == "Male"  %}                               
+                        <a href="#"><img class="rounded-circle" src="{% static 'images/male.png' %}" alt=""></a>
+                    {% elif user_object.get_gender_display|stringformat:"s" == "Female" %}                               
+                        <a href="#"><img class="rounded-circle" src="{% static 'images/female.png' %}" alt=""></a>
+                    {% elif user_object.get_gender_display|stringformat:"s" == "Choose Gender"  %} 
+                    <a href="#"><img class="rounded-circle" src="{% static 'images/avatar.png' %}" alt=""></a>
+                    {% endif %}
+                 
+                {% endif %}
+              </a>
+            </div>
+            <div class="col-lg-9" style="padding-top: 23px;">
+                <div class="listing-inner">                  
+                    <div class="blog-full mb-4 border-b pb-4">
+                        <div class="row">                           
+                            <div class="col-lg-7 col-md-7">
+                                <div class="blog-content">                                    
+                                      <div class="row">
+                                          <div class="col-lg-12">
+                                              <h4>{{user_object}} 
+
+                                                {% if user != user_object %}
+                                                  {% get_follow_status user_object.id user as status %}
+                                                  {% if status %}
+                                                  <i id="user_id_{{user_object.id}}" user_id="{{user_object.id}}" class="fa fa-minus Success follow_unfollow" data-url="{% url 'follow_unfollow' user_object.id %}"></i>
+                                                  {% else %}
+                                                      <i id="user_id_{{user_object.id}}" user_id="{{user_object.id}}"  class="fa fa-plus Success follow_unfollow" data-url="{% url 'follow_unfollow' user_object.id %}"></i>
+                                                  {% endif %}
+                                                {% endif %}
+                                              </h4>
+                                          </div>                                    
+                                      </div> 
+                                      
+                                      
+                                      <div>
+
+                                          <h6>
+                                            {% for group in user_object.groups.all %}
+                                                {{group}} 
+                                                {% if not forloop.last %}
+                                                | 
+                                                {% endif %}
+                                            {% endfor %}
+    
+                                          </h6>
+                                               
+                                          <div class="row"><div class="col-lg-12"><h6>DOB : {% if user_object.dob %} {{user_object.dob|date:"d M Y"}}   {% else %} - {% endif %}  | Location: {% if user_object.location %}  {{user_object.location}} {% else %} - {% endif %}</h6></div>
+                                          <div class="row"><div class="col-lg-12"><h6>No of filims worked : {{user_object.no_of_filims_worked}} </h6></div></div>
+                                          
+                                        {% if user_object.id == user.id or is_admin %}
+                                          <div class="col-lg-12">
+                                            <h6>Mobile {% if  user_object.mobile_no %} : {{user_object.mobile_no}}  {% else %} -  {% endif %} </h6>
+                                          </div>
+
+                                        {% elif user_object.make_mobile_no_visible == "E" %}
+                                            <div class="col-lg-12">
+                                              <h6>Mobile {% if  user_object.mobile_no %} : {{user_object.mobile_no}}  {% else %} -  {% endif %} </h6>
+                                            </div>                                            
+                                        
+                                        {% elif status and user_object.make_mobile_no_visible == "F" %}
+                                        
+                                          <div class="col-lg-12"><h6>Mobile {% if  user_object.mobile_no %} : {{user_object.mobile_no}}  {% else %} -  {% endif %} </h6></div>
+
+                                        {% elif user_object.make_mobile_no_visible == "N" and following_me   %}
+                                          <div class="col-lg-12"><h6>Mobile {% if  user_object.mobile_no %} : {{user_object.mobile_no}}  {% else %} -  {% endif %} </h6></div>
+                                        {% elif user_object.make_mobile_no_visible == "C"  %}
+
+                                           {% if following_me %}
+                                             <div class="col-lg-12"><h6>Mobile {% if  user_object.mobile_no %} : {{user_object.mobile_no}}  {% else %} -  {% endif %} </h6></div>
+                                           {% elif status %}
+                                           <div class="col-lg-12"><h6>Mobile {% if  user_object.mobile_no %} : {{user_object.mobile_no}}  {% else %} -  {% endif %} </h6></div>
+                                           {% endif %}
+                                        {% endif %}
+
+                                        {% if  is_admin %}
+                                        <div class="col-lg-12">
+                                          <h6>Email: {{user_object.email}}</h6>                                          
+                                        </div>
+                                        {% endif %}
+
+
+
+                                        {% if user_object.id == user.id or is_admin %}
+
+                                          <div class="col-lg-12"><h6>Address</h6>
+                                            
+                                            {% if  user_object.address %} {{user_object.address}}  {% else %} -  {% endif %}  
+                                          </div>
+                                        
+                                        {% elif user_object.make_address_visible == "E" %}
+                                          
+                                          <div class="col-lg-12"><h6>Address</h6>
+                                          
+                                            {% if  user_object.address %} {{user_object.address}}  {% else %} -  {% endif %}  
+                                          </div>
+
+                                        {% elif status and user_object.make_address_visible == "F" %}
+                                            
+                                            
+                                          <div class="col-lg-12"><h6>Address</h6>
+                                           
+                                            {% if  user_object.address %} {{user_object.address}}  {% else %} -  {% endif %}  
+                                          </div>
+
+                                        {% elif user_object.make_address_visible == "N" and following_me   %}
+                                          
+                                          <div class="col-lg-12"><h6>Address</h6>
+                                         
+                                          {% if  user_object.address %} {{user_object.address}}  {% else %} -  {% endif %}  
+                                          </div>
+                                        {% elif user_object.make_address_visible == "C" or following_me or status  %}
+                                          
+                                            <div class="col-lg-12"><h6>Address</h6>
+                                             
+                                              {% if  user_object.address %} {{user_object.address}}  {% else %} -  {% endif %}  
+                                            </div>
+
+                                        {% endif %}
+
+
+                                            
+                                      <div class="row">                                          
+                                            {% if user_object !=  user %}
+                                                <div class="col-6">
+                                                    <button class="btn btn-primary w-50  get_all_message p-1 mt-2" data-url="{% url 'get_inbox_chat' user_object.id %}" href="">Message</button>
+                                                </div>
+                                            {% endif %}   
+
+
+                                            {% if is_admin %}
+                                              <div class="col-6">                                         
+                                                  {% if user_object.is_active %}
+                                                      <a class="btn btn-primary p-1 mt-2 user_active_inactive_popup" userid="{{user_object.id}}" name="{{user_object}}" title="Hard Inactive" href="#" status="active">  Hard Inactive </a>
+                                                  {% else %}
+                                                      <a class="btn btn-primary p-1 mt-2 user_active_inactive_popup" userid="{{user_object.id}}" name="{{user_object}}" title="Activate" href="#" status="inactive">Activate </a>
+                                                  {% endif %}
+                                              </div>
+                                          {% endif %}
+                                            
+                                        </div> 
+
+                                    </div>
+                                    
+
+
+                                      </div>
+                                  </div>
+                              </div>
+                            <div class="col-lg-5 col-md-5">
+                              <div>
+
+                                {% if user_object.instagram or user_object.twitter or user_object.facebook or  user_object.youtube or user_object.website %}
+                                  <h5>Social Links</h5>
+                                {% endif %}
+
+                                {% if user_object.instagram %}
+                                <a  target="_blank" href="{{user_object.instagram}}" class="p-2"><i class="fab fa-instagram"></i> </a>  | 
+                              {% endif %}
+        
+                              {% if user_object.youtube %}
+                                  <a  target="_blank" href="{{user_object.youtube}}" class="p-2"><i class="fab fa-youtube"></i> </a>  |
+                              {% endif %}
+        
+                              {% if user_object.facebook %}
+                                 <a target="_blank" href="{{user_object.facebook}}" class="p-2"><i class="fab fa-facebook"></i> </a> |
+                              {% endif %}
+        
+                              {% if user_object.twitter %}
+                                <a target="_blank" href="{{user_object.twitter}}" class="p-2"><i class="fab fa-twitter"></i> </a>   |
+                              {% endif %}
+                              
+                              {% if user_object.website %}
+                                <a target="_blank" href="{{user_object.website}}" class="p-2"><i class="fas fa-globe"></i> </a>  
+                              {% endif %}
+
+                              </div>
+                              <div class="mt-3">                                
+                                {% if user_object_is_writer  %}
+
+                                 {% if user_object !=  user%}
+                                    {% if is_producer or is_director %} 
+                                      <a class="report_people" data-url="{% url 'report_people' user_object.id %}" href="#">Report <i class="fa fa-flag"></i></a> <br>
+                                                              
+                                        <a class="write_testimonial" data-url="{% url 'write-testimonial' user_object.id %}" href="#">+Write Testimonial</a>
+                                        <br>
+                                        <h5 class="mt-2">Your Rating </h5>   
+                                        <div class="rating rating2 h4">    
+                                                            
+                                          <a href="#" value="1" title="Give 1 star" data-value="1" class="1star rate-btn">★</a>
+                                          <a href="#" value="2" title="Give 2 stars" data-value="2" class="2star rate-btn">★</a>
+                                          <a href="#" value="3" title="Give 3 stars" data-value="3" class="3star rate-btn">★</a>
+                                          <a href="#" value="4" title="Give 4 stars" data-value="4" class="4star rate-btn">★</a>
+                                          <a href="#"  value="5" title="Give 5 stars" data-value="5" class="5star rate-btn">★</a>
+                                        </div>
+
+                                    {% endif %}
+                                  {% endif %}
+                              
+                                
+
+                                <div class="rating rating2 h4">    
+                                  <h5>Average Rating </h5>                  
+                                  <p href="#"  value="1" title="Give 1 star" data-value="1" class="1staravg avg-rate d-inline">★</p>
+                                  <p href="#" value="2" title="Give 2 stars" data-value="2" class="2staravg avg-rate d-inline">★</p>
+                                  <p href="#" value="3" title="Give 3 stars" data-value="3" class="3staravg avg-rate d-inline">★</p>
+                                  <p href="#" value="4" title="Give 4 stars" data-value="4" class="4staravg avg-rate d-inline">★</p>
+                                  <p href="#"  value="5" title="Give 5 stars" data-value="5" class="5staravg avg-rate d-inline">★</p>
+                                </div>
+
+                          {% else %}
+
+                            {% if company %}
+
+                            {% for company in company %}
+
+                              <div class="row mb-4" >
+                                <h4>Company:</h4>
+                                <div class="col-lg-4">                                              
+                                    <img src="{{company.logo.url}}">                                              
+                                </div>
+                              
+                                <div class="col-lg-8">
+                                    <div class="row">
+                                      <div class="col-lg-12">
+                                            <h4>                
+                                              <a href="#">{{company}}</a>                    
+                                            </h4>
+                                      </div>
+                                    </div>
+                              
+                                    <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                                        <div class="col-lg-12 col-md-12 ">
+                                        
+                                          <h6>{{company.location}}</h6>
+                                          <h6> {{company.address}}</h6>
+                                          <p>{{company.mobile_no}}</p>  
+                                          <p>{{company.started_date}}</p>
+
+                                          
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                              
+                              </div>
+
+                            {% endfor %}
+
+
+                            {% endif %}
+                          {% endif %}
+
+                              </div>
+
+                            </div>
+                        </div>
+                    </div>                   
+    
+                </div>
+            </div>
+             <!-- Right sidebar starts -->             
+         
+        </div>
+
+<div class="row">
+
+    <!-- sidebar starts -->
+    <div class="col-lg-6">
+
+      <div class="projects-section-bg all-section">
+       <!--Project start-->
+       <div class="row">
+        <div class="col-lg-6"> 
+          <h3>Project</h3>
+        </div>
+        <div class="col-lg-6">
+          
+        </div>
+      </div>     
+      <div id="project_div">
+
+        {% for project in user_object.project_set.all %}
+        <div class="row mb-4">
+          <div class="col-lg-2">
+              {% if project.image %}
+                <img src="{{project.image.url}}">
+              {%  else %}
+
+              {% endif %}
+          </div>
+        
+          <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-11">
+                      <h4>                
+                          <a href="#">{{project}} - {{project.year}}</a>                    
+                      </h4>
+                </div>
+            
+              </div>
+        
+              <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                  <div class="col-lg-6">                    
+                    {{project.genre.all|join:", " }}      |  {{project.language.all|join:", " }}    
+                    
+                  </div>
+                  <div class="col-lg-6">                                                   
+                    {{project.budget}} Cr     {% if project.imdb_link  %}  |  <a target="_blank" href="{{project.imdb_link}}">Imdb Link</a>  {% endif %}                       
+                  </div>
+
+              </div>
+          </div>
+          <div class="col-lg-12 mt-1"> 
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{project.id}}" aria-expanded="false" aria-controls="collapseExample">
+              View Highlight
+            </button>
+          </div>
+
+          <div class="collapse" id="collapseExample-{{project.id}}">
+           
+          
+  
+              <div class="col-lg-12" id="project-highlight-div-{{project.id}}">
+  
+          
+                {% for highlight in project.highlights.all %}
+  
+                    <div class="row mt-1">
+                      
+                        <div class="col-12">
+                          <h4>{{highlight}}</h4>
+                            {{highlight.content}}
+                            <hr>
+                        </div>
+
+                    </div>
+  
+                  
+  
+                {% empty %}
+  
+                    <p>No data available..!</p>
+  
+                {% endfor %}
+  
+              </div>
+          </div>
+
+        </div>
+        {% empty %}
+          {% if not user_object.join_project_set.all %}
+            <div class="row mb-3 container">
+              No data available..!
+            </div>
+
+          {% endif%}
+        {% endfor %}
+
+      </div>
+
+      {% for project in user_object.join_project_set.all %}
+        <div class="row mb-4">
+          <div class="col-lg-2">
+              {% if project.project.image %}
+                <img src="{{project.project.image.url}}">
+              {%  else %}
+
+              {% endif %}
+          </div>
+
+          <div class="col-lg-10">
+              <div class="row">
+                <div class="col-lg-12">
+                      <h4>                
+                          <a href="#">{{project.project}} - {{project.project.year}} (Joined)</a>                    
+                      </h4>
+                </div>
+           
+              </div>
+
+              <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                  <div class="col-lg-6">
+                    
+                    {{project.project.genre.all|join:", " }}    |  {{project.project.language.all|join:", " }}     
+                    
+                  </div>
+                  <div class="col-lg-6">                                                   
+                    {{project.project.budget}} Cr   {% if project.project.imdb_link  %} |  <a target="_blank" href="{{project.project.imdb_link}}">Imdb Link</a>  {% endif %}                       
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-12 mt-1"> 
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{project.project.id}}" aria-expanded="false" aria-controls="collapseExample">
+              View Highlight
+            </button>
+          </div>
+
+          <div class="collapse" id="collapseExample-{{project.project.id}}">
+          
+              <div class="col-lg-12" id="project-highlight-div-{{project.project.id}}">
+
+          
+                {% for highlight in project.project.highlights.all %}
+
+                    <div class="row">
+
+                        <div class="col-12">
+                          <h4>{{highlight}}</h4>
+                            {{highlight.content}}
+                        </div>            
+
+                    </div>
+
+                {% empty %}
+
+                    <p>No data available..!</p>
+
+                {% endfor %}
+
+              </div>
+          </div>
+
+
+
+        </div>
+    
+        {% endfor %}
+      <!--Project end-->
+
+
+      </div>
+
+
+     
+      {% if user_object_is_writer %}
+
+      <div class="all-section testimonials-section">
+        <!-- Testimonial start -->
+            <div class="row">
+              <div class="col-lg-6"> 
+                  <h3>Testimonial</h3>
+              </div>
+              <div class="col-lg-6">
+              
+              </div>
+            </div>
+
+            <div id="testimonial_div">
+              {% for testimonial in testimonials %}
+                <div class="row mb-4">                       
+                    
+                    <div class="col-lg-12">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="row mb-4">
+                            <div class="col-lg-12 col-md-3">                                                             
+                              <h5>{{testimonial.title}} </h5>      
+                              <p> {% if testimonial.project %}  {{testimonial.project}} - {% endif %}   {{testimonial.user}}  -
+
+                                {% if testimonial.text_content %}
+                                  {{testimonial.text_content}}
+                                {% endif %}
+
+                                
+                                {% if testimonial.picture_content %}
+                                  <img src="{{testimonial.picture_content.url}}">
+                                {% endif %}
+
+                                {% if testimonial.video_content %}
+                              <a target="_blank" href="{{testimonial.video_content}}">Video</a>
+                            {% endif %}
+                              </p>                           
+                            </div>
+                          </div>
+                        </div>       
+                       
+                      </div>
+                    </div>
+                </div>
+
+              {% empty %}
+                <div class="row mb-3 container">
+                    No data available..!
+                </div>
+              {% endfor %}
+            </div>   
+        <!-- Testimonial end -->
+
+      </div>
+
+
+      {% endif %}
+  
+ 
+       
+    
+    </div>
+
+    <!--Right Side-->
+
+    <div class="col-lg-6">
+
+        <div class="work-as-assitant-section-bg all-section">
+
+            <!--Work as Assistant start-->
+            <div class="row">
+              <div class="col-lg-6"> 
+                  <h3>Work as Assitant</h3>
+                </div>
+                <div class="col-lg-6">
+                
+                </div>
+              </div>     
+            <div id="as_assistant_div">
+
+              {% for as_assistant in user_object.assistant_set.all %}
+              <div class="row mb-4">
+                <div class="col-lg-1">
+                    
+                </div>
+              
+                <div class="col-lg-8">
+                    <div class="row">
+                      <div class="col-lg-9">
+                            <h4>                  
+                              {% if as_assistant.senior_link %}
+                                  <a href="#">{{as_assistant.senior_link}}</a> 
+                              {% else %}
+                                  <a href="#">{{as_assistant.senior}}</a>
+                              {% endif %}
+                            </h4>
+                      </div>
+                      <div class="col-lg-2">
+                    
+                      </div>
+                    </div>
+              
+                    <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                        <div class="col-lg-3 col-md-3 ">
+                        
+                          {{as_assistant.project.title}}       
+                          
+                        </div>
+                        <div class="col-lg-3 col-md-3">                                                   
+                            {{as_assistant.year}}                                 
+                        </div>
+                    </div>
+                </div>
+              </div>
+              {% empty %}
+                <div class="row mb-3 container">
+                  No data available..!
+                </div>
+              {% endfor %}
+
+            </div>
+
+
+        </div>
+
+      
+
+          {% if qualifications %}
+
+            <div class="all-section qualification-section-bg">
+
+              <!-- Qualification start-->
+              <div class="row">
+                  <div class="col-lg-6"> 
+                      <h3>Qualification</h3>
+                  </div>
+                  <div class="col-lg-6">
+                  
+                  </div>
+              </div>
+
+              <div id="qualification_div">
+                {% for qualification in qualifications %}
+                  <div class="row mb-3">                       
+                
+                      <div class="col-lg-12 " style="padding-top: 20px;">
+                        <div class="row">
+                          <div class="col-lg-9">
+                            <div class="row mb-4" style="margin-bottom: 10px !important;">
+                              <div class="col-lg-12 col-md-3">                                                             
+                                {{qualification}}                                  
+                              </div>
+                            </div>
+                          </div>       
+                      
+                        </div>
+                      </div>
+                  </div>
+            
+                {% endfor %}
+              </div>  
+
+            </div>
+  
+            
+            <!-- Qualification end -->
+         {% endif %}
+
+
+          {% if awards %}
+
+          <div class="all-section award-section-bg">
+
+                <!-- Award start-->
+                <div class="row">
+                  <div class="col-lg-6"> 
+                      <h3>Award</h3>
+                  </div>
+                  <div class="col-lg-6">
+                  
+                  </div>
+                </div>
+
+                <div id="award_div">
+                  {% for award in awards %}
+                    <div class="row mb-3">                       
+                        <div class="col-lg-2">
+                          <img src="{{award.image.url}}">
+                        </div>
+                        <div class="col-lg-10 ">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="row mb-4" style="margin-bottom: 10px !important;">
+                                <div class="col-lg-12">                                                             
+                                  {{award}}       
+                                  <p>{{award.banner}}  - {{award.project}}</p>                           
+                                </div>
+                              </div>
+                            </div>       
+                           
+                          </div>
+                        </div>
+                    </div>
+
+              
+                  {% endfor %}
+                </div>    
+              
+              <!-- Award end -->
+
+
+          </div>
+            
+          {% endif %}
+
+        </div>
+                
+      </div>
+  </div>
+
+</section>
+
+
+<!-- AjaxModal -->
+<div class="modal fade" id="AjaxModal" tabindex="-1" role="dialog" aria-labelledby="AjaxModalLabel" aria-hidden="true">
+
+</div>
+
+
+<!-- Project Modal -->
+<div class="modal" id="projectModal" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title">Choose Project</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div><div class="container"></div>
+      <div class="modal-body" id="display_senior">        
+          <div class="row" class="senior-list">
+          <div class="col-sm-12">
+  
+              <!-- RH: this is bootstrap 5 tabbed panel -->
+              <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                      <a class="nav-link active" id="project-search-tab" data-bs-toggle="tab" href="#project-view-tab" role="tab" aria-controls="project-view" aria-selected="true">Search Project</a>
+                  </li>
+                  {% if is_producer %}
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="project-create" data-bs-toggle="tab" href="#project-create-tab" role="tab" aria-controls="project-create" aria-selected="false">Create Project</a>
+                    </li>
+                  {% endif %}
+              
+              </ul>
+  
+  
+              <div class="tab-content mt-2 container" id="myTabContent">
+                  <div class="tab-pane fade show active" id="project-view-tab" role="tabpanel" aria-labelledby="project-view">
+  
+                      <div class="row ml-5">                
+                      <div class="input-group">
+                          <input class="form-control border-end-0 border" type="text" value="" id="project-search-input">
+                          <span class="input-group-append">
+                              <button class=" form-control bg-white border-start-0 border project_search" type="button">
+                                  Search
+                              </button>
+                          </span>                             
+                      </div>                        
+                      
+                      </div>  
+                      <div id="project-list-div">
+  
+                      </div>   
+                          
+      
+              
+                  </div>
+                  <div class="tab-pane fade" id="project-create-tab" role="tabpanel" aria-labelledby="project-create">
+  
+  
+                      <div class="row ml-2 project-form">
+                      <form method="post" id="ajax_form" enctype="multipart/form-data">                         
+                          <table>
+                              {% csrf_token %}
+  
+                              <div class="row">
+                                  {% for field in project_form.visible_fields %}
+  
+                                      <div class="col-sm-6">
+                                          {{ field.errors }}
+                                          {{ field.label }}
+                                          {{ field }}
+                                      </div>
+                                  
+                                  {% endfor %}
+                                      {% for hidden_field in project_form.hidden_fields %}
+                                      {{ hidden_field.errors }}
+                                      {{ hidden_field }}
+                                  {% endfor %}
+  
+                              </div>
+                              
+                          </table>  
+                          <br> 
+                          <span style="color:red" id="project_info_text"></span>
+                          <button type="button" id="edit_btn" data-url= "{% url 'ajax_add' model_name='project'  %}" class="btn btn-primary ajax-add-project-btn">Create</button>                             
+                          
+                      </form>
+          
+                      </div>
+  
+                      <div id="display-created-project">
+  
+                      </div>
+  
+                  </div>
+              </div>
+              
+          </div>
+  
+          <div id="project-list">
+  
+          </div>
+  
+          </div>                
+      </div>
+      <div class="modal-footer">
+          <a href="#" data-bs-dismiss="modal" class="btn">Close</a>
+          <a href="#"  class="btn btn-primary add-selected-project disabled">Add</a>
+      </div>
+      </div>
+  </div>
+  
+</div>
+
+    
+<!--User Activate and inactive--modal-->
+<div id="user-activate-inactive-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="active-inactive-modal-title"></h5>
+       
+      </div>
+      <div class="modal-body">
+        <p>Info</p>
+        <form id="user_active_inactive_form">
+          {% csrf_token %}
+          <textarea id="user_active_inactive_info" name="info"></textarea>
+        </form>
+      
+      </div>
+      <div class="modal-footer">
+          <p class="please-wait" style="color: red;"></p>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary user_active_inactive_btn" userid="">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="{% static 'js/photo-open.js' %}"></script>
+<script src="{% static 'js/inbox.js' %}"></script>
+
+
+  <script>
+    $( document ).ready(function() {
+
+      //admin verification
+      $(".approve").on('click', function(){ 
+          event.preventDefault();    
+          url = $(this).attr('data-url');
+          
+          $.ajax({
+              url : url,  
+
+              beforeSend:function()
+                {
+                    $('#info_msg').text('Please Wait');
+                    
+                },
+              success:function(output)
+                  {
+                      if (output.status == "approved")
+                          {
+
+            
+                            if (confirm('Approved..!')) {
+                              location.reload();
+                            
+                            }
+                            else{
+                              location.reload();
+                            }
+                          }
+                      else{
+
+                        alert('Disapproved');
+
+                        $('#disapproved').text('Disapproved');
+                        $('#info_msg').text('');
+                       
+                             
+                      }    
+                  },
+          });
+      });
+
+
+
+      //User active Inactive
+$('.user_active_inactive_popup').click(function() {
+   
+   var status = $(this).attr('status');
+   var name = $(this).attr('name');
+   var userid = $(this).attr('userid');
+
+
+   $('#user-activate-inactive-modal').modal('show'); 
+
+   if (status == 'active')
+   {
+       $('.active-inactive-modal-title').text(name+' - Hard Inactive');
+       $('.user_active_inactive_btn').text('Hard Inactive');        
+   }
+
+   else{
+       $('.active-inactive-modal-title').text(name+' - Activate');
+       $('.user_active_inactive_btn').text('Activate');
+   }
+
+
+
+   $('.user_active_inactive_btn').attr("user-id",userid);
+   
+   event.preventDefault();    
+   url = $(this).attr('data-url');
+
+});
+
+
+
+$('#user-activate-inactive-modal').on('click','.user_active_inactive_btn',function(){
+   event.preventDefault();
+   var userid = $(this).attr('user-id');
+   formdata = new FormData($('#user-activate-inactive-modal #user_active_inactive_form')[0]);
+   info = $('#user_active_inactive_info').val();
+
+
+   if(info){
+
+       url = "/user_active_inactive/"+userid;
+
+       $.ajax({
+           url:url,
+           data : formdata,
+           method: 'post',
+           processData: false,
+           contentType: false,
+
+
+           beforeSend: function() {      
+               $('.please-wait').text('Please wait');               
+           },
+
+           success:function(output)
+           {
+               if(output.active){
+                  alert('Activated');
+                  $('.user_active_inactive_popup').attr("status","active");
+                  $('.user_active_inactive_popup').text("Hard Inactive");
+
+               }
+               else{
+                   alert('Hard Inactivated');
+                   $('.user_active_inactive_popup').attr("status","inactive");
+                   $('.user_active_inactive_popup').text("Activate");
+                 
+               }
+
+               $('.please-wait').text('');  
+
+               $("#user_active_inactive_info").val('');
+
+               $('#user-activate-inactive-modal').modal('toggle');
+
+
+               
+           }
+
+        
+       
+       });
+
+   }
+
+   else{
+       alert("Enter something in info box");
+   }
+
+
+
+
+});
+
+
+      {% if average_rating %}
+        avgRating = {{average_rating}};
+
+        for (let i = 1; i <= avgRating; i++) {
+              $('.'+i+'staravg').addClass('theme');
+        } 
+
+      {% endif %}
+      
+      {% if rate_count %}
+        rate = {{rate_count}};
+
+        for (let i = 1; i <= rate; i++) {
+          $('.'+i+'star').addClass('theme');
+        } 
+
+      {% endif %}
+
+
+
+      //Rating
+      $('.rate-btn').click(function() {  
+          event.preventDefault();  
+          rate =  $(this).attr('data-value');
+          $('.rate-btn').removeClass('theme');
+          for (let i = 1; i <= rate; i++) {
+            $('.'+i+'star').addClass('theme');
+          } 
+          url = '/people_rating/'+{{user_object.id}}+'/'+rate+'/';
+          $.ajax({
+              url : url,               
+              success:function(output)
+              {              
+                  avgRating =   output.average_rating;
+                  $('.avg-rate').removeClass('theme');
+                  for (let i = 1; i <= avgRating; i++) {
+                        $('.'+i+'staravg').addClass('theme');
+                      ;
+                  }   
+
+              },            
+          });
+        
+    
+
+      });
+
+
+
+      
+      //Follow and unfollow
+      $('.follow_unfollow').click(function() {  
+            event.preventDefault();       
+            url = $(this).attr('data-url');
+            id = $(this).attr('user_id');
+    
+
+                $.ajax({
+                url : url,                        
+                success:function(output)
+                    {
+                      if (output.followed)
+                          {
+                            $('#user_id_'+id).removeClass('fa-plus');  
+                            $('#user_id_'+id).addClass('fa-minus');
+                          }
+                      else{
+                          $('#user_id_'+id).removeClass('fa-minus');
+                          $('#user_id_'+id).addClass('fa-plus');
+                    
+                        }    
+                  },
+            });
+        });
+
+
+      //Testimonial
+      $('.write_testimonial').click(function() {   
+          event.preventDefault(); 
+          url = $(this).attr('data-url');            
+          $.ajax({
+              url : url,               
+              success:function(output)
+              {
+                
+                  $('#AjaxModal').html(output.form);
+                  $('#AjaxModal').modal('show');                                 
+              },            
+          });       
+      });
+
+
+        //add Testimonial
+        $('#AjaxModal').on('click','.ajax-add-testimonial-btn', function(){
+            event.preventDefault();
+    
+            formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+            url = $(this).attr('data-url');
+            var projectLink = $('#get_project_link').attr('projectid');
+            formdata.append('project', projectLink);
+            var title = $('#id_title').val();  
+            var textcontent = $('#id_text_content').val(); 
+            var videocontent = $('#id_video_content').val(); 
+            var picturecontent = $('#id_picture_content').val();
+
+  
+        
+
+          if( title   && (textcontent || videocontent  || picturecontent) )
+
+          {
+    
+            $.ajax({
+                url : url,
+                data : formdata,
+                method: 'post',
+                processData: false,
+                contentType: false,
+                beforeSend:function()
+                {
+                    $('#AjaxModal #info_text').text('Please Wait');
+                    
+                },
+                
+                success:function(output)
+                {
+                    if(output.valid)
+                    {
+
+                        $('#AjaxModal').modal('hide');
+                        alert('Successfully Submitted..!')
+                        
+                        
+                    }
+                    else
+                    {
+                        $('#AjaxModal').html(output.form);
+                    }
+                    $('#AjaxModal #info_text').text('');
+                },
+            });
+
+
+    
+
+
+          }
+
+          else{
+
+            alert('You must fill title and at least text, video, or image content when writing a testimonial.!')
+          }
+
+    });
+
+
+          //Report People
+          $('.report_people').click(function() {  
+            event.preventDefault();       
+            url = $(this).attr('data-url');
+            $.ajax({
+                url : url,                        
+                success:function(output)
+                    {
+                      $('#AjaxModal').html(output.form);
+                      $('#AjaxModal').modal('show'); 
+
+                      
+                  },
+            });
+        });
+
+      //Project Modal
+      $('#AjaxModal').on('click','.add-project', function(){ 
+          event.preventDefault();           
+          $('#projectModal').modal('show');  
+          $('.container' ).addClass('blur');
+          $('#AjaxModal' ).addClass('fade');
+        });
+
+
+        //project search
+        $('#projectModal').on('click','.project_search', function(){            
+            event.preventDefault();
+              name = $('#project-search-input').val();            
+
+              url = "{% url 'project_search' model_name='assistant' %}"
+              $.ajax({
+                  url : url,
+                  data : {'name':name,},
+                  method: 'post',  
+                  headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+                  success:function(output)
+                    {  
+                      $('#project-list-div').html(output.projects); 
+                      $('.add-selected-project').removeClass('disabled');                                           
+                    },
+              });
+          });
+
+
+      //move selected project
+      $('#projectModal').on('click','.add-selected-project', function(){           
+            projectId = $('input[name="project-select"]:checked').val();
+            projectName = $('input[name="project-select"]:checked').attr('project_name');
+
+        
+            if(projectId){
+
+                $('#get_project_link').remove();
+                $('#ajax-model-project-section').append('<div class="m-1"><h5 class="mt-2" id="get_project_link" projectid="'+projectId+'" > Project: '+projectName+'</h5></div>');
+                $("#id_project").find('option:first').remove();
+                $('#id_project').append('<option value="'+projectId+'" seleted>'+projectName+'</option>');
+                
+                $('#projectModal').modal('toggle');             
+                $('.add-selected-project').text("Edit Project");
+                $('.open-add-project-modal').text("Edit Project");
+                $('.add-project').text("Edit Project");
+                
+
+            }
+            else{
+              alert('You must select one of the options.');
+            }
+            
+        });
+
+
+
+ 
+    });
+
+  </script>
+ 
+{% endblock %}

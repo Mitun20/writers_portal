@@ -1,0 +1,32 @@
+{% load static %}
+
+        
+  <div class="row" class="senior-list mt-2" >
+    <hr>
+      {% for user in users %}
+          <div class="col-sm-12 mt-1">
+              <input type="radio" class="senior-select" id="user-show" user_type="user" senior_name="{{user}}" name="senior-select" value="{{user.id}}">
+              <label for="user-show"> 
+                  {% if user.profile_photo %}                     
+                      <img class="img-fluid rounded-circle" height="50" width="50" src="{{user.profile_photo.url}}">
+                  {% else%}
+                      <img class="img-fluid rounded-circle" height="50" width="50" src="{% static 'images/avatar.png' %}" alt="avatar">
+                  {% endif %}
+                  {{user}} - Director
+                  
+              </label>        
+          </div>
+
+          <br><hr class="m-2">
+  
+      {% endfor %}
+
+      {% if senior_name and not search_for_testimonial %}
+        <div class="col-sm-12 mt-1">
+          <input type="radio" class="unknown-senior" id="user-show" user_type="non-user" senior_name="{{senior_name}}" name="senior-select" value="{{senior_name}}">
+          <label for="user-show">
+            <img class="img-fluid rounded-circle " height="50" width="50" src="{% static 'images/avatar.png' %}" alt="avatar">
+            {{senior_name}} - Non User</label><br>
+      </div>
+     {% endif %}
+  </div>

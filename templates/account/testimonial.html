@@ -1,0 +1,39 @@
+
+{% load static %}
+
+{% for testimonial in user.testimonial_set.all %}
+  <div class="row mb-3">                     
+      <div class="col-lg-9 ">
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="row mb-4" style="margin-bottom: 10px !important;">
+              <div class="col-lg-12 col-md-3">                                                             
+                <h5>{{testimonial.title}} </h5>      
+                <p>{{testimonial.project}}  - {{testimonial.person}} - {{testimonial.designation}} 
+
+                  {% if testimonial.text_content %}
+                    {{testimonial.text_content}}
+                  {% endif %}
+
+                  
+                  {% if testimonial.picure_content %}
+                    <img src="testimonial.picture_content.url">
+                  {% endif %}
+
+                  {% if testimonial.video_content %}
+                <a target="_blank" href="{{testimonial.video_content}}">Video</a>
+              {% endif %}
+                </p>                           
+              </div>
+            </div>
+          </div>       
+          <div class="col-lg-3"><a href="#"><i class="fa fa-edit ajax_edit" data-url="{% url 'ajax_edit' model_name='testimonial' pk=testimonial.id %}"></i></a>
+          </div>
+        </div>
+      </div>
+  </div>
+{% empty %}
+  <div class="row mb-3 container">
+      No data available..!
+  </div>
+{% endfor %}

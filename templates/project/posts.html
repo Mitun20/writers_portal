@@ -1,0 +1,8 @@
+{% load static %}
+{% load check_post_like_tags %}
+
+{% for post in posts %}                    
+   {% include "project/post.html" %}
+{% empty%}
+    <h5>No Post Found</h5>
+{% endfor %}

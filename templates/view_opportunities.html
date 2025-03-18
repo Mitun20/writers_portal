@@ -1,0 +1,600 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load check_post_like_tags %}
+{% load follow_status_tags %}
+
+{% block content %}
+ 
+<!-- BreadCrumb Starts -->  
+<section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Call for Writers</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+               <!-- sidebar starts -->
+               <div class="col-lg-3 col-md-12">
+                    <div class="sidebar-sticky">
+                        <div class="list-sidebar">
+                        <div class="author-news mb-1 shadow-sm p-4 text-center">
+                            <div class="author-news-content">
+                                <div class="author-thumb">
+                                    {% if user.profile_photo %}
+                                        <img src="{{user.profile_photo.url}}" alt="author">
+                                    {% else %}
+                                        <img src="{% static 'images/avatar.png' %}">
+                                    {% endif %}
+                                </div>
+                                <div class="author-content">
+                                    <h3 class="title mb-1 text-align-left"><a href="{%url 'my_profile' %}">{{user}} :  
+                                         {% for group in user.groups.all %}
+                                               {{group}} 
+                                                 {% if not forloop.last %}
+                                                     /
+                                                 {% endif %}
+                                    {% endfor %}</a></h3>
+                                    
+
+                                       
+                                </div>
+                            </div>
+                        </div>
+                            <div class="popular-post sidebar-item mb-4 box-shadow p-4">
+
+                                <form id="search-form">
+                                     {% csrf_token %}
+                                <h4 class="">Filter</h4>
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Genre</h5>
+                                        </div>
+                                        <div class="col">
+                                           <a class="float-end link-primary genre_clear_btn" href="#"><u>Clear Filter</u></a>
+                                        </div>
+                                    </div>
+                                   
+                                    {% for genre in genres %}
+                                        <div class="input-group">
+                                            <label class="check">{{genre}}
+                                            <input type="checkbox" class="ajax_filter genre_list"  name="genre" value="{{genre.id}}">
+                                            <span class="checkmark"></span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                        
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Format</h5>
+                                        </div>
+                                        <div class="col">
+                                           <a class="float-end link-primary format_clear_btn" href="#"><u>Clear Filter</u></a>
+                                        </div>
+                                    </div>
+                                    
+                                        {% for format in formats %}
+                                            <div class="input-group">
+                                                <label class="check">{{format}}
+                                                <input type="checkbox" class="ajax_filter format_list"  name="format" value="{{format.id}}">
+                                                <span class="checkmark"></span>
+                                            </div>
+                                        {% endfor %}
+                                </div>
+
+                                <div class="col-lg-12">                                   
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Language</h5>
+                                        </div>
+                                        <div class="col">
+                                           <a class="float-end link-primary language_clear_btn" href="#"><u>Clear Filter</u></a>
+                                        </div>
+                                    </div>
+
+                                    {% for language in languages %}
+                                        <div class="input-group">
+                                            <label class="check">{{language}}
+                                            <input type="checkbox" class="ajax_filter language_list"  name="language" value="{{language.id}}">
+                                            <span class="checkmark"></span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col-lg-12">                               
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Requirement</h5>
+                                        </div>
+                                        <div class="col">
+                                           <a class="float-end link-primary requirement_clear_btn" href="#"><u>Clear Filter</u></a>
+                                        </div>
+                                    </div>
+                                    {% for requirement in requirements %}
+                                        <div class="input-group">
+                                            <label class="check">{{requirement}}
+                                            <input type="checkbox" class="ajax_filter requirement_list"  name="requirement" value="{{requirement.id}}">
+                                            <span class="checkmark"></span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                
+                                <div class="col-lg-12">
+                                    
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Post by</h5>
+                                        </div>
+                                        <div class="col">
+                                           <a class="float-end link-primary posted_by_clear_btn" href="#"><u>Clear Filter</u></a>
+                                        </div>
+                                    </div>
+
+                                    {% for group in groups %}
+                                        <div class="input-group">
+                                            <label class="check">{{group}}
+                                            <input type="checkbox" class="ajax_filter posted_by_list"  name="group" value="{{group.id}}">
+                                            <span class="checkmark"></span>
+                                        </div>
+                                    {% endfor %}
+                                </div> 
+                                
+                               </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+         
+
+                <div class="col-lg-6">
+                    <div class="blog-content" id="post_div">
+                        {% for post in posts %}                    
+                           {% include "project/post.html" %}
+                        {% empty %}
+                            <div class="row p-2">
+                                <h5>No data available..!</h5>
+                            </div>
+                        {% endfor %}                        
+                    </div>
+                </div>
+                <!-- Right sidebar starts -->
+                <div class="col-lg-3 col-md-12">
+                    {% include "find_people.html" %}
+                </div>
+         
+        </div>
+    </div>
+</section>
+<!-- blog Ends -->  
+
+
+<!-- AjaxModal -->
+<div id="AjaxModal" class="modal AjaxModal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+</div>
+
+<!-- Project Modal -->
+<div class="modal" id="projectModal" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Choose Project</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div><div class="container"></div>
+        <div class="modal-body" id="display_senior">        
+            <div class="row" class="senior-list">
+            <div class="col-sm-12">
+    
+                <!-- RH: this is bootstrap 5 tabbed panel -->
+                <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="project-search-tab" data-bs-toggle="tab" href="#project-view-tab" role="tab" aria-controls="project-view" aria-selected="true">Search Project</a>
+                    </li>
+
+                    {% if is_producer %}
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="project-create" data-bs-toggle="tab" href="#project-create-tab" role="tab" aria-controls="project-create" aria-selected="false">Create Project</a>
+                        </li>
+                    {% endif %}
+                
+                </ul>
+    
+    
+                <div class="tab-content mt-2 container" id="myTabContent">
+                    <div class="tab-pane fade show active" id="project-view-tab" role="tabpanel" aria-labelledby="project-view">
+    
+                        <div class="row ml-5">                
+                        <div class="input-group">
+                            <input class="form-control border-end-0 border" type="text" value="" id="project-search-input">
+                            <span class="input-group-append">
+                                <button class=" form-control bg-white border-start-0 border project_search" type="button">
+                                    Search
+                                </button>
+                            </span>                             
+                        </div>                        
+                        
+                        </div>  
+                        <div id="project-list-div">
+    
+                        </div>   
+                            
+        
+                
+                    </div>
+                    <div class="tab-pane fade" id="project-create-tab" role="tabpanel" aria-labelledby="project-create">
+    
+    
+                        <div class="row ml-2 project-form">
+                        <form method="post" id="ajax_form" enctype="multipart/form-data">                         
+                            <table>
+                                {% csrf_token %}
+    
+                                <div class="row">
+                                    {% for field in project_form.visible_fields %}
+    
+                                        <div class="col-sm-6">
+                                            {{ field.errors }}
+                                            {{ field.label }}
+                                            {{ field }}
+                                        </div>
+                                    
+                                    {% endfor %}
+                                    {% for hidden_field in project_form.hidden_fields %}
+                                        {{ hidden_field.errors }}
+                                        {{ hidden_field }}
+                                    {% endfor %}
+    
+                                </div>
+                                
+                            </table>  
+                            <br> 
+                            <span style="color:red" id="project_info_text"></span>
+                            <button type="button" id="edit_btn" data-url= "{% url 'ajax_add' model_name='project'  %}" class="btn btn-primary ajax-add-project-btn">Create</button>                             
+                            
+                        </form>
+            
+                        </div>
+    
+                        <div id="display-created-project">
+    
+                        </div>
+    
+                    </div>
+                </div>
+                
+            </div>
+    
+            <div id="project-list">
+    
+            </div>
+    
+            </div>                
+        </div>
+        <div class="modal-footer">
+            <a href="#" data-bs-dismiss="modal" class="btn">Close</a>
+            <a href="#"  class="btn btn-primary add-selected-project disabled">Add</a>
+        </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<!-- MODAL TO CROP THE IMAGE -->
+<div class="modal fade" id="modalCrop" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Crop the photo</h4>
+        
+    </div>
+    <div class="modal-body">
+        <img src="" id="image" style="height:400px;">
+    </div>
+    <div class="modal-footer">
+        <div class="btn-group pull-left" role="group">
+        <button type="button" class="btn btn-default js-zoom-in">
+            <span class="glyphicon glyphicon-zoom-in"></span>
+        </button>
+        <button type="button" class="btn btn-default js-zoom-out">
+            <span class="glyphicon glyphicon-zoom-out"></span>
+        </button>
+        </div>
+
+        <button type="button" class="btn btn-primary js-crop-and-upload">Crop</button>
+    </div>
+    </div>
+</div>
+</div>
+
+
+<!--name-empty-modal-->
+<div id="name-empty-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Alert</h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Enter Something in Searchbox</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
+<script src="{% static 'js/cropper.min.js' %}"></script>
+<script src="{% static 'js/post.js' %}"></script>
+<script src="{% static 'js/inbox.js' %}"></script>
+<script src="{% static 'js/testimonial.js' %}"></script>
+<script src="{% static 'js/follow_unfollow.js' %}"></script>
+<script src="{% static 'js/report.js' %}"></script>
+<script src="{% static 'js/find_people.js' %}"></script>
+<script src="{% static 'js/interest_msg.js' %}"></script>
+<script src="{% static 'js/see_response.js' %}"></script>
+<script src="{% static 'js/photo-open.js' %}"></script>
+
+<script>
+  $( document ).ready(function() {
+
+    //genre clear filter
+    $('.genre_clear_btn').click(function(){
+        event.preventDefault();
+        $(".genre_list").prop("checked", false);
+        filter();
+    });
+
+    //format clear filter
+    $('.format_clear_btn').click(function(){
+        event.preventDefault();
+        $(".format_list").prop("checked", false);
+        filter();
+    });
+
+    //language clear filter
+    $('.language_clear_btn').click(function(){
+        event.preventDefault();
+        $(".language_list").prop("checked", false);
+        filter();
+    });
+
+    //requirement clear filter
+    $('.requirement_clear_btn').click(function(){
+        event.preventDefault();
+        $(".requirement_list").prop("checked", false);
+        filter();
+    });
+
+    //requirement clear filter
+    $('.posted_by_clear_btn').click(function(){
+        event.preventDefault();
+        $(".posted_by_list").prop("checked", false);
+        filter();
+    });
+
+
+
+    
+    function filter() {
+        formdata = new FormData($('#search-form')[0]);
+        url = '{%url "post_filter"  %}',
+            
+        $.ajax({
+            url : url,
+            data : formdata,
+            method: 'post',
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+
+            success:function(output)
+            {
+                if(output.valid)
+                    {                      
+                        $('#post_div').html(output.html);                         
+                    
+                    }
+                else
+                    {
+                        alert('Something went wrong')
+                    }            
+        
+            },
+        });
+
+        
+  
+        }
+
+     //image crop 
+     $(function () {
+
+      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+      $('#projectModal').on('change','#id_image', function(){
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#image").attr("src", e.target.result);
+            $("#modalCrop").modal("show");
+          }
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+
+      /* SCRIPTS TO HANDLE THE CROPPER BOX */
+      var $image = $("#image");
+      var cropBoxData;
+      var canvasData;
+      $("#modalCrop").on("shown.bs.modal", function () {
+        $image.cropper({
+          viewMode: 1,
+          aspectRatio: 1/1,
+          minCropBoxWidth: 200,
+          minCropBoxHeight: 200,
+          ready: function () {
+            $image.cropper("setCanvasData", canvasData);
+            $image.cropper("setCropBoxData", cropBoxData);
+          }
+        });
+      }).on("hidden.bs.modal", function () {
+        cropBoxData = $image.cropper("getCropBoxData");
+        canvasData = $image.cropper("getCanvasData");
+        $image.cropper("destroy");
+      });
+
+      $(".js-zoom-in").click(function () {
+        $image.cropper("zoom", 0.1);
+      });
+
+      $(".js-zoom-out").click(function () {
+        $image.cropper("zoom", -0.1);
+      });
+
+      /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+      $(".js-crop-and-upload").click(function () {
+        var cropData = $image.cropper("getData");
+        $("#id_x").val(cropData["x"]);
+        $("#id_y").val(cropData["y"]);
+        $("#id_height").val(cropData["height"]);
+        $("#id_width").val(cropData["width"]);
+        $('#modalCrop').modal('toggle');
+      });
+
+    });
+
+
+    //ajax filter
+    $('.ajax_filter').click(function(){
+        filter();
+    });
+
+
+
+
+    
+    //Project Modal
+    $('#AjaxModal').on('click','.add-project', function(){ 
+        event.preventDefault();           
+        $('#projectModal').modal('show');  
+        $('.container' ).addClass('blur');
+        $('#AjaxModal' ).addClass('fade');
+    });
+
+
+
+      //project search
+      $('#projectModal').on('click','.project_search', function(){            
+          event.preventDefault();
+            name = $('#project-search-input').val();            
+
+            url = "{% url 'project_search' model_name='assistant' %}"
+            $.ajax({
+                url : url,
+                data : {'name':name,},
+                method: 'post',  
+                headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+                success:function(output)
+                  {  
+                    $('#project-list-div').html(output.projects); 
+                    $('.add-selected-project').removeClass('disabled');                                           
+                  },
+            });
+        });
+
+
+     //move selected project
+     $('#projectModal').on('click','.add-selected-project', function(){           
+          projectId = $('input[name="project-select"]:checked').val();
+          projectName = $('input[name="project-select"]:checked').attr('project_name');
+
+       
+          if(projectId){
+
+              $('#get_project_link').remove();
+              $('#ajax-model-project-section').append('<div class="m-1"><h5 class="mt-2" id="get_project_link" projectid="'+projectId+'" > Project: '+projectName+'</h5></div>');
+              $("#id_project").find('option:first').remove();
+              $('#id_project').append('<option value="'+projectId+'" seleted>'+projectName+'</option>');
+              
+              $('#projectModal').modal('toggle');             
+              $('.add-selected-project').text("Edit Project");
+              $('.open-add-project-modal').text("Edit Project");
+              $('.add-project').text("Edit Project");
+              
+
+          }
+          else{
+            alert('You must select one of the options.');
+          }
+           
+      });
+
+
+      $('#projectModal').on('click','.ajax-add-project-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#projectModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#projectModal #project_info_text').text('Please Wait ');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {                 
+                    $('#project-list-div').html(output.project); 
+                    $("#project-search-tab").tab('show');
+                    $('.add-selected-project').removeClass('disabled'); 
+                     
+                  }
+                  else
+                  {                     
+                      $('.project-form').html(output.form);
+                  }
+                  $('#projectModal #project_info_text').text('');
+              },
+          });
+
+
+      });
+
+  });
+
+</script>
+ 
+
+{% endblock %}

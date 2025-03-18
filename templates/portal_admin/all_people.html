@@ -1,0 +1,969 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load check_post_like_tags %}
+
+{% block home %}nav-active{% endblock %}
+{% block content %}
+ <!-- BreadCrumb Starts -->  
+ <section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<div  class="text-center">
+   <h5 class="created-message theme"></h5>
+</div>
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+               <!-- sidebar starts -->
+               <div class="col-lg-12 col-md-12">
+                   <h5>Recent Peoples</h5>
+                    <div class="row">
+                        {% for user_object in users %}
+                            <div class="col-lg-3 col-md-12 border mt-1">
+                                <article class="post mb-1 border-b pb-1 p-3">
+                                    <div class="s-content d-flex align-items-center justify-space-between">
+                                        <div class="sidebar-image w-25 me-3">
+                                            {% if user_object.profile_photo %}
+                                                <a href="#"><img class="rounded" src="{{user_object.profile_photo.url}}" alt=""></a>
+                                            {% else  %}
+                                                <a href="#"><img class="rounded" src="{% static 'images/avatar.png' %}" alt=""></a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="content-list w-75">
+                                            <h5 class="mb-1"><a href="{% url 'profile' user_object.id %}">{{user_object}}</a>
+
+                                                {% if user_object != user %}                                              
+                                                    <span class="pull-right"> 
+                                                        <a title="Message" href="#"> <i class="fa fa-envelope get_all_message" data-url="{% url 'get_inbox_chat' user_object.id %}" ></i> </a> | 
+                                                            {% if user_object.is_active %}
+                                                            <a class="userid_{{user_object.id}}" title="Inactive" href="#"> <i class="fa fa-ban user_active_inactive_popup user_id_{{user_object.id}}" userid="{{user_object.id}}" name="{{user_object}}" status="active"></i> </a>
+                                                            {% else %}
+                                                            <a class="userid_{{user_object.id}}" title="Activate User" href="#"> <i class="fa fa-ban user_active_inactive_popup user_id_{{user_object.id}}" userid="{{user_object.id}}" name="{{user_object}}" status="inactive"></i> </a>
+                                                            {% endif %}
+                                                        </span>
+                                                {% endif %}
+                                            </h5>
+                                                
+                                                
+                                            
+                                            <div class="group">
+                                                {% for group in user_object.groups.all %}
+                                                    {{group}} 
+                                                    {% if not forloop.last %}
+                                                    | 
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>    
+                                    </div> 
+                                </article>
+
+
+                            </div>
+                        {% empty %}
+                           <h6 class="ml-3"> No data available..!</h6>              
+
+                        {% endfor %}
+
+
+                    </div>    
+
+                 
+
+                    <div class="col-lg-12 col-md-12 d-flex justify-content-center mt-1">
+
+                          
+                    {% if is_paginated %}
+                        <nav aria-label="Page navigation example">
+
+                            <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                   <li class="page-item disabled">
+                                     <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                      </a>
+                                  </li>
+                                {% endif %}
+        
+                                {% for i in paginator.page_range %}
+                                    {% if page_obj.number == i %}
+                                      <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">{{i}}</a>
+                                      </li>
+                                    {% else %}
+                                          <li class="page-item"><a class="page-link"  href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+        
+                                {% if page_obj.has_next %}
+                                    <li class="page-item"><a class="page-link"  href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        
+                    {% endif %}
+
+
+                    </div>
+                  
+ 
+        </div>
+    </div>
+
+
+    
+<!--User Activate and inactive--modal-->
+<div id="user-activate-inactive-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="active-inactive-modal-title"></h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Info</p>
+          <form id="user_active_inactive_form">
+            {% csrf_token %}
+            <textarea id="user_active_inactive_info" name="info"></textarea>
+          </form>
+        
+        </div>
+        <div class="modal-footer">
+            <p class="please-wait" style="color: red;"></p>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary user_active_inactive_btn" userid="">Close</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- blog Ends -->  
+
+<!-- AjaxModal -->
+<div id="AjaxModal" class="modal AjaxModal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+</div>
+
+
+
+<!--name-empty-modal-->
+<div id="name-empty-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Alert</h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Enter Something in Searchbox</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<script src="{% static 'js/post.js' %}"></script>
+<script src="{% static 'js/inbox.js' %}"></script>
+<script src="{% static 'js/interest_msg.js' %}"></script>
+<script src="{% static 'js/user_active_inactive.js' %}"></script>
+
+
+<script>
+  $( document ).ready(function() {
+
+    $('#pitch-form').on('click','.genre_option',function(){
+
+
+        var labels = $(this).map(function() {
+             return $(this).closest('label').text().trim();
+         }).get();
+
+         if (labels == "Other"){
+
+            if (this.checked){
+               $('#id_other_genre').attr('type','text');
+               $('#other_genre_label').text('Enter genre name');
+            }
+            else{
+                $('#id_other_genre').attr('type','hidden');
+                $('#id_other_genre').val('');
+                $('#other_genre_label').text('');
+            }
+             
+         }
+    });
+
+
+    $('#pitch-form').on('change','#id_language',function(){
+
+        optionName = $("#id_language option:selected").text();
+        if(optionName=="Other")
+
+        {
+            $('#id_other_language').attr('type','text'); 
+            $('#other_language_label').text('Enter language name');
+
+        }
+        else{
+            $('#id_other_language').attr('type','hidden'); 
+            $('#other_language_label').text('');
+        }
+        });
+
+
+
+    $('#call-form').on('click','.call_genre_option',function(){
+
+
+        var labels = $(this).map(function() {
+             return $(this).closest('label').text().trim();
+         }).get();
+
+         if (labels == "Other"){
+
+            if (this.checked){
+               $('#call-form #id_other_genre').attr('type','text');
+               $('#call-form #call_other_genre_label').text('Enter genre name');
+            }
+            else{
+                $('#call-form #id_other_genre').attr('type','hidden');
+                $('#call-form #id_other_genre').val('');
+                $('#call-form #call_other_genre_label').text('');
+            }
+             
+         }
+    });
+
+
+
+
+    $('#call-form').on('change','#id_language',function(){
+
+        optionName = $("#call-form #id_language option:selected").text();
+        if(optionName=="Other")
+
+        {
+            $('#call-form #id_other_language').attr('type','text'); 
+            $('#call-form #call_other_language_label').text('Enter language name');
+
+        }
+        else{
+            $('#call-form #id_other_language').attr('type','hidden'); 
+            $('#call-form #call_other_language_label').text('');
+        }
+        });
+
+
+
+
+
+
+    // message
+    $('#AjaxModal').on('click','.message_to',function(){
+    event.preventDefault();
+    url = $(this).attr('data-url');
+    formdata = new FormData($('#AjaxModal #message-form')[0]);
+    message = $('#message_txt').val();
+  
+
+    if(message){
+
+        $.ajax({
+            url:url,
+            data : formdata,
+            method: 'post',
+            processData: false,
+            contentType: false,
+
+            success:function(output)
+            {
+                if(output.valid){
+                    $('.message_div').html(output.messages);
+                    $('#message_txt').val('');
+                    $(".message-file").val(null);
+                }
+                else{
+                    alert(output.response);
+                }
+                
+            }
+        
+        });
+
+
+
+    }
+
+    else{
+        alert("Message can't be empty");
+    }
+
+    
+
+});
+
+
+
+
+
+     //image crop 
+     $(function () {
+
+      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+      $('#projectModal').on('change','#id_image', function(){
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#image").attr("src", e.target.result);
+            $("#modalCrop").modal("show");
+          }
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+
+      /* SCRIPTS TO HANDLE THE CROPPER BOX */
+      var $image = $("#image");
+      var cropBoxData;
+      var canvasData;
+      $("#modalCrop").on("shown.bs.modal", function () {
+        $image.cropper({
+          viewMode: 1,
+          aspectRatio: 1/1,
+          minCropBoxWidth: 200,
+          minCropBoxHeight: 200,
+          ready: function () {
+            $image.cropper("setCanvasData", canvasData);
+            $image.cropper("setCropBoxData", cropBoxData);
+          }
+        });
+      }).on("hidden.bs.modal", function () {
+        cropBoxData = $image.cropper("getCropBoxData");
+        canvasData = $image.cropper("getCanvasData");
+        $image.cropper("destroy");
+      });
+
+      $(".js-zoom-in").click(function () {
+        $image.cropper("zoom", 0.1);
+      });
+
+      $(".js-zoom-out").click(function () {
+        $image.cropper("zoom", -0.1);
+      });
+
+      /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+      $(".js-crop-and-upload").click(function () {
+        var cropData = $image.cropper("getData");
+        $("#id_x").val(cropData["x"]);
+        $("#id_y").val(cropData["y"]);
+        $("#id_height").val(cropData["height"]);
+        $("#id_width").val(cropData["width"]);
+        $('#modalCrop').modal('toggle');
+      });
+
+    });
+
+
+
+    // Call specification show
+    $('.choose_call_specification_btn').click(function() {
+        event.preventDefault();
+        $('.call_collapse').collapse('show');
+        $('.choose_call_specification_btn').addClass('d-none');
+
+    });
+
+    // Call specification close
+    $('.call_cancel_btn').click(function() {
+        event.preventDefault();
+        $('#call-form #id_language').val('');     
+        $('#call-form #id_format').val(''); 
+        $('#call-form #id_call_for').val('');      
+        $('#call-form #id_title').val('');   
+        $('#call-form #id_budget').val('');
+        $('#call-form #id_description').val('');
+        $("#call-form input[name='genre']:checkbox").prop('checked',false);    
+        $('.call_collapse').collapse('hide');
+        $('.choose_call_specification_btn').removeClass('d-none');
+
+    });
+
+    // Pitch specification show
+    $('.choose_pitch_specification_btn').click(function() {
+        event.preventDefault();
+        $('.pitch_collapse').collapse('show');
+        $('.choose_pitch_specification_btn').addClass('d-none');
+
+    });
+
+    // Pitch specification show
+    $('.pitch_cancel_btn').click(function() {
+        event.preventDefault();
+        $('#pitch-form #id_language').val('');     
+        $('#pitch-form #id_format').val(''); 
+        $("#pitch-form input[name='genre']:checkbox").prop('checked',false); 
+        $('#pitch-form #id_story_title').val('');   
+        $('#pitch-form #id_story_file').val('');
+        $("#pitch-form input[name='userselect']:checkbox").prop('checked',false);  
+        $('#pitch-form #recent-radio-btn').prop('checked', true);
+        $('#pitch-form #id_budget').val(''); 
+        $('#pitch-form #id_description').val(''); 
+        $('.pitch_collapse').collapse('hide');
+        $('.choose_pitch_specification_btn').removeClass('d-none');
+
+    });
+
+     
+
+     
+
+    function postFilter() {
+       
+        formdata = new FormData($('#post-filter-form')[0]);
+
+        url = "{% url 'home_post_filter' %}";
+        $.ajax({
+            url : url,
+            data : formdata,
+            method: 'post',
+            processData: false,
+            contentType: false,
+           
+            success:function(output)
+            {
+                if(output.valid)
+                {                    
+                      $('#post_div').html(output.html);           
+                }
+                else
+                {
+                  alert('Something went wrong');                    
+                }               
+                
+            },
+        });
+    
+    }
+
+    // Post Filter
+    $('.post-filter').change(function(){  
+        event.preventDefault(); 
+        postFilter();
+    });
+
+
+
+    // Call
+    $('.call-create-btn').click(function() {   
+        event.preventDefault();        
+        $('.created-message').text('');
+        var callFor = $('.call-form #id_call_for').val();
+        var format = $('#call-form #id_format').val();
+        var expiryDate  = $('#call-form #id_expiry_date').val();
+        var language = $('#call-form #id_language').val();
+        //var budget = $('#call-form #id_budget').val();
+        var genre = $('#call-form input[name="genre"]:checked').length;
+
+        if ( callFor && format && language && expiryDate && genre > 0 ) {
+            if(confirm("Are you sure to post the call?"))
+            {
+
+            formdata = new FormData($('#call-form')[0]);
+            url = $(this).attr('data-url');
+            $.ajax({
+                url : url,
+                data : formdata,
+                method: 'post',
+                processData: false,
+                contentType: false,
+                beforeSend:function()
+                {
+                    $('.call-create-btn').attr('value','Please wait');
+                    
+                },
+                
+                success:function(output)
+                {
+                    if(output.valid)
+                    {
+                        
+                        $('.created-message').text('Call Posted succesfully');  
+                        $('#call-form #id_language').val('');     
+                        $('#call-form #id_format').val(''); 
+                        $('#call-form #id_call_for').val('');      
+                        $('#call-form #id_title').val('');   
+                        $('#call-form #id_budget').val('');
+                        $('#call-form #id_description').val('');
+                        $('#call-form #id_expiry_date').val('');
+                        $("#call-form input[name='genre']:checkbox").prop('checked',false);    
+                        $('.call_collapse').collapse('hide');
+                        $('.choose_call_specification_btn').removeClass('d-none');
+                        $('#recent-radio-btn').prop('checked', true);
+                        postFilter();
+                           
+                        
+                    }
+                    else
+                    {
+                        alert('Something went wrong');
+                        
+                    }
+
+                    $('.call-create-btn').attr('value','Post Call');
+                   
+                },
+            });
+        }
+        
+        }    
+        else{
+            alert('Choose all of the specifications..!');
+        }
+       
+    });
+
+
+    // Pitch
+    $('.create-pitch-btn').click(function() {   
+        event.preventDefault();   
+        $('.created-message').text('');
+        var title = $('.pitch-form #id_story_title').val();
+        
+        var format = $('#pitch-form #id_format').val();
+        var language = $('#pitch-form #id_language').val();
+        var genre = $('#pitch-form input[name="genre"]:checked').length;
+        //var budget = $('#pitch-form #id_budget').val();
+
+        var arr = [];
+          $('.user-select:checked').each(function(i){
+            arr[i] = $(this).val();
+          });
+
+        var users = arr;     
+        if ( title && format && language && genre > 0) {
+            if(confirm("Are you sure to post the Story?"))
+            {
+            formdata = new FormData($('#pitch-form')[0]);
+            formdata.append('pitch_to_people', users);
+            url = $(this).attr('data-url');
+            $.ajax({
+                url : url,
+                data : formdata,
+                method: 'post',
+                processData: false,
+                contentType: false,
+                beforeSend:function()
+                {
+                    $('.create-pitch-btn').attr('value','Please wait');
+                    
+                },
+                
+                success:function(output)
+                {
+                    if(output.valid)
+                    {
+                        
+                        $('.created-message').text('Story Posted succesfully');  
+                        $('#pitch-form #id_language').val('');     
+                        $('#pitch-form #id_format').val(''); 
+                        $("#pitch-form input[name='genre']:checkbox").prop('checked',false); 
+                        $('#pitch-form #id_story_title').val('');   
+                        $('#pitch-form #id_story_file').val('');
+                        $("#pitch-form input[name='userselect']:checkbox").prop('checked',false);  
+                        $('#pitch-form #recent-radio-btn').prop('checked', true);
+                        $('#pitch-form #id_budget').val(''); 
+                        $('#pitch-form #id_description').val(''); 
+                        $('.pitch_collapse').collapse('hide');
+                        $('.choose_pitch_specification_btn').removeClass('d-none');
+
+                        $('#pitch-form #id_other_language').val(''); 
+                        $('#pitch-form #id_other_language').attr('type','hidden'); 
+                        $('#pitch-form #id_other_genre').attr('type','hidden'); 
+                        $('#pitch-form #id_other_genre').val(''); 
+                        $('#other_genre_label').text('');
+                        $('#other_language_label').text('');
+
+
+                        {% if is_director %}
+                           $('#recent-radio-btn').prop('checked', true);
+                        {% endif %}        
+                        
+                    }
+                    else
+                    {
+                        alert('Something went wrong');
+                        
+                    }
+
+                    $('.create-pitch-btn').attr('value','Post Pitch');
+                   
+                },
+            });
+            }
+        }    
+        else{
+            alert('Choose all of the specifications');
+        }         
+       
+    });
+    
+     
+     //pitch to people search     
+        $('#user-choose-Modal').on('click','.people_search', function(){            
+        event.preventDefault();
+          name = $('#pitch_people-search-input').val();
+          var peopletype = $('input[name="pitch_people_type"]:checked').attr('value');
+
+          if(peopletype == "clear"){
+            $('#pitch_people-search-input').val('');
+            $('.pitch_people_type').prop('checked', false);
+          }
+          var arr = [];
+          $('.user-select:checked').each(function(i){
+            arr[i] = $(this).val();
+          });
+
+          var excludeuser = arr;          
+
+          //remove not checked
+          $('.user-select:not(:checked)').each(function(i){
+            userid= $(this).val();
+            $('#user_id_'+userid).remove();
+          });
+
+          $('.match-not-found').remove();
+           
+
+
+          url = "{% url 'pitch-user-search' %}"
+          $.ajax({
+              url : url,
+              data : {'name':name,'exclude_user':excludeuser,'people_type':peopletype,},
+              method: 'post',  
+              headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+              success:function(output)
+                {  
+                  $('#display-searched-people').append(output.users); 
+
+                  $("input.user-list:checkbox:not(:checked)").each(function(){
+                     $(this).parent().remove();
+                  });
+                  
+                   
+                                 
+                },
+          });
+      });
+
+
+    // radio button change to call ajax pitch to people reset
+    $('#user-choose-Modal').on('click','.pitch_people_type', function(){            
+    
+          
+          var peopletype = $(this).attr('value');
+
+          if(peopletype == "clear"){
+            $('#pitch_people-search-input').val('');
+            $('.pitch_people_type').prop('checked', false);
+            peopletype = void 0;
+            delete peopletype;
+          }
+          name = $('#pitch_people-search-input').val();
+          var arr = [];
+          $('.user-select:checked').each(function(i){
+            arr[i] = $(this).val();
+          });
+
+          var excludeuser = arr;          
+
+          //remove not checked
+          $('.user-select:not(:checked)').each(function(i){
+            userid= $(this).val();
+            $('#user_id_'+userid).remove();
+          });
+
+          $('.match-not-found').remove();
+           
+
+
+          url = "{% url 'pitch-user-search' %}"
+          $.ajax({
+              url : url,
+              data : {'name':name,'exclude_user':excludeuser,'people_type':peopletype,},
+              method: 'post',  
+              headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+              success:function(output)
+                {  
+                  $('#display-searched-people').append(output.users); 
+
+                  $("input.user-list:checkbox:not(:checked)").each(function(){
+                     $(this).parent().remove();
+                  });
+                  
+                   
+                                 
+                },
+          });
+      });
+
+
+
+
+     //post like and unlike
+     $('#post_div').on('click','.like_unlike',function(){  
+          event.preventDefault();       
+          url = $(this).attr('data-url');
+          postId =  $(this).attr('id');
+          id =  $(this).attr('post_id');      
+
+          $.ajax({
+              url : url,                        
+              success:function(output)
+                  {
+                    if (output.liked)
+                        {
+                           
+                          $('#'+postId).addClass('theme');  
+                          data ="<i class='fa fa-heart'></i>"+output.like_count;
+               
+                          $('.postid_'+id).html(data);  
+
+                        }
+                    else{
+                        $('.'+postId).removeClass('theme');
+                        data ="<i class='fa fa-heart'></i>"+output.like_count;               
+                         $('.postid_'+id).html(data); 
+                      }    
+                 },
+          });
+      });
+
+
+
+
+    //comment        
+    $('#post_div').on('click','.comment',function(){         
+        var url = $(this).attr('data-url');
+        var postId =   $(this).attr('post_id');
+        var comment  = $('#post_comment_id_'+postId).val();
+        var formData = new FormData();
+        formData.append('comment', comment);
+        
+        $.ajax({
+            url : url,
+            data : formData,
+            method: 'post',
+            dataType: 'json',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            processData: false,
+            contentType: false,                    
+            success:function(output)
+                {
+                if (output.valid)
+                    {
+
+                  
+                        $('.post_comment_section_'+postId).html(output.html);  
+                        $('.post_comment_count_'+postId).html('<i class="fa fa-comments"></i>'+output.comment_count);
+
+                    }
+                else{
+                        alert('Something went wrong...!')
+                    }    
+                },
+        });
+    });
+
+
+    //delete comment
+    $('#post_div').on('click','.delete_comment',function(){
+        
+        url = $(this).attr('data-url');
+        commentId =  $(this).attr('comment_id');
+        postId =  $(this).attr('post_id');
+        
+        if (confirm('Are you sure to delete your Comment?')) {
+
+        $.ajax({
+            url : url,                        
+            success:function(output)
+                {
+                if (output.valid)
+                    {                       
+                        $('.post_comment_section_'+output.post_id).html(output.html);  
+                        $('.post_comment_count_'+postId).html('<i class="fa fa-comments"></i>'+output.comment_count);  
+
+                    }
+                else{
+                        alert('Access Denied...!')
+                    }    
+                },
+        });
+    
+
+
+        }
+
+    });
+    
+
+
+
+
+ //post-details
+    $('.post-detail').click(function() {
+        event.preventDefault();
+        
+        url = $(this).attr('data-url');       
+ 
+        $.ajax({
+            url : url,                        
+            success:function(output)
+                {
+
+                    
+                    $('#PostModal').html(output.post);
+                    $('#PostModal').modal('show'); 
+                },
+        });
+    
+
+
+    });
+ 
+    
+    //Project Modal
+    $('#AjaxModal').on('click','.add-project', function(){ 
+        event.preventDefault();           
+        $('#projectModal').modal('show');  
+        $('.container' ).addClass('blur');
+        $('#AjaxModal' ).addClass('fade');
+    });
+
+
+
+      //project search
+      $('#projectModal').on('click','.project_search', function(){            
+          event.preventDefault();
+            name = $('#project-search-input').val();            
+
+            url = "{% url 'project_search' model_name='assistant' %}"
+            $.ajax({
+                url : url,
+                data : {'name':name,},
+                method: 'post',  
+                headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+                success:function(output)
+                  {  
+                    $('#project-list-div').html(output.projects); 
+                    $('.add-selected-project').removeClass('disabled');                                           
+                  },
+            });
+        });
+
+
+     //move selected project
+     $('#projectModal').on('click','.add-selected-project', function(){           
+          projectId = $('input[name="project-select"]:checked').val();
+          projectName = $('input[name="project-select"]:checked').attr('project_name');
+
+       
+          if(projectId){
+
+              $('#get_project_link').remove();
+              $('#ajax-model-project-section').append('<div class="m-1"><h5 class="mt-2" id="get_project_link" projectid="'+projectId+'" > Project: '+projectName+'</h5></div>');
+              $("#id_project").find('option:first').remove();
+              $('#id_project').append('<option value="'+projectId+'" seleted>'+projectName+'</option>');
+              
+              $('#projectModal').modal('toggle');             
+              $('.add-selected-project').text("Edit Project");
+              $('.open-add-project-modal').text("Edit Project");
+              $('.add-project').text("Edit Project");
+              
+
+          }
+          else{
+            alert('You must select one of the options.');
+          }
+           
+      });
+
+
+      $('#projectModal').on('click','.ajax-add-project-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#projectModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#projectModal #project_info_text').text('Please Wait ');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {                 
+                    $('#project-list-div').html(output.project); 
+                    $("#project-search-tab").tab('show');
+                    $('.add-selected-project').removeClass('disabled'); 
+                     
+                  }
+                  else
+                  {                     
+                      $('.project-form').html(output.form);
+                  }
+                  $('#projectModal #project_info_text').text('');
+              },
+          });
+
+
+      });
+
+      
+
+   
+
+  });
+
+</script>
+ 
+
+{% endblock %}

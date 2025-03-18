@@ -1,0 +1,413 @@
+{% extends 'portal-admin-base.html' %}
+{% load static %}
+{% load follow_status_tags %}
+{% block home %}nav-active{% endblock %}
+{% block content %}
+ <!-- BreadCrumb Starts -->  
+ <section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">View Reported Posts</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<div  class="text-center">
+   <h5 class="created-message theme"></h5>
+</div>
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+               <!-- sidebar starts -->
+               <div class="col-lg-12 col-md-12">
+                   <h5>Reported Posts</h5>
+
+                   <div class="row">
+                    {% for post in posts %}
+                        <div class="col-lg-6 col-md-12">
+                            <div class="row d-flex shadow-sm p-2 mb-2 border post-box">
+                            
+                                <div class="col-lg-12 col-sm-12 mb-4">
+                                    <h4><a href="{% url 'view_post' post.id %}">{{post.post_title}} </a></h4>
+                                <h5 class="theme mb-1"> <a href="{% url 'profile' post.posted_by.id %}">{{post.posted_by}} </a></h5>  
+                                
+                                <span class="small">{{post.date}} </span>                      
+                            
+                                    {% if post.pitch %}
+
+                                    <p>
+                                        <i class="fa fa-file theme"></i> 
+                                            {% for genre in post.pitch.genre.all %}                                                               
+                                                {% if genre|stringformat:"s" != "Other"%}
+                                                {{genre}},                                                                                                                       
+                                                {% else %}
+                                                {{post.pitch.other_genre}}  
+                                                {% endif %}              
+                                        {% endfor %}  
+                            
+                                    <i class="fa fa-video theme"></i>  
+                                        {{post.pitch.format}}         
+                                    
+                                    <i class="fa fa-language theme"></i>  
+                                            {% if post.pitch.language|stringformat:"s" != "Other"%}
+                                                {{post.pitch.language}},                                                            
+                                            {% else %}
+                                                {{post.pitch.other_language}}                                                            
+                                    
+                                            {% endif %}  
+                                    
+                                        {% if post.pitch.story_file %}
+                                        | <a class="story_file_download" download href="{{post.pitch.story_file.url}}" ><i class="fas fa-download" data-bs-toggle="tooltip"  data-bs-placement="top" title="Download Story"></i></a>
+                                
+                                        {% endif %}                               
+                        
+                                    </p>                               
+                                
+                            
+                                    {% elif post.call %}
+                            
+                                        <p>
+                                            <i class="fa fa-file theme"></i>
+                                                {% for genre in post.call.genre.all %}                            
+                                                    {% if genre|stringformat:"s" != "Other"%}
+                                                        {{genre}},                                                                                                                       
+                                                    {% else %}
+                                                        {{post.call.other_genre}}  
+                                                    {% endif %}                  
+                                                {% endfor %}     
+                                            
+                                        
+                                            <i class="fa fa-video theme"></i>                                
+                                            {{post.call.format}}    
+                                        
+                                            <i class="fa fa-language theme"></i>
+                                                {% if post.call.language|stringformat:"s" != "Other"%}
+                                                    {{post.call.language}},                                                            
+                                                {% else %}
+                                                    {{post.call.other_language}}                                                           
+                                                {% endif %}                                       
+                                        </p>                                  
+                            
+                                    
+                                    {% endif %}
+                                    
+                                        <div class="entry-meta mt-1 d-flex align-items-center justify-content-between">
+                                        
+                                            <div class="entry-metalist d-flex align-items-center">
+                                                <ul>                                                  
+                                                    <li class="me-2"><i class="fa fa-thumbs-up"></i><span id="up_count{{post.id}}" > {{post.get_upvote_count}}</span></li>                                                
+                                                    <li class="me-2"><i class="fa fa-thumbs-down"></i> <span id="down_count{{post.id}}">{{post.get_downvote_count}}</span></li>
+                                                    &nbsp;  <li><i class="fa fa-reply"></i> {{post.get_interest_count}}</li>
+                                                    &nbsp;  <li><i title="Report Post" class="fa fa-flag" ></i> {{post.get_report_count}}</li> 
+                
+                                                </ul>
+                            
+                            
+                                            </div>
+                                        </div>
+                                </div>
+                            
+                        
+                            </div>
+
+
+                        </div> 
+
+                    {% empty %}
+
+                      <h6 class="m-1"> No data available..!</h6>
+
+                    {% endfor %}
+
+
+                </div>     
+                
+
+                    <div class="col-lg-12 col-md-12 d-flex mt-1 justify-content-center">
+
+                          
+                    {% if is_paginated %}
+                        <nav aria-label="Page navigation example">
+
+                            <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                   <li class="page-item disabled">
+                                     <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                      </a>
+                                  </li>
+                                {% endif %}
+        
+                                {% for i in paginator.page_range %}
+                                    {% if page_obj.number == i %}
+                                      <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">{{i}}</a>
+                                      </li>
+                                    {% else %}
+                                          <li class="page-item"><a class="page-link"  href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+        
+                                {% if page_obj.has_next %}
+                                    <li class="page-item"><a class="page-link"  href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        
+                    {% endif %}
+
+
+                    </div>
+                  
+ 
+        </div>
+    </div>
+</section>
+<!-- blog Ends -->  
+
+<!-- AjaxModal -->
+<div id="AjaxModal" class="modal AjaxModal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+</div>
+
+
+<!--Post Report Modal-->
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reportModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <h6>Delete Reason</h6>
+
+            <form id="deletepostform">
+                {% csrf_token %}
+                <textarea id="report_text" name="problem"></textarea>
+            </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" post-id="" class="btn btn-primary  delete_btn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="{% static 'js/post.js' %}"></script>
+<script src="{% static 'js/inbox.js' %}"></script>
+<script src="{% static 'js/interest_msg.js' %}"></script>
+<script src="{% static 'js/user_active_inactive.js' %}"></script>
+
+
+<script>
+  $( document ).ready(function() {
+    //post report 
+
+    $('.delete_post').click(function() {
+        event.preventDefault();
+        postId = $(this).attr('post-id');
+        postTitle = $(this).attr('post-title');
+        $('#reportModal').modal('show'); 
+
+
+        $('#reportModalLabel').text(postTitle);
+        $('.delete_btn').attr("post-id",postId);
+
+    });
+
+    $('#reportModal').on('click','.delete_btn',function(){
+        event.preventDefault();
+        var postId = $(this).attr('post-id');
+        formdata = new FormData($('#reportModal #deletepostform')[0]);
+        reporttext = $('#report_text').val();
+    
+
+        if(reporttext){
+
+            url = "/post_delete/"+postId;
+
+            $.ajax({
+                url:url,
+                data : formdata,
+                method: 'post',
+                processData: false,
+                contentType: false,
+
+                success:function(output)
+                {
+                    if(output.valid){
+                        $('.message_div').html(output.messages);
+                        $('#message_txt').val('');
+                        $(".message-file").val(null);
+                    }
+                    else{
+                        alert(output.response);
+                    }
+                    
+                }
+            
+            });
+
+
+
+        }
+
+        else{
+            alert("Report can't be empty");
+        }
+
+
+
+
+    });
+
+
+
+ //post-details
+    $('.post-detail').click(function() {
+        event.preventDefault();
+        
+        url = $(this).attr('data-url');       
+ 
+        $.ajax({
+            url : url,                        
+            success:function(output)
+                {
+
+                    
+                    $('#PostModal').html(output.post);
+                    $('#PostModal').modal('show'); 
+                },
+        });
+    
+
+
+    });
+ 
+    
+    //Project Modal
+    $('#AjaxModal').on('click','.add-project', function(){ 
+        event.preventDefault();           
+        $('#projectModal').modal('show');  
+        $('.container' ).addClass('blur');
+        $('#AjaxModal' ).addClass('fade');
+    });
+
+
+
+      //project search
+      $('#projectModal').on('click','.project_search', function(){            
+          event.preventDefault();
+            name = $('#project-search-input').val();            
+
+            url = "{% url 'project_search' model_name='assistant' %}"
+            $.ajax({
+                url : url,
+                data : {'name':name,},
+                method: 'post',  
+                headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+                success:function(output)
+                  {  
+                    $('#project-list-div').html(output.projects); 
+                    $('.add-selected-project').removeClass('disabled');                                           
+                  },
+            });
+        });
+
+
+     //move selected project
+     $('#projectModal').on('click','.add-selected-project', function(){           
+          projectId = $('input[name="project-select"]:checked').val();
+          projectName = $('input[name="project-select"]:checked').attr('project_name');
+
+       
+          if(projectId){
+
+              $('#get_project_link').remove();
+              $('#ajax-model-project-section').append('<div class="m-1"><h5 class="mt-2" id="get_project_link" projectid="'+projectId+'" > Project: '+projectName+'</h5></div>');
+              $("#id_project").find('option:first').remove();
+              $('#id_project').append('<option value="'+projectId+'" seleted>'+projectName+'</option>');
+              
+              $('#projectModal').modal('toggle');             
+              $('.add-selected-project').text("Edit Project");
+              $('.open-add-project-modal').text("Edit Project");
+              $('.add-project').text("Edit Project");
+              
+
+          }
+          else{
+            alert('You must select one of the options.');
+          }
+           
+      });
+
+
+      $('#projectModal').on('click','.ajax-add-project-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#projectModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#projectModal #project_info_text').text('Please Wait ');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {                 
+                    $('#project-list-div').html(output.project); 
+                    $("#project-search-tab").tab('show');
+                    $('.add-selected-project').removeClass('disabled'); 
+                     
+                  }
+                  else
+                  {                     
+                      $('.project-form').html(output.form);
+                  }
+                  $('#projectModal #project_info_text').text('');
+              },
+          });
+
+
+      });
+
+
+  });
+
+</script>
+ 
+
+{% endblock %}

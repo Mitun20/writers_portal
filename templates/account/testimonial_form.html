@@ -1,0 +1,135 @@
+{% load crispy_forms_tags %}
+
+{% if operation == "Add" %}
+  <div class="modal-dialog" role="document" id="{{model_name}}_Modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Writing Testimonials for - {{person}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="ajax_form" enctype="multipart/form-data">
+         
+            <div class="row">
+               
+                <div class="col-sm-4 text-center">
+                  {% if project %}
+                     <button class="btn btn-outline-dark add-project">Edit Project</button>
+                  {% else %}
+                    <button class="btn btn-outline-dark add-project">Add Project</button>
+                  {% endif %}
+                  <div id="ajax-model-project-section">
+
+                    {% if project %}
+
+                    <div class="m-1"><h5 class="mt-2" id="get_project_link" projectid="{{project.id}}"> Project: {{project}}</h5></div>
+
+                    {% endif %}
+  
+                  </div>
+             
+                  <div id="project-div">
+  
+                  </div>
+                </div> 
+                <div class="col-sm-4 text-center">
+                
+                </div>       
+              </div>
+
+              <br>
+        
+            <table >
+                {% csrf_token %}
+                {{form|crispy}}
+            </table>
+            
+            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <span style="color:red" id="info_text"></span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+        <button type="button" id="edit_btn" data-url= "{% url 'write-testimonial' person.id  %}" class="btn btn-primary ajax-add-testimonial-btn">Save</button>
+      
+        </div>
+    </div>
+  </div>
+
+{% else %}
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            {{operation}} {{model_name}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="ajax_form" enctype="multipart/form-data">
+    
+                 
+            <div class="row">
+                <div class="col-sm-4 text-center"> 
+                  <button class="btn btn-outline-dark add-user-for-testimonial">Edit Person</button>
+                  <div class="user_link">
+  
+                  </div>
+                  <div id="user-div">
+  
+                    <div class="m-3"><h5 id="get_senior_link" userid="{{testimonial.person.id}}" claas="mt-4">{{testimonial.person}}</h5>
+                    </div>
+                  </div>
+                  
+                  
+                </div>
+                <div class="col-sm-4 text-center">
+                  <button class="btn btn-outline-dark add-project">Edit Project</button>
+                  
+                  
+
+                  <div id="ajax-model-project-section">
+  
+                    <div class="m-1"><h5 class="mt-2" id="get_project_link" projectid="{{testimonail.project.id}}"> Project: {{testimonail.project}}</h5></div></div>
+             
+                  <div id="project-div">
+
+
+  
+                  </div>
+                </div> 
+                <div class="col-sm-4 text-center">
+                
+                </div>       
+              </div>
+
+              <br>
+     
+            <table>
+                {% csrf_token %}
+                {{form|crispy}}
+            </table>
+            
+            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <span style="color:red" id="info_text"></span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button"  data-url= "{% url 'ajax_delete' model_name=model_name pk=pk  %}" class="btn btn-secondary ajax-delete-btn">Delete</button>
+        <button type="button"  data-url= "{% url 'ajax_edit' model_name=model_name pk=pk  %}" class="btn btn-primary ajax-edit-{{model_name}}-btn">Update</button>
+     
+        </div>
+    </div>
+  </div>
+
+
+{% endif %}

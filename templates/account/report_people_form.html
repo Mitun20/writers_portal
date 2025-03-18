@@ -1,0 +1,91 @@
+{% load crispy_forms_tags %}
+
+{% if operation == "Add" %}
+  <div class="modal-dialog  modal-dialog-scrollable" role="document" id="{{model_name}}_Modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            Report - {{reported_user}} 
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="ajax_form" enctype="multipart/form-data">
+
+         
+            <table>
+                {% csrf_token %}
+                {{form|crispy}}
+            </table>
+            
+            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <span style="color:red" id="info_text"></span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+        <button type="button" id="edit_btn" data-url= "{% url 'report_people' reported_user.id  %}" class="btn btn-primary report_people_btn">Save</button>
+      
+        </div>
+    </div>
+  </div>
+
+{% else %}
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            {{operation}} {{model_name}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="ajax_form" enctype="multipart/form-data">
+
+          {% if model_name == "award" %}
+            <button class="btn border open-add-project-modal">Edit Project</button>
+
+            <br> <br>
+            <div id="div_id_project" class="form-group d-none"> 
+                <label for="id_project" class="">
+                    Project
+                </label> 
+                <div class="">
+                    <select name="project" class="select form-control" id="id_project">
+                        <option value="{{project.id}}" selected="">{{project}}</option>
+                    </select> 
+              </div>
+            </div>
+
+            <div id="ajax-model-project-section">
+
+              <div class="m-1"><h6 id="get_project_link" projectid="{{project.id}}" > Project: {{project.title}}</h6></div>'
+
+            </div>
+          {% endif %}
+            <table>
+                {% csrf_token %}
+                {{form|crispy}}
+            </table>
+            
+            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <span style="color:red" id="info_text"></span>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button"  data-url= "{% url 'ajax_delete' model_name=model_name pk=pk  %}" class="btn btn-secondary ajax-delete-btn">Delete</button>
+        <button type="button"  data-url= "{% url 'ajax_edit' model_name=model_name pk=pk  %}" class="btn btn-primary ajax-edit-{{model_name}}-btn">Update</button>
+     
+        </div>
+    </div>
+  </div>
+
+
+{% endif %}

@@ -1,0 +1,2433 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block profile %}nav-active{% endblock %}
+
+
+{% block content %}
+
+  <!-- BreadCrumb Starts -->  
+  <section class="breadcrumb-main pb-0 pt-3" style="background-image: url({% static 'images/bg/bg2.jpg' %});">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<!-- blog starts -->
+<section class="">
+    <div class="container">
+        <div class="row">
+            <!-- sidebar starts -->
+            <div class="col-lg-3">
+              <a data-bs-toggle="modal" data-bs-target="#genderModal">
+                {% if user.profile_photo %}
+                  <img src="{{user.profile_photo.url}}" class="img-fluid" style="width:250px;height: 250px;">
+                {% else %}
+
+                  {% if user.get_gender_display|stringformat:"s" == "Male"  %}                               
+                      <a href="#"><img class="rounded-circle" src="{% static 'images/male.png' %}" alt=""></a>
+                  {% elif user.get_gender_display|stringformat:"s" == "Female" %}                               
+                      <a href="#"><img class="rounded-circle" src="{% static 'images/female.png' %}" alt=""></a>
+                  {% elif user.get_gender_display|stringformat:"s" == "Choose Gender"  %} 
+                  <a href="#"><img class="rounded-circle" src="{% static 'images/avatar.png' %}" alt=""></a>
+                  {% endif %}
+
+                 
+                {% endif %}
+              </a>
+            </div>
+            <div class="col-lg-9" style="padding-top: 23px;">
+                <div class="listing-inner">                  
+                    <div class="blog-full mb-4 border-b pb-4">
+                        <div class="row">                           
+                            <div class="col-lg-12 col-md-12">
+                                <div class="blog-content">                                    
+                                  <div class="row">
+                                    <div class="col-lg-5">
+                                      <h4>{{user}} </h4>
+                                          
+                                      <h6>
+                                        {% for group in user.groups.all %}
+                                            {{group}} 
+                                            {% if not forloop.last %}
+                                            | 
+                                            {% endif %}
+                                        {% endfor %}
+
+                                      </h6>
+                            
+                                      <h6>DOB :  {{user.dob|date:"d M Y"}} | Location: {{user.location}}</h6>
+                                      <h6>Mobile no: {{user.mobile_no}} <a class="" href="{% url 'change_mobile_number' %}">
+                                        <i class="fa fa-edit"></i>
+                                      </a></h6>  
+                                      <h6>Address</h6>                                  
+                                      <p>{{user.address}}</p> <br>
+                                      <div class="row">
+
+                                        <div class="col-md-12">
+                                          <a class="btn btn-primary" href="{% url 'profile' user.id %}">My Profile View</a>
+                                          <a class="btn btn-primary" href="{% url 'edit_profile' %}"></i>Edit Profile</a>
+                                        </div>                                      
+
+                                      </div>                                  
+                                     
+                                     
+                                    </div>
+                                    <div class="col-lg-6" id="company_div">
+                                      
+                                        
+                                        {% if not company %}                                    
+                                           <h6>Company :  <a href="#" class="ajax_add" data-url="{% url 'ajax_add' model_name='company' %}"><i class="fa fa-plus Success"></i> Add Company </a></h6>
+                                        {% else %}                                          
+                                          <div class="row mb-4" >
+                                            <h4>Company:</h4>
+                                            <div class="col-lg-4">                                              
+                                                <img src="{{company.logo.url}}">                                              
+                                            </div>
+                                          
+                                            <div class="col-lg-8">
+                                                <div class="row">
+                                                  <div class="col-lg-9">
+                                                        <h4>                
+                                                          <a href="#">{{company}}</a>                    
+                                                        </h4>
+                                                  </div>
+                                                  <div class="col-lg-2">
+                                                      <a class="ajax_edit" data-url="{% url 'ajax_edit' model_name='company' pk=company.id %}">
+                                                        <i class="fa fa-edit"></i>
+                                                      </a>
+                                                  </div>
+                                                </div>
+                                          
+                                                <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                                                    <div class="col-lg-12 col-md-12 ">
+                                                    
+                                                      <h6>{{company.location}}</h6>
+                                                      <h6> {{company.address}}</h6>
+                                                      <p>{{company.mobile_no}}</p>  
+                                                      <p>{{company.started_date}}</p>
+
+                                                      
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                          </div>
+
+
+                                        {% endif %}
+
+
+
+                                    </div>
+                                    
+                                  </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>                   
+    
+                </div>
+            </div>
+             <!-- Right sidebar starts -->             
+         
+        </div>
+
+<div class="row">
+
+    <!-- sidebar starts -->
+    <div class="col-lg-6">
+
+      <div class="all-section projects-section-bg">
+
+      <!--Project  start-->
+        <div class="row">
+          <div class="col-lg-6"> 
+            <h3>Project</h3>
+          </div>
+          <div class="col-lg-6">
+            {% if is_producer or is_writer %}
+              <a href="#" class="add_project float-end"><i class="fa fa-plus Success"></i> Add Project</a>
+            {% else %}
+             <a href="#" class="add_project float-end"><i class="fa fa-plus Success"></i> Join Project</a>
+            {% endif %}
+          </div>
+        </div>     
+        <div id="project_div">
+
+          {% for project in user.project_set.all %}
+          <div class="row mb-4">
+            <div class="col-lg-2">
+                {% if project.image %}
+                  <img src="{{project.image.url}}">
+                {%  else %}
+                  <img src="{% static 'images/no-image.png' %}">
+                {% endif %}
+            </div>
+          
+            <div class="col-lg-10">
+                <div class="row">
+                  <div class="col-lg-10">
+                        <h4>                
+                            <a href="#">{{project}} - {{project.year}}</a>                    
+                        </h4>
+                  </div>
+                  <div class="col-lg-2" style="text-align: right;">
+                      <a class="ajax_edit" data-url="{% url 'ajax_edit' model_name='project' pk=project.id %}">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                  </div>
+                </div>
+          
+                <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                    <div class="col-lg-6 ">                      
+                      {{project.genre.all|join:", " }}    |  {{project.language.all|join:", " }}    
+                    </div>
+                    <div class="col-lg-6 ">                                                   
+                      {% if project.budget %} {{project.budget}} Cr  {% endif %}  {% if project.imdb_link  %} |  <a target="_blank" href="{{project.imdb_link}}">Imdb Link</a>  {% endif %}                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12"> 
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{project.id}}" aria-expanded="false" aria-controls="collapseExample">
+                View Highlight
+              </button>
+            </div>
+
+            <div class="collapse" id="collapseExample-{{project.id}}">
+             
+                <div class="col-lg-12">
+                  <a href="#" data-url="{% url 'ajax_project_highlight' project.id %}" class="add_project_highlight float-end"><i class="fa fa-plus Success"></i> Add Highlight</a>
+                </div>
+                <br>
+    
+                <div class="col-lg-12" id="project-highlight-div-{{project.id}}">
+    
+            
+                  {% for highlight in project.highlights.all %}
+    
+                      <div class="row">
+    
+                          <div class="col-10">
+                            <h4>{{highlight}}</h4>
+                              {{highlight.content}}
+                          </div>
+                          <div class="col-2">
+                              <a class="ajax_edit" data-url="{% url 'ajax_edit' model_name='highlight' pk=highlight.id %}">
+                                <i class="fa fa-edit"></i>
+                              </a>
+                          </div>
+    
+                      </div>
+    
+                    
+    
+                  {% empty %}
+    
+                      <p>No data available..!</p>
+    
+                  {% endfor %}
+    
+                </div>
+            </div>
+
+
+      
+          </div>
+          {% empty %}
+
+            {% if not  user.join_project_set.alls %}
+              <div class="row mb-3 container">
+                No data available..!
+              </div>
+            {% endif %}
+          {% endfor %}
+
+          {% for project in user.join_project_set.all %}
+          <div class="row mb-4">
+            <div class="col-lg-2">
+                {% if project.project.image %}
+                  <img src="{{project.project.image.url}}">
+                {%  else %}
+                  <img src="{% static 'images/no-image.png' %}">
+                {% endif %}
+            </div>
+          
+            <div class="col-lg-10">
+                <div class="row">
+                  <div class="col-lg-10">
+                        <h4>                
+                            <a href="#">{{project.project}} - {{project.project.year}} (Joined)</a>                    
+                        </h4>
+                  </div>
+                  <div class="col-lg-2" style="text-align: right;">
+                      <a class="ajax_project_leave btn" data-url="{% url 'ajax_delete' model_name='join_project' pk=project.id %}">
+                        Leave
+                      </a>
+                  </div>
+                </div>
+          
+                <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                    <div class="col-lg-4 col-md-4 ">
+                      
+                      {{project.project.genre.all|join:", " }}    |  {{project.project.language.all|join:", " }}     
+                      
+                    </div>
+                    <div class="col-lg-4 col-md-4">                                                   
+                      {% if project.project.budget %} {{project.project.budget}}  {% endif %}   {% if project.project.imdb_link  %} |   <a target="_blank" href="{{project.project.imdb_link}}">Imdb Link</a>  {% endif %}                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12"> 
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{project.project.id}}" aria-expanded="false" aria-controls="collapseExample">
+                View Highlight
+              </button>
+            </div>
+
+            <div class="collapse" id="collapseExample-{{project.project.id}}">
+             
+                <div class="col-lg-12" id="project-highlight-div-{{project.project.id}}">
+    
+            
+                  {% for highlight in project.project.highlights.all %}
+    
+                      <div class="row">
+    
+                          <div class="col-12">
+                            <h4>{{highlight}}</h4>
+                              {{highlight.content}}
+                          </div>
+                        
+    
+                      </div>
+    
+                    
+    
+                  {% empty %}
+    
+                      <p>No data available..!</p>
+    
+                  {% endfor %}
+    
+                </div>
+            </div>
+
+
+      
+          </div>
+   
+          
+          {% endfor %}
+
+        </div>
+       <!--Project end-->
+
+      </div>
+
+
+          
+        {% if  is_producer or is_director %}
+ 
+        <div class="all-section testimonials-section">
+            <!-- Testimonial start -->
+            <div class="row">
+              <div class="col-lg-6"> 
+                  <h3>My Testimonial</h3>
+              </div>
+              <div class="col-lg-6">
+                
+              </div>
+            </div>
+            <div id="testimonial_div">
+              {% for testimonial in user.testimonial_set.all %}
+                <div class="row mb-3">                       
+                    
+                    <div class="col-lg-12">
+                      <div class="row">
+                        <div class="col-lg-10">
+                          <div class="row mb-4">
+                            <div class="col-lg-12 col-md-3">                                                             
+                              <h5>{{testimonial.title}} </h5>      
+                              <p>{{testimonial.project}}  - {{testimonial.person}} - {{testimonial.designation}} 
+
+                                {% if testimonial.text_content %}
+                                  {{testimonial.text_content}}
+                                {% endif %}
+
+                                
+                                {% if testimonial.picure_content %}
+                                  <img src="testimonial.picture_content.url">
+                                {% endif %}
+
+                                {% if testimonial.video_content %}
+                              <a target="_blank" href="{{testimonial.video_content}}">Video</a>
+                            {% endif %}
+                              </p>                           
+                            </div>
+                          </div>
+                        </div>       
+                        <div class="col-lg-2"><a href="#"><i class="fa fa-edit ajax_edit float-end" data-url="{% url 'ajax_edit' model_name='testimonial' pk=testimonial.id %}"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+              {% empty %}
+                <div class="row mb-3 container">
+                    No data available..!
+                </div>
+              {% endfor %}
+            </div>   
+            <!-- Testimonial end -->        
+        </div>
+
+        {% endif %}
+    
+    </div>
+
+<!--Right Side-->
+
+<div class="col-lg-6">
+
+      <div class="all-section work-as-assitant-section-bg">
+        <!--Work as Assistant start-->
+        <div class="row">
+          <div class="col-lg-6"> 
+            <h3>Event</h3>
+          </div>
+          <div class="col-lg-6">
+           
+          </div>
+        </div>     
+        <div id="">
+
+        {% for event in events %}
+        <div class="row mb-4">
+          <div class="col-lg-1">
+              
+          </div>
+        
+          <div class="col-lg-11">
+              <div class="row">
+                <div class="col-lg-12">
+                      <h6>                  
+                       <a href="{% url 'view_my_submission' event.id %}">{{event.event.title}} </a>
+                      </h6>
+                </div>
+               
+              </div>
+        
+              <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                  <div class="col-lg-12 ">
+                    
+                    <p>Submitted on : {{event.submitted_on}}       
+                    
+                  </div>
+                 
+              </div>
+          </div>
+        </div>
+        {% empty %}
+          <div class="row mb-3 container">
+            No data available..!
+          </div>
+        {% endfor %}
+
+        </div>
+        <!--Work as Assistant end-->
+
+    </div>
+
+      <div class="all-section social-section-bg">
+          <!--Social link start-->
+          <div id="social_div">
+
+              <div class="row" >
+                    <div class="col-lg-6"> 
+                      <h3>Social Link</h3>
+                    </div>
+                  <div class="col-lg-6">
+                      {% if user.youtube or user.website or user.twitter or user.facebook or user.instagram %}
+                        <a href="#" class="ajax_edit float-end" data-url="{% url 'ajax_edit' model_name='social_link' pk=user.id %}"><i class="fa fa-edit"></i> Edit Social Link</a>                
+                      {% else %}
+                        <a href="#" class="add_social_link float-end" data-url="{% url 'ajax_add' model_name='social_link' %}"><i class="fa fa-plus Success"></i> Add Social Link</a>
+                      {% endif %}
+                  </div>
+              </div>     
+              
+              <div class="row mb-4">
+                    {% if user.youtube or user.website or user.twitter or user.facebook or user.instagram %}
+                    
+                        <div class="col-lg-12">
+                              <div class="row">
+                                  <div class="col-lg-11">
+                                        {% if user.instagram %}
+                                          <a  target="_blank" href="{{user.instagram}}" class="p-2"><i class="fab fa-instagram"></i> </a>  | 
+                                        {% endif %}
+
+                                        {% if user.youtube %}
+                                            <a  target="_blank" href="{{user.youtube}}" class="p-2"><i class="fab fa-youtube"></i> </a>  |
+                                        {% endif %}
+
+                                        {% if user.facebook %}
+                                           <a target="_blank" href="{{user.facebook}}" class="p-2"><i class="fab fa-facebook"></i> </a> |
+                                        {% endif %}
+
+                                        {% if user.twitter %}
+                                          <a target="_blank" href="{{user.twitter}}" class="p-2"><i class="fab fa-twitter"></i> </a>   |
+                                        {% endif %}
+                                        
+                                        {% if user.website %}
+                                          <a target="_blank" href="{{user.website}}" class="p-2"><i class="fas fa-globe"></i> </a>  
+                                        {% endif %}
+                                        
+                                  </div>                      
+                              </div>
+                        </div>      
+
+                    {% else %}     
+                        <div class="col-lg-12 m-2">
+                          No data available..!
+                        </div>
+                    {% endif %}
+
+              </div>
+          </div>
+         
+      </div>
+
+     
+ 
+
+      <div class="all-section work-as-assitant-section-bg">
+          <!--Work as Assistant start-->
+          <div class="row">
+            <div class="col-lg-6"> 
+              <h3>Work as Assitant</h3>
+            </div>
+            <div class="col-lg-6">
+              <a href="#" class="add_as_assistant float-end"><i class="fa fa-plus Success"></i> Add Work</a>
+            </div>
+          </div>     
+          <div id="as_assistant_div">
+    
+          {% for as_assistant in user.assistant_set.all %}
+          <div class="row mb-4">
+            <div class="col-lg-1">
+                
+            </div>
+          
+            <div class="col-lg-11">
+                <div class="row">
+                  <div class="col-lg-10">
+                        <h4>                  
+                          {% if as_assistant.senior_link %}
+                              <a href="{% url 'profile' as_assistant.senior_link.id %}">{{as_assistant.senior_link}}</a> 
+                          {% else %}
+                                <a href="#">{{as_assistant.senior}}</a>
+                          {% endif %}
+                        </h4>
+                  </div>
+                  <div class="col-lg-2">
+                      <a class="as_assistant_edit float-end" data-url="{% url 'as_assistant_edit' as_assistant.id %}">
+                        <i class="fa fa-edit"></i>
+                      </a>
+                  </div>
+                </div>
+          
+                <div class="row mb-4" style="margin-bottom: 10px !important;">                                           
+                    <div class="col-lg-6 ">
+                      
+                      {{as_assistant.project.title}}       
+                      
+                    </div>
+                    <div class="col-lg-6">                                                   
+                        {{as_assistant.year}}                                 
+                    </div>
+                </div>
+            </div>
+          </div>
+          {% empty %}
+            <div class="row mb-3 container">
+              No data available..!
+            </div>
+          {% endfor %}
+    
+          </div>
+          <!--Work as Assistant end-->
+
+      </div>
+
+
+
+      <div class="all-section qualification-section-bg">
+
+          <!-- Qualification start-->
+          <div class="row">
+            <div class="col-lg-6"> 
+                <h3>Qualification</h3>
+            </div>
+            <div class="col-lg-6">
+                <a class="add_qualification float-end"><i class="fa fa-plus Success"></i>
+                  Add Qualification
+                </a>
+            </div>
+          </div>
+
+          <div id="qualification_div">
+          {% for qualification in user.qualification_set.all %}
+            <div class="row mb-3">   
+                <div class="col-lg-1"></div>                    
+              
+                <div class="col-lg-11">
+                  <div class="row">
+                      <div class="col-lg-10">
+                        {{qualification}}  
+                      </div>
+
+                      <div  class="col-lg-2">
+                        <a href="#" class="float-end"><i class="fa fa-edit ajax_edit" data-url="{% url 'ajax_edit' model_name='qualification' pk=qualification.id %}"></i></a>
+                      </div>
+                  </div>       
+                </div>              
+            </div>
+          {% empty %}
+            <div class="row mb-3 container">
+              No data available..!
+            </div>
+          {% endfor %}
+          </div>    
+        
+        <!-- Qualification end -->
+
+      </div>
+
+
+      <div class="all-section award-section-bg">  
+            <!-- Award start-->
+            <div class="row">
+              <div class="col-lg-6"> 
+                  <h3>Award</h3>
+              </div>
+              <div class="col-lg-6">
+                  <a class="add_award float-end"><i class="fa fa-plus Success"></i>
+                    Add Award
+                  </a>
+              </div>
+            </div>
+
+            <div id="award_div">
+              {% for award in user.award_set.all %}
+                <div class="row mb-3">                       
+                    <div class="col-lg-2">
+                      <img src="{{award.image.url}}">
+                    </div>
+                    <div class="col-lg-10 ">
+                      <div class="row">
+                        <div class="col-lg-9">
+                          <div class="row mb-4" style="margin-bottom: 10px !important;">
+                            <div class="col-lg-12 col-md-3">                                                             
+                              {{award}}       
+                              <p>{{award.banner}}  - {{award.project}}</p>                           
+                            </div>
+                          </div>
+                        </div>       
+                        <div class="col-lg-3" style="text-align: right;"><a href="#" ><i class="fa fa-edit ajax_edit" data-url="{% url 'ajax_edit' model_name='award' pk=award.id %}"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+              {% empty %}
+                <div class="row mb-3 container">
+                  No data available..!
+                </div>
+              {% endfor %}
+            </div>    
+            
+          <!-- Award end -->
+      </div>   
+    </div>
+  </div>
+</div>
+
+<!-- AjaxModal -->
+<div class="modal fade" id="AjaxModal" tabindex="-1" role="dialog" aria-labelledby="AjaxModalLabel" aria-hidden="true">
+
+</div>
+
+<!-- Project Modal -->
+<div class="modal" id="projectModal" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title">Choose Project</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div><div class="container"></div>
+      <div class="modal-body" id="display_senior">        
+          <div class="row" class="senior-list">
+          <div class="col-sm-12">
+  
+              <!-- RH: this is bootstrap 5 tabbed panel -->
+              <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                      <a class="nav-link active" id="project-search-tab" data-bs-toggle="tab" href="#project-view-tab" role="tab" aria-controls="project-view" aria-selected="true">Search Project</a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                      <a class="nav-link" id="project-create" data-bs-toggle="tab" href="#project-create-tab" role="tab" aria-controls="project-create" aria-selected="false">Create Project</a>
+                  </li>
+              
+              </ul>
+  
+  
+              <div class="tab-content mt-2 container" id="myTabContent">
+                  <div class="tab-pane fade show active" id="project-view-tab" role="tabpanel" aria-labelledby="project-view">
+  
+                      <div class="row ml-5">                
+                      <div class="input-group">
+                          <input class="form-control border-end-0 border" type="text" value="" id="project-search-input">
+                          <span class="input-group-append">
+                              <button style="height:50px;" class="btn-outline-secondary btn form-control bg-white border-start-0 border project_search" type="button">
+                                <i class="fa fa-search"> Search</i>
+                              </button>
+                          </span>                             
+                      </div>                        
+                      
+                      </div>  
+                      <div id="project-list-div" style="overflow-y: scroll;height:250px;">
+  
+                      </div>   
+                          
+      
+              
+                  </div>
+                  <div class="tab-pane fade" id="project-create-tab" role="tabpanel" aria-labelledby="project-create">
+  
+  
+                      <div class="row ml-2 project-form">
+                      <form method="post" id="ajax_form" enctype="multipart/form-data">                         
+                          <table>
+                              {% csrf_token %}
+  
+                              <div class="row">
+                                  {% for field in project_form.visible_fields %}
+  
+                                      <div class="col-sm-6">
+                                          {{ field.errors }}
+                                          {{ field.label }}
+                                          {{ field }}
+                                      </div>
+                                  
+                                  {% endfor %}
+                                      {% for hidden_field in project_form.hidden_fields %}
+                                      {{ hidden_field.errors }}
+                                      {{ hidden_field }}
+                                  {% endfor %}
+  
+                              </div>
+                              
+                          </table>  
+                          <br> 
+                          <span style="color:red" id="project_info_text"></span>
+                          <button type="button" id="edit_btn" data-url= "{% url 'ajax_add' model_name='project'  %}" class="btn btn-primary ajax-add-project-btn">Create</button>                             
+                          
+                      </form>
+          
+                      </div>
+  
+                      <div id="display-created-project">
+  
+                      </div>
+  
+                  </div>
+              </div>
+              
+          </div>
+  
+          <div id="project-list">
+  
+          </div>
+  
+          </div>                
+      </div>
+      <div class="modal-footer">
+          <a href="#" data-bs-dismiss="modal" class="btn">Close</a>
+          <a href="#"  class="btn btn-primary add-selected-project disabled" text_content="">Add</a>
+      </div>
+      </div>
+  </div>
+  
+  </div>
+  
+
+
+</section>
+
+  <!-- Director Modal -->
+  <div class="modal" id="directorModal" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Choose Senior</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div><div class="container"></div>
+        <div class="modal-body" id="display_senior">        
+          <div class="row" class="senior-list">
+            <div class="col-sm-7">
+              <div class="input-group">
+                <input class="form-control  border" type="text" placeholder="Type to search Director" value="" id="director-search-input">
+                <span class="input-group-append">
+                    <button style="height:50px;" class="btn btn-outline-secondary bg-white  border senior_search  ms-n3" type="button">
+                        <i class="fa fa-search"> Search</i>
+                    </button>
+                </span>
+              </div>
+            </div>
+
+            <div id="director-list" style="overflow-y: scroll;height:250px;">
+
+            </div>
+
+          </div>                
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-bs-dismiss="modal" class="btn">Close</a>
+          <a href="#" id="add-director" class="btn btn-primary add-selected-senior disabled">Add</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- User Modal -->
+  <div class="modal" id="UserModal" data-backdrop="static">
+    <div class="modal-dialog modal-lg  modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Choose User</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div><div class="container"></div>
+        <div class="modal-body" id="display_senior">        
+          <div class="row" class="senior-list">
+            <div class="col-sm-7">
+              <div class="input-group">
+                <input class="form-control  border" type="text" placeholder="Type to search User" value="" id="user-search-input">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white  border user_search  ms-n3" type="button">
+                        <i class="fa fa-search">Search</i>
+                    </button>
+                </span>
+              </div>
+            </div>
+
+            <div id="user-display-list">
+
+            </div>
+
+          </div>                
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-bs-dismiss="modal" class="btn">Close</a>
+          <a href="#" id="add-user" class="btn btn-primary add-selected-user-to-testimonial disabled">Add</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- MODAL TO CROP THE IMAGE -->
+<div class="modal fade" id="modalCrop" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Crop the photo</h4>
+        
+      </div>
+      <div class="modal-body">
+        <img src="" id="image" style="height:400px;">
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary js-crop-and-upload">Crop</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
+  <script src="{% static 'js/cropper.min.js' %}"></script>
+  <script src="{% static 'js/photo-open.js' %}"></script>
+
+<script>
+  $( document ).ready(function() {
+
+
+    
+
+     //Join project leave
+      $('.projects-section-bg').on('click','.ajax_project_leave', function(){
+          event.preventDefault();          
+          url = $(this).attr('data-url');
+          if (confirm('Are you sure to leave?')) {
+
+            $.ajax({
+              url : url,              
+              headers: {
+                'X-CSRFToken': "{{csrf_token}}",
+              },
+           
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  
+                  {                
+                    $('#project_div').html(output.html);  
+                  }
+                  else
+                  {
+                      alert('Something went wrong..!');
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+    
+
+
+          }
+
+    });
+
+
+    //image crop 
+     $(function () {
+
+      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+      $('#projectModal').on('change','#id_image', function(){
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#image").attr("src", e.target.result);
+            $("#modalCrop").modal("show");
+          }
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+
+
+      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+      $('#AjaxModal').on('change','#id_image', function(){
+        if (this.files && this.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#image").attr("src", e.target.result);
+            $("#modalCrop").modal("show");
+          }
+          reader.readAsDataURL(this.files[0]);
+        }
+      });
+
+      /* SCRIPTS TO HANDLE THE CROPPER BOX */
+      var $image = $("#image");
+      var cropBoxData;
+      var canvasData;
+      $("#modalCrop").on("shown.bs.modal", function () {
+        $image.cropper({
+          viewMode: 1,
+          aspectRatio: 1/1,
+          minCropBoxWidth: 200,
+          minCropBoxHeight: 200,
+          ready: function () {
+            $image.cropper("setCanvasData", canvasData);
+            $image.cropper("setCropBoxData", cropBoxData);
+          }
+        });
+      }).on("hidden.bs.modal", function () {
+        cropBoxData = $image.cropper("getCropBoxData");
+        canvasData = $image.cropper("getCanvasData");
+        $image.cropper("destroy");
+      });
+
+      $(".js-zoom-in").click(function () {
+        $image.cropper("zoom", 0.1);
+      });
+
+      $(".js-zoom-out").click(function () {
+        $image.cropper("zoom", -0.1);
+      });
+
+      /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+      $(".js-crop-and-upload").click(function () {
+        var cropData = $image.cropper("getData");
+        $("#AjaxModal #id_x").val(cropData["x"]);
+        $("#AjaxModal #id_y").val(cropData["y"]);
+        $("#AjaxModal #id_height").val(cropData["height"]);
+        $("#AjaxModal #id_width").val(cropData["width"]);
+        $("#projectModal #id_x").val(cropData["x"]);
+        $("#projectModal #id_y").val(cropData["y"]);
+        $("#projectModal #id_height").val(cropData["height"]);
+        $("#projectModal #id_width").val(cropData["width"]);
+        $('#modalCrop').modal('toggle');
+    
+
+      });
+
+    });
+
+    //add project highlight popup
+
+    $('.projects-section-bg').on('click','.add_project_highlight', function(){
+       event.preventDefault();
+       url = $(this).attr('data-url');
+       $.ajax({
+            url : url,               
+            success:function(output)
+            {              
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show');                                 
+            },            
+        });
+     });
+
+
+
+      $('#AjaxModal').on('click','.ajax-add-Highlight-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+                    $('#AjaxModal').modal('hide');
+                    $('#project-highlight-div-'+output.pk).html(output.html);                     
+                  }
+                  else
+                  {
+                    $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+      });
+
+
+
+    //social form popup
+    $('.social-section-bg').on('click','.add_social_link', function(){
+       event.preventDefault();
+       url = $(this).attr('data-url');
+       $.ajax({
+            url : url,               
+            success:function(output)
+            {              
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show');                                 
+            },            
+        });
+     });
+
+
+      //add social link
+      $('#AjaxModal').on('click','.ajax-add-social_link-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+                    $('#AjaxModal').modal('hide');
+                    $('#social_div').html(output.html);                     
+                  }
+                  else
+                  {
+                    $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+      });
+
+
+    //ajax edit social Link
+    $('#social_div').on('click','.ajax_edit', function(){
+       event.preventDefault();
+       url = $(this).attr('data-url');
+       $.ajax({
+            url : url,               
+            success:function(output)
+            {                 
+            
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show');                                 
+            },            
+        });
+     });
+
+
+
+      //Ajax update social link
+      $('#AjaxModal').on('click','.ajax-edit-social_link-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+                    
+                      $('#AjaxModal').modal('hide');
+                      $('#social_div').html(output.html);    
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+      });
+
+
+
+    //company form popup
+    $('#company_div').on('click','.ajax_add', function(){
+       event.preventDefault();
+       url = $(this).attr('data-url');
+       $.ajax({
+            url : url,               
+            success:function(output)
+            {
+              
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show');                                 
+            },            
+        });
+     });
+
+      //add Company
+      $('#AjaxModal').on('click','.ajax-add-company-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+
+                      $('#AjaxModal').modal('hide');
+                      $('#company_div').html(output.html);
+                      
+                      
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+      });
+
+    //ajax edit
+    $('#company_div').on('click','.ajax_edit', function(){
+       event.preventDefault();
+       url = $(this).attr('data-url');
+       $.ajax({
+            url : url,               
+            success:function(output)
+            {                            
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show');                                 
+            },            
+        });
+     });
+
+
+    //ajax edit testimonial
+    $('#testimonial_div').on('click','.ajax_edit', function(){
+       event.preventDefault();
+       url = $(this).attr('data-url');
+       $.ajax({
+            url : url,               
+            success:function(output)
+            {                          
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show');                                 
+            },            
+        });
+     });
+
+
+      //Ajax update testimonial
+      $('#AjaxModal').on('click','.ajax-edit-testimonial-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+                      $('#AjaxModal').modal('hide');
+                      $('#testimonial_div').html(output.html);    
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+      });
+
+
+
+
+      //open popup for add as assistant
+      $('.add_as_assistant').click(function() {   
+          event.preventDefault();             
+          $.ajax({
+              url : '{%url "ajax_add_as_assistant" %}',                
+              success:function(output)
+              {
+                  $('#AjaxModal').html(output.form);
+                  $('#AjaxModal').modal('show');  
+                
+                              
+              },            
+          });       
+      });
+      
+
+      //User modal
+      $('#AjaxModal').on('click','.add-user-for-testimonial', function(){ 
+        event.preventDefault();           
+        $('#UserModal').modal('show');    
+        $('.container' ).addClass('blur');
+        $('#AjaxModal' ).addClass('fade');
+      });
+      
+      //Director modal
+      $('#AjaxModal').on('click','.add-director', function(){ 
+        event.preventDefault();           
+        $('#directorModal').modal('show'); 
+   
+        $('.container' ).addClass('blur');
+        $('#AjaxModal' ).addClass('fade');
+      });
+
+
+      //Project Modal
+      $('#AjaxModal').on('click','.add-project', function(){ 
+        event.preventDefault();           
+        $('#projectModal').modal('show');  
+        $(".project-select").prop('checked', false);
+        $('.container' ).addClass('blur');
+        $('#AjaxModal' ).addClass('fade');
+        $('.add-selected-project').text('Add');
+      });
+
+  
+
+   //move selected user to user link
+   $('#UserModal').on('click','#add-user', function(){           
+          seniorId = $('input[name="senior-select"]:checked').val();
+          if(seniorId){
+              user_type = $('input[name="senior-select"]:checked').attr('user_type');          
+              seniorName = $('input[name="senior-select"]:checked').attr('senior_name'); 
+              $('#get_senior_link').remove();
+              $('#user-div').append('<div class="m-3"><h5 id="get_senior_link" userid="'+seniorId+'" claas="mt-4">'+seniorName+'</h6></div>');
+              $('#UserModal').modal('toggle'); 
+              $('.add-user-for-testimonial').text("Edit User");           
+       
+
+          }
+          else{
+            alert('You must select one of the options.');
+          }
+           
+      });
+
+
+      //senior search
+      $('#directorModal').on('click','.senior_search', function(){            
+        event.preventDefault();
+          name = $('#director-search-input').val();
+
+          url = "{% url 'person_search' %}"
+          $.ajax({
+              url : url,
+              data : {'name':name,},
+              method: 'post',  
+              headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+              success:function(output)
+                {  
+                  $('#director-list').html(output.users); 
+                  $('#add-director').removeClass('disabled'); 
+                                 
+                },
+          });
+      });
+
+     //move selected senior to senior link
+      $('#directorModal').on('click','#add-director', function(){           
+          seniorId = $('input[name="senior-select"]:checked').val();
+          if(seniorId){
+
+            user_type = $('input[name="senior-select"]:checked').attr('user_type');
+
+            if (user_type == "user"){
+              seniorName = $('input[name="senior-select"]:checked').attr('senior_name'); 
+              $('#get_unknown_senior').remove();
+              $('#get_senior_link').remove();
+              $('#director-div').append('<div class="m-3"><h5 id="get_senior_link" userid="'+seniorId+'" claas="mt-4">'+seniorName+'</h6></div>');
+              $('#directorModal').modal('toggle'); 
+              $('.add-director').text("Edit Director");
+
+            }
+            else{
+              unknownseniorName = $('input[name="senior-select"]:checked').val();
+              $('#get_unknown_senior').remove();
+              $('#get_senior_link').remove();
+              $('#director-div').append('<div class="mt-3"><h6 id="get_unknown_senior" name="'+unknownseniorName+'" claas="mt-4">'+unknownseniorName+'- Non User</h6></div>');
+              $('#directorModal').modal('toggle'); 
+              $('.add-director').text("Edit Director");              
+            }
+
+          }
+          else{
+            alert('You must select one of the options.');
+          }
+           
+      });
+
+
+      //project search
+      $('#AjaxModal').on('click','.project_search', function(){   
+          event.preventDefault();
+            var name = $('#project-name').val();    
+      
+            url = "{% url 'project_search' model_name='assistant' %}"
+            $.ajax({
+                url : url,
+                data : {'name':name,},
+                method: 'post',  
+                headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+                success:function(output)
+                  {  
+                    $('#project-list-div-1').html(output.projects); 
+                    $('.add-selected-project').removeClass('disabled');                                           
+                  },
+            });
+        });
+
+
+
+
+
+      //project search
+      $('#projectModal').on('click','.project_search', function(){            
+          event.preventDefault();
+            name = $('#project-search-input').val();            
+
+            url = "{% url 'project_search' model_name='assistant' %}"
+            $.ajax({
+                url : url,
+                data : {'name':name,},
+                method: 'post',  
+                headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+
+                success:function(output)
+                  {  
+                    $('#project-list-div').html(output.projects); 
+                    $('.add-selected-project').removeClass('disabled');                                           
+                  },
+            });
+        });
+
+
+     //move selected project
+     $('#projectModal').on('click','.add-selected-project', function(){           
+          projectId = $('input[name="project-select"]:checked').val();
+          projectName = $('input[name="project-select"]:checked').attr('project_name');
+
+       
+          if(projectId){
+
+              $('#get_project_link').remove();
+              $('#ajax-model-project-section').append('<div class="m-1"><h5 class="mt-2" id="get_project_link" projectid="'+projectId+'" > Project: '+projectName+'</h5></div>');
+              $("#id_project").find('option:first').remove();
+              $('#id_project').append('<option value="'+projectId+'" seleted>'+projectName+'</option>');
+              
+              $('#projectModal').modal('toggle');             
+              $('.add-selected-project').text("Edit Project");
+              $('.open-add-project-modal').text("Edit Project");
+              $('.add-project').text("Edit Project");
+              $('.add-selected-project').attr('text_content','Edit')
+
+              
+
+          }
+          else{
+            alert('You must select one of the options.');
+          }
+           
+      });
+
+
+      //add new as_assistant
+      $('#AjaxModal').on('click','.create_as_assistant_btn', function(){
+        event.preventDefault();
+        var seniorLink = $('#get_senior_link').attr('userid');
+        var senior = $('#get_unknown_senior').attr('name');
+        var projectLink = $('#get_project_link').attr('projectid');
+        var year = $('#assistant-year').val();  
+        currentYear = "{% now 'Y' %}"; 
+
+        if((seniorLink || senior ) && (projectLink)  && (year <= currentYear && year > 1900) )
+
+        {
+
+          var formData = new FormData();    
+          formData.append('seniorLink', seniorLink);
+          formData.append('senior',senior);
+          formData.append('projectLink',projectLink);
+          formData.append('year',year);
+
+
+          $.ajax({
+            url : '{%url "ajax_add_as_assistant" %}',
+            data : formData,
+            method: 'post',
+            headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+            processData: false,
+            contentType: false,
+
+            success:function(output)
+            {
+                if(output.valid)
+                    {
+                       $('#as_assistant_div').html(output.html); 
+                       $('#AjaxModal').modal('toggle');        
+                
+                    }
+                else
+                    {
+                   alert(output.response);
+                    }
+                
+            },
+          });
+        }
+        else{
+          alert('Verify that the Director, Project, and Year fields are filled out accurately...!');
+        } 
+     });
+
+
+
+      //add new as_assistant
+      $('#AjaxModal').on('click','.ajax-add-join-project-btn', function(){
+        event.preventDefault();
+        projectId = $('input[name="project-select"]:checked').val();
+
+        if (projectId){          
+          var formData = new FormData();    
+          formData.append('project', projectId);
+
+          $.ajax({
+            url : '{%url "ajax_add" "join_project" %}',
+            data : formData,
+            method: 'post',
+            headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+            processData: false,
+            contentType: false,
+         
+            
+            beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');                   
+                  
+              },
+
+            success:function(output)
+            {
+                if(output.valid)
+                    {
+                      $('#project_div').html(output.html); 
+                       $('#AjaxModal').modal('toggle');        
+                
+                    }
+                else
+                    {
+                   alert(output.response);
+                    }
+                
+            },
+          });
+       
+
+        }
+        else{
+          alert("Kindly choose Project..!");
+        }
+
+
+        
+
+
+     
+     });
+
+
+
+    //open popup for add as assistant
+    $('#as_assistant_div').on('click','.as_assistant_edit', function(){  
+        event.preventDefault();        
+        url = $(this).attr('data-url');     
+        $.ajax({
+            url : url,                
+            success:function(output)
+            {
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show'); 
+                            
+            },            
+        });       
+    });
+
+
+      //update as_assistant
+      $('#AjaxModal').on('click','.update-as_assistant-btn', function(){
+        event.preventDefault();
+        var seniorLink = $('#get_senior_link').attr('userid');
+        var senior = $('#get_unknown_senior').attr('name');
+        var projectLink = $('#get_project_link').attr('projectid');
+        var year = $('#assistant-year').val();  
+        currentYear = "{% now 'Y' %}"; 
+        url = $(this).attr('data-url');
+
+        
+
+        if((seniorLink || senior ) && (projectLink)  && (year <= currentYear &&  year > 1950))
+
+        {
+
+          var formData = new FormData();    
+          formData.append('seniorLink', seniorLink);
+          formData.append('senior',senior);
+          formData.append('projectLink',projectLink);
+          formData.append('year',year);
+
+
+          $.ajax({
+            url : url,
+            data : formData,
+            method: 'post',
+            headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+            processData: false,
+            contentType: false,
+
+            success:function(output)
+            {
+                if(output.valid)
+                    {
+                       $('#as_assistant_div').html(output.html); 
+                       $('#AjaxModal').modal('toggle');        
+                
+                    }
+                else
+                    {
+                   alert(output.response);
+                    }
+                
+            },
+          });
+        }
+        else{
+          alert('Verify that the Director, Project, and Year fields are filled out accurately...!');
+        } 
+     });
+
+      //highlight
+      $('.add_highlight').click(function() {   
+          event.preventDefault();             
+          $.ajax({
+              url : '{% url "ajax_add" model_name="highlight" %}',               
+              success:function(output)
+              {
+               
+                  $('#AjaxModal').html(output.form);
+                  $('#AjaxModal').modal('show');                                 
+              },            
+          });       
+      });
+
+      
+      //add new highlight
+      $('#AjaxModal').on('click','.add-highlight-btn', function(){
+        event.preventDefault();
+ 
+        var projectLink = $('#get_project_link').attr('projectid');
+
+        if(projectLink )
+
+        {
+
+          var formData = new FormData();    
+          formData.append('projectLink',projectLink);  
+
+          $.ajax({
+            url : '{% url "ajax_add" model_name="highlight" %}', 
+            data : formData,
+            method: 'post',
+            headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+            processData: false,
+            contentType: false,
+
+            success:function(output)
+            {
+                if(output.valid)
+                    {
+                       $('#highlight_div').html(output.html); 
+                       $('#AjaxModal').modal('toggle');        
+                
+                    }
+                else
+                    {
+                   alert(output.response);
+                    }
+                
+            },
+          });
+        }
+        else{
+          alert('Project not added..!');
+        } 
+     });
+
+
+
+
+
+      //highlight edit     
+      $('#highlight_div').on('click','.ajax_edit', function(){
+          event.preventDefault(); 
+          url = $(this).attr('data-url');            
+          $.ajax({
+              url : url,                
+              success:function(output)
+              {
+                if(output.valid){
+
+                  $('#AjaxModal').html(output.form);
+                  $('#AjaxModal').modal('show'); 
+
+                }
+                else{
+                  $('#AjaxModal').html(output.form);
+                }
+                    
+                
+                              
+              },            
+          });       
+      });
+
+
+    //update highlight
+    $('#AjaxModal').on('click','.ajax-edit-highlight-btn', function(){
+          event.preventDefault();        
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);          
+          var  url = $(this).attr('data-url');
+          $.ajax({
+            url : url,
+            data : formdata,
+            method: 'post',
+            headers: { "X-CSRFToken": "{{ csrf_token }}", },   
+            processData: false,
+            contentType: false,
+
+            beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');                   
+                  
+              },
+
+            success:function(output)
+            {
+                if(output.valid)
+                    {
+                     
+                       $('#AjaxModal').modal('toggle');    
+                       $('#project-highlight-div-'+output.pk).html(output.html);    
+                
+                    }
+                else
+                    {
+                      $('#AjaxModal').html(output.form);
+                    }
+
+                $('#AjaxModal #info_text').text('');
+                
+            },
+          });
+      
+     });
+
+
+    //Testimonial
+    $('.add_testimonial').click(function() {   
+        event.preventDefault();             
+        $.ajax({
+            url : '{% url "ajax_add" model_name="testimonial" %}',               
+            success:function(output)
+            {
+              
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show');                                 
+            },            
+        });       
+    });
+
+
+      //add Testimonial
+      $('#AjaxModal').on('click','.ajax-add-testimonial-btn', function(){
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+
+        var seniorLink = $('#get_senior_link').attr('userid');
+        var projectLink = $('#get_project_link').attr('projectid');
+
+        formdata.append('user', seniorLink);
+        formdata.append('project', projectLink);
+        var title = $('#id_title').val();  
+        var designation = $('#id_designation').val(); 
+        var textcontent = $('#id_text_content').val(); 
+        var videocontent = $('#id_video_content').val(); 
+        var picturecontent = $('#id_picture_content').val();
+        console.log(seniorLink);
+
+        if( seniorLink   && projectLink  &&  title && designation  && (textcontent || videocontent  || picturecontent) )
+
+        {
+   
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+
+                      $('#AjaxModal').modal('hide');
+                      $('#testimonial_div').html(output.project);
+                      
+                      
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+   
+
+
+        }
+
+        else{
+
+          alert('Verify that the User, Project, and title, designation, content fields are filled out accurately...!')
+        }
+
+   });
+
+
+
+    //Project
+    $('.add_project').click(function() {   
+        event.preventDefault();             
+        $.ajax({
+            url : '{% url "ajax_add" model_name="profile_project" %}',               
+            success:function(output)
+            {
+              
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show');                                 
+            },            
+        });       
+    });
+
+
+      //add project
+      $('#AjaxModal').on('click','.ajax-add-profile_project-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+
+                      $('#AjaxModal').modal('hide');
+                      $('#project_div').html(output.project);
+                      
+                      
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+      });
+
+
+      //open popup for edit project      
+      $('#project_div').on('click','.ajax_edit', function(){
+          event.preventDefault(); 
+          url = $(this).attr('data-url');            
+          $.ajax({
+              url : url,                
+              success:function(output)
+              {
+                if(output.valid){
+
+                  $('#AjaxModal').html(output.form);
+                  $('#AjaxModal').modal('show'); 
+
+                }
+                else{
+                  $('#AjaxModal').html(output.form);
+                }
+                    
+                
+                              
+              },            
+          });       
+      });
+
+      //Ajax update project
+      $('#AjaxModal').on('click','.ajax-edit-project-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+                      $('#AjaxModal').modal('hide');
+                      $('#project_div').html(output.html);    
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+      });
+
+
+
+      //open popup for add as qualification
+      $('.add_qualification').click(function() {   
+          event.preventDefault();             
+          $.ajax({
+              url : '{% url "ajax_add" model_name="qualification" %}',                
+              success:function(output)
+              {
+                if(output.valid){
+
+                  $('#AjaxModal').html(output.form);
+                  $('#AjaxModal').modal('show'); 
+
+                }
+                else{
+                  alert('Something went wrong');
+                }                  
+                           
+              },            
+          });       
+      });
+
+
+
+
+      //add qualification
+      $('#AjaxModal').on('click','.ajax-add-qualification-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+
+                      $('#AjaxModal').modal('hide');
+                      $('#qualification_div').html(output.html);
+                      
+                      
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+      });
+
+
+      //open popup for edit qualification      
+      $('#qualification_div').on('click','.ajax_edit', function(){
+          event.preventDefault(); 
+          url = $(this).attr('data-url');            
+          $.ajax({
+              url : url,                
+              success:function(output)
+              {
+                if(output.valid){
+
+                  $('#AjaxModal').html(output.form);
+                  $('#AjaxModal').modal('show'); 
+
+                }
+                else{
+                  $('#AjaxModal').html(output.form);
+                }
+                    
+                
+                              
+              },            
+          });       
+      });
+
+      //Ajax update qualification
+      $('#AjaxModal').on('click','.ajax-edit-qualification-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+                      $('#AjaxModal').modal('hide');
+                      $('#qualification_div').html(output.html);    
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+      });
+
+
+      //add award
+      $('#AjaxModal').on('click','.ajax-add-award-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+
+          if( $('#id_project').val()  && $('#id_title').val() && $('#id_year').val()  && $('#id_banner').val() && $('#id_image').val()){
+
+            $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+
+                      $('#AjaxModal').modal('hide');
+                      $('#award_div').html(output.html);
+                      
+                      
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+          }
+          else{
+
+            alert('Complete all of the essential fields.');
+          }
+        
+
+
+      });
+
+
+      //Ajax update Award
+      $('#AjaxModal').on('click','.ajax-edit-award-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+
+          url = $(this).attr('data-url');
+
+          if( $('#id_project').val()  && $('#id_title').val() && $('#id_year').val()  && $('#id_banner').val() ){
+            $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+                      $('#AjaxModal').modal('hide');
+                      $('#award_div').html(output.html);    
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+          }
+          else{
+
+            alert('Complete all of the essential fields.');
+
+          }
+     
+
+
+      });
+
+
+
+      
+      //Ajax update Award
+      $('#AjaxModal').on('click','.ajax-edit-company-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+
+          url = $(this).attr('data-url');
+
+         
+            $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {
+
+              
+                      $('#AjaxModal').modal('hide');
+                      $('#company_div').html(output.html);    
+                  }
+                  else
+                  {
+                      $('#AjaxModal').html(output.form);
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+      });
+
+
+     //delete
+      $('#AjaxModal').on('click','.ajax-delete-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          if (confirm('Are you sure to delete?')) {
+
+            $.ajax({
+              url : url,              
+              method: 'post',
+              headers: {
+                'X-CSRFToken': "{{csrf_token}}",
+              },
+              beforeSend:function()
+              {
+                  $('#AjaxModal #info_text').text('Please Wait');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  
+                  {
+                    if(output.model=="qualification"){
+
+                      $('#AjaxModal').modal('hide');
+                      $('#qualification_div').html(output.html);                     
+
+                    }
+                    else if(output.model=="award"){
+                      $('#AjaxModal').modal('hide');
+                      $('#award_div').html(output.html); 
+
+                    }   
+                    else if(output.model=="assistant"){
+                      $('#AjaxModal').modal('hide');
+                      $('#as_assistant_div').html(output.html); 
+                    }
+
+                    else if(output.model=="project"){
+                      $('#AjaxModal').modal('hide');
+                      $('#project_div').html(output.html); 
+                    }
+
+                    else if(output.model=="company"){
+                      $('#AjaxModal').modal('hide');
+                      $('#company_div').html(output.html); 
+                    }
+
+                    else if(output.model=="testimonial"){
+                      $('#AjaxModal').modal('hide');
+                      $('#testimonial_div').html(output.html); 
+                    }
+
+                    else if(output.model=="highlight"){
+                      $('#AjaxModal').modal('hide');
+                      $('#project-highlight-div-'+output.pk).html(output.html); 
+                    }
+
+
+                                  
+                      
+                  }
+                  else
+                  {
+                      alert('Something went wrong..!');
+                  }
+                  $('#AjaxModal #info_text').text('');
+              },
+          });
+
+
+    
+
+
+          }
+
+    });
+
+
+      //open popup for add as qualification
+      $('.add_award').click(function() {   
+          event.preventDefault();             
+          $.ajax({
+              url : '{% url "ajax_add" model_name="award" %}',                
+              success:function(output)
+              {
+                if(output.valid){
+
+                  $('#AjaxModal').html(output.form);
+                  $('#AjaxModal').modal('show'); 
+                  $('#div_id_project').addClass('d-none');                   
+
+                }
+                else{
+                  alert('Something went wrong');
+                }
+                   
+                
+                              
+              },            
+          });       
+      });
+
+
+
+      //Director modal
+      $('#AjaxModal').on('click','.open-add-project-modal', function(){ 
+        event.preventDefault();           
+        $('#projectModal').modal('show');  
+        $('.container' ).addClass('blur');
+        $('#AjaxModal' ).addClass('fade');
+
+        $('.project-search-input').val('');
+        $('.project-select').prop('checked', false);
+        $('.add-selected-project').text('Add Project');
+      });
+
+
+      
+
+      $('#projectModal').on('click','.ajax-add-project-btn', function(){
+
+          event.preventDefault();
+          formdata = new FormData($('#projectModal #ajax_form')[0]);
+          url = $(this).attr('data-url');
+          $.ajax({
+              url : url,
+              data : formdata,
+              method: 'post',
+              processData: false,
+              contentType: false,
+              beforeSend:function()
+              {
+                  $('#projectModal #project_info_text').text('Please Wait ');
+                  
+              },
+              
+              success:function(output)
+              {
+                  if(output.valid)
+                  {                 
+                    $('#project-list-div').html(output.project); 
+                    $("#project-search-tab").tab('show');
+                    $('.add-selected-project').removeClass('disabled'); 
+                     
+                  }
+                  else
+                  {
+                      $('#project-form').html(output.form);
+                  }
+                  $('#projectModal #project_info_text').text('');
+              },
+          });
+
+
+      });
+
+      //open popup for edit qualification      
+      $('#award_div').on('click','.ajax_edit', function(){
+          event.preventDefault(); 
+          url = $(this).attr('data-url');            
+          $.ajax({
+              url : url,                
+              success:function(output)
+              {
+                if(output.valid){
+
+                  $('#AjaxModal').html(output.form);
+                  $('#AjaxModal').modal('show'); 
+
+                }
+                else{
+                  $('#AjaxModal').html(output.form);
+                }
+                    
+                
+                              
+              },            
+          });       
+      });
+
+  });
+
+</script>
+ 
+
+{% endblock %}

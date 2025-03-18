@@ -1,0 +1,52 @@
+{% for event in events %}
+<div class="col-lg-4 col-md-12 border mt-1">
+    <article class="post mb-1 border-b pb-1 p-3">
+        <div class="s-content d-flex align-items-center justify-space-between">
+            
+            <div class="content-list">
+                <h5 class="mb-1"><a href="{% url 'view_event' event.id %} ">{{event.title}}</a>
+
+                
+                </h5>
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <a href="#">Script  <span class="highlight">{{event.script_count}} </span></a>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <a href="#">Video  <span class="highlight">{{event.video_count}} </span> </a>
+                    </div>
+
+                    <div class="col-12">
+
+                        {{event.open_date}} - {{event.close_date}}
+
+                    </div>
+
+                    <div class="col-12">
+
+                        {{event.description|truncatechars:50}} 
+
+                    </div>
+
+                    <div class="col-sm-6 mt-1">
+                       <a class="btn copy-event-link" href="{{ request.get_host }}{% url 'event_registration' event.slug %}">Copy link</a>
+                    </div>
+
+                    <div class="col-sm-6 mt-1">
+                        <a data-url="{% url 'edit_event' event.id %}" class="btn edit-event" href="#">Edit</a>
+                     </div>
+                </div>
+                    
+                
+            </div>    
+        </div> 
+    </article>
+
+
+</div>
+{% empty %}
+<h6 class="ml-3"> No data available..!</h6>                      
+{% endfor %}

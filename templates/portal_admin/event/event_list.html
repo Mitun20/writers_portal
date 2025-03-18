@@ -1,0 +1,341 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load check_post_like_tags %}
+{% load follow_status_tags %}
+
+
+
+{% block content %}
+ 
+<!-- BreadCrumb Starts -->  
+<section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'portal_admin' %}">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+               <!-- sidebar starts -->
+               <div class="col-lg-3 col-md-12">
+                    <div class="sidebar-sticky">
+                        <div class="list-sidebar">
+                            <div class="author-news mb-4 shadow-sm p-4 text-center">
+                                <div class="author-news-content">
+                                    <div class="author-thumb mb-1">
+                                        {% if user.profile_photo %}
+                                            <img src="{{user.profile_photo.url}}" alt="author">
+                                        {% else %}
+                                            <img src="{% static 'images/avatar.png' %}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="author-content">
+                                        <h3 class="title mb-1 text-align-left">{{user}} :  
+                                             {% for group in user.groups.all %}
+                                                   {{group}} 
+                                                     {% if not forloop.last %}
+                                                         /
+                                                     {% endif %}
+                                        {% endfor %}</h3>
+                               
+
+                                        <p class="mb-2 text-align-left">
+                                            Unread Message: 
+                                            <a class="highlight float-end" href="{% url 'inbox' %}" >{{inbox_count}}</a> 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="popular-post sidebar-item mb-4 box-shadow p-4">                        
+                                <div class="col-lg-12">
+                                    <h5><u><a class="" href="{% url 'portal_admin' %}">People</a></u></h5>
+                                    <h5><u><a class="nav-active" href="{% url 'event' %}" id="followers" >Event</a></u></h5>
+                                    <h5><u><a href="{% url 'view_posts' %}">Posts</a></u></h5>
+                                    <h5><u><a href="{% url 'report' %}" id="followers" >Report</a></u></h5>
+                                   
+                                </div>                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-6"><h5 class="mt-1">Events</h5></div>
+                        <div class="col-lg-6"><a href="#" class="float-end create-event">+ Create Event</a></div>
+                    </div>                
+                    <div class="row event-list-div">
+                        {% include "portal_admin/event/event.html" %}
+                    </div>
+                </div>
+                <!-- Right sidebar starts -->
+                <div class="col-lg-3 col-md-12">
+                
+                </div>
+         
+        </div>
+    </div>
+</section>
+<!-- blog Ends -->  
+
+
+<!-- AjaxModal -->
+<div id="AjaxModal" class="modal AjaxModal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+
+</div>
+<!--name-empty-modal-->
+<div id="name-empty-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Alert</h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Enter Something in Searchbox</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--User Activate and inactive--modal-->
+<div id="user-activate-inactive-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="active-inactive-modal-title"></h5>
+         
+        </div>
+        <div class="modal-body">
+          <p>Info</p>
+          <form id="user_active_inactive_form">
+            {% csrf_token %}
+            <textarea id="user_active_inactive_info" name="info"></textarea>
+          </form>
+        
+        </div>
+        <div class="modal-footer">
+            <p class="please-wait" style="color: red;"></p>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary user_active_inactive_btn" userid="">Close</button>
+      </div>
+    </div>
+</div>
+
+</div>
+
+<!-- AjaxModal -->
+<div class="modal fade" id="AjaxModal" tabindex="-1" role="dialog" aria-labelledby="AjaxModalLabel" aria-hidden="true">
+
+</div>
+
+<input class="d-none" id="copy_link" type="text" >
+
+<script src="{% static 'js/photo-open.js' %}"></script>
+
+<script>
+  $( document ).ready(function() {
+
+    //copy link button
+    $('.event-list-div').on('click','.copy-event-link', function(){
+        event.preventDefault();
+        link = $(this).attr('href');
+
+        $('#copy_link').val(link);
+        copyFunction(link)  
+
+
+    });
+
+    function copyFunction(link) {
+
+        /* Get the text field */
+        var copyText = document.getElementById("copy_link");              
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */                
+        if (copyText.value)
+        {
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText.value);                    
+            /* Alert the copied text */
+            alert("Event Registration Link Copied Successfully");                  
+        }
+               
+    }
+
+
+    //crete event popup
+    $('.create-event').click(function() {
+        event.preventDefault();        
+        $.ajax({
+            url : '{% url 'create_event' %}',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},                                                
+            success:function(output)
+                {
+                    $('#AjaxModal').html(output.form);
+                    $('#AjaxModal').modal('show'); 
+
+                },
+        }); 
+    });
+    
+
+
+    $('#AjaxModal').on('click','.ajax-add-btn', function(){
+
+        event.preventDefault();
+        formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+        url = '{% url 'create_event' %}';
+        
+        $.ajax({
+            url : url,
+            headers: {'X-CSRFToken': '{{ csrf_token }}'}, 
+            data : formdata,
+            method: 'post',
+            processData: false,
+            contentType: false,
+            beforeSend:function()
+            {
+                $('#AjaxModal #info_text').text('Please Wait');
+                
+            },
+            
+            success:function(output)
+            {
+                if(output.valid)
+                {
+                  $('#AjaxModal').modal('hide');
+                  $('.event-list-div').html(output.html);                     
+                }
+                else
+                {
+                  $('#AjaxModal').html(output.form);
+                }
+                $('#AjaxModal #info_text').text('');
+            },
+        });
+
+    });
+
+
+    //edit event popup
+    
+    $('.event-list-div').on('click','.edit-event', function(){
+
+        event.preventDefault();
+        formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+        url = $(this).attr('data-url');
+        
+        $.ajax({
+            url : url,
+            headers: {'X-CSRFToken': '{{ csrf_token }}'}, 
+            
+            success:function(output)
+            {
+                $('#AjaxModal').html(output.form);
+                $('#AjaxModal').modal('show');
+            },
+        });
+
+    });
+
+    //update form submit
+    $('#AjaxModal').on('click','.ajax-update-btn', function(){
+
+        event.preventDefault();
+        formdata = new FormData($('#AjaxModal #ajax_form')[0]);
+        url = $(this).attr('data-url');
+        
+        $.ajax({
+            url : url,
+            headers: {'X-CSRFToken': '{{ csrf_token }}'}, 
+            data : formdata,
+            method: 'post',
+            processData: false,
+            contentType: false,
+            beforeSend:function()
+            {
+                $('#AjaxModal #info_text').text('Please Wait');
+                
+            },
+            
+            success:function(output)
+            {
+                if(output.valid)
+                {
+                  $('#AjaxModal').modal('hide');
+                  $('.event-list-div').html(output.html);                     
+                }
+                else
+                {
+                  $('#AjaxModal').html(output.form);
+                }
+                $('#AjaxModal #info_text').text('');
+            },
+        });
+
+    });
+
+    //delete event
+
+    $('#AjaxModal').on('click','.ajax-delete-btn', function(){
+
+        event.preventDefault();
+        url = $(this).attr('data-url');
+        
+        $.ajax({
+            url : url,
+            headers: {'X-CSRFToken': '{{ csrf_token }}'}, 
+            beforeSend:function()
+            {
+                $('#AjaxModal #info_text').text('Please Wait');
+                
+            },
+            
+            success:function(output)
+            {
+                if(output.valid)
+                {
+                    $('#AjaxModal').modal('hide');
+                    $('.event-list-div').html(output.html);                     
+                }
+                else
+                {
+                   alert('Something went wrong..!');
+                }
+                $('#AjaxModal #info_text').text('');
+            },
+        });
+
+    });
+    
+
+
+  });
+
+</script>
+ 
+
+{% endblock %}

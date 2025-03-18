@@ -1,0 +1,56 @@
+{% load static %}
+<div class="col-lg-6 col-md-12 border mt-1">
+    <article class="post mb-1 border-b pb-1 p-3">
+        <div class="s-content d-flex align-items-center justify-space-between">
+            <div class="sidebar-image w-25 me-3">
+                {% if user_object.profile_photo %}
+                    <a href="#"><img class="rounded" src="{{user_object.profile_photo.url}}" alt=""></a>
+                {% else  %}
+
+                    {% if user_object.get_gender_display|stringformat:"s" == "Male"  %}                               
+                        <a href="#"><img class="rounded-circle" src="{% static 'images/male.png' %}" alt=""></a>
+                    {% elif user_object.get_gender_display|stringformat:"s" == "Female" %}                               
+                        <a href="#"><img class="rounded-circle" src="{% static 'images/female.png' %}" alt=""></a>
+                    {% elif user_object.get_gender_display|stringformat:"s" == "Choose Gender"  %} 
+                        <a href="#"><img class="rounded-circle" src="{% static 'images/avatar.png' %}" alt=""></a>
+                    {% endif %}
+                    
+                {% endif %}
+            </div>
+            <div class="content-list w-75">
+                <h5 class="mb-1"><a href="{% url 'profile' user_object.id %}">{{user_object}}</a>
+
+                    {% if user_object != user %}                                              
+                        <span class="pull-right"> 
+                            {% if not user_object.admin_approval%}
+                             <a title="Pending Approval" href="{% url 'profile' user_object.id %}"><i class="fas fa-spinner"></i></a> | 
+                            {% endif %}
+                            <a title="View Statistics" href="{% url 'statistics' user_object.id  %}"> <i class="fa fa-chart-line"></i>   </a> | 
+                            <a title="View Report" href="{% url 'statistics' user_object.id  %}"> <i class="fa fa-flag"></i> {{user_object.report_count}}  </a> | 
+                            <a title="Message" href="#"> <i class="fa fa-envelope get_all_message" data-url="{% url 'get_inbox_chat' user_object.id %}" ></i> </a> | 
+                                {% if user_object.is_active %}
+                                     <a class="userid_{{user_object.id}}" title="Hard Inactive" href="#"> <i class="fa fa-ban user_active_inactive_popup user_id_{{user_object.id}}" userid="{{user_object.id}}" name="{{user_object}}" status="active"></i> </a>
+                                {% else %}
+                                    <a class="userid_{{user_object.id}}" title="Activate" href="#"> <i class="fa fa-lock-open user_active_inactive_popup user_id_{{user_object.id}}" userid="{{user_object.id}}" name="{{user_object}}" status="inactive"></i> </a>
+                                {% endif %}
+                            </span>
+                    {% endif %}
+                </h5>
+                    
+                    
+                
+                <div class="group">
+                    {% for group in user_object.groups.all %}
+                        {{group}} 
+                        {% if not forloop.last %}
+                        | 
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>    
+        </div> 
+    </article>
+
+
+</div>

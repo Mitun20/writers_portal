@@ -1,0 +1,7 @@
+
+
+{% for post in posts %}
+  {% include "portal_admin/post.html" %}
+{% empty %}
+  <h6 class="m-3"> No Data Available..!</h6>
+{% endfor %}

@@ -1,0 +1,29 @@
+{% load static %}
+
+      {% for project in projects %}
+          <div class="col-sm-12 mt-1">
+              <input type="radio" class="project-select" id="user-show" project_available="yes" project_name="{{project.title}}" name="project-select" value="{{project.id}}">
+              <label for="user-show"> 
+                  {% if project.image %}                     
+                      <img class="img-fluid rounded-circle" height="50" width="50" src="{{project.image.url}}">
+                  {% else%}
+                      <img class="img-fluid rounded-circle " height="50" width="50" src="{% static 'images/no-image.png' %}" alt="avatar">
+                  {% endif %}
+                  {{project.title}} - {{project.created_by}} 
+                  
+              </label>        
+          </div>
+
+          <br><hr class="m-2">
+      {% empty %}
+
+         <p>No Matches Found. </p>
+  
+      {% endfor %}
+
+
+              
+      
+
+
+

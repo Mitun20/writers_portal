@@ -1,0 +1,171 @@
+{% load static %}
+{% load follow_status_tags %}
+
+  <div class="sidebar-sticky">
+    <div class="list-sidebar">
+        <div class="popular-post sidebar-item mb-4">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <h4 class="">Find People</h4>
+                </div>
+
+                
+                <div class="col-lg-6">
+                  <!--  <a class="find_people_clear_search" href="#">Clear Search</a> -->
+                </div>
+
+            </div>
+           
+            <div class="col-lg-12">
+
+
+                <div class="input-group">
+                    <input type="text" id="people_search_input" class="form-control find-search-box" placeholder="Search" style="height:35px;margin-bottom:10px;" />
+                    <span class="find-search-icon">
+                      
+                            <span class="fa fa-search people_search_btn"></span>
+                        
+                    </span>
+
+
+                    <div class="radio-div"> 
+                        <div class="form-check form-check-inline">
+                            <input name="people_type" class="form-check-input people_type" type="radio"  value="producer">
+                            <label name="people_type" class="form-check-label" for="inlineCheckbox1">Producer</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="people_type" class="form-check-input people_type" type="radio" id="recent-radio-btn" value="director">
+                            <label name="people_type" class="form-check-label" for="inlineCheckbox2">Director</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="people_type" class="form-check-input people_type" type="radio"  value="writer">
+                            <label name="people_type" class="form-check-label" for="inlineCheckbox3">Writer</label>
+                        </div>
+                        
+      
+                          <a href="#" name="people_type" style="color:#ffffff; font-size:13px;" class="btn  w-50 link-primary people_type" type="button"  value="clear"> Clear</a>
+                            
+                       
+                    </div>
+                     
+                </div>
+            </div>
+            </div>
+           
+         <div class="popular-post people_div sidebar-item mb-4">
+            <h4 class="">Recent Peoples</h4>
+
+             {% for recent_people in recent_peoples %}
+
+                <article class="post mb-1 border-b pb-1">
+                    <div class="s-content d-flex align-items-center justify-space-between">
+                        <div class="sidebar-image w-25 me-3">
+                            {% if recent_people.profile_photo %}
+                                <a href="#"><img class="rounded-circle" src="{{recent_people.profile_photo.url}}" alt=""></a>
+                            {% else  %}
+
+                               {% if recent_people.get_gender_display|stringformat:"s" == "Male"  %}                               
+                                  <a href="#"><img class="rounded-circle" src="{% static 'images/male.png' %}" alt=""></a>
+                               {% elif recent_people.get_gender_display|stringformat:"s" == "Female" %}                               
+                                  <a href="#"><img class="rounded-circle" src="{% static 'images/female.png' %}" alt=""></a>
+                               {% elif recent_people.get_gender_display|stringformat:"s" == "Choose Gender"  %} 
+                                 <a href="#"><img class="rounded-circle" src="{% static 'images/avatar.png' %}" alt=""></a>
+                               {% endif %}
+                               
+  
+                            {% endif %}
+                        </div>
+                        <div class="content-list w-75">
+                            <h5 class="mb-1"><a href="{% url 'profile' recent_people.id %}">{{recent_people}}</a>
+
+                                {% if recent_people == user %}
+                                     
+                                {% else %}
+                                   <span class="pull-right"> 
+                                       <a title="Message" href="#"> <i class="fa fa-envelope get_all_message" data-url="{% url 'get_inbox_chat' recent_people.id %}" ></i> </a>| 
+                                     
+                                        {% if  is_producer or is_director %}
+                                          <a title="Write Testimonial" href="#"> <i data-url="{% url 'write-testimonial' recent_people.id %}" class="fa fa-comments write-testimonial"></i> </a>| 
+                                        {% endif %}
+
+                                        {% get_follow_status recent_people.id user as status %}
+                                        <a title="Follow/Un Follow" href="#">
+                                        {% if status %}
+                                        
+                                        <i id="user_id_{{recent_people.id}}" user_id="{{recent_people.id}}" class="fa fa-user-minus Success follow_unfollow" data-url="{% url 'follow_unfollow' recent_people.id %}"></i> 
+                                        {% else %}
+                                            <i id="user_id_{{recent_people.id}}" user_id="{{recent_people.id}}"  class="fa fa-user-check Success follow_unfollow" data-url="{% url 'follow_unfollow' recent_people.id %}"></i>
+                                        {% endif %}
+                                        </a>
+                                    </span>
+                                {% endif %}
+                            </h5>
+                                
+                                
+                               
+                            <div class="group">
+                                {% for group in recent_people.groups.all %}
+                                    {{group}} 
+                                    {% if not forloop.last %}
+                                    | 
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>    
+                    </div> 
+                </article>
+
+             {% endfor %}                
+
+        </div>
+
+        <!--
+
+        <div class="popular-post sidebar-item mb-4">
+            <h4 class="">Club News</h4>
+            <article class="post mb-3 border-b pb-3">
+                <div class="s-content d-flex align-items-center justify-space-between">
+                    <div class="sidebar-image w-25 me-3">
+                        <a href="blog-single.html"><img src="images/trending/trending1.jpg" alt=""></a>
+                    </div>
+                    <div class="content-list w-75">
+                        <h5 class="mb-1"><a href="blog-single.html">An Incredibly Easy Method That Works For All</a></h5>
+                        <div class="date">10 Apr 2021</div>
+                    </div>    
+                </div> 
+            </article>
+
+            <article class="post border-b pb-3 mb-3">
+                <div class="s-content d-flex align-items-center justify-space-between">
+                    <div class="sidebar-image w-25 me-3">
+                        <a href="blog-single.html"><img src="images/trending/trending2.jpg" alt=""></a>
+                    </div>
+                    <div class="content-list w-75">
+                        <h5 class="mb-1"><a href="blog-single.html">15 Unheard Ways To Achieve Greater Walker</a></h5>
+                        <div class="date">29 Mar 2021</div>
+                    </div>    
+                </div> 
+            </article>
+
+            <article class="post border-b pb-3">
+                <div class="s-content d-flex align-items-center justify-space-between">
+                    <div class="sidebar-image w-25 me-3">
+                        <a href="blog-single.html"><img src="images/trending/trending4.jpg" alt=""></a>
+                    </div>
+                    <div class="content-list w-75">
+                        <h5 class="mb-1"><a href="blog-single.html">15 Unheard Ways To Achieve Greater Walker</a></h5>
+                        <div class="date">21 Feb 2021</div>
+                    </div>    
+                </div> 
+            </article>
+        </div>
+
+        -->
+
+       
+
+   
+    </div>
+</div>

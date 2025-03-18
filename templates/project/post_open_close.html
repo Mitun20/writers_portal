@@ -1,0 +1,597 @@
+{% load check_post_like_tags %}
+{% load static %}
+
+{% if post.active %}   
+                                                     
+    <div class="col-lg-12 col-sm-12 mb-1">
+        
+        <div class="row d-flex">
+        <div class="col-lg-12 col-sm-12">
+            {% if  post.pitch  %}
+                <h4 class="h4-normal">Read My Story Synopsis of <span class="pitch-color">{{post.pitch.story_title}}</span></h4>
+            {% else %}
+                <h4 class="h4-normal">{{post.post_title}}</h4>
+            {% endif %}
+        </div>
+        </div>
+
+        <div class="row d-flex ">
+            <div class="col-lg-12 col-sm-12 text-align-left">
+            <p><a class="orange-color" href="{% url 'profile' post.posted_by.id %}"><b><u>{{post.posted_by}}</u></b></a>
+                <label class="postedon-font-size">
+                    ({% for group in post.posted_by.groups.all %}
+                            {{group}} 
+                        {% if not forloop.last %}
+                            /
+                        {% endif %} 
+                    {% endfor %})
+                </label> 
+                <label  class="postedon-font-size"> · {{post.date|date:"j M Y · g.s A"}} </label>
+
+                {% for pitched_to in post.pitch.pitch_to_people.all %}
+                {% if pitched_to == user %}
+                    <label class="small d-inline rounded float-end" style="background-color:#f1f2f2;">&nbsp; Privately shared to you&nbsp;</label>
+                {% endif %}
+            {% endfor %}
+
+                
+            </p>
+            </div>           
+        </div>   
+
+
+    {% if post.pitch %}
+
+            {% for pitched_to in post.pitch.pitch_to_people.all %}
+                {% if pitched_to == user %}
+                    <p class="small d-inline rounded" style="background-color:#f1f2f2;">&nbsp; Privately shared to you&nbsp;</p>
+                {% endif %}
+            {% endfor %}
+
+            <div class="row">									
+                <div class="col-lg-8 col-sm-12">        
+                    <ul class="posts-liststyle">
+                        <li><b>Genere:</b>  
+                            {% for genre in post.pitch.genre.all %}
+                                {% if forloop.last %}        
+                                    {% if genre|stringformat:"s" != "Other"%}
+                                        {{genre}}                                                                                                                    
+                                    {% else %}
+                                        {{post.pitch.other_genre}}  
+                                    {% endif %}        
+                                {% else %}        
+                                    {% if genre|stringformat:"s" != "Other"%}
+                                        {{genre}},                                                                                                                       
+                                    {% else %}
+                                        {{post.pitch.other_genre}}  
+                                    {% endif %}
+                                {% endif %}       
+                        {% endfor %} 
+                        </li>
+                        <li><b>Format:</b> {{post.pitch.format}}</li>    
+                        <li><b>Language:</b> 
+                            {% for language in post.pitch.language.all %}
+                                {% if forloop.last %} 
+                                    {% if language|stringformat:"s" == "Other"%}
+                                        {{post.pitch.other_language}}                                                             
+                                    {% else %}
+                                        {{language}}                                                                      
+                                    {% endif %}
+            
+                                {% else %}        
+                                    {% if language|stringformat:"s" == "Other"%}
+                                        {{post.pitch.other_language}},                                                             
+                                    {% else %}
+                                        {{language}},                                                                      
+                                    {% endif %}
+            
+                                {% endif %}       
+                            
+                            {% endfor %}
+                        </li>   
+                        
+                        {% if post.pitch.story_file %}
+                            <li><b>Story File:</b> <a class="story_file_download" data-bs-toggle="tooltip"  data-bs-placement="top" title="Download Story" download href="{{post.pitch.story_file.url}}"> Download <i class="fas fa-download"></i></a></li>
+                        {% endif %}
+
+                        {% if post.pitch.description %}  
+                        
+                        <li>                                                   
+                            {% if post.pitch.description_count > 120 %}
+                                <p class="post_description_half_content_{{post.id}}"><b>Synopsis:</b>           
+                                    {{post.pitch.description|slice:120}} 
+                                    <a class="full_content_show btn-link"  post_id="{{post.id}}" href="#">Show More</a>               
+                                </p> 
+
+                                <p class="d-none post_description_full_content_{{post.id}}"><b>Synopsis:</b>                
+                                    {{post.pitch.description|safe}} 
+                                    <a post_id="{{post.id}}" class="half_content_show  btn-link" href="#">Show Less</a>               
+                                </p>
+                            {% else %}
+                                <p><b>Synopsis:</b> {{post.pitch.description|safe}}</p>
+                            {% endif %}                                                                           
+                        </li>
+                        {% endif %}
+                    </ul>                
+                </div>
+
+                <div class="col-lg-4 col-sm-12"> 
+                    <div class="about-image  box-shadow ">
+                        {% if post.pitch.cover_image %}
+                          <img src="{{post.pitch.cover_image.url}}"  alt="" class="w-100"> 
+                        {% else %}
+                          <img src="{% static 'images/no-image.png' %}"  alt="" class="w-100"> 
+                        {% endif %}                                         
+                    </div>                  
+            
+                </div>
+                        
+            </div>             
+
+    {% elif post.call %}
+        <div class="row">									
+            <div class="col-lg-12 col-sm-12">        
+                <ul class="posts-liststyle">
+                    <li><b>Genere:</b>  
+                        {% for genre in post.call.genre.all %}
+                            {% if forloop.last %}        
+                                {% if genre|stringformat:"s" != "Other"%}
+                                    {{genre}}                                                                                                                    
+                                {% else %}
+                                    {{post.call.other_genre}}  
+                                {% endif %}        
+                            {% else %}        
+                                {% if genre|stringformat:"s" != "Other"%}
+                                    {{genre}},                                                                                                                       
+                                {% else %}
+                                    {{post.call.other_genre}}  
+                                {% endif %}
+                            {% endif %}       
+                    {% endfor %} </li>
+                    <li><b>Format:</b> {{post.call.format}}</li>    
+                    <li><b>Language:</b>  {% for language in post.call.language.all %}
+
+                        {% if forloop.last %} 
+                            {% if language|stringformat:"s" == "Other"%}
+                                {{post.call.other_language}}                                                             
+                            {% else %}
+                                {{language}}                                                                      
+                            {% endif %}
+    
+                        {% else %}
+    
+                            {% if language|stringformat:"s" == "Other"%}
+                                {{post.call.other_language}},                                                             
+                            {% else %}
+                                {{language}},                                                                      
+                            {% endif %}
+    
+                        {% endif %}
+    
+                    
+    
+                    {% endfor %}</li>      
+                    
+                    <li>
+                        
+                        {% if post.call.description %}                              
+                    
+                            {% if post.call.description_count > 120 %}
+                                    <p class="post_description_half_content_{{post.id}}"><b>Description:</b>           
+                                        {{post.call.description|slice:120}} 
+                                        <a class="full_content_show btn-link"  post_id="{{post.id}}" href="#">Show More</a>               
+                                    </p> 
+
+                                    <p class="d-none post_description_full_content_{{post.id}}"><b>Description:</b>                
+                                        {{post.call.description|safe}} 
+                                        <a post_id="{{post.id}}" class="half_content_show  btn-link" href="#">Show Less</a>               
+                                    </p>
+                            {% else %}
+                                    <p><b>Description:</b> {{post.call.description|safe}}</p>
+                            {% endif %}
+                                                                        
+                        {% endif %}
+                    </li>
+                </ul>                
+            </div>
+                    
+        </div>     
+
+    {% endif %}
+    
+        <div class="entry-meta mt-1 d-flex align-items-center justify-content-between">
+        
+            <div class="entry-metalist d-flex align-items-center">
+                <ul>    
+                    
+                    {% comment %}
+                
+                        {% get_post_like_status post.id user as status %}
+
+                        {% if status %}
+
+                        <li class="me-2"><a class="like_unlike theme postid_{{post.id}}" data-url="{% url 'like_unlike' post.id %}"  href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-heart"></i> {{post.get_like_count}}</a></li>
+                        
+                        {% else %}
+                            <li class="me-2"><a class="like_unlike postid_{{post.id}}" data-url="{% url 'like_unlike' post.id %}" href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-heart"></i> {{post.get_like_count}}</a></li>
+                    {% endif %}  
+
+                    {% endcomment %}
+
+
+                                                                                        
+                    {% if post.posted_by == user %}                            
+                        <li class="me-2"><i class="fa fa-thumbs-up"></i>  <span id="up_count{{post.id}}" >{{post.get_upvote_count}}</span></li>
+                        <li class="me-2"><i class="fa fa-thumbs-down"></i>  <span id="down_count{{post.id}}" >{{post.get_downvote_count}}</span></li>
+                    {% else %}
+                        {% get_post_upvote_status post.id user as upvote_status %}
+
+                        {% if upvote_status %}
+                            <li class="me-2"><a class="theme upvote_downvote upvote_postid_{{post.id}}" data-url="{% url 'upvote_downvote' pk=post.id action='upvote' %}"  href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-thumbs-up"></i><span id="up_count{{post.id}}" >{{post.get_upvote_count}}</span></a></li>
+                        
+                        {% else %}
+                            <li class="me-2"><a class="upvote_downvote upvote_postid_{{post.id}}" data-url="{% url 'upvote_downvote' pk=post.id action='upvote' %}" href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-thumbs-up"></i>  <span id="up_count{{post.id}}" >{{post.get_upvote_count}}</span></a></li>
+
+                        {% endif %}   
+                        
+                                
+                        {% get_post_downvote_status post.id user as downvote_status %}
+
+                        {% if downvote_status %}
+                            <li class="me-2"><a class="theme upvote_downvote downvote_postid_{{post.id}}" data-url="{% url 'upvote_downvote' pk=post.id action='downvote' %}"  href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-thumbs-down"></i> <span id="down_count{{post.id}}" >{{post.get_downvote_count}}</span></a></li>
+                        {% else %}
+                            <li class="me-2"><a class="upvote_downvote downvote_postid_{{post.id}}" data-url="{% url 'upvote_downvote' pk=post.id action='downvote' %}" href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-thumbs-down"></i>  <span id="down_count{{post.id}}" >{{post.get_downvote_count}}</span></a></li>
+                        {% endif %} 
+
+                    {% endif %}
+
+                            
+
+                    
+                    
+                    {% if post.post_category == "C"  %}
+                    
+                            {% if  post.call.owner == user  %}
+                                {% count_my_unread post.id user as count %}                                               
+                                &nbsp;  <li > <span class="highlightmargin">{{count}}
+                                </span> <a   data-url="{% url 'response' post.id %}" class="response-btn  " href="#"> <i title="See Responses" class="fa fa-eye"></i> </a></li>
+                                
+                                
+                                {% if post.active %}
+                                        &nbsp;  <li ><a  operation="Close" post_title="{{post.post_title}}" post_id="{{post.id}}" data-url="{% url 'post_active_close' post.id %}" class="post_active_close_btn post_active_close_btn_{{post.id}}  btn-link" href="#">Close</a></li>
+                                {% else %}                                                                          
+                                    &nbsp;  <li ><a operation="Open"  post_title="{{post.post_title}}" post_id="{{post.id}}" data-url="{% url 'post_active_close' post.id %}" class="post_active_close_btn post_active_close_btn_{{post.id}}  btn-link" href="#"> Open</a></li>
+
+                                {% endif %}
+
+                            {% elif is_writer or is_director or is_admin  %}   
+                                {% count_int_unread post.id user as int_count %}                                         
+                                &nbsp;  <li>  <span class="highlightmargin">{{int_count}}</span><a data-url="{% url 'interest' post.id %}" class="interest-btn " href="#"> <i title="View Messages" class="fa fa-comment-alt"></i> </a></li>
+                            
+
+                            {% endif %}
+
+                    {% endif %}
+
+                
+                    {% if post.post_category == "T"  %}
+                            {% if post.pitch and post.posted_by == user %}
+                                {% count_my_unread post.id user as count %}  
+                                &nbsp;  <li ><span class="highlightmargin">{{count}}
+                                </span><a data-url="{% url 'response' post.id %}" class="response-btn    " href="#"> <i title="See Responses" class="fa fa-eye"></i> </a></li> 
+                                {% if post.active %}
+                                    &nbsp;  <li ><a  operation="Close" post_title="{{post.post_title}}" post_id="{{post.id}}" data-url="{% url 'post_active_close' post.id %}" class="post_active_close_btn post_active_close_btn_{{post.id}}  btn-link" href="#">Close</a></li>
+                                {% else %}                                                                             
+                                    &nbsp;  <li ><a operation="Open"  post_title="{{post.post_title}}" post_id="{{post.id}}" data-url="{% url 'post_active_close' post.id %}" class="post_active_close_btn post_active_close_btn_{{post.id}}  btn-link" href="#"> Open</a></li>
+                                {% endif %}
+
+                            {% elif is_producer or is_director or is_admin  %}                                         
+                                {% count_int_unread post.id user as int_count %}    
+                                &nbsp;  <li> <span class="highlightmargin">{{int_count}}</span> <u><a data-url="{% url 'interest' post.id %}" class="interest-btn  " href="#"> <i title="View Messages" class="fa fa-comment-alt"></i></a></u></li>
+                            {% endif %}  
+                    {% endif %}
+
+                    {% if not post.posted_by == user %}   
+                            &nbsp;&nbsp;   <li ><a data-url="{% url 'report-post' post.id %}" class="report-btn" href="#"> <i title="Report Post" class="fa fa-flag"> </i></a></li> 
+                    {% endif %}
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+
+
+{% else %}
+
+<div class="col-lg-12 col-sm-12 mb-1">
+
+    <div class="row d-flex">
+        <div class="col-lg-12 col-sm-12">
+            {% if  post.pitch  %}
+                <h4 class="h4-normal inactive-post">Read My Story Synopsis of <span class="">{{post.pitch.story_title}}</span></h4>
+            {% else %}
+                <h4 class="h4-normal inactive-post">{{post.post_title}}</h4>
+            {% endif %}
+        </div>
+       </div>
+
+       <div class="row d-flex ">
+            <div class="col-lg-12 col-sm-12 text-align-left ">
+            <p><a class="orange-color inactive-post" href="{% url 'profile' post.posted_by.id %}"><b class="inactive-post"><u>{{post.posted_by}}</u></b></a>
+                <label class="postedon-font-size inactive-post">
+                    ({% for group in post.posted_by.groups.all %}
+                            {{group}} 
+                        {% if not forloop.last %}
+                            /
+                        {% endif %} 
+                    {% endfor %})
+                </label> 
+                <label  class="postedon-font-size inactive-post"> · {{post.date|date:"j M Y · g.s A"}} </label>
+
+                {% for pitched_to in post.pitch.pitch_to_people.all %}
+                {% if pitched_to == user %}
+                    <label class="small d-inline rounded float-end inactive-post" style="background-color:#f1f2f2;">&nbsp; Privately shared to you&nbsp;</label>
+                {% endif %}
+            {% endfor %}
+
+                
+            </p>
+            </div>           
+       </div>   
+
+
+      {% if post.pitch %}
+        {% for pitched_to in post.pitch.pitch_to_people.all %}
+            {% if pitched_to == user %}
+                <p class="small d-inline rounded " style="background-color:#f1f2f2;">&nbsp; Privately shared to you&nbsp;</p>
+            {% endif %}
+        {% endfor %}
+
+        <div class="row">									
+            <div class="col-lg-8 col-sm-12">        
+                <ul class="posts-liststyle">
+                    <li  class="inactive-post"><b class="inactive-post">Genere:</b>  
+                        {% for genre in post.pitch.genre.all %}
+                            {% if forloop.last %}        
+                                {% if genre|stringformat:"s" != "Other"%}
+                                    {{genre}}                                                                                                                    
+                                {% else %}
+                                    {{post.pitch.other_genre}}  
+                                {% endif %}        
+                            {% else %}        
+                                {% if genre|stringformat:"s" != "Other"%}
+                                    {{genre}},                                                                                                                       
+                                {% else %}
+                                    {{post.pitch.other_genre}}  
+                                {% endif %}
+                            {% endif %}       
+                    {% endfor %} 
+                    </li>
+                    <li class="inactive-post"><b class="inactive-post">Format:</b> {{post.pitch.format}}</li>    
+                    <li class="inactive-post"><b class="inactive-post">Language:</b> 
+                        {% for language in post.pitch.language.all %}
+                            {% if forloop.last %} 
+                                {% if language|stringformat:"s" == "Other"%}
+                                    {{post.pitch.other_language}}                                                             
+                                {% else %}
+                                    {{language}}                                                                      
+                                {% endif %}
+        
+                            {% else %}        
+                                {% if language|stringformat:"s" == "Other"%}
+                                    {{post.pitch.other_language}},                                                             
+                                {% else %}
+                                    {{language}},                                                                      
+                                {% endif %}
+        
+                            {% endif %}       
+                        
+                        {% endfor %}
+                    </li>   
+                    
+                    {% if post.pitch.story_file %}
+                        <li class="inactive-post"><b  class="inactive-post">Story File:</b> <a class="story_file_download inactive-post" data-bs-toggle="tooltip"  data-bs-placement="top" title="Download Story" download href="{{post.pitch.story_file.url}}"> Download <i class="fas fa-download"></i></a></li>
+                    {% endif %}
+                    
+                    
+                        
+                    {% if post.pitch.description %}     
+                        <li class="inactive-post">                         
+                    
+                            {% if post.pitch.description_count > 120 %}
+                                <p class="post_description_half_content_{{post.id}}"><b class="inactive-post">Synopsis:</b>           
+                                    {{post.pitch.description|slice:120}} 
+                                    <a class="full_content_show btn-link"  post_id="{{post.id}}" href="#">Show More</a>               
+                                </p> 
+
+                                <p class="d-none post_description_full_content_{{post.id}}"><b class="inactive-post">Synopsis:</b>                
+                                    {{post.pitch.description|safe}} 
+                                    <a post_id="{{post.id}}" class="half_content_show  btn-link" href="#">Show Less</a>               
+                                </p>
+                            {% else %}
+                                <p><b class="inactive-post">Synopsis:</b> {{post.pitch.description|safe}}</p>
+                            {% endif %}
+                        </li>
+                                                                            
+                    {% endif %}
+                  
+                </ul>                
+            </div>
+            <div class="col-lg-4 col-sm-12"> 
+                <div class="about-image  box-shadow ">
+                    {% if post.pitch.cover_image %}
+                      <img src="{{post.pitch.cover_image.url}}"  alt="" class="w-100"> 
+                    {% else %}
+                      <img src="{% static 'images/no-image.png' %}"  alt="" class="w-100"> 
+                    {% endif %}                                         
+                </div>                  
+            
+            </div>
+                    
+        </div>             
+
+
+     
+      {% elif post.call %}
+
+      <div class="row">									
+        <div class="col-lg-12 col-sm-12">        
+            <ul class="posts-liststyle">
+                <li  class="inactive-post"><b class="inactive-post">Genere:</b>  
+                    {% for genre in post.call.genre.all %}
+                        {% if forloop.last %}        
+                            {% if genre|stringformat:"s" != "Other"%}
+                                {{genre}}                                                                                                                    
+                            {% else %}
+                                {{post.call.other_genre}}  
+                            {% endif %}        
+                        {% else %}        
+                            {% if genre|stringformat:"s" != "Other"%}
+                                {{genre}},                                                                                                                       
+                            {% else %}
+                                {{post.call.other_genre}}  
+                            {% endif %}
+                        {% endif %}       
+                   {% endfor %} </li>
+                <li class="inactive-post"><b class="inactive-post">Format:</b> {{post.call.format}}</li>    
+                <li class="inactive-post"><b class="inactive-post">Language:</b>  {% for language in post.call.language.all %}
+
+                    {% if forloop.last %} 
+                        {% if language|stringformat:"s" == "Other"%}
+                            {{post.call.other_language}}                                                             
+                        {% else %}
+                            {{language}}                                                                      
+                        {% endif %}
+
+                    {% else %}
+
+                        {% if language|stringformat:"s" == "Other"%}
+                            {{post.call.other_language}},                                                             
+                        {% else %}
+                            {{language}},                                                                      
+                        {% endif %}
+
+                    {% endif %}
+
+                
+
+                {% endfor %}</li>      
+                
+                <li class="inactive-post">
+                    
+                    {% if post.call.description %}                              
+                
+                        {% if post.call.description_count > 120 %}
+                                <p class="post_description_half_content_{{post.id}} inactive-post"><b class="inactive-post">Description:</b>           
+                                    {{post.call.description|slice:120}} 
+                                    <a class="full_content_show btn-link inactive-post"  post_id="{{post.id}}" href="#">Show More</a>               
+                                </p> 
+
+                                <p class="d-none post_description_full_content_{{post.id}} inactive-post"><b class="inactive-post">Description:</b>                
+                                    {{post.call.description|safe}} 
+                                    <a post_id="{{post.id}}" class="half_content_show  btn-link inactive-post" href="#">Show Less</a>               
+                                </p>
+                        {% else %}
+                                <p class="inactive-post"><b class="inactive-post">Description:</b> {{post.call.description|safe}}</p>
+                        {% endif %}
+                                                                    
+                    {% endif %}
+                </li>
+            </ul>                
+        </div>
+                
+    </div> 
+
+
+
+    
+
+      {% endif %}
+      
+          <div class="entry-meta fw-light inactive-post mt-1 d-flex align-items-center justify-content-between">
+          
+              <div class="entry-metalist d-flex align-items-center">
+                  <ul>   
+                      
+                    {% comment%}
+                  
+                        {% get_post_like_status post.id user as status %}
+
+                        {% if status %}
+
+                        <li class="me-2"><a class="like_unlike fw-light inactive-post theme postid_{{post.id}}" data-url="{% url 'like_unlike' post.id %}"  href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-heart inactive-post"></i> {{post.get_like_count}}</a></li>
+                        
+                        {% else %}
+                            <li class="me-2"><a class="like_unlike postid_{{post.id}}" data-url="{% url 'like_unlike' post.id %}" href="#" post_id="{{post.id}}" id="postid_{{post.id}}"><i class="fa fa-heart"></i> {{post.get_like_count}}</a></li>
+                        {% endif %}  
+
+                    {% endcomment %}
+
+                    
+
+                        <li class="me-2">
+                            <i class="fa fa-thumbs-up"></i><span id="up_count{{post.id}}"> {{post.get_upvote_count}}</span>
+                        </li>
+
+                          
+                        <li class="me-2"><i class="fa fa-thumbs-down"></i>  <span id="up_count{{post.id}}" >{{post.get_downvote_count}}</span></li> 
+
+
+                      
+                      {% if post.post_category == "C"  %}
+
+                            {% if post.call and  post.call.owner == user  %}
+                                    {% count_my_unread post.id user as count %}                                               
+                                    &nbsp;  <li > <span class="highlightmargin">{{count}}</span> <a   data-url="{% url 'response' post.id %}" class="response-btn   " href="#"> <i title="See Responses" class="fa fa-eye"></i> </a></li>
+                            
+                                    {% if post.cannot_open %}
+                                        &nbsp;  <li>Closed by admin</li>
+                                    {% else %}                                                                          
+                                        &nbsp;  <li><a style="color:white !important;" operation="Repost"  post_title="{{post.post_title}}" post_id="{{post.id}}" data-url="{% url 'post_active_close' post.id %}" class="post_active_close_btn post_active_close_btn_{{post.id}} btn nir-btn-small"  href="#"> Repost</a></li>
+
+                                    {% endif %}
+
+                             {% elif is_writer or is_director %}   
+                                    {% count_int_unread post.id user as int_count %}                                         
+                                     &nbsp;  <li>  <span class="highlightmargin">{{int_count}}</span> <a data-url="{% url 'interest' post.id %}" class="interest-btn " href="#"> <i title="View Messages" class="fa fa-comment-alt"></i> </a></li>
+                                      
+                            {% endif %}
+
+                      {% endif %}
+
+                  
+                      {% if post.post_category == "T"  %}
+                            {% if post.pitch and post.posted_by == user %}
+                                 {% count_my_unread post.id user as count %}  
+                                 &nbsp;  <li ><span class="highlightmargin">{{count}}</span><a data-url="{% url 'response' post.id %}" class="response-btn    " href="#"> <i title="See Responses" class="fa fa-eye"></i> </a></li> 
+                          
+                                {% if post.cannot_open %}
+                                     &nbsp;  <li>Closed by admin</li>
+                                {% else %}                                                                             
+                                     &nbsp;  <li ><a  operation="Repost"  post_title="{{post.post_title}}" post_id="{{post.id}}" data-url="{% url 'post_active_close' post.id %}" class="post_active_close_btn post_active_close_btn_{{post.id}}   btn-link" href="#"> Repost</a></li>
+                                {% endif %}
+
+                            {% elif is_producer or is_director  %}                                         
+                                {% count_int_unread post.id user as int_count %}    
+                                 &nbsp;  <li> ({{int_count}} unread) <u><a data-url="{% url 'interest' post.id %}" class="interest-btn  " href="#"> <i title="View Messages" class="fa fa-comment-alt"></i></a></u></li>
+                      
+
+                          {% endif %}
+
+                      {% endif %}
+
+                      {% if not post.posted_by == user %}  
+                           &nbsp;&nbsp;   <li ><a data-url="{% url 'report-post' post.id %}" class="report-btn fw-light inactive-post btn-link" href="#"> <i title="Report Post" class="fa fa-flag"> </i></a></li> 
+                      {% endif %}
+                  </ul>
+
+
+              </div>
+          </div>
+  </div> 
+
+
+
+
+{% endif %}

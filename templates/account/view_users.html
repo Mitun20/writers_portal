@@ -1,0 +1,9 @@
+{% for user in users %}
+
+  <h5>hi {{user.email}} -  {{user.age}}</h5>
+
+{% empty %}
+
+ <h2>No data available..</h2>
+
+{% endfor %}

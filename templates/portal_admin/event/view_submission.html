@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load check_post_like_tags %}
+{% load follow_status_tags %}
+
+
+
+{% block content %}
+ 
+<!-- BreadCrumb Starts -->  
+<section class="breadcrumb-main pb-0 pt-3" style="background-image: url(images/bg/bg2.jpg);">
+    <div class="breadcrumb-outer">
+        <div class="container">
+            <div class="breadcrumb-content d-md-flex align-items-center pt-1">
+              
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'portal_admin' %}">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="dot-overlay"></div>
+</section>
+<!-- BreadCrumb Ends --> 
+
+<!-- blog starts -->
+<section class="blog blog-left">
+    <div class="container">
+        <div class="row">
+               <!-- sidebar starts -->
+               <div class="col-lg-3 col-md-12">
+                    <div class="sidebar-sticky">
+                        <div class="list-sidebar">
+                            <div class="author-news mb-4 shadow-sm p-4 text-center">
+                                <div class="author-news-content">
+                                    <div class="author-thumb mb-1">
+                                        {% if user.profile_photo %}
+                                            <img src="{{user.profile_photo.url}}" alt="author">
+                                        {% else %}
+                                            <img src="{% static 'images/avatar.png' %}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="author-content">
+                                        <h3 class="title mb-1 text-align-left">{{user}} :  
+                                             {% for group in user.groups.all %}
+                                                   {{group}} 
+                                                     {% if not forloop.last %}
+                                                         /
+                                                     {% endif %}
+                                        {% endfor %}</h3>
+                               
+
+                                        <p class="mb-2 text-align-left">
+                                            Unread Message: 
+                                            <a class="highlight float-end" href="{% url 'inbox' %}" >{{inbox_count}}</a> 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="popular-post sidebar-item mb-4 box-shadow p-4">                        
+                                <div class="col-lg-12">
+                                    <h5><u><a class="" href="{% url 'portal_admin' %}">People</a></u></h5>
+                                    <h5><u><a class="nav-active" href="{% url 'event' %}" id="followers" >Event</a></u></h5>
+                                    <h5><u><a href="{% url 'view_posts' %}">Posts</a></u></h5>
+                                    <h5><u><a href="{% url 'report' %}" id="followers" >Report</a></u></h5>
+                                </div>                       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-12"><h5 class="mt-1">Event: {{registration.event.title}}    &nbsp;&nbsp; <a class="btn" href="{% url 'view_event' registration.event.id %}">Go back </a></h5></div>
+                    </div>                
+                    <div class="row event_div">  
+
+                        <div class="col-12">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <p><b>Submitted Type: </b> {{registration.get_priority_of_submission_display}}</p>
+                                </div>
+                                <div class="col-4">
+
+                                    {% if registration.priority_of_submission == "S" %}
+
+                                        {% if registration.script %}
+        
+                                            <b><a href="{{registration.script.url}}" download><u> Download Script</u> </a> </b>
+                                     
+            
+                                        {% endif %}
+     
+                                    {% else %}
+
+                                    
+                                    <b><a href="{{registration.video_link}}" target="_blank"><u>View Video</u> </a> </b>
+                            
+
+
+     
+                                    {% endif %}
+                                </div>
+                                <div class="col-4">
+
+                                    {% if registration.priority_of_submission == "S" %}
+
+                                    {% if registration.script %}
+
+                                        <p> <b>Script Password : </b> {{registration.script_password}}  </p>
+
+                                    {% else %}
+                                    <p> <b>Video Password : </b> {{registration.video_password}}  </p>
+        
+                                    {% endif %}
+ 
+                                {% endif %}
+                                </div>
+
+
+                            </div>
+                        
+                            
+
+                         
+                            
+
+                        
+
+                            <hr>
+
+
+                        </div>
+                       
+                      
+                        <div class="col-6">                      
+
+                            <p><b> Submitted By    </b> : <a target="_blank"  href="{% url 'profile' registration.user.id  %}">{{registration.user}} </a></p>
+                            <p><b> Submitted on    </b> : {{registration.submitted_on|default_if_none:""}} </p>
+                            <p><b> Filim title    </b> : {{registration.filim_title|default_if_none:""}} </p>
+                            <p><b> Language    </b> : {{registration.language|default_if_none:""}} </p>
+                            <p><b> Synopsis    </b> : {{registration.synopsis|default_if_none:""}} </p>
+                            <p><b> Subtitles   </b> : {{registration.get_subtitles_display|default_if_none:""}} </p>
+                            <p><b> Film duration   </b> : {{registration.film_duration|default_if_none:""}} </p>
+                            <p><b> Year of Production   </b> : {{registration.year_of_roduction|default_if_none:""}} </p>
+                            <p><b> Your role of production  </b> : {{registration.your_role_of_production|default_if_none:""}} </p>   
+
+                        </div>
+
+                        <div class="col-6">                        
+                            <p><b> Director   </b> : {{registration.director|default_if_none:""}} </p>
+                            <p><b> Cinematographer   </b> : {{registration.cinematographer|default_if_none:""}} </p>
+                            <p><b> Editor   </b> : {{registration.editor|default_if_none:""}} </p>
+                            <p><b> Music Director   </b> : {{registration.music_director|default_if_none:""}} </p>
+                            <p><b> Writer   </b> : {{registration.writer|default_if_none:""}} </p>
+                            <p><b> Cast   </b> : {{registration.cast|default_if_none:""}} </p>
+                            <p><b> Music Writer   </b> : {{registration.writer|default_if_none:""}} </p>
+                            
+                        </div>
+                        <div class="col-12">  <hr>  </div>                       
+                      
+
+                        <div class="col-6">     
+                            <p><b> Mobile No   </b> : {{registration.mobile_no|default_if_none:""}} </p>    
+                            <p><b> Email   </b> : {{registration.email|default_if_none:""}} </p>            
+                            <p><b> Address   </b> : {{registration.address|default_if_none:""}} </p>
+                            <p><b> City   </b> : {{registration.city|default_if_none:""}} </p>    
+                            <p><b> Age   </b> : {{registration.age|default_if_none:""}} </p> 
+                            <p><b> Sex   </b> : {{registration.get_sex_display|default_if_none:""}} </p> 
+                            <p><b> Profession   </b> : {{registration.profession|default_if_none:""}} </p>                                                      
+                                             
+                    </div>
+
+
+                    <div class="col-6">   
+                        <p><b> Marital status   </b> : {{registration.marital_status|default_if_none:""}} </p> 
+                        <p><b> Experience in Movie Industry   </b> : {{registration.experience_in_movie_industry|default_if_none:""}} </p> 
+                        <p><b> Reference if  any   </b> : {{registration.reference_if_any|default_if_none:""}} </p>                    
+                        <p><b> Instagram   </b> : {{registration.instagram|default_if_none:""}}  </p>
+                        <p><b> Twitter   </b> : {{registration.twitter|default_if_none:""}}  </p>
+                        <p><b> Facebook   </b> : {{registration.facebook|default_if_none:""}} </p>
+                    </div>
+
+
+                    <div class="col-12">  <hr>  </div>
+                </div>
+                <!-- Right sidebar starts -->
+                <div class="col-lg-3 col-md-12">
+                
+                </div>
+         
+        </div>
+    </div>
+</section>
+<!-- blog Ends -->  
+
+
+
+
+
+{% endblock %}
